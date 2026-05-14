@@ -4,35 +4,27 @@ import { motion } from "framer-motion";
 
 export function TrustRibbon() {
   return (
-    <div className="relative mt-12 z-20 container mx-auto px-4 max-w-5xl text-center">
-      <motion.p 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8"
-      >
-        Trusted by High-Growth Amazon Brands
-      </motion.p>
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500"
-      >
-        <div className="flex items-center gap-2 font-bold text-slate-300 text-lg">
-            <span className="w-5 h-5 bg-emerald-500 rounded-sm"></span> AeroGear
-        </div>
-        <div className="flex items-center gap-2 font-bold text-slate-300 text-lg">
-            <span className="w-5 h-5 bg-cyan-500 transform rotate-45"></span> OmniShip
-        </div>
-        <div className="flex items-center gap-2 font-bold text-slate-300 text-lg">
-            <span className="w-5 h-5 rounded-full border-[3px] border-indigo-500"></span> Zenith Logistics
-        </div>
-        <div className="flex items-center gap-2 font-bold text-slate-300 text-lg">
-            <span className="w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[18px] border-b-rose-500"></span> Vertex Supplies
-        </div>
-      </motion.div>
+    <div className="relative z-20 w-full border-y border-white/5 bg-[#020617]/50 backdrop-blur-md py-6">
+      <div className="container mx-auto px-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-12 text-center"
+        >
+          <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
+            99.99% Shipment Accuracy
+          </div>
+          <div className="hidden md:block text-slate-700">|</div>
+          <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
+            48hr Max Dock-to-Stock
+          </div>
+          <div className="hidden md:block text-slate-700">|</div>
+          <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
+            0% State Sales Tax
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }

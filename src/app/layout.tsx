@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased bg-[#0B1120] text-slate-50 min-h-screen`}>
+      <body className={`${inter.variable} font-sans antialiased bg-[#000000] text-[#EAEAEA] min-h-screen selection:bg-white/20 selection:text-white`}>
         {children}
       </body>
     </html>
