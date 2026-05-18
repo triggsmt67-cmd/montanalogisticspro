@@ -389,6 +389,7 @@ export default function LandingPage() {
             <motion.a whileHover={{ y: -1 }} href="#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</motion.a>
             <motion.a whileHover={{ y: -1 }} href="#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
             <motion.a whileHover={{ y: -1 }} href="#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
+            <motion.a whileHover={{ y: -1 }} href="/estimator" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Cost Estimator</motion.a>
           </nav>
           <motion.button 
             whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}

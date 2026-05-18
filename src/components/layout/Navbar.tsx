@@ -15,6 +15,7 @@ export function Navbar() {
           <Link href="#prep-solutions" className="hover:text-white transition-colors">Prep Solutions</Link>
           <Link href="#api-stack" className="hover:text-white transition-colors">API Stack</Link>
           <Link href="#roi-model" className="hover:text-white transition-colors">ROI Model</Link>
+          <Link href="/estimator" className="hover:text-emerald-400 text-emerald-500 transition-colors">Cost Estimator</Link>
         </nav>
         <div className="flex items-center gap-4">
           <Button className="bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 font-bold rounded-full px-6 py-2 border border-emerald-500/20 shadow-md transition-colors text-sm">

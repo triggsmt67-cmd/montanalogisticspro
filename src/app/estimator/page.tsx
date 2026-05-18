@@ -1,0 +1,668 @@
+"use client";
+
+import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  AlertTriangle,
+  Box,
+  Calculator,
+  CheckCircle2,
+  ChevronDown,
+  ChevronRight,
+  HelpCircle,
+  Info,
+  Package,
+  ShoppingCart,
+  Truck,
+  Warehouse,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Footer } from "@/components/layout/Footer";
+
+const paths = [
+  {
+    id: "fba",
+    label: "Prep products for Amazon FBA",
+    plain: "I’m sending inventory to Amazon.",
+    icon: Package,
+    colorClass: "bg-blue-600 border-blue-600 shadow-blue-600/20",
+    textClass: "text-blue-600",
+    bgMuted: "bg-blue-50",
+    dotClass: "bg-blue-400",
+    activeText: "text-blue-50",
+    included: ["Receiving", "Inspection", "FNSKU labels", "Polybag", "Dunnage", "Shipment creation", "Warehouse tracking"],
+  },
+  {
+    id: "wholesale",
+    label: "Prep wholesale inventory",
+    plain: "I have same-FNSKU inventory to prep in bulk.",
+    icon: Warehouse,
+    colorClass: "bg-indigo-600 border-indigo-600 shadow-indigo-600/20",
+    textClass: "text-indigo-600",
+    bgMuted: "bg-indigo-50",
+    dotClass: "bg-indigo-400",
+    activeText: "text-indigo-50",
+    included: ["Receiving", "Inspection", "Wrapping", "Polybag", "FNSKU labels", "Reused boxes", "Dunnage"],
+  },
+  {
+    id: "carton",
+    label: "Store and forward cartons",
+    plain: "I need cartons held and sent later.",
+    icon: Truck,
+    colorClass: "bg-amber-500 border-amber-500 shadow-amber-500/20",
+    textClass: "text-amber-600",
+    bgMuted: "bg-amber-50",
+    dotClass: "bg-amber-400",
+    activeText: "text-amber-50",
+    included: ["Receiving", "Label printing", "Carton forwarding", "Pallet handling", "Storage tracking"],
+  },
+  {
+    id: "ecommerce",
+    label: "Ship eCommerce orders",
+    plain: "I need individual orders picked, packed, and shipped.",
+    icon: ShoppingCart,
+    colorClass: "bg-emerald-600 border-emerald-600 shadow-emerald-600/20",
+    textClass: "text-emerald-600",
+    bgMuted: "bg-emerald-50",
+    dotClass: "bg-emerald-400",
+    activeText: "text-emerald-50",
+    included: ["Order handling", "Item handling", "Storage estimate", "Monthly volume pricing"],
+  },
+  {
+    id: "storage",
+    label: "Estimate storage only",
+    plain: "I just need to know storage cost.",
+    icon: Box,
+    colorClass: "bg-violet-600 border-violet-600 shadow-violet-600/20",
+    textClass: "text-violet-600",
+    bgMuted: "bg-violet-50",
+    dotClass: "bg-violet-400",
+    activeText: "text-violet-50",
+    included: ["First 14 days free", "Monthly cubic-foot estimate", "Q4 rate option"],
+  },
+  {
+    id: "notSure",
+    label: "Not sure yet",
+    plain: "Help me figure out the right path.",
+    icon: HelpCircle,
+    colorClass: "bg-rose-500 border-rose-500 shadow-rose-500/20",
+    textClass: "text-rose-500",
+    bgMuted: "bg-rose-50",
+    dotClass: "bg-rose-400",
+    activeText: "text-rose-50",
+    included: ["A quick conversation is better than guessing", "We’ll point you toward the right service"],
+  },
+];
+
+function money(value: number) {
+  if (Number.isNaN(value) || value === null || value === undefined) return "$0.00";
+  return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+}
+
+function getFbaRate(items: number) {
+  if (items > 10000) return null;
+  if (items >= 5001) return 1;
+  if (items >= 2001) return 1.15;
+  if (items >= 1001) return 1.25;
+  if (items >= 501) return 1.35;
+  if (items >= 1) return 1.45;
+  return 0;
+}
+
+function getWholesaleRate(units: number) {
+  if (units > 10000) return null;
+  if (units >= 5001) return 0.9;
+  if (units >= 2501) return 1;
+  if (units >= 500) return 1.15;
+  return null;
+}
+
+function getEcommerceRates(orders: number) {
+  if (orders > 2500) return null;
+  if (orders >= 1001) return { order: 2, item: 0.3 };
+  if (orders >= 501) return { order: 2.25, item: 0.4 };
+  if (orders >= 1) return { order: 2.5, item: 0.5 };
+  return { order: 0, item: 0 };
+}
+
+function getStorageRate(days: number, q4: boolean) {
+  if (days <= 14) return 0;
+  if (q4) return 4.8;
+  if (days >= 181) return 3.6;
+  return 2.4;
+}
+
+function cubicFeetFromBox(length: number, width: number, height: number, quantity: number) {
+  return (length * width * height * quantity) / 1728;
+}
+
+interface NumberInputProps {
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+  suffix?: string;
+  helper?: string;
+  disabled?: boolean;
+  min?: number;
+}
+
+function NumberInput({ label, value, onChange, suffix, helper, disabled, min = 0 }: NumberInputProps) {
+  return (
+    <label className="block">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <span className="text-sm font-medium text-zinc-800">{label}</span>
+        {suffix && <span className="text-xs text-zinc-500">{suffix}</span>}
+      </div>
+      <input
+        type="number"
+        min={min}
+        value={value}
+        disabled={disabled}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 disabled:bg-zinc-100 disabled:text-zinc-400"
+      />
+      {helper && <p className="mt-2 text-xs leading-5 text-zinc-500">{helper}</p>}
+    </label>
+  );
+}
+
+interface ToggleRowProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label: string;
+  helper?: string;
+}
+
+function ToggleRow({ checked, onChange, label, helper }: ToggleRowProps) {
+  return (
+    <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-zinc-200 bg-white p-4 transition hover:border-zinc-300">
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-emerald-600" />
+      <span>
+        <span className="block text-sm font-medium text-zinc-800">{label}</span>
+        {helper && <span className="mt-1 block text-xs leading-5 text-zinc-500">{helper}</span>}
+      </span>
+    </label>
+  );
+}
+
+interface SectionProps {
+  title: string;
+  eyebrow?: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}
+
+function Section({ title, eyebrow, children, defaultOpen = true }: SectionProps) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between gap-4 text-left">
+        <span>
+          {eyebrow && <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-emerald-600">{eyebrow}</span>}
+          <span className="text-lg font-semibold tracking-tight text-zinc-950">{title}</span>
+        </span>
+        {open ? <ChevronDown className="h-5 w-5 text-zinc-500" /> : <ChevronRight className="h-5 w-5 text-zinc-500" />}
+      </button>
+      {open && <div className="mt-5">{children}</div>}
+    </div>
+  );
+}
+
+interface SummaryRow {
+  label: string;
+  detail?: string | null;
+  amount: number;
+}
+
+interface SummaryGroupProps {
+  title: string;
+  rows: SummaryRow[];
+}
+
+function SummaryGroup({ title, rows }: SummaryGroupProps) {
+  if (!rows.length) return null;
+  return (
+    <div className="rounded-2xl bg-zinc-50 p-4">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-400">{title}</p>
+      {rows.map((row) => (
+        <div key={row.label + row.detail} className="flex items-start justify-between gap-4 border-b border-zinc-100 py-3 last:border-0">
+          <div>
+            <p className="text-sm font-medium text-zinc-700">{row.label}</p>
+            {row.detail && <p className="mt-1 text-xs leading-5 text-zinc-500">{row.detail}</p>}
+          </div>
+          <p className="shrink-0 text-sm font-semibold text-zinc-950">{money(row.amount)}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function MontanaLogisticsCalculatorPage() {
+  const [service, setService] = useState("fba");
+
+  const [items, setItems] = useState(500);
+  const [books, setBooks] = useState(0);
+  const [wholesaleUnits, setWholesaleUnits] = useState(1200);
+  const [orders, setOrders] = useState(400);
+  const [avgItems, setAvgItems] = useState(2);
+
+  const [needsStorage, setNeedsStorage] = useState(false);
+  const [useBoxMath, setUseBoxMath] = useState(true);
+  const [boxCount, setBoxCount] = useState(20);
+  const [boxLength, setBoxLength] = useState(18);
+  const [boxWidth, setBoxWidth] = useState(14);
+  const [boxHeight, setBoxHeight] = useState(12);
+  const [manualCubicFeet, setManualCubicFeet] = useState(40);
+  const [storageDays, setStorageDays] = useState(45);
+  const [q4, setQ4] = useState(false);
+
+  const [hasReturns, setHasReturns] = useState(false);
+  const [returnsCount, setReturnsCount] = useState(0);
+  const [hasBundles, setHasBundles] = useState(false);
+  const [bundles, setBundles] = useState(0);
+  const [itemsPerBundle, setItemsPerBundle] = useState(3);
+  const [hasSoldAsSet, setHasSoldAsSet] = useState(false);
+  const [soldAsSetLabels, setSoldAsSetLabels] = useState(0);
+  const [hasDoNotOpen, setHasDoNotOpen] = useState(false);
+  const [doNotOpenLabels, setDoNotOpenLabels] = useState(0);
+  const [hasBubbleWrap, setHasBubbleWrap] = useState(false);
+  const [bubbleWrapItems, setBubbleWrapItems] = useState(0);
+  const [bubbleSheets, setBubbleSheets] = useState(3);
+  const [hasManualCount, setHasManualCount] = useState(false);
+  const [manualCountHours, setManualCountHours] = useState(0);
+
+  const [palletsReceived, setPalletsReceived] = useState(2);
+  const [boxesReceived, setBoxesReceived] = useState(30);
+  const [container20, setContainer20] = useState(0);
+  const [container40, setContainer40] = useState(0);
+  const [shortPallets, setShortPallets] = useState(2);
+  const [tallPallets, setTallPallets] = useState(0);
+  const [cartonsForwarded, setCartonsForwarded] = useState(25);
+  const [palletsForwarded, setPalletsForwarded] = useState(1);
+
+  const selectedPath = paths.find((path) => path.id === service) || paths[0];
+  const SelectedIcon = selectedPath.icon || Calculator;
+
+  const cubicFeet = useMemo(() => {
+    if (!needsStorage && service !== "storage" && service !== "carton") return 0;
+    if (!useBoxMath) return manualCubicFeet;
+    return Math.round(cubicFeetFromBox(boxLength, boxWidth, boxHeight, boxCount) * 10) / 10;
+  }, [needsStorage, service, useBoxMath, manualCubicFeet, boxLength, boxWidth, boxHeight, boxCount]);
+
+  const estimate = useMemo(() => {
+    const quoteReasons: string[] = [];
+    const groups: { service: SummaryRow[]; addons: SummaryRow[]; storage: SummaryRow[]; receiving: SummaryRow[] } = { service: [], addons: [], storage: [], receiving: [] };
+    let total = 0;
+
+    if (service === "notSure") {
+      quoteReasons.push("A quick quote request is the best next step when the service path is unclear.");
+      return { groups, total: 0, quoteReasons, requiresQuote: true };
+    }
+
+    const storageRate = getStorageRate(storageDays, q4);
+    const storageCost = cubicFeet * storageRate;
+    const shouldApplyStorage = cubicFeet > 0 && (needsStorage || service === "storage" || service === "carton");
+
+    const bundleFeeEach = itemsPerBundle <= 3 ? 0.5 : 0.5 + (itemsPerBundle - 3) * 0.15;
+    const bundlingCost = hasBundles ? bundles * bundleFeeEach : 0;
+    const bubbleFeeEach = bubbleSheets <= 3 ? 0.5 : 0.5 + (bubbleSheets - 3) * 0.15;
+    const bubbleCost = hasBubbleWrap ? bubbleWrapItems * bubbleFeeEach : 0;
+    const returnCost = hasReturns ? returnsCount * 1 : 0;
+    const soldAsSetCost = hasSoldAsSet ? soldAsSetLabels * 0.15 : 0;
+    const doNotOpenCost = hasDoNotOpen ? doNotOpenLabels * 0.15 : 0;
+    const manualCountCost = hasManualCount ? manualCountHours * 40 : 0;
+    const bookCost = books * 2.5;
+
+    if (service === "fba") {
+      const rate = getFbaRate(items);
+      if (rate === null) quoteReasons.push("FBA prep over 10,000 items requires a custom quote.");
+      const base = rate ? items * rate : 0;
+      total += base + bookCost;
+      groups.service.push({ label: "FBA prep", detail: rate ? `${items.toLocaleString()} items × ${money(rate)}` : "Quote required", amount: base });
+      if (books > 0) groups.service.push({ label: "Books", detail: `${books.toLocaleString()} books × $2.50`, amount: bookCost });
+    }
+
+    if (service === "wholesale") {
+      const rate = getWholesaleRate(wholesaleUnits);
+      if (wholesaleUnits < 500) quoteReasons.push("Wholesale pricing starts at 500 units.");
+      if (wholesaleUnits > 10000) quoteReasons.push("Wholesale prep over 10,000 units requires a custom quote.");
+      const base = rate ? wholesaleUnits * rate : 0;
+      total += base;
+      groups.service.push({ label: "Wholesale prep", detail: rate ? `${wholesaleUnits.toLocaleString()} units × ${money(rate)}` : "Quote required", amount: base });
+    }
+
+    if (service === "ecommerce") {
+      const rates = getEcommerceRates(orders);
+      if (!rates) quoteReasons.push("eCommerce fulfillment over 2,500 orders requires a custom quote.");
+      const totalItems = orders * avgItems;
+      const orderCost = rates ? orders * rates.order : 0;
+      const itemCost = rates ? totalItems * rates.item : 0;
+      total += orderCost + itemCost;
+      groups.service.push({ label: "Order handling", detail: rates ? `${orders.toLocaleString()} orders × ${money(rates.order)}` : "Quote required", amount: orderCost });
+      groups.service.push({ label: "Item handling", detail: rates ? `${totalItems.toLocaleString()} items × ${money(rates?.item || 0)}` : "Quote required", amount: itemCost });
+    }
+
+    if (service === "carton") {
+      const receiving = palletsReceived * 18 + boxesReceived + container20 * 275 + container40 * 550;
+      const palletization = shortPallets * 20 + tallPallets * 50;
+      const forwarding = cartonsForwarded * 4 + palletsForwarded * 20;
+      total += receiving + palletization + forwarding;
+      groups.receiving.push({ label: "Receiving", detail: "Pallets, boxes, and containers", amount: receiving });
+      groups.receiving.push({ label: "Palletization", detail: "Up to 70 in. and 71+ in. pallets", amount: palletization });
+      groups.receiving.push({ label: "Forwarding", detail: "Cartons and pallets forwarded", amount: forwarding });
+    }
+
+    const addonTotal = returnCost + bundlingCost + soldAsSetCost + doNotOpenCost + bubbleCost + manualCountCost;
+    total += addonTotal;
+
+    if (returnCost > 0) groups.addons.push({ label: "Returns", detail: `${returnsCount.toLocaleString()} returns × $1.00`, amount: returnCost });
+    if (bundlingCost > 0) groups.addons.push({ label: "Bundles", detail: `${bundles.toLocaleString()} bundles × ${money(bundleFeeEach)}`, amount: bundlingCost });
+    if (soldAsSetCost > 0) groups.addons.push({ label: "Sold as set labels", detail: `${soldAsSetLabels.toLocaleString()} labels × $0.15`, amount: soldAsSetCost });
+    if (doNotOpenCost > 0) groups.addons.push({ label: "Do not open labels", detail: `${doNotOpenLabels.toLocaleString()} labels × $0.15`, amount: doNotOpenCost });
+    if (bubbleCost > 0) groups.addons.push({ label: "Bubble wrap", detail: `${bubbleWrapItems.toLocaleString()} items × ${money(bubbleFeeEach)}`, amount: bubbleCost });
+    if (manualCountCost > 0) groups.addons.push({ label: "Manual count", detail: `${manualCountHours} hours × $40.00`, amount: manualCountCost });
+
+    if (shouldApplyStorage) {
+      total += storageCost;
+      groups.storage.push({ label: storageCost > 0 ? "Monthly storage estimate" : "Storage estimate", detail: storageCost > 0 ? `${cubicFeet.toLocaleString()} cu. ft. × ${money(storageRate)}/mo` : "First 14 days are free", amount: storageCost });
+    }
+
+    return { groups, total, quoteReasons, requiresQuote: quoteReasons.length > 0 };
+  }, [service, storageDays, q4, cubicFeet, needsStorage, itemsPerBundle, hasBundles, bundles, bubbleSheets, hasBubbleWrap, bubbleWrapItems, hasReturns, returnsCount, hasSoldAsSet, soldAsSetLabels, hasDoNotOpen, doNotOpenLabels, hasManualCount, manualCountHours, books, items, wholesaleUnits, orders, avgItems, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded]);
+
+  const showAddons = service === "fba" || service === "wholesale";
+  const showStorage = service !== "notSure";
+
+  return (
+    <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
+      {/* Header aligned with main site */}
+      <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+          <Link href="/" className="flex flex-col hover:opacity-80 transition-opacity">
+            <span className="text-xl font-bold tracking-tight text-zinc-900">Montana Logistics Pro</span>
+            <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="/#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</Link>
+            <Link href="/#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</Link>
+          </nav>
+          <Link href="/">
+            <motion.button 
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center h-9 md:h-10 px-4 md:px-6 rounded-full bg-zinc-900 text-white text-xs md:text-sm font-medium hover:bg-zinc-800 transition-colors"
+            >
+              Back to Home
+            </motion.button>
+          </Link>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-grow p-4 sm:p-8 pt-12 md:pt-16 pb-24">
+        <div className="mx-auto max-w-7xl">
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }} className="mb-12 grid gap-8 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+            <div>
+              <div className={`mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full ${selectedPath.bgMuted} border border-white/20 ${selectedPath.textClass} text-xs font-semibold uppercase tracking-widest shadow-sm backdrop-blur-md transition-colors`}>
+                <Calculator className="h-4 w-4" />
+                Cost Estimator
+              </div>
+              <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl leading-tight transition-colors">
+                Get a practical cost estimate before you send inventory.
+              </h1>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
+                Answer a few questions and get a ballpark estimate for prep, storage, or forwarding. If the job needs custom pricing, we’ll tell you instead of giving a fake number.
+              </p>
+            </div>
+
+            <Card className="rounded-[2rem] border-emerald-100 bg-white shadow-xl">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-4">
+                  <div className={`rounded-2xl ${selectedPath.bgMuted} p-4 ${selectedPath.textClass} border border-white/50 shadow-sm transition-colors`}>
+                    <SelectedIcon className="h-8 w-8" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold tracking-wider uppercase text-zinc-500">Selected path</p>
+                    <p className="mt-1 text-2xl font-bold tracking-tight text-zinc-950">{selectedPath.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-600">{selectedPath.plain}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <div className="grid gap-8 lg:grid-cols-[1fr_390px]">
+            <div className="space-y-8">
+              <Section title="What are you trying to do?" eyebrow="Step 1">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {paths.map((path) => {
+                    const Icon = path.icon;
+                    const active = service === path.id;
+                    return (
+                      <motion.button
+                        whileHover={{ scale: 1.02, y: -4 }}
+                        whileTap={{ scale: 0.98 }}
+                        key={path.id}
+                        onClick={() => setService(path.id)}
+                        className={`rounded-3xl border p-6 text-left transition-all duration-300 ${active ? `${path.colorClass} text-white shadow-lg` : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-300 hover:shadow-md"}`}
+                      >
+                        <div className={`mb-4 inline-flex rounded-2xl p-3 transition-colors ${active ? "bg-white/20" : `${path.bgMuted} ${path.textClass}`}`}>
+                          <Icon className="h-6 w-6" />
+                        </div>
+                        <p className="text-base font-bold">{path.label}</p>
+                        <p className={`mt-2 text-sm leading-relaxed ${active ? path.activeText : "text-zinc-500"}`}>{path.plain}</p>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </Section>
+
+              {service !== "notSure" && (
+                <Section title="Basic shipment details" eyebrow="Step 2">
+                  {service === "fba" && (
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <NumberInput label="How many FBA items?" value={items} onChange={setItems} helper="Over 10,000 items needs a custom quote." min={500} />
+                      <NumberInput label="Any books?" value={books} onChange={setBooks} helper="$2.50 each, including grading and FNSKU labeling." />
+                    </div>
+                  )}
+
+                  {service === "wholesale" && (
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} helper="Listed wholesale pricing starts at 500 units and assumes the same FNSKU." min={500} />
+                    </div>
+                  )}
+
+                  {service === "ecommerce" && (
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <NumberInput label="Monthly orders" value={orders} onChange={setOrders} helper="Over 2,500 monthly orders needs a custom quote." />
+                      <NumberInput label="Average items per order" value={avgItems} onChange={setAvgItems} />
+                    </div>
+                  )}
+
+                  {service === "carton" && (
+                    <div className="space-y-8">
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <NumberInput label="Pallets received" value={palletsReceived} onChange={setPalletsReceived} suffix="$18 each" />
+                        <NumberInput label="Boxes received" value={boxesReceived} onChange={setBoxesReceived} suffix="$1 each" />
+                        <NumberInput label="20’ containers unloaded" value={container20} onChange={setContainer20} suffix="$275 each" />
+                        <NumberInput label="40’ containers unloaded" value={container40} onChange={setContainer40} suffix="$550 each" />
+                      </div>
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <NumberInput label="Pallets up to 70 inches" value={shortPallets} onChange={setShortPallets} suffix="$20 each" />
+                        <NumberInput label="Pallets 71 inches or taller" value={tallPallets} onChange={setTallPallets} suffix="$50 each" />
+                        <NumberInput label="Cartons forwarded" value={cartonsForwarded} onChange={setCartonsForwarded} suffix="$4 each" />
+                        <NumberInput label="Pallets forwarded" value={palletsForwarded} onChange={setPalletsForwarded} suffix="$20 each" />
+                      </div>
+                    </div>
+                  )}
+
+                  {service === "storage" && (
+                    <div className="rounded-3xl border border-dashed border-zinc-300 bg-zinc-50 p-8">
+                      <h3 className="text-xl font-bold">Storage only</h3>
+                      <p className="mt-2 text-base leading-relaxed text-zinc-600">Skip the prep fields and estimate monthly storage after the free two-week period.</p>
+                    </div>
+                  )}
+                </Section>
+              )}
+
+              {showAddons && (
+                <Section title="Any special prep needs?" eyebrow="Step 3" defaultOpen={false}>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <ToggleRow checked={hasReturns} onChange={setHasReturns} label="Returns" helper="$1.00 each in addition to the original prep fee." />
+                    <ToggleRow checked={hasBundles} onChange={setHasBundles} label="Bundles" helper="$0.50 up to 3 items, then $0.15 per additional item." />
+                    <ToggleRow checked={hasSoldAsSet} onChange={setHasSoldAsSet} label="Sold as set labels" helper="$0.15 per label." />
+                    <ToggleRow checked={hasDoNotOpen} onChange={setHasDoNotOpen} label="“Do not open” labels" helper="$0.15 per label." />
+                    <ToggleRow checked={hasBubbleWrap} onChange={setHasBubbleWrap} label="Bubble wrap" helper="$0.50 up to 3 sheets, then $0.15 per additional sheet." />
+                    <ToggleRow checked={hasManualCount} onChange={setHasManualCount} label="Manual inventory count" helper="$40 per hour." />
+                  </div>
+
+                  <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                    {hasReturns && <NumberInput label="Return items" value={returnsCount} onChange={setReturnsCount} />}
+                    {hasBundles && <NumberInput label="Number of bundles" value={bundles} onChange={setBundles} />}
+                    {hasBundles && <NumberInput label="Items per bundle" value={itemsPerBundle} onChange={setItemsPerBundle} />}
+                    {hasSoldAsSet && <NumberInput label="Sold as set labels" value={soldAsSetLabels} onChange={setSoldAsSetLabels} />}
+                    {hasDoNotOpen && <NumberInput label="Do not open labels" value={doNotOpenLabels} onChange={setDoNotOpenLabels} />}
+                    {hasBubbleWrap && <NumberInput label="Bubble wrap items" value={bubbleWrapItems} onChange={setBubbleWrapItems} />}
+                    {hasBubbleWrap && <NumberInput label="Sheets per item" value={bubbleSheets} onChange={setBubbleSheets} />}
+                    {hasManualCount && <NumberInput label="Manual count hours" value={manualCountHours} onChange={setManualCountHours} />}
+                  </div>
+                </Section>
+              )}
+
+              {showStorage && (
+                <Section title="Storage" eyebrow="Optional">
+                  {service !== "storage" && service !== "carton" && (
+                    <div className="mb-6">
+                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Will anything stay longer than 2 weeks?" helper="The first 14 days are free. Monthly storage rates apply after that." />
+                    </div>
+                  )}
+
+                  {(needsStorage || service === "storage" || service === "carton") && (
+                    <div className="mt-2 space-y-6">
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <button onClick={() => setUseBoxMath(true)} className={`rounded-2xl border p-4 text-left font-medium transition-colors ${useBoxMath ? "border-zinc-900 bg-zinc-900 text-white" : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300"}`}>
+                          I know box sizes
+                        </button>
+                        <button onClick={() => setUseBoxMath(false)} className={`rounded-2xl border p-4 text-left font-medium transition-colors ${!useBoxMath ? "border-zinc-900 bg-zinc-900 text-white" : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-300"}`}>
+                          I know cubic feet
+                        </button>
+                      </div>
+
+                      {useBoxMath ? (
+                        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                          <NumberInput label="Box count" value={boxCount} onChange={setBoxCount} />
+                          <NumberInput label="Length" suffix="inches" value={boxLength} onChange={setBoxLength} />
+                          <NumberInput label="Width" suffix="inches" value={boxWidth} onChange={setBoxWidth} />
+                          <NumberInput label="Height" suffix="inches" value={boxHeight} onChange={setBoxHeight} />
+                        </div>
+                      ) : (
+                        <NumberInput label="Cubic feet" value={manualCubicFeet} onChange={setManualCubicFeet} helper="Use this if you already know the storage volume." />
+                      )}
+
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <NumberInput label="Storage days" value={storageDays} onChange={setStorageDays} helper="First 14 days are free." />
+                        <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
+                          <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Calculated storage space</p>
+                          <p className="mt-2 text-3xl font-bold tracking-tight">{cubicFeet.toLocaleString()} cu. ft.</p>
+                          <p className="mt-2 text-sm leading-relaxed text-zinc-600">Used for the monthly storage estimate.</p>
+                        </div>
+                      </div>
+
+                      <ToggleRow checked={q4} onChange={setQ4} label="Storage falls between October 1 and December 31" helper="Q4 storage rate is $4.80 per cubic foot per month." />
+                    </div>
+                  )}
+                </Section>
+              )}
+            </div>
+
+            <div className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+              <Card className="rounded-[2.5rem] border-zinc-200 bg-white shadow-2xl">
+                <CardContent className="p-8">
+                  <p className="text-sm font-semibold tracking-widest uppercase text-zinc-500">Estimate</p>
+                  {estimate.requiresQuote ? (
+                    <div className="mt-3">
+                      <p className="text-4xl font-bold tracking-tight text-zinc-950">Custom quote needed</p>
+                      <p className="mt-4 text-base leading-relaxed text-zinc-600">This request has details that should be reviewed before giving a hard price.</p>
+                    </div>
+                  ) : (
+                    <p className={`mt-3 text-5xl font-bold tracking-tighter transition-colors ${selectedPath.textClass}`}>{money(estimate.total)}</p>
+                  )}
+
+                  <div className="mt-8 space-y-4">
+                    <SummaryGroup title="Service" rows={estimate.groups.service} />
+                    <SummaryGroup title="Receiving & forwarding" rows={estimate.groups.receiving} />
+                    <SummaryGroup title="Special prep" rows={estimate.groups.addons} />
+                    <SummaryGroup title="Storage" rows={estimate.groups.storage} />
+                  </div>
+
+                  {estimate.quoteReasons.length > 0 && (
+                    <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                      <div className="flex items-start gap-4">
+                        <AlertTriangle className="mt-0.5 h-5 w-5 text-amber-700 shrink-0" />
+                        <div>
+                          <p className="font-bold text-amber-900">Needs review</p>
+                          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-amber-800">
+                            {estimate.quoteReasons.map((reason) => <li key={reason}>{reason}</li>)}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {!estimate.requiresQuote && estimate.total === 0 && (
+                    <div className="mt-6 rounded-2xl bg-zinc-50 p-5 text-sm leading-relaxed text-zinc-600 border border-zinc-100">
+                      Choose a service and add shipment details to build an estimate.
+                    </div>
+                  )}
+
+                  <div className="mt-8 grid gap-4">
+                    <Button className={`rounded-full ${selectedPath.colorClass} hover:opacity-90 text-white py-6 text-base font-semibold transition-opacity`}>Request final quote</Button>
+                    <Button variant="outline" className="rounded-full border-zinc-200 text-zinc-700 hover:bg-zinc-50 py-6 text-base font-semibold">Email this estimate</Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-[2rem] border-zinc-200 bg-white/90 shadow-lg backdrop-blur-md">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <CheckCircle2 className={`mt-1 h-6 w-6 shrink-0 transition-colors ${selectedPath.textClass}`} />
+                    <div>
+                      <h3 className="font-bold text-lg text-zinc-950">What’s included</h3>
+                      <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-600">
+                        {selectedPath.included.map((item) => (
+                          <li key={item} className="flex gap-3">
+                            <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${selectedPath.dotClass} transition-colors`} />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-[2rem] border-amber-200 bg-amber-50 shadow-inner">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <Info className="mt-1 h-6 w-6 text-amber-500 shrink-0" />
+                    <div>
+                      <h3 className="font-bold text-lg text-amber-950">Estimate notes</h3>
+                      <p className="mt-3 text-sm font-semibold leading-relaxed text-amber-900">
+                        This is a ballpark estimate. It does not include carrier postage, oversized box charges, unusual prep needs, or quote-only services like FBM. Final pricing may change after inspection.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer from Layout */}
+      <Footer />
+    </div>
+  );
+}
