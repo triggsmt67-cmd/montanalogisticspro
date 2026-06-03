@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import DeconstructedWarehouseScene from "@/components/ui/DeconstructedWarehouseScene";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   PackageCheck, 
@@ -255,7 +257,7 @@ function TaxSavingsCalculator() {
     <motion.div 
       whileHover={{ y: -4, boxShadow: "0 40px 80px -20px rgba(16, 185, 129, 0.15)" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="bg-zinc-950 rounded-[2.5rem] p-8 md:p-12 border border-emerald-900/30 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative overflow-hidden group cursor-default"
+      className="bg-zinc-900 rounded-[2.5rem] p-8 md:p-12 border border-zinc-800/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative overflow-hidden group cursor-default"
     >
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
       
@@ -364,6 +366,252 @@ function TaxSavingsCalculator() {
   );
 }
 
+interface ServiceItem {
+  title: string;
+  body: string;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+}
+
+interface ServiceCardProps {
+  service: ServiceItem;
+  activePath: "amazon" | "ecommerce";
+  index: number;
+}
+
+function ServiceCard({ service, activePath, index }: ServiceCardProps) {
+  const router = useRouter();
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loadingText, setLoadingText] = useState("Initializing...");
+  const Icon = service.icon;
+
+  const getServiceSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  };
+
+  const handleFlip = () => {
+    if (isFlipped) return;
+    setIsFlipped(true);
+
+    const duration = 1500; // 1.5s
+    const start = Date.now();
+    
+    const steps = [
+      { threshold: 0, text: "Initializing routing..." },
+      { threshold: 25, text: "Configuring tax-free node..." },
+      { threshold: 55, text: "Auditing compliance schemas..." },
+      { threshold: 85, text: "Establishing secure pipeline..." },
+      { threshold: 100, text: "Redirecting..." }
+    ];
+
+    const timer = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const currentProgress = Math.min((elapsed / duration) * 100, 100);
+      setProgress(currentProgress);
+
+      const currentStep = [...steps].reverse().find(step => currentProgress >= step.threshold);
+      if (currentStep) {
+        setLoadingText(currentStep.text);
+      }
+
+      if (elapsed >= duration) {
+        clearInterval(timer);
+        const slug = getServiceSlug(service.title);
+        router.push(`/services/${activePath}/${slug}`);
+      }
+    }, 30);
+  };
+
+  return (
+    <motion.div
+      key={service.title}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ delay: index * 0.05, duration: 0.4 }}
+      className="w-full [perspective:1000px] h-[320px]"
+    >
+      <motion.div
+        className="relative w-full h-full cursor-pointer"
+        style={{ transformStyle: "preserve-3d" }}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        onClick={handleFlip}
+      >
+        {/* Front of Card */}
+        <div 
+          className="absolute inset-0 w-full h-full p-8 rounded-[2rem] bg-gradient-to-br from-[#202026] to-[#0e0e11] border border-[#373742] hover:border-emerald-500/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),_0_15px_30px_rgba(0,0,0,0.6)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.12),_0_20px_45px_rgba(0,0,0,0.8),_0_0_35px_rgba(16,185,129,0.18)] flex flex-col justify-between group hover:-translate-y-2 hover:scale-[1.015] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+        >
+          {/* Shimmer / Glare Effect */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-out pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="inline-block p-3 rounded-2xl bg-zinc-950 text-emerald-400 mb-6 group-hover:bg-zinc-900 group-hover:text-emerald-300 transition-colors shadow-inner border border-zinc-800/80 group-hover:border-emerald-500/20">
+              <Icon size={24} strokeWidth={1.5} />
+            </div>
+            <h4 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-50 tracking-tight transition-colors">{service.title}</h4>
+            <p className="text-zinc-400 leading-relaxed text-sm group-hover:text-zinc-300 transition-colors">{service.body}</p>
+          </div>
+          
+          <div className="relative z-10 flex items-center justify-between w-full mt-4 pt-4 border-t border-[#373742]/60 group-hover:border-emerald-500/20 transition-colors">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 group-hover:text-emerald-400 transition-colors flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/40 animate-pulse group-hover:bg-emerald-400" />
+              Click to Explore
+            </span>
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/5 border border-emerald-500/20 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-zinc-950 group-hover:border-emerald-500 transition-all duration-300 shadow-inner group-hover:scale-110">
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+        </div>
+
+        {/* Back of Card */}
+        <div 
+          className="absolute inset-0 w-full h-full p-8 rounded-[2rem] bg-zinc-950 text-white border border-zinc-800 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.3)] flex flex-col justify-between"
+          style={{ 
+            backfaceVisibility: "hidden", 
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)" 
+          }}
+        >
+          <div>
+            <div className="flex justify-between items-center mb-6">
+              <div className="text-[10px] font-bold tracking-widest uppercase text-emerald-400">
+                Connection Protocol
+              </div>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            </div>
+            
+            <h4 className="text-lg font-bold mb-2 text-zinc-100">Loading Node</h4>
+            <p className="text-xs text-emerald-400 font-mono">{loadingText}</p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center text-xs font-mono text-zinc-500">
+              <span>Status</span>
+              <span>{Math.round(progress)}%</span>
+            </div>
+            <div className="w-full h-2 bg-zinc-900 border border-zinc-800 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-emerald-500 rounded-full transition-all duration-75 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+const AmazonLogo = () => (
+  <div className="flex flex-col items-center justify-center pt-2 select-none pointer-events-none">
+    <span className="font-black text-[22px] tracking-tight text-black leading-none">amazon</span>
+    <svg className="h-2 w-16 text-[#FF9900] mt-0.5" viewBox="0 0 56 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.2 2.5C14.5 9.8 39.2 10.2 54.5 1.8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+      <path d="M51.5.8c1 1 2.2 2 3.2 2.5-1 .5-2 1.5-3 2.5l-.2-5z" fill="currentColor"/>
+    </svg>
+  </div>
+);
+
+const WalmartLogo = () => (
+  <div className="flex items-center gap-1 select-none pointer-events-none">
+    <span className="font-bold text-[22px] tracking-tight text-[#0071CE]">Walmart</span>
+    <svg className="h-6 w-6 text-[#FFC220]" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm8.66-9.66a1 1 0 0 1 0 1.41l-2.83 2.83a1 1 0 0 1-1.41-1.41l2.83-2.83a1 1 0 0 1 1.41 0zm-11.31 11.31a1 1 0 0 1 0 1.41l-2.83 2.83a1 1 0 0 1-1.41-1.41l2.83-2.83a1 1 0 0 1 1.41 0zm11.31 2.83a1 1 0 0 1-1.41 0l-2.83-2.83a1 1 0 1 1 1.41-1.41l2.83 2.83a1 1 0 0 1 0 1.41zM6.34 6.34a1 1 0 0 1-1.41 0L2.1 3.51a1 1 0 0 1 1.41-1.41l2.83 2.83a1 1 0 0 1 0 1.41z"/>
+    </svg>
+  </div>
+);
+
+const TikTokLogo = () => (
+  <div className="flex items-center gap-2 select-none pointer-events-none">
+    <div className="relative w-6 h-6 shrink-0">
+      <svg className="absolute top-[0.5px] left-[0.5px] w-6 h-6 text-[#25F4EE]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.5 2v12.5c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.4 0 .7.1 1.1.2V6.6c-2.8.5-5 3-5 5.9 0 3.3 2.7 6 6 6 3.1 0 5.6-2.4 5.9-5.4V8.5c1.7.9 3.5 1.3 5.5 1.3V7.5C18.6 7.5 16.5 6.7 15.3 5.3V2h-2.8z"/>
+      </svg>
+      <svg className="absolute top-[-0.5px] left-[-0.5px] w-6 h-6 text-[#FE2C55]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.5 2v12.5c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.4 0 .7.1 1.1.2V6.6c-2.8.5-5 3-5 5.9 0 3.3 2.7 6 6 6 3.1 0 5.6-2.4 5.9-5.4V8.5c1.7.9 3.5 1.3 5.5 1.3V7.5C18.6 7.5 16.5 6.7 15.3 5.3V2h-2.8z"/>
+      </svg>
+      <svg className="absolute top-0 left-0 w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.5 2v12.5c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.4 0 .7.1 1.1.2V6.6c-2.8.5-5 3-5 5.9 0 3.3 2.7 6 6 6 3.1 0 5.6-2.4 5.9-5.4V8.5c1.7.9 3.5 1.3 5.5 1.3V7.5C18.6 7.5 16.5 6.7 15.3 5.3V2h-2.8z"/>
+      </svg>
+    </div>
+    <span className="font-bold text-[20px] text-black tracking-tight">
+      TikTok <span className="font-medium text-zinc-500">Shop</span>
+    </span>
+  </div>
+);
+
+const EtsyLogo = () => (
+  <div className="flex items-center select-none pointer-events-none">
+    <span className="font-bold text-[24px] tracking-tight text-[#F56400] font-serif" style={{ fontFamily: "Georgia, serif" }}>
+      Etsy
+    </span>
+  </div>
+);
+
+const EBayLogo = () => (
+  <div className="flex items-center text-[24px] font-bold tracking-tighter select-none pointer-events-none" style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+    <span className="text-[#E53238]">e</span>
+    <span className="text-[#0064D2]">b</span>
+    <span className="text-[#F5AF02]">a</span>
+    <span className="text-[#86B817]">y</span>
+  </div>
+);
+
+const ShopifyLogo = () => (
+  <div className="flex items-center gap-1.5 select-none pointer-events-none">
+    <svg className="h-6 w-6 text-[#95BF47]" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 6h-2c0-2.8-2.2-5-5-5S7 3.2 7 6H5c-1.1 0-2 .9-2 2v11c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V8c0-1.1-.9-2-2-2zM12 3c1.7 0 3 1.3 3 3H9c0-1.7 1.3-3 3-3zm5 16H7c-1.1 0-2-.9-2-2V8h14v9c0 1.1-.9 2-2 2z"/>
+      <path d="M12 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+    </svg>
+    <span className="font-bold text-[22px] tracking-tight text-[#212b36]">shopify</span>
+  </div>
+);
+
+const LOGO_COMPONENTS = [
+  AmazonLogo,
+  WalmartLogo,
+  TikTokLogo,
+  EtsyLogo,
+  EBayLogo,
+  ShopifyLogo
+];
+
+function LogoTicker() {
+  return (
+    <div className="py-2">
+      <p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-6">
+        Fulfill orders from any major sales channel
+      </p>
+      <div 
+        className="relative overflow-hidden py-3 w-full border-y border-zinc-200/50"
+        style={{ 
+          maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+        }}
+      >
+        <div className="animate-marquee items-center">
+          {[...Array(4)].map((_, arrayIdx) => (
+            <div key={arrayIdx} className="flex gap-24 shrink-0 pr-24 items-center">
+              {LOGO_COMPONENTS.map((Logo, logoIdx) => (
+                <div key={logoIdx} className="shrink-0 scale-95 opacity-70 hover:opacity-100 hover:scale-100 transition-all duration-200">
+                  <Logo />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [activePath, setActivePath] = useState<PathType>("amazon");
   const [formStep, setFormStep] = useState(1);
@@ -381,9 +629,19 @@ export default function LandingPage() {
       {/* 1. Header */}
       <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-zinc-900">Montana Logistics Pro</span>
-            <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+                <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight text-zinc-900">Such Group E-Commerce</span>
+              <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+            </div>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <motion.a whileHover={{ y: -1 }} href="#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</motion.a>
@@ -407,110 +665,144 @@ export default function LandingPage() {
 
       <main className="pb-32">
         {/* 2. Hero Section */}
-        <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-          {/* Video Background */}
-          <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              preload="auto"
-              poster="/globe%20hero%20image.jpg"
-              className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply"
-            >
-              <source src="/slow%20turning%20globe.mp4" type="video/mp4" />
-            </video>
-            {/* Overlay to ensure text readability but keep the globe visible */}
-            <div className="absolute inset-0 bg-[#f9fafb]/70 backdrop-blur-[1px]" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#f9fafb]/40 via-[#f9fafb]/60 to-[#f9fafb]" />
-          </div>
+        <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-[#f9fafb]">
+          {/* Dotted Grid Blueprint Background */}
+          <div 
+            className="absolute inset-0 z-0 pointer-events-none opacity-[0.25]" 
+            style={{ 
+              backgroundImage: "radial-gradient(#d4d4d8 1.5px, transparent 1.5px)", 
+              backgroundSize: "24px 24px" 
+            }} 
+          />
+          {/* Subtle Ambient Glows */}
+          <div className="absolute top-0 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 left-10 translate-y-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="relative z-10 px-4 max-w-7xl mx-auto">
-            <div className="max-w-3xl mb-16">
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50 text-emerald-800 text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm backdrop-blur-md"
-              >
-                Tax-Free Prep & Fulfillment
-              </motion.div>
-              <motion.h1 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] text-zinc-950 mb-6 drop-shadow-sm"
-              >
-                Choose the logistics path built for your brand.
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg md:text-xl text-zinc-700 leading-relaxed max-w-[65ch] font-medium drop-shadow-sm"
-              >
-                Select your primary sales channel below to see how our zero-tax Montana facility solves your specific prep, fulfillment, and storage bottlenecks.
-              </motion.p>
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50 text-emerald-800 text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm backdrop-blur-md"
+                >
+                  Tax-Free Prep & Fulfillment
+                </motion.div>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] text-zinc-950 mb-6 drop-shadow-sm"
+                >
+                  Find the fulfillment setup that fits how you sell.
+                </motion.h1>
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-lg md:text-xl text-zinc-700 leading-relaxed max-w-[65ch] font-medium drop-shadow-sm mb-8"
+                >
+                  Choose your main sales channel below and see how our zero-tax Montana facility can help with product prep, storage, and order fulfillment — without adding more operational drag.
+                </motion.p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Path 1: Amazon */}
-              <motion.button
-                whileHover={activePath !== "amazon" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handlePathChange("amazon")}
-                className={`text-left p-8 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden group ${
-                  activePath === "amazon" 
-                    ? "bg-zinc-950 text-white border-zinc-900 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] scale-[1.02] z-10" 
-                    : "bg-white/80 backdrop-blur-md text-zinc-900 border-zinc-200/80 shadow-md"
-                }`}
-              >
-                <div className="flex items-start justify-between mb-8 relative z-10">
-                  <motion.div 
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    className={`p-3 rounded-2xl transition-colors duration-300 ${activePath === "amazon" ? "bg-white/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-zinc-100 text-zinc-600 group-hover:bg-emerald-50 group-hover:text-emerald-600"}`}
+                {/* Primary/Secondary CTA buttons inside Hero layout matching Confluence visual style */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex flex-wrap items-center gap-4"
+                >
+                  <motion.button 
+                    onClick={() => {
+                      document.getElementById('fit-review')?.scrollIntoView({ behavior: 'smooth' });
+                      setFormStep(1);
+                    }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 15px 30px -5px rgba(5, 150, 105, 0.4)" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="h-12 px-8 rounded-full bg-emerald-600 text-white font-semibold transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/20"
                   >
-                    <PackageCheck size={28} strokeWidth={1.5} />
-                  </motion.div>
-                  {activePath === "amazon" && (
-                    <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
-                  )}
-                </div>
-                <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell on Amazon</h2>
-                <p className={`text-base leading-relaxed relative z-10 ${activePath === "amazon" ? "text-zinc-300" : "text-zinc-600"}`}>
-                  Strict FBA prep, precise labeling, and compliance handling for sellers who want their time back.
-                </p>
-              </motion.button>
+                    Start Fit Review
+                    <ArrowRight size={16} strokeWidth={2.5} />
+                  </motion.button>
+                  <motion.button 
+                    onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                    whileHover={{ scale: 1.05, backgroundColor: "#f4f4f5" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="h-12 px-8 rounded-full bg-white text-zinc-900 border border-zinc-200 font-semibold transition-all shadow-sm hover:shadow-md"
+                  >
+                    Explore Services
+                  </motion.button>
+                </motion.div>
+              </div>
 
-              {/* Path 2: Ecommerce */}
-              <motion.button
-                whileHover={activePath !== "ecommerce" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handlePathChange("ecommerce")}
-                className={`text-left p-8 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden group ${
-                  activePath === "ecommerce" 
-                    ? "bg-zinc-950 text-white border-zinc-900 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] scale-[1.02] z-10" 
-                    : "bg-white/80 backdrop-blur-md text-zinc-900 border-zinc-200/80 shadow-md"
-                }`}
-              >
-                <div className="flex items-start justify-between mb-8 relative z-10">
-                  <motion.div 
-                    whileHover={{ rotate: -5, scale: 1.1 }}
-                    className={`p-3 rounded-2xl transition-colors duration-300 ${activePath === "ecommerce" ? "bg-white/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-zinc-100 text-zinc-600 group-hover:bg-emerald-50 group-hover:text-emerald-600"}`}
-                  >
-                    <ShoppingCart size={28} strokeWidth={1.5} />
-                  </motion.div>
-                  {activePath === "ecommerce" && (
-                    <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
-                  )}
-                </div>
-                <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</h2>
-                <p className={`text-base leading-relaxed relative z-10 ${activePath === "ecommerce" ? "text-zinc-300" : "text-zinc-600"}`}>
-                  API-driven pick/pack, kitting, and returns for Shopify, DTC, and multi-channel retail brands.
-                </p>
-              </motion.button>
+              <div className="lg:col-span-6 relative mt-12 lg:mt-0 flex items-center justify-center overflow-visible">
+                <DeconstructedWarehouseScene />
+              </div>
             </div>
+          </div>
+        </section>
+
+
+        {/* 4. Channel Selection Section */}
+        <section className="px-4 max-w-7xl mx-auto pt-24 pb-16 relative z-10">
+          <LogoTicker />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+            {/* Path 1: Amazon */}
+            <motion.button
+              whileHover={activePath !== "amazon" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handlePathChange("amazon")}
+              className={`text-left p-8 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden group ${
+                activePath === "amazon" 
+                  ? "bg-zinc-950 text-white border-zinc-900 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] scale-[1.02] z-10" 
+                  : "bg-white/80 backdrop-blur-md text-zinc-900 border-zinc-200/80 shadow-md"
+              }`}
+            >
+              <div className="flex items-start justify-between mb-8 relative z-10">
+                <motion.div 
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  className={`p-3 rounded-2xl transition-colors duration-300 ${activePath === "amazon" ? "bg-white/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-zinc-100 text-zinc-600 group-hover:bg-emerald-50 group-hover:text-emerald-600"}`}
+                >
+                  <PackageCheck size={28} strokeWidth={1.5} />
+                </motion.div>
+                {activePath === "amazon" && (
+                  <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
+                )}
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell on Amazon</h2>
+              <p className={`text-base leading-relaxed relative z-10 ${activePath === "amazon" ? "text-zinc-300" : "text-zinc-600"}`}>
+                Strict FBA prep, precise labeling, and compliance handling for sellers who want their time back.
+              </p>
+            </motion.button>
+
+            {/* Path 2: Ecommerce */}
+            <motion.button
+              whileHover={activePath !== "ecommerce" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handlePathChange("ecommerce")}
+              className={`text-left p-8 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden group ${
+                activePath === "ecommerce" 
+                  ? "bg-zinc-950 text-white border-zinc-900 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] scale-[1.02] z-10" 
+                  : "bg-white/80 backdrop-blur-md text-zinc-900 border-zinc-200/80 shadow-md"
+              }`}
+            >
+              <div className="flex items-start justify-between mb-8 relative z-10">
+                <motion.div 
+                  whileHover={{ rotate: -5, scale: 1.1 }}
+                  className={`p-3 rounded-2xl transition-colors duration-300 ${activePath === "ecommerce" ? "bg-white/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-zinc-100 text-zinc-600 group-hover:bg-emerald-50 group-hover:text-emerald-600"}`}
+                >
+                  <ShoppingCart size={28} strokeWidth={1.5} />
+                </motion.div>
+                {activePath === "ecommerce" && (
+                  <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
+                )}
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</h2>
+              <p className={`text-base leading-relaxed relative z-10 ${activePath === "ecommerce" ? "text-zinc-300" : "text-zinc-600"}`}>
+                API-driven pick/pack, kitting, and returns for Shopify, DTC, and multi-channel retail brands.
+              </p>
+            </motion.button>
           </div>
         </section>
 
@@ -597,115 +889,200 @@ export default function LandingPage() {
           </AnimatePresence>
         </section>
 
-        {/* 3.5 Savings Calculator */}
-        <section className="px-4 max-w-7xl mx-auto mb-24">
-          <TaxSavingsCalculator />
+
+
+        {/* 3.5 Savings Calculator (Dark Section) */}
+        <section className="py-24 bg-zinc-950 text-white relative overflow-hidden border-y border-zinc-900">
+          <div className="absolute inset-0 bg-radial-gradient opacity-30 pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
+          
+          <div className="px-4 max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <span className="text-sm font-semibold text-emerald-400 tracking-widest uppercase mb-4 block">The Montana Advantage</span>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-6">
+                Calculate your sales tax savings.
+              </h2>
+              <p className="text-lg text-zinc-400 leading-relaxed">
+                By routing your inventory through our zero-sales-tax Montana facility, you stop paying an automatic markup to state governments on your wholesale purchases.
+              </p>
+            </div>
+            
+            <TaxSavingsCalculator />
+
+            {/* Trust Guarantee Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20 border-t border-zinc-800/80 pt-16">
+              <div className="space-y-3 cursor-default group">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Compliance Guarantee</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  If an FBA shipment is flagged or rejected due to our labeling prep error, we refund 100% of the prep cost and cover the Amazon compliance fee.
+                </p>
+              </div>
+
+              <div className="space-y-3 cursor-default group">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">24-Hour Dock-to-Stock</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  All inbound shipments are audited, counted, and registered in our WMS dashboard within 24 hours of arrival. No delayed receiving docks.
+                </p>
+              </div>
+
+              <div className="space-y-3 cursor-default group">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Full Transparency</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Every damaged inbound box is photographed immediately. You receive visual evidence in your dashboard before any triage begins.
+                </p>
+              </div>
+
+              <div className="space-y-3 cursor-default group">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zm10-10V7a4 4 0 0 0-8 0v4h8z" />
+                  </svg>
+                </div>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Secure Montana Facility</h4>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  Climate-controlled inventory storage protected by 24/7 video monitoring, secure badge access control, and strict cycle counts.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
-        {/* 4. Buyer Problem Section */}
-        <section className="px-4 max-w-7xl mx-auto mb-24">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="text-sm font-semibold text-zinc-500 tracking-widest uppercase mb-4 block">The friction points</span>
-            <AnimatePresence mode="wait">
-              <motion.h2 
-                key={`h2-${activePath}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="text-3xl md:text-5xl font-bold tracking-tighter text-zinc-950 mb-6"
-              >
-                {content.problems.headline}
-              </motion.h2>
-            </AnimatePresence>
-            <AnimatePresence mode="wait">
-              <motion.p 
-                key={`p-${activePath}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="text-lg text-zinc-600 leading-relaxed"
-              >
-                {content.problems.intro}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <AnimatePresence mode="wait">
-              {content.problems.items.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" }}
-                    transition={{ delay: i * 0.1, duration: 0.4 }}
-                    className="p-8 rounded-[2rem] bg-white border border-zinc-200/80 shadow-lg flex gap-6 items-start group"
-                  >
-                    <motion.div 
-                      whileHover={{ rotate: 10, scale: 1.1 }}
-                      className="p-3 rounded-2xl bg-zinc-100 text-zinc-700 shrink-0 transition-colors group-hover:bg-rose-50 group-hover:text-rose-600 shadow-sm"
-                    >
-                      <Icon size={24} strokeWidth={1.5} />
-                    </motion.div>
-                    <div>
-                      <h4 className="text-xl font-bold text-zinc-950 mb-2 group-hover:text-zinc-800 transition-colors">{item.title}</h4>
-                      <p className="text-zinc-600 leading-relaxed">{item.body}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        </section>
-
-        {/* 5. Services Section */}
-        <section id="services" className="py-24 bg-zinc-50 border-y border-zinc-200/50 mb-24">
+        {/* 4. Buyer Problem Section (Light Section) */}
+        <section className="py-24 bg-white border-b border-zinc-200/50">
           <div className="px-4 max-w-7xl mx-auto">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <span className="text-sm font-semibold text-zinc-500 tracking-widest uppercase mb-4 block">The friction points</span>
+              <AnimatePresence mode="wait">
+                <motion.h2 
+                  key={`h2-${activePath}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="text-3xl md:text-5xl font-bold tracking-tighter text-zinc-950 mb-6"
+                >
+                  {content.problems.headline}
+                </motion.h2>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.p 
+                  key={`p-${activePath}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="text-lg text-zinc-600 leading-relaxed"
+                >
+                  {content.problems.intro}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              <div className="lg:col-span-4 relative flex">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  whileHover={{ y: -2 }}
+                  className="relative w-full rounded-[2.5rem] overflow-hidden border border-zinc-200/80 shadow-lg bg-zinc-50 group flex flex-col justify-end min-h-[350px] lg:min-h-full"
+                >
+                  <img 
+                    src="/warehouse_prep.png" 
+                    alt="Such Group E-Commerce Prep Station"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
+                  <div className="relative z-10 p-6 text-white bg-zinc-950/20 backdrop-blur-[2px] m-4 rounded-3xl border border-white/10">
+                    <span className="text-[10px] uppercase text-emerald-400 font-bold tracking-wider mb-2 block">Zero-Tax Facility</span>
+                    <h4 className="text-xl font-bold text-white mb-2">FBA Compliance Station</h4>
+                    <p className="text-zinc-300 text-xs leading-relaxed">
+                      Where inventory is audited, FNSKU barcodes applied, and compliance verified before shipping to Amazon warehouses.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <AnimatePresence mode="wait">
+                  {content.problems.items.map((item, i) => {
+                    const Icon = item.icon;
+                    return (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" }}
+                        transition={{ delay: i * 0.1, duration: 0.4 }}
+                        className="p-8 rounded-[2rem] bg-white border border-zinc-200/80 shadow-lg flex gap-6 items-start group"
+                      >
+                        <motion.div 
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                          className="p-3 rounded-2xl bg-zinc-100 text-zinc-700 shrink-0 transition-colors group-hover:bg-rose-50 group-hover:text-rose-600 shadow-sm"
+                        >
+                          <Icon size={24} strokeWidth={1.5} />
+                        </motion.div>
+                        <div>
+                          <h4 className="text-xl font-bold text-zinc-950 mb-2 group-hover:text-rose-600 transition-colors">{item.title}</h4>
+                          <p className="text-zinc-600 leading-relaxed">{item.body}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Services Section (Dark Section) */}
+        <section id="services" className="py-24 bg-[#0a0a0c] border-y border-zinc-900 relative overflow-hidden">
+          {/* Ambient Glows */}
+          <div className="absolute top-0 left-1/4 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 right-1/4 translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="px-4 max-w-7xl mx-auto relative z-10">
             <div className="max-w-3xl mb-16">
-              <span className="text-sm font-semibold text-emerald-600 tracking-widest uppercase mb-4 block">Core Capabilities</span>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-zinc-950 mb-6">
+              <span className="text-sm font-semibold text-emerald-400 tracking-widest uppercase mb-4 block">Core Capabilities</span>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-6">
                 Built to solve your specific bottlenecks.
               </h2>
-              <p className="text-lg text-zinc-600 leading-relaxed">
+              <p className="text-lg text-zinc-400 leading-relaxed">
                 We don't offer generic logistics. We provide precise interventions designed to remove friction from your supply chain, backed by strict Service Level Agreements (SLAs).
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence mode="wait">
-                {content.services.map((service, i) => {
-                  const Icon = service.icon;
-                  return (
-                    <motion.div
-                      key={service.title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      whileHover={{ y: -8, boxShadow: "0 30px 60px -15px rgba(0,0,0,0.12)", borderColor: "rgba(16, 185, 129, 0.4)" }}
-                      transition={{ delay: i * 0.05, duration: 0.4 }}
-                      className="p-8 rounded-[2rem] bg-white border border-zinc-200/80 shadow-md transition-colors group cursor-default"
-                    >
-                      <motion.div
-                         whileHover={{ scale: 1.1, rotate: 5 }}
-                         className="inline-block p-3 rounded-2xl bg-emerald-50 text-emerald-600 mb-6 group-hover:bg-emerald-100 transition-colors shadow-sm"
-                      >
-                        <Icon size={24} strokeWidth={1.5} />
-                      </motion.div>
-                      <h4 className="text-xl font-bold text-zinc-950 mb-3">{service.title}</h4>
-                      <p className="text-zinc-600 leading-relaxed">{service.body}</p>
-                    </motion.div>
-                  );
-                })}
+                {content.services.map((service, i) => (
+                  <ServiceCard
+                    key={service.title}
+                    service={service}
+                    activePath={activePath}
+                    index={i}
+                  />
+                ))}
               </AnimatePresence>
             </div>
           </div>
         </section>
 
-        {/* 6. Operational Proof Section */}
-        <section className="px-4 max-w-7xl mx-auto mb-32">
+        {/* 6. Operational Proof Section (Light Section) */}
+        <section className="py-24 bg-[#f9fafb] border-b border-zinc-200/50">
+          <div className="px-4 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <div className="lg:col-span-2">
               <span className="text-sm font-semibold text-zinc-500 tracking-widest uppercase mb-4 block">Operational proof</span>
@@ -734,6 +1111,23 @@ export default function LandingPage() {
                   <p className="text-zinc-600 text-sm">Damaged inbound cartons are instantly photographed and flagged for your review.</p>
                 </motion.div>
               </div>
+
+              {/* Warehouse Receiving Mock Image Card */}
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="relative h-48 rounded-[2rem] overflow-hidden border border-zinc-200/80 shadow-md mt-8 group"
+              >
+                <img 
+                  src="/warehouse_receiving.png" 
+                  alt="Such Group E-Commerce Inbound Audit Process" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-semibold bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-zinc-800/80 flex items-center justify-between shadow-lg">
+                  <span>Mockup: Receiving Inspection</span>
+                  <span className="text-[10px] text-emerald-400 font-bold uppercase">Inbound Dock</span>
+                </div>
+              </motion.div>
             </div>
 
             <div className="lg:col-span-3">
@@ -793,6 +1187,7 @@ export default function LandingPage() {
                 </div>
               </motion.div>
             </div>
+          </div>
           </div>
         </section>
 
@@ -1037,7 +1432,17 @@ export default function LandingPage() {
       <footer className="bg-zinc-950 pt-20 pb-10 px-4 text-zinc-400">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           <div>
-            <span className="text-xl font-bold tracking-tight text-white block mb-2">Montana Logistics Pro</span>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                  <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
+                </svg>
+              </div>
+              <span className="text-xl font-bold tracking-tight text-white block">Such Group E-Commerce</span>
+            </div>
             <p className="text-sm max-w-sm leading-relaxed">
               Tax-free prep, robust fulfillment, and pristine storage support for high-volume sellers operating out of Montana.
             </p>
@@ -1055,7 +1460,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-xs">© {new Date().getFullYear()} Montana Logistics Pro. All rights reserved. Located proudly in Montana.</p>
+          <p className="text-xs">© {new Date().getFullYear()} Such Group E-Commerce. All rights reserved. Located proudly in Montana.</p>
         </div>
       </footer>
     </div>

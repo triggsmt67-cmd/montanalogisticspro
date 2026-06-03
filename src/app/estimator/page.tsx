@@ -140,15 +140,16 @@ function cubicFeetFromBox(length: number, width: number, height: number, quantit
 
 interface NumberInputProps {
   label: string;
-  value: number;
-  onChange: (value: number) => void;
+  value: number | "";
+  onChange: (value: number | "") => void;
+  placeholder?: string;
   suffix?: string;
   helper?: string;
   disabled?: boolean;
   min?: number;
 }
 
-function NumberInput({ label, value, onChange, suffix, helper, disabled, min = 0 }: NumberInputProps) {
+function NumberInput({ label, value, onChange, placeholder, suffix, helper, disabled, min = 0 }: NumberInputProps) {
   return (
     <label className="block">
       <div className="mb-2 flex items-center justify-between gap-3">
@@ -159,8 +160,16 @@ function NumberInput({ label, value, onChange, suffix, helper, disabled, min = 0
         type="number"
         min={min}
         value={value}
+        placeholder={placeholder}
         disabled={disabled}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          const val = e.target.value;
+          if (val === "") {
+            onChange("");
+          } else {
+            onChange(Number(val));
+          }
+        }}
         className="w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 disabled:bg-zinc-100 disabled:text-zinc-400"
       />
       {helper && <p className="mt-2 text-xs leading-5 text-zinc-500">{helper}</p>}
@@ -242,53 +251,81 @@ function SummaryGroup({ title, rows }: SummaryGroupProps) {
 export default function MontanaLogisticsCalculatorPage() {
   const [service, setService] = useState("fba");
 
-  const [items, setItems] = useState(500);
-  const [books, setBooks] = useState(0);
-  const [wholesaleUnits, setWholesaleUnits] = useState(1200);
-  const [orders, setOrders] = useState(400);
-  const [avgItems, setAvgItems] = useState(2);
+  const [items, setItems] = useState<number | "">("");
+  const [books, setBooks] = useState<number | "">("");
+  const [wholesaleUnits, setWholesaleUnits] = useState<number | "">("");
+  const [orders, setOrders] = useState<number | "">("");
+  const [avgItems, setAvgItems] = useState<number | "">("");
 
   const [needsStorage, setNeedsStorage] = useState(false);
   const [useBoxMath, setUseBoxMath] = useState(true);
-  const [boxCount, setBoxCount] = useState(20);
-  const [boxLength, setBoxLength] = useState(18);
-  const [boxWidth, setBoxWidth] = useState(14);
-  const [boxHeight, setBoxHeight] = useState(12);
-  const [manualCubicFeet, setManualCubicFeet] = useState(40);
-  const [storageDays, setStorageDays] = useState(45);
+  const [boxCount, setBoxCount] = useState<number | "">("");
+  const [boxLength, setBoxLength] = useState<number | "">("");
+  const [boxWidth, setBoxWidth] = useState<number | "">("");
+  const [boxHeight, setBoxHeight] = useState<number | "">("");
+  const [manualCubicFeet, setManualCubicFeet] = useState<number | "">("");
+  const [storageDays, setStorageDays] = useState<number | "">("");
+
   const [q4, setQ4] = useState(false);
 
   const [hasReturns, setHasReturns] = useState(false);
-  const [returnsCount, setReturnsCount] = useState(0);
+  const [returnsCount, setReturnsCount] = useState<number | "">("");
   const [hasBundles, setHasBundles] = useState(false);
-  const [bundles, setBundles] = useState(0);
-  const [itemsPerBundle, setItemsPerBundle] = useState(3);
+  const [bundles, setBundles] = useState<number | "">("");
+  const [itemsPerBundle, setItemsPerBundle] = useState<number | "">("");
   const [hasSoldAsSet, setHasSoldAsSet] = useState(false);
-  const [soldAsSetLabels, setSoldAsSetLabels] = useState(0);
+  const [soldAsSetLabels, setSoldAsSetLabels] = useState<number | "">("");
   const [hasDoNotOpen, setHasDoNotOpen] = useState(false);
-  const [doNotOpenLabels, setDoNotOpenLabels] = useState(0);
+  const [doNotOpenLabels, setDoNotOpenLabels] = useState<number | "">("");
   const [hasBubbleWrap, setHasBubbleWrap] = useState(false);
-  const [bubbleWrapItems, setBubbleWrapItems] = useState(0);
-  const [bubbleSheets, setBubbleSheets] = useState(3);
+  const [bubbleWrapItems, setBubbleWrapItems] = useState<number | "">("");
+  const [bubbleSheets, setBubbleSheets] = useState<number | "">("");
   const [hasManualCount, setHasManualCount] = useState(false);
-  const [manualCountHours, setManualCountHours] = useState(0);
+  const [manualCountHours, setManualCountHours] = useState<number | "">("");
 
-  const [palletsReceived, setPalletsReceived] = useState(2);
-  const [boxesReceived, setBoxesReceived] = useState(30);
-  const [container20, setContainer20] = useState(0);
-  const [container40, setContainer40] = useState(0);
-  const [shortPallets, setShortPallets] = useState(2);
-  const [tallPallets, setTallPallets] = useState(0);
-  const [cartonsForwarded, setCartonsForwarded] = useState(25);
-  const [palletsForwarded, setPalletsForwarded] = useState(1);
+  const [palletsReceived, setPalletsReceived] = useState<number | "">("");
+  const [boxesReceived, setBoxesReceived] = useState<number | "">("");
+  const [container20, setContainer20] = useState<number | "">("");
+  const [container40, setContainer40] = useState<number | "">("");
+  const [shortPallets, setShortPallets] = useState<number | "">("");
+  const [tallPallets, setTallPallets] = useState<number | "">("");
+  const [cartonsForwarded, setCartonsForwarded] = useState<number | "">("");
+  const [palletsForwarded, setPalletsForwarded] = useState<number | "">("");
+
+  const toNum = (val: number | ""): number => (val === "" ? 0 : val);(1);
 
   const selectedPath = paths.find((path) => path.id === service) || paths[0];
   const SelectedIcon = selectedPath.icon || Calculator;
 
+  const isUnfilled = useMemo(() => {
+    if (service === "fba") return items === "";
+    if (service === "wholesale") return wholesaleUnits === "";
+    if (service === "ecommerce") return orders === "";
+    if (service === "carton") {
+      return (
+        palletsReceived === "" &&
+        boxesReceived === "" &&
+        container20 === "" &&
+        container40 === "" &&
+        shortPallets === "" &&
+        tallPallets === "" &&
+        cartonsForwarded === "" &&
+        palletsForwarded === ""
+      );
+    }
+    if (service === "storage") {
+      if (useBoxMath) {
+        return boxCount === "" && boxLength === "" && boxWidth === "" && boxHeight === "";
+      }
+      return manualCubicFeet === "";
+    }
+    return false;
+  }, [service, items, wholesaleUnits, orders, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded, useBoxMath, boxCount, boxLength, boxWidth, boxHeight, manualCubicFeet]);
+
   const cubicFeet = useMemo(() => {
     if (!needsStorage && service !== "storage" && service !== "carton") return 0;
-    if (!useBoxMath) return manualCubicFeet;
-    return Math.round(cubicFeetFromBox(boxLength, boxWidth, boxHeight, boxCount) * 10) / 10;
+    if (!useBoxMath) return toNum(manualCubicFeet);
+    return Math.round(cubicFeetFromBox(toNum(boxLength), toNum(boxWidth), toNum(boxHeight), toNum(boxCount)) * 10) / 10;
   }, [needsStorage, service, useBoxMath, manualCubicFeet, boxLength, boxWidth, boxHeight, boxCount]);
 
   const estimate = useMemo(() => {
@@ -298,56 +335,63 @@ export default function MontanaLogisticsCalculatorPage() {
 
     if (service === "notSure") {
       quoteReasons.push("A quick quote request is the best next step when the service path is unclear.");
-      return { groups, total: 0, quoteReasons, requiresQuote: true };
+      return { groups, total: 0, quoteReasons, requiresQuote: true, isUnfilled };
     }
 
-    const storageRate = getStorageRate(storageDays, q4);
+    if (isUnfilled) {
+      return { groups, total: 0, quoteReasons, requiresQuote: false, isUnfilled };
+    }
+
+    const storageRate = getStorageRate(toNum(storageDays), q4);
     const storageCost = cubicFeet * storageRate;
     const shouldApplyStorage = cubicFeet > 0 && (needsStorage || service === "storage" || service === "carton");
 
-    const bundleFeeEach = itemsPerBundle <= 3 ? 0.5 : 0.5 + (itemsPerBundle - 3) * 0.15;
-    const bundlingCost = hasBundles ? bundles * bundleFeeEach : 0;
-    const bubbleFeeEach = bubbleSheets <= 3 ? 0.5 : 0.5 + (bubbleSheets - 3) * 0.15;
-    const bubbleCost = hasBubbleWrap ? bubbleWrapItems * bubbleFeeEach : 0;
-    const returnCost = hasReturns ? returnsCount * 1 : 0;
-    const soldAsSetCost = hasSoldAsSet ? soldAsSetLabels * 0.15 : 0;
-    const doNotOpenCost = hasDoNotOpen ? doNotOpenLabels * 0.15 : 0;
-    const manualCountCost = hasManualCount ? manualCountHours * 40 : 0;
-    const bookCost = books * 2.5;
+    const bundleFeeEach = toNum(itemsPerBundle) <= 3 ? 0.5 : 0.5 + (toNum(itemsPerBundle) - 3) * 0.15;
+    const bundlingCost = hasBundles ? toNum(bundles) * bundleFeeEach : 0;
+    const bubbleFeeEach = toNum(bubbleSheets) <= 3 ? 0.5 : 0.5 + (toNum(bubbleSheets) - 3) * 0.15;
+    const bubbleCost = hasBubbleWrap ? toNum(bubbleWrapItems) * bubbleFeeEach : 0;
+    const returnCost = hasReturns ? toNum(returnsCount) * 1 : 0;
+    const soldAsSetCost = hasSoldAsSet ? toNum(soldAsSetLabels) * 0.15 : 0;
+    const doNotOpenCost = hasDoNotOpen ? toNum(doNotOpenLabels) * 0.15 : 0;
+    const manualCountCost = hasManualCount ? toNum(manualCountHours) * 40 : 0;
+    const bookCost = toNum(books) * 2.5;
 
     if (service === "fba") {
-      const rate = getFbaRate(items);
-      if (rate === null) quoteReasons.push("FBA prep over 10,000 items requires a custom quote.");
-      const base = rate ? items * rate : 0;
+      const itemsNum = toNum(items);
+      const rate = getFbaRate(itemsNum);
+      if (itemsNum > 10000) quoteReasons.push("FBA prep over 10,000 items requires a custom quote.");
+      const base = rate ? itemsNum * rate : 0;
       total += base + bookCost;
-      groups.service.push({ label: "FBA prep", detail: rate ? `${items.toLocaleString()} items × ${money(rate)}` : "Quote required", amount: base });
-      if (books > 0) groups.service.push({ label: "Books", detail: `${books.toLocaleString()} books × $2.50`, amount: bookCost });
+      groups.service.push({ label: "FBA prep", detail: rate ? `${itemsNum.toLocaleString()} items × ${money(rate)}` : "Quote required", amount: base });
+      if (toNum(books) > 0) groups.service.push({ label: "Books", detail: `${toNum(books).toLocaleString()} books × $2.50`, amount: bookCost });
     }
 
     if (service === "wholesale") {
-      const rate = getWholesaleRate(wholesaleUnits);
-      if (wholesaleUnits < 500) quoteReasons.push("Wholesale pricing starts at 500 units.");
-      if (wholesaleUnits > 10000) quoteReasons.push("Wholesale prep over 10,000 units requires a custom quote.");
-      const base = rate ? wholesaleUnits * rate : 0;
+      const wholesaleNum = toNum(wholesaleUnits);
+      const rate = getWholesaleRate(wholesaleNum);
+      if (wholesaleNum < 500) quoteReasons.push("Wholesale pricing starts at 500 units.");
+      if (wholesaleNum > 10000) quoteReasons.push("Wholesale prep over 10,000 units requires a custom quote.");
+      const base = rate ? wholesaleNum * rate : 0;
       total += base;
-      groups.service.push({ label: "Wholesale prep", detail: rate ? `${wholesaleUnits.toLocaleString()} units × ${money(rate)}` : "Quote required", amount: base });
+      groups.service.push({ label: "Wholesale prep", detail: rate ? `${wholesaleNum.toLocaleString()} units × ${money(rate)}` : "Quote required", amount: base });
     }
 
     if (service === "ecommerce") {
-      const rates = getEcommerceRates(orders);
+      const ordersNum = toNum(orders);
+      const rates = getEcommerceRates(ordersNum);
       if (!rates) quoteReasons.push("eCommerce fulfillment over 2,500 orders requires a custom quote.");
-      const totalItems = orders * avgItems;
-      const orderCost = rates ? orders * rates.order : 0;
+      const totalItems = ordersNum * toNum(avgItems);
+      const orderCost = rates ? ordersNum * rates.order : 0;
       const itemCost = rates ? totalItems * rates.item : 0;
       total += orderCost + itemCost;
-      groups.service.push({ label: "Order handling", detail: rates ? `${orders.toLocaleString()} orders × ${money(rates.order)}` : "Quote required", amount: orderCost });
+      groups.service.push({ label: "Order handling", detail: rates ? `${ordersNum.toLocaleString()} orders × ${money(rates.order)}` : "Quote required", amount: orderCost });
       groups.service.push({ label: "Item handling", detail: rates ? `${totalItems.toLocaleString()} items × ${money(rates?.item || 0)}` : "Quote required", amount: itemCost });
     }
 
     if (service === "carton") {
-      const receiving = palletsReceived * 18 + boxesReceived + container20 * 275 + container40 * 550;
-      const palletization = shortPallets * 20 + tallPallets * 50;
-      const forwarding = cartonsForwarded * 4 + palletsForwarded * 20;
+      const receiving = toNum(palletsReceived) * 18 + toNum(boxesReceived) + toNum(container20) * 275 + toNum(container40) * 550;
+      const palletization = toNum(shortPallets) * 20 + toNum(tallPallets) * 50;
+      const forwarding = toNum(cartonsForwarded) * 4 + toNum(palletsForwarded) * 20;
       total += receiving + palletization + forwarding;
       groups.receiving.push({ label: "Receiving", detail: "Pallets, boxes, and containers", amount: receiving });
       groups.receiving.push({ label: "Palletization", detail: "Up to 70 in. and 71+ in. pallets", amount: palletization });
@@ -357,20 +401,20 @@ export default function MontanaLogisticsCalculatorPage() {
     const addonTotal = returnCost + bundlingCost + soldAsSetCost + doNotOpenCost + bubbleCost + manualCountCost;
     total += addonTotal;
 
-    if (returnCost > 0) groups.addons.push({ label: "Returns", detail: `${returnsCount.toLocaleString()} returns × $1.00`, amount: returnCost });
-    if (bundlingCost > 0) groups.addons.push({ label: "Bundles", detail: `${bundles.toLocaleString()} bundles × ${money(bundleFeeEach)}`, amount: bundlingCost });
-    if (soldAsSetCost > 0) groups.addons.push({ label: "Sold as set labels", detail: `${soldAsSetLabels.toLocaleString()} labels × $0.15`, amount: soldAsSetCost });
-    if (doNotOpenCost > 0) groups.addons.push({ label: "Do not open labels", detail: `${doNotOpenLabels.toLocaleString()} labels × $0.15`, amount: doNotOpenCost });
-    if (bubbleCost > 0) groups.addons.push({ label: "Bubble wrap", detail: `${bubbleWrapItems.toLocaleString()} items × ${money(bubbleFeeEach)}`, amount: bubbleCost });
-    if (manualCountCost > 0) groups.addons.push({ label: "Manual count", detail: `${manualCountHours} hours × $40.00`, amount: manualCountCost });
+    if (returnCost > 0) groups.addons.push({ label: "Returns", detail: `${toNum(returnsCount).toLocaleString()} returns × $1.00`, amount: returnCost });
+    if (bundlingCost > 0) groups.addons.push({ label: "Bundles", detail: `${toNum(bundles).toLocaleString()} bundles × ${money(bundleFeeEach)}`, amount: bundlingCost });
+    if (soldAsSetCost > 0) groups.addons.push({ label: "Sold as set labels", detail: `${toNum(soldAsSetLabels).toLocaleString()} labels × $0.15`, amount: soldAsSetCost });
+    if (doNotOpenCost > 0) groups.addons.push({ label: "Do not open labels", detail: `${toNum(doNotOpenLabels).toLocaleString()} labels × $0.15`, amount: doNotOpenCost });
+    if (bubbleCost > 0) groups.addons.push({ label: "Bubble wrap", detail: `${toNum(bubbleWrapItems).toLocaleString()} items × ${money(bubbleFeeEach)}`, amount: bubbleCost });
+    if (manualCountCost > 0) groups.addons.push({ label: "Manual count", detail: `${toNum(manualCountHours)} hours × $40.00`, amount: manualCountCost });
 
     if (shouldApplyStorage) {
       total += storageCost;
       groups.storage.push({ label: storageCost > 0 ? "Monthly storage estimate" : "Storage estimate", detail: storageCost > 0 ? `${cubicFeet.toLocaleString()} cu. ft. × ${money(storageRate)}/mo` : "First 14 days are free", amount: storageCost });
     }
 
-    return { groups, total, quoteReasons, requiresQuote: quoteReasons.length > 0 };
-  }, [service, storageDays, q4, cubicFeet, needsStorage, itemsPerBundle, hasBundles, bundles, bubbleSheets, hasBubbleWrap, bubbleWrapItems, hasReturns, returnsCount, hasSoldAsSet, soldAsSetLabels, hasDoNotOpen, doNotOpenLabels, hasManualCount, manualCountHours, books, items, wholesaleUnits, orders, avgItems, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded]);
+    return { groups, total, quoteReasons, requiresQuote: quoteReasons.length > 0, isUnfilled };
+  }, [service, storageDays, q4, cubicFeet, needsStorage, itemsPerBundle, hasBundles, bundles, bubbleSheets, hasBubbleWrap, bubbleWrapItems, hasReturns, returnsCount, hasSoldAsSet, soldAsSetLabels, hasDoNotOpen, doNotOpenLabels, hasManualCount, manualCountHours, books, items, wholesaleUnits, orders, avgItems, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded, isUnfilled]);
 
   const showAddons = service === "fba" || service === "wholesale";
   const showStorage = service !== "notSure";
@@ -380,9 +424,19 @@ export default function MontanaLogisticsCalculatorPage() {
       {/* Header aligned with main site */}
       <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex flex-col hover:opacity-80 transition-opacity">
-            <span className="text-xl font-bold tracking-tight text-zinc-900">Montana Logistics Pro</span>
-            <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm">
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+                <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight text-zinc-900">Such Group E-Commerce</span>
+              <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+            </div>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</Link>
@@ -463,37 +517,37 @@ export default function MontanaLogisticsCalculatorPage() {
                 <Section title="Basic shipment details" eyebrow="Step 2">
                   {service === "fba" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many FBA items?" value={items} onChange={setItems} helper="Over 10,000 items needs a custom quote." min={500} />
-                      <NumberInput label="Any books?" value={books} onChange={setBooks} helper="$2.50 each, including grading and FNSKU labeling." />
+                      <NumberInput label="How many FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Over 10,000 items needs a custom quote." min={500} />
+                      <NumberInput label="Any books?" value={books} onChange={setBooks} placeholder="e.g. 150" helper="$2.50 each, including grading and FNSKU labeling." />
                     </div>
                   )}
 
                   {service === "wholesale" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} helper="Listed wholesale pricing starts at 500 units and assumes the same FNSKU." min={500} />
+                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} placeholder="e.g. 1200" helper="Listed wholesale pricing starts at 500 units and assumes the same FNSKU." min={500} />
                     </div>
                   )}
 
                   {service === "ecommerce" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="Monthly orders" value={orders} onChange={setOrders} helper="Over 2,500 monthly orders needs a custom quote." />
-                      <NumberInput label="Average items per order" value={avgItems} onChange={setAvgItems} />
+                      <NumberInput label="Monthly orders" value={orders} onChange={setOrders} placeholder="e.g. 400" helper="Over 2,500 monthly orders needs a custom quote." />
+                      <NumberInput label="Average items per order" value={avgItems} onChange={setAvgItems} placeholder="e.g. 2" />
                     </div>
                   )}
 
                   {service === "carton" && (
                     <div className="space-y-8">
                       <div className="grid gap-6 sm:grid-cols-2">
-                        <NumberInput label="Pallets received" value={palletsReceived} onChange={setPalletsReceived} suffix="$18 each" />
-                        <NumberInput label="Boxes received" value={boxesReceived} onChange={setBoxesReceived} suffix="$1 each" />
-                        <NumberInput label="20’ containers unloaded" value={container20} onChange={setContainer20} suffix="$275 each" />
-                        <NumberInput label="40’ containers unloaded" value={container40} onChange={setContainer40} suffix="$550 each" />
+                        <NumberInput label="Pallets received" value={palletsReceived} onChange={setPalletsReceived} placeholder="e.g. 2" suffix="$18 each" />
+                        <NumberInput label="Boxes received" value={boxesReceived} onChange={setBoxesReceived} placeholder="e.g. 30" suffix="$1 each" />
+                        <NumberInput label="20’ containers unloaded" value={container20} onChange={setContainer20} placeholder="e.g. 1" suffix="$275 each" />
+                        <NumberInput label="40’ containers unloaded" value={container40} onChange={setContainer40} placeholder="e.g. 1" suffix="$550 each" />
                       </div>
                       <div className="grid gap-6 sm:grid-cols-2">
-                        <NumberInput label="Pallets up to 70 inches" value={shortPallets} onChange={setShortPallets} suffix="$20 each" />
-                        <NumberInput label="Pallets 71 inches or taller" value={tallPallets} onChange={setTallPallets} suffix="$50 each" />
-                        <NumberInput label="Cartons forwarded" value={cartonsForwarded} onChange={setCartonsForwarded} suffix="$4 each" />
-                        <NumberInput label="Pallets forwarded" value={palletsForwarded} onChange={setPalletsForwarded} suffix="$20 each" />
+                        <NumberInput label="Pallets up to 70 inches" value={shortPallets} onChange={setShortPallets} placeholder="e.g. 2" suffix="$20 each" />
+                        <NumberInput label="Pallets 71 inches or taller" value={tallPallets} onChange={setTallPallets} placeholder="e.g. 1" suffix="$50 each" />
+                        <NumberInput label="Cartons forwarded" value={cartonsForwarded} onChange={setCartonsForwarded} placeholder="e.g. 25" suffix="$4 each" />
+                        <NumberInput label="Pallets forwarded" value={palletsForwarded} onChange={setPalletsForwarded} placeholder="e.g. 1" suffix="$20 each" />
                       </div>
                     </div>
                   )}
@@ -519,14 +573,14 @@ export default function MontanaLogisticsCalculatorPage() {
                   </div>
 
                   <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                    {hasReturns && <NumberInput label="Return items" value={returnsCount} onChange={setReturnsCount} />}
-                    {hasBundles && <NumberInput label="Number of bundles" value={bundles} onChange={setBundles} />}
-                    {hasBundles && <NumberInput label="Items per bundle" value={itemsPerBundle} onChange={setItemsPerBundle} />}
-                    {hasSoldAsSet && <NumberInput label="Sold as set labels" value={soldAsSetLabels} onChange={setSoldAsSetLabels} />}
-                    {hasDoNotOpen && <NumberInput label="Do not open labels" value={doNotOpenLabels} onChange={setDoNotOpenLabels} />}
-                    {hasBubbleWrap && <NumberInput label="Bubble wrap items" value={bubbleWrapItems} onChange={setBubbleWrapItems} />}
-                    {hasBubbleWrap && <NumberInput label="Sheets per item" value={bubbleSheets} onChange={setBubbleSheets} />}
-                    {hasManualCount && <NumberInput label="Manual count hours" value={manualCountHours} onChange={setManualCountHours} />}
+                    {hasReturns && <NumberInput label="Return items" value={returnsCount} onChange={setReturnsCount} placeholder="e.g. 50" />}
+                    {hasBundles && <NumberInput label="Number of bundles" value={bundles} onChange={setBundles} placeholder="e.g. 200" />}
+                    {hasBundles && <NumberInput label="Items per bundle" value={itemsPerBundle} onChange={setItemsPerBundle} placeholder="e.g. 3" />}
+                    {hasSoldAsSet && <NumberInput label="Sold as set labels" value={soldAsSetLabels} onChange={setSoldAsSetLabels} placeholder="e.g. 100" />}
+                    {hasDoNotOpen && <NumberInput label="Do not open labels" value={doNotOpenLabels} onChange={setDoNotOpenLabels} placeholder="e.g. 100" />}
+                    {hasBubbleWrap && <NumberInput label="Bubble wrap items" value={bubbleWrapItems} onChange={setBubbleWrapItems} placeholder="e.g. 150" />}
+                    {hasBubbleWrap && <NumberInput label="Sheets per item" value={bubbleSheets} onChange={setBubbleSheets} placeholder="e.g. 3" />}
+                    {hasManualCount && <NumberInput label="Manual count hours" value={manualCountHours} onChange={setManualCountHours} placeholder="e.g. 2" />}
                   </div>
                 </Section>
               )}
@@ -552,20 +606,20 @@ export default function MontanaLogisticsCalculatorPage() {
 
                       {useBoxMath ? (
                         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-                          <NumberInput label="Box count" value={boxCount} onChange={setBoxCount} />
-                          <NumberInput label="Length" suffix="inches" value={boxLength} onChange={setBoxLength} />
-                          <NumberInput label="Width" suffix="inches" value={boxWidth} onChange={setBoxWidth} />
-                          <NumberInput label="Height" suffix="inches" value={boxHeight} onChange={setBoxHeight} />
+                          <NumberInput label="Box count" value={boxCount} onChange={setBoxCount} placeholder="e.g. 20" />
+                          <NumberInput label="Length" suffix="inches" value={boxLength} onChange={setBoxLength} placeholder="e.g. 18" />
+                          <NumberInput label="Width" suffix="inches" value={boxWidth} onChange={setBoxWidth} placeholder="e.g. 14" />
+                          <NumberInput label="Height" suffix="inches" value={boxHeight} onChange={setBoxHeight} placeholder="e.g. 12" />
                         </div>
                       ) : (
-                        <NumberInput label="Cubic feet" value={manualCubicFeet} onChange={setManualCubicFeet} helper="Use this if you already know the storage volume." />
+                        <NumberInput label="Cubic feet" value={manualCubicFeet} onChange={setManualCubicFeet} placeholder="e.g. 40" helper="Use this if you already know the storage volume." />
                       )}
 
                       <div className="grid gap-6 sm:grid-cols-2">
-                        <NumberInput label="Storage days" value={storageDays} onChange={setStorageDays} helper="First 14 days are free." />
+                        <NumberInput label="Storage days" value={storageDays} onChange={setStorageDays} placeholder="e.g. 45" helper="First 14 days are free." />
                         <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
                           <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Calculated storage space</p>
-                          <p className="mt-2 text-3xl font-bold tracking-tight">{cubicFeet.toLocaleString()} cu. ft.</p>
+                          <p className="mt-2 text-3xl font-bold tracking-tight">{cubicFeet > 0 ? `${cubicFeet.toLocaleString()} cu. ft.` : "—"}</p>
                           <p className="mt-2 text-sm leading-relaxed text-zinc-600">Used for the monthly storage estimate.</p>
                         </div>
                       </div>
@@ -581,7 +635,12 @@ export default function MontanaLogisticsCalculatorPage() {
               <Card className="rounded-[2.5rem] border-zinc-200 bg-white shadow-2xl">
                 <CardContent className="p-8">
                   <p className="text-sm font-semibold tracking-widest uppercase text-zinc-500">Estimate</p>
-                  {estimate.requiresQuote ? (
+                  {estimate.isUnfilled ? (
+                    <div className="mt-3">
+                      <p className="text-4xl font-bold tracking-tight text-zinc-400">Enter details</p>
+                      <p className="mt-4 text-base leading-relaxed text-zinc-500">Fill in the fields above to see a calculated estimate.</p>
+                    </div>
+                  ) : estimate.requiresQuote ? (
                     <div className="mt-3">
                       <p className="text-4xl font-bold tracking-tight text-zinc-950">Custom quote needed</p>
                       <p className="mt-4 text-base leading-relaxed text-zinc-600">This request has details that should be reviewed before giving a hard price.</p>
@@ -602,16 +661,16 @@ export default function MontanaLogisticsCalculatorPage() {
                       <div className="flex items-start gap-4">
                         <AlertTriangle className="mt-0.5 h-5 w-5 text-amber-700 shrink-0" />
                         <div>
-                          <p className="font-bold text-amber-900">Needs review</p>
-                          <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-amber-800">
-                            {estimate.quoteReasons.map((reason) => <li key={reason}>{reason}</li>)}
-                          </ul>
+                           <p className="font-bold text-amber-900">Needs review</p>
+                           <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-amber-800">
+                             {estimate.quoteReasons.map((reason) => <li key={reason}>{reason}</li>)}
+                           </ul>
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {!estimate.requiresQuote && estimate.total === 0 && (
+                  {!estimate.isUnfilled && !estimate.requiresQuote && estimate.total === 0 && (
                     <div className="mt-6 rounded-2xl bg-zinc-50 p-5 text-sm leading-relaxed text-zinc-600 border border-zinc-100">
                       Choose a service and add shipment details to build an estimate.
                     </div>

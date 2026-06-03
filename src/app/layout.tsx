@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Montana Logistics Pro | Tax-Free Amazon Prep & 3PL",
+  title: "Such Group E-Commerce | Tax-Free Amazon Prep & 3PL",
   description: "Tax-Free Montana Prep. 48-Hour Turnaround Guaranteed. The scalable solution for high-volume Amazon sellers.",
 };
 
