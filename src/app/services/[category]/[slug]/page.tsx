@@ -78,16 +78,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const categoryLabel = category === "amazon" ? "Amazon FBA & FBM Prep" : "DTC & Retail Fulfillment";
 
   return (
-    <div className="min-h-screen bg-[#000000] text-[#EAEAEA] font-sans selection:bg-emerald-500/20 selection:text-emerald-400 pb-32">
+    <div className="min-h-screen bg-[#000000] text-[#EAEAEA] font-sans selection:bg-emerald-500/20 selection:text-emerald-400 pb-32 overflow-x-hidden">
       {/* Glow Backdrop */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] max-w-[1200px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#000000]/60 backdrop-blur-xl border-b border-zinc-900 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
+            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                 <line x1="12" y1="22.08" x2="12" y2="12" />
@@ -95,8 +95,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-white">Such Group E-Commerce</span>
-              <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+              <span className="text-sm sm:text-xl font-bold tracking-tight text-white leading-tight">Such Group E-Commerce</span>
+              <span className="text-[9px] sm:text-xs font-medium text-zinc-500 tracking-wide uppercase mt-0.5">Prep • Fulfillment • Storage</span>
             </div>
           </Link>
           <div className="flex items-center gap-6">

@@ -420,13 +420,13 @@ export default function MontanaLogisticsCalculatorPage() {
   const showStorage = service !== "notSure";
 
   return (
-    <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 flex flex-col">
+    <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 flex flex-col overflow-x-hidden">
       {/* Header aligned with main site */}
       <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
+            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm shrink-0">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                 <line x1="12" y1="22.08" x2="12" y2="12" />
@@ -434,8 +434,8 @@ export default function MontanaLogisticsCalculatorPage() {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-zinc-900">Such Group E-Commerce</span>
-              <span className="text-xs font-medium text-zinc-500 tracking-wide uppercase">Prep • Fulfillment • Storage</span>
+              <span className="text-sm sm:text-xl font-bold tracking-tight text-zinc-900 leading-tight">Such Group E-Commerce</span>
+              <span className="text-[9px] sm:text-xs font-medium text-zinc-500 tracking-wide uppercase mt-0.5">Prep • Fulfillment • Storage</span>
             </div>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
