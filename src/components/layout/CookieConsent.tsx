@@ -5,6 +5,12 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+
 export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
