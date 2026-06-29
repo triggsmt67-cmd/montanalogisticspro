@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import "./globals.css";
 
 const inter = Inter({
@@ -71,6 +72,30 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
+        {/* Google Consent Mode v2 Default Configuration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              
+              // Check local storage for existing consent preference
+              var consentStatus = null;
+              try {
+                consentStatus = localStorage.getItem('cookie-consent-status');
+              } catch (e) {}
+
+              var state = consentStatus === 'granted' ? 'granted' : 'denied';
+              
+              gtag('consent', 'default', {
+                'ad_storage': state,
+                'ad_user_data': state,
+                'ad_personalization': state,
+                'analytics_storage': state
+              });
+            `.trim(),
+          }}
+        />
         {/* Google Tag Manager — fires after page is interactive, non-blocking */}
         <Script
           id="gtm-script"
@@ -99,6 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
 
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
