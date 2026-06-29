@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,9 +12,14 @@ const STEPS = [
   { id: "contact", title: "Where should we send your plan?" },
 ];
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export function DiscoveryStepper() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [formData, setFormData] = useState({
     volume: "",
     friction: "",
@@ -22,11 +27,57 @@ export function DiscoveryStepper() {
     email: "",
   });
 
-  const handleNext = () => {
+  // Honeypot fields — hidden from real users, bots will fill them
+  const [honeypotWebsite, setHoneypotWebsite] = useState("");
+  const [honeypotPhoneConfirm, setHoneypotPhoneConfirm] = useState("");
+
+  // Record the time the page/component loaded for submission timing check
+  const loadedAt = useRef(Date.now());
+
+  const handleNext = async () => {
     if (currentStep < STEPS.length - 1) {
       setCurrentStep((prev) => prev + 1);
     } else {
-      setIsSubmitted(true);
+      // Final step — validate email client-side first
+      if (!EMAIL_RE.test(formData.email)) {
+        setEmailError("Please enter a valid email address.");
+        return;
+      }
+      setEmailError("");
+      setSubmitError("");
+      setIsSubmitting(true);
+
+      try {
+        const res = await fetch("/api/submit-plan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            volume: formData.volume,
+            friction: formData.friction,
+            // Honeypot fields — a real user will leave these blank
+            website: honeypotWebsite,
+            phone_confirm: honeypotPhoneConfirm,
+            // Timing data for bot detection
+            loadedAt: loadedAt.current,
+            submittedAt: Date.now(),
+          }),
+        });
+
+        const json = await res.json();
+
+        if (!res.ok || !json.success) {
+          setSubmitError(json.error ?? "Something went wrong. Please try again.");
+          setIsSubmitting(false);
+          return;
+        }
+
+        setIsSubmitted(true);
+      } catch {
+        setSubmitError("Network error. Please check your connection and try again.");
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -61,12 +112,61 @@ export function DiscoveryStepper() {
     else handleBack();
   };
 
+  const isNextDisabled =
+    (currentStep === 0 && !formData.volume) ||
+    (currentStep === 1 && !formData.friction) ||
+    (currentStep === 2 && (!formData.name || !formData.email)) ||
+    isSubmitting;
+
   return (
     <section className="py-32 relative overflow-hidden bg-[#000000] border-t border-white/[0.05]" id="intake-flow">
       {/* Colorful Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-full bg-radial-gradient z-0 opacity-30"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
-      
+
+      {/*
+        ── HONEYPOT FIELDS ────────────────────────────────────────────────────
+        Visually hidden from real users via CSS (not display:none, which some
+        bots detect). Bots that auto-fill all fields will populate these,
+        triggering a silent rejection on the server.
+      */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
+          border: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <label htmlFor="hp-website">Website</label>
+        <input
+          id="hp-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypotWebsite}
+          onChange={(e) => setHoneypotWebsite(e.target.value)}
+        />
+        <label htmlFor="hp-phone-confirm">Confirm Phone</label>
+        <input
+          id="hp-phone-confirm"
+          name="phone_confirm"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypotPhoneConfirm}
+          onChange={(e) => setHoneypotPhoneConfirm(e.target.value)}
+        />
+      </div>
+
       <div className="container px-4 mx-auto max-w-2xl relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 16 }}
@@ -182,6 +282,7 @@ export function DiscoveryStepper() {
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="bg-white/[0.03] border-white/[0.1] text-white focus-visible:ring-0 focus-visible:border-cyan-400 focus-visible:shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl h-14 px-5 shadow-inner transition-all duration-300" 
                           placeholder="John Doe" 
+                          autoComplete="name"
                         />
                       </div>
                       <div className="grid gap-2 input-focus-ring group">
@@ -190,11 +291,21 @@ export function DiscoveryStepper() {
                           id="email" 
                           type="email"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="bg-white/[0.03] border-white/[0.1] text-white focus-visible:ring-0 focus-visible:border-cyan-400 focus-visible:shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl h-14 px-5 shadow-inner transition-all duration-300" 
+                          onChange={(e) => {
+                            setFormData({ ...formData, email: e.target.value });
+                            setEmailError("");
+                          }}
+                          className={`bg-white/[0.03] border-white/[0.1] text-white focus-visible:ring-0 focus-visible:border-cyan-400 focus-visible:shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl h-14 px-5 shadow-inner transition-all duration-300 ${emailError ? "border-red-500/60" : ""}`}
                           placeholder="john@company.com" 
+                          autoComplete="email"
                         />
+                        {emailError && (
+                          <p className="text-red-400 text-xs mt-1">{emailError}</p>
+                        )}
                       </div>
+                      {submitError && (
+                        <p className="text-red-400 text-xs text-center">{submitError}</p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -209,20 +320,21 @@ export function DiscoveryStepper() {
                   </button>
                   <button 
                     onClick={() => paginate(1)} 
+                    disabled={isNextDisabled}
                     className={`h-12 px-8 rounded-full text-sm font-bold flex items-center transition-all duration-300 ${
-                      (currentStep === 0 && !formData.volume) || (currentStep === 1 && !formData.friction) || (currentStep === 2 && (!formData.name || !formData.email))
+                      isNextDisabled
                       ? 'bg-white/[0.05] text-zinc-500 cursor-not-allowed pointer-events-none'
                       : currentStep === STEPS.length - 1
                         ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-black shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] hover:scale-105'
                         : 'bg-white text-black hover:scale-105 hover:bg-zinc-200 shadow-[0_0_15px_rgba(255,255,255,0.3)]'
                     }`}
-                    disabled={
-                      (currentStep === 0 && !formData.volume) ||
-                      (currentStep === 1 && !formData.friction) ||
-                      (currentStep === 2 && (!formData.name || !formData.email))
-                    }
                   >
-                    {currentStep === STEPS.length - 1 ? "Get My Plan" : "Continue"} <ArrowRight className="ml-2 h-4 w-4" />
+                    {isSubmitting
+                      ? "Sending…"
+                      : currentStep === STEPS.length - 1
+                        ? "Get My Plan"
+                        : "Continue"
+                    } {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
                   </button>
                 </div>
               </motion.div>
@@ -233,3 +345,4 @@ export function DiscoveryStepper() {
     </section>
   );
 }
+

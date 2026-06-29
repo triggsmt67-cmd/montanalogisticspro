@@ -8,7 +8,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-3">
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 shadow-sm">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg aria-hidden="true" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                 <line x1="12" y1="22.08" x2="12" y2="12" />
@@ -18,10 +18,9 @@ export function Navbar() {
             <span className="font-bold text-lg text-white tracking-tight">Such Group E-Commerce</span>
           </Link>
         </div>
-        <nav className="hidden md:flex gap-8 items-center text-sm font-medium text-slate-300">
-          <Link href="#prep-solutions" className="hover:text-white transition-colors">Prep Solutions</Link>
-          <Link href="#api-stack" className="hover:text-white transition-colors">API Stack</Link>
-          <Link href="#roi-model" className="hover:text-white transition-colors">ROI Model</Link>
+        <nav aria-label="Main navigation" className="hidden md:flex gap-8 items-center text-sm font-medium text-slate-300">
+          <Link href="/#services" className="hover:text-white transition-colors">Prep Solutions</Link>
+          <Link href="/#roi-model" className="hover:text-white transition-colors">ROI Model</Link>
           <Link href="/estimator" className="hover:text-emerald-400 text-emerald-500 transition-colors">Cost Estimator</Link>
         </nav>
         <div className="flex items-center gap-4">

@@ -49,6 +49,7 @@ export function HeroSection() {
         <div className="w-[800px] h-[800px] rounded-full blur-[100px] bg-white/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
         <video 
           ref={videoRef}
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover mix-blend-screen" 
           autoPlay 
           loop 

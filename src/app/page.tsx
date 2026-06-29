@@ -240,17 +240,63 @@ const PATH_CONTENT = {
 function TaxSavingsCalculator() {
   const [monthlyUnits, setMonthlyUnits] = useState<number>(5000);
   const [costPerUnit, setCostPerUnit] = useState<number>(15);
-  const [taxRate, setTaxRate] = useState<number>(0.0825);
+  const [taxRate, setTaxRate] = useState<number>(0.0825); // Default: California (8.25%)
 
   const monthlySpend = monthlyUnits * costPerUnit;
   const annualSavings = monthlySpend * 12 * taxRate;
 
   const states = [
+    { name: "Alabama (4.0%)", rate: 0.04 },
+    { name: "Alaska (0.0%)", rate: 0.0 },
+    { name: "Arizona (5.6%)", rate: 0.056 },
+    { name: "Arkansas (6.5%)", rate: 0.065 },
     { name: "California (8.25%)", rate: 0.0825 },
-    { name: "New York (8.875%)", rate: 0.08875 },
-    { name: "Washington (9.0%)", rate: 0.09 },
+    { name: "Colorado (2.9%)", rate: 0.029 },
+    { name: "Connecticut (6.35%)", rate: 0.0635 },
+    { name: "Delaware (0.0%)", rate: 0.0 },
+    { name: "Florida (6.0%)", rate: 0.06 },
+    { name: "Georgia (4.0%)", rate: 0.04 },
+    { name: "Hawaii (4.0%)", rate: 0.04 },
+    { name: "Idaho (6.0%)", rate: 0.06 },
     { name: "Illinois (8.5%)", rate: 0.085 },
-    { name: "National Average (7.5%)", rate: 0.075 },
+    { name: "Indiana (7.0%)", rate: 0.07 },
+    { name: "Iowa (6.0%)", rate: 0.06 },
+    { name: "Kansas (6.5%)", rate: 0.065 },
+    { name: "Kentucky (6.0%)", rate: 0.06 },
+    { name: "Louisiana (4.45%)", rate: 0.0445 },
+    { name: "Maine (5.5%)", rate: 0.055 },
+    { name: "Maryland (6.0%)", rate: 0.06 },
+    { name: "Massachusetts (6.25%)", rate: 0.0625 },
+    { name: "Michigan (6.0%)", rate: 0.06 },
+    { name: "Minnesota (6.875%)", rate: 0.06875 },
+    { name: "Mississippi (7.0%)", rate: 0.07 },
+    { name: "Missouri (4.225%)", rate: 0.04225 },
+    { name: "Montana (0.0%)", rate: 0.0 },
+    { name: "Nebraska (5.5%)", rate: 0.055 },
+    { name: "Nevada (6.85%)", rate: 0.0685 },
+    { name: "New Hampshire (0.0%)", rate: 0.0 },
+    { name: "New Jersey (6.625%)", rate: 0.06625 },
+    { name: "New Mexico (5.125%)", rate: 0.05125 },
+    { name: "New York (8.875%)", rate: 0.08875 },
+    { name: "North Carolina (4.75%)", rate: 0.0475 },
+    { name: "North Dakota (5.0%)", rate: 0.05 },
+    { name: "Ohio (5.75%)", rate: 0.0575 },
+    { name: "Oklahoma (4.5%)", rate: 0.045 },
+    { name: "Oregon (0.0%)", rate: 0.0 },
+    { name: "Pennsylvania (6.0%)", rate: 0.06 },
+    { name: "Rhode Island (7.0%)", rate: 0.07 },
+    { name: "South Carolina (6.0%)", rate: 0.06 },
+    { name: "South Dakota (4.2%)", rate: 0.042 },
+    { name: "Tennessee (7.0%)", rate: 0.07 },
+    { name: "Texas (6.25%)", rate: 0.0625 },
+    { name: "Utah (4.85%)", rate: 0.0485 },
+    { name: "Vermont (6.0%)", rate: 0.06 },
+    { name: "Virginia (5.3%)", rate: 0.053 },
+    { name: "Washington (9.0%)", rate: 0.09 },
+    { name: "West Virginia (6.0%)", rate: 0.06 },
+    { name: "Wisconsin (5.0%)", rate: 0.05 },
+    { name: "Wyoming (4.0%)", rate: 0.04 },
+    { name: "National Average (7.5%)", rate: 0.075 }
   ];
 
   return (
@@ -631,7 +677,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm shrink-0">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                 <line x1="12" y1="22.08" x2="12" y2="12" />
@@ -643,7 +689,7 @@ export default function LandingPage() {
               <span className="text-[9px] sm:text-xs font-medium text-zinc-500 tracking-wide uppercase mt-0.5">Prep • Fulfillment • Storage</span>
             </div>
           </div>
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
             <motion.a whileHover={{ y: -1 }} href="#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</motion.a>
             <motion.a whileHover={{ y: -1 }} href="#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
             <motion.a whileHover={{ y: -1 }} href="#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
@@ -770,7 +816,7 @@ export default function LandingPage() {
                   <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
                 )}
               </div>
-              <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell on Amazon</h2>
+              <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell on Amazon</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "amazon" ? "text-zinc-300" : "text-zinc-600"}`}>
                 Strict FBA prep, precise labeling, and compliance handling for sellers who want their time back.
               </p>
@@ -798,7 +844,7 @@ export default function LandingPage() {
                   <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
                 )}
               </div>
-              <h2 className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</h2>
+              <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "ecommerce" ? "text-zinc-300" : "text-zinc-600"}`}>
                 API-driven pick/pack, kitting, and returns for Shopify, DTC, and multi-channel retail brands.
               </p>
@@ -1434,7 +1480,7 @@ export default function LandingPage() {
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg aria-hidden="true" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                   <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
                   <line x1="12" y1="22.08" x2="12" y2="12" />
@@ -1449,13 +1495,13 @@ export default function LandingPage() {
           </div>
           <div className="flex gap-12 md:justify-end">
             <div className="flex flex-col gap-3">
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#" className="text-sm transition-colors w-max">Amazon Prep</motion.a>
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#" className="text-sm transition-colors w-max">Ecommerce Fulfillment</motion.a>
+              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#services" className="text-sm transition-colors w-max">Amazon Prep</motion.a>
+              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#services" className="text-sm transition-colors w-max">Ecommerce Fulfillment</motion.a>
               <motion.a whileHover={{ x: 3, color: "#fff" }} href="#process" className="text-sm transition-colors w-max">Onboarding</motion.a>
             </div>
             <div className="flex flex-col gap-3">
               <motion.a onClick={() => setFormStep(1)} whileHover={{ x: 3, color: "#fff" }} href="#fit-review" className="text-sm transition-colors w-max">Fit Review</motion.a>
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#" className="text-sm transition-colors w-max">Contact</motion.a>
+              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#intake-flow" className="text-sm transition-colors w-max">Contact</motion.a>
             </div>
           </div>
         </div>

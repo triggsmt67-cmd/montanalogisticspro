@@ -1,15 +1,66 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans", 
+  variable: "--font-sans",
 });
 
+const GTM_ID = "GTM-TRW2LWQ7";
+
+const SITE_URL = "https://suchgroupecommerce.com";
+const SITE_NAME = "Such Group E-Commerce";
+const SITE_DESCRIPTION =
+  "Tax-free Amazon FBA prep & 3PL fulfillment from Montana. 48-hour turnaround guaranteed. Save up to 8% on every wholesale order — zero state sales tax.";
+
 export const metadata: Metadata = {
-  title: "Such Group E-Commerce | Tax-Free Amazon Prep & 3PL",
-  description: "Tax-Free Montana Prep. 48-Hour Turnaround Guaranteed. The scalable solution for high-volume Amazon sellers.",
+  metadataBase: new URL(SITE_URL),
+
+  title: {
+    default: `${SITE_NAME} | Tax-Free Amazon Prep & 3PL in Montana`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+
+  alternates: {
+    canonical: "/",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Tax-Free Amazon Prep & 3PL in Montana`,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Such Group E-Commerce — Tax-Free Amazon Prep in Montana",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} | Tax-Free Amazon Prep & 3PL`,
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +70,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased bg-[#000000] text-[#EAEAEA] min-h-screen selection:bg-white/20 selection:text-white`}>
+      <head>
+        {/* Google Tag Manager — fires after page is interactive, non-blocking */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'/gtm/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+      </head>
+      <body
+        className={`${inter.variable} font-sans antialiased bg-[#000000] text-[#EAEAEA] min-h-screen selection:bg-white/20 selection:text-white`}
+      >
+        {/* GTM noscript fallback — required for environments with JS disabled */}
+        <noscript>
+          <iframe
+            src={`/gtm/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
+
         {children}
       </body>
     </html>
