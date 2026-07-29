@@ -297,6 +297,96 @@ export default function MontanaLogisticsCalculatorPage() {
   const selectedPath = paths.find((path) => path.id === service) || paths[0];
   const SelectedIcon = selectedPath.icon || Calculator;
 
+  // ── Quote modal state ──────────────────────────────────────────────────────
+  const [showModal, setShowModal] = useState(false);
+  const [quoteName, setQuoteName] = useState("");
+  const [quoteEmail, setQuoteEmail] = useState("");
+  const [quoteSubmitting, setQuoteSubmitting] = useState(false);
+  const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [quoteError, setQuoteError] = useState("");
+  const [quoteBusiness, setQuoteBusiness] = useState("");
+  const [quoteLastName, setQuoteLastName] = useState("");
+  const [quotePhone, setQuotePhone] = useState("");
+  const quoteLoadedAt = React.useRef(Date.now());
+
+  const handleQuoteSubmit = async () => {
+    setQuoteSubmitting(true);
+    setQuoteError("");
+
+    // Build a structured snapshot of all estimator state
+    const fields: Record<string, string> = {
+      "Service Path": selectedPath.label,
+    };
+
+    if (service === "fba") {
+      if (items !== "") fields["FBA Items"] = String(items);
+      if (books !== "") fields["Books"] = String(books);
+    }
+    if (service === "wholesale" && wholesaleUnits !== "") fields["Wholesale Units"] = String(wholesaleUnits);
+    if (service === "ecommerce") {
+      if (orders !== "") fields["Monthly Orders"] = String(orders);
+      if (avgItems !== "") fields["Avg Items / Order"] = String(avgItems);
+    }
+    if (service === "carton") {
+      if (palletsReceived !== "") fields["Pallets Received"] = String(palletsReceived);
+      if (boxesReceived !== "") fields["Boxes Received"] = String(boxesReceived);
+      if (container20 !== "") fields["20ft Containers"] = String(container20);
+      if (container40 !== "") fields["40ft Containers"] = String(container40);
+      if (shortPallets !== "") fields["Short Pallets (≤70in)"] = String(shortPallets);
+      if (tallPallets !== "") fields["Tall Pallets (71in+)"] = String(tallPallets);
+      if (cartonsForwarded !== "") fields["Cartons Forwarded"] = String(cartonsForwarded);
+      if (palletsForwarded !== "") fields["Pallets Forwarded"] = String(palletsForwarded);
+    }
+    if (service === "storage" || needsStorage) {
+      fields["Storage Days"] = storageDays !== "" ? String(storageDays) : "Not specified";
+      fields["Cubic Feet"] = cubicFeet > 0 ? String(cubicFeet) : "Not specified";
+      fields["Q4 Storage Rate"] = q4 ? "Yes" : "No";
+    }
+    if (hasReturns && returnsCount !== "") fields["Returns"] = String(returnsCount);
+    if (hasBundles) {
+      fields["Bundles"] = bundles !== "" ? String(bundles) : "Yes";
+      if (itemsPerBundle !== "") fields["Items per Bundle"] = String(itemsPerBundle);
+    }
+    if (hasSoldAsSet && soldAsSetLabels !== "") fields["Sold as Set Labels"] = String(soldAsSetLabels);
+    if (hasDoNotOpen && doNotOpenLabels !== "") fields["Do Not Open Labels"] = String(doNotOpenLabels);
+    if (hasBubbleWrap) {
+      if (bubbleWrapItems !== "") fields["Bubble Wrap Items"] = String(bubbleWrapItems);
+      if (bubbleSheets !== "") fields["Bubble Sheets / Item"] = String(bubbleSheets);
+    }
+    if (hasManualCount && manualCountHours !== "") fields["Manual Count Hours"] = String(manualCountHours);
+    fields["Estimated Total"] = estimate.requiresQuote ? "Custom quote needed" : money(estimate.total);
+    if (estimate.quoteReasons.length > 0) fields["Quote Notes"] = estimate.quoteReasons.join("; ");
+    if (quoteBusiness.trim()) fields["Business Name"] = quoteBusiness.trim();
+    if (quotePhone.trim()) fields["Phone Number"] = quotePhone.trim();
+
+    try {
+      const res = await fetch("/api/submit-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${quoteName.trim()} ${quoteLastName.trim()}`.trim() || quoteName.trim(),
+          email: quoteEmail.trim(),
+          volume: service,
+          friction: "Estimator quote request",
+          additionalFields: fields,
+          sendToCustomer: true,
+          loadedAt: quoteLoadedAt.current,
+          submittedAt: Date.now(),
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setQuoteError(json.error ?? "Something went wrong. Please try again.");
+        setQuoteSubmitting(false);
+        return;
+      }
+      setQuoteSubmitted(true);
+    } catch {
+      setQuoteError("Network error. Please check your connection and try again.");
+      setQuoteSubmitting(false);
+    }
+  };
+
   const isUnfilled = useMemo(() => {
     if (service === "fba") return items === "";
     if (service === "wholesale") return wholesaleUnits === "";
@@ -677,8 +767,17 @@ export default function MontanaLogisticsCalculatorPage() {
                   )}
 
                   <div className="mt-8 grid gap-4">
-                    <Button className={`rounded-full ${selectedPath.colorClass} hover:opacity-90 text-white py-6 text-base font-semibold transition-opacity`}>Request final quote</Button>
-                    <Button variant="outline" className="rounded-full border-zinc-200 text-zinc-700 hover:bg-zinc-50 py-6 text-base font-semibold">Email this estimate</Button>
+                    <Button
+                      onClick={() => { 
+                        setShowModal(true); 
+                        setQuoteSubmitted(false); 
+                        setQuoteError(""); 
+                        quoteLoadedAt.current = Date.now();
+                      }}
+                      className={`rounded-full ${selectedPath.colorClass} hover:opacity-90 text-white py-6 text-base font-semibold transition-opacity`}
+                    >
+                      Request final quote
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -722,6 +821,117 @@ export default function MontanaLogisticsCalculatorPage() {
 
       {/* Footer from Layout */}
       <Footer />
+
+      {/* ── Quote Request Modal ───────────────────────────────────────────── */}
+      {showModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-zinc-950/60 backdrop-blur-sm" />
+
+          {/* Sheet */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-full sm:max-w-md bg-white rounded-t-[2.5rem] sm:rounded-[2.5rem] p-8 shadow-2xl"
+          >
+            {/* Close */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-zinc-100 text-zinc-500 hover:bg-zinc-200 transition-colors text-lg"
+            >
+              ✕
+            </button>
+
+            {quoteSubmitted ? (
+              <div className="flex flex-col items-center text-center gap-4 py-6">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl">✓</div>
+                <h2 className="text-2xl font-bold text-zinc-950">You're all set, {quoteName.split(" ")[0]}.</h2>
+                <p className="text-sm text-zinc-500 max-w-xs leading-relaxed">A copy of your estimate is headed to your inbox now. We'll follow up with a full, itemized quote within one business day.</p>
+                <button onClick={() => setShowModal(false)} className="mt-2 text-sm font-semibold text-emerald-600 hover:underline">Close</button>
+              </div>
+            ) : (
+              <>
+                <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${selectedPath.bgMuted} ${selectedPath.textClass} text-xs font-semibold uppercase tracking-widest mb-4`}>
+                  {selectedPath.label}
+                </div>
+                <h2 className="text-2xl font-bold text-zinc-950 mb-1">Request your quote</h2>
+                <p className="text-sm text-zinc-500 mb-6">We'll send a detailed, itemized quote based on the estimate you just built.</p>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">First Name</label>
+                      <input
+                        type="text"
+                        value={quoteName}
+                        onChange={e => setQuoteName(e.target.value)}
+                        placeholder="John"
+                        className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Last Name</label>
+                      <input
+                        type="text"
+                        value={quoteLastName}
+                        onChange={e => setQuoteLastName(e.target.value)}
+                        placeholder="Smith"
+                        className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Business Name</label>
+                    <input
+                      type="text"
+                      value={quoteBusiness}
+                      onChange={e => setQuoteBusiness(e.target.value)}
+                      placeholder="Acme Inc."
+                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Work Email</label>
+                    <input
+                      type="email"
+                      value={quoteEmail}
+                      onChange={e => setQuoteEmail(e.target.value)}
+                      placeholder="john@company.com"
+                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Phone Number</label>
+                    <input
+                      type="tel"
+                      value={quotePhone}
+                      onChange={e => setQuotePhone(e.target.value)}
+                      placeholder="(406) 555-0100"
+                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                    />
+                  </div>
+                  {quoteError && <p className="text-red-500 text-xs">{quoteError}</p>}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleQuoteSubmit}
+                    disabled={quoteSubmitting || !quoteName.trim() || !quoteEmail.trim()}
+                    className={`w-full h-14 rounded-xl text-white font-semibold transition-all flex items-center justify-center gap-2 ${selectedPath.colorClass} disabled:opacity-50 disabled:cursor-not-allowed shadow-lg`}
+                  >
+                    {quoteSubmitting ? "Sending…" : "Send My Quote Request →"}
+                  </motion.button>
+                  <p className="text-center text-xs text-zinc-400">No spam. Just a real conversation about your shipment.</p>
+                </div>
+              </>
+            )}
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

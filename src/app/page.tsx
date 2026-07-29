@@ -663,6 +663,93 @@ export default function LandingPage() {
   const [formStep, setFormStep] = useState(1);
   const content = PATH_CONTENT[activePath];
 
+  // Fit Review form state
+  const [fitFormData, setFitFormData] = useState<Record<string, string>>({});
+  const [fitSubmitting, setFitSubmitting] = useState(false);
+  const [fitSubmitted, setFitSubmitted] = useState(false);
+  const [fitError, setFitError] = useState("");
+  const fitLoadedAt = useRef(Date.now());
+
+  // Questions modal state
+  const [showQuestions, setShowQuestions] = useState(false);
+  const [qName, setQName]         = useState("");
+  const [qEmail, setQEmail]       = useState("");
+  const [qPhone, setQPhone]       = useState("");
+  const [qMessage, setQMessage]   = useState("");
+  const [qSubmitting, setQSubmitting] = useState(false);
+  const [qSubmitted, setQSubmitted]   = useState(false);
+  const [qError, setQError]           = useState("");
+
+  const openQuestions = () => {
+    setShowQuestions(true);
+    setQSubmitted(false);
+    setQError("");
+  };
+
+  const handleQuestionSubmit = async () => {
+    setQSubmitting(true);
+    setQError("");
+    try {
+      const res = await fetch("/api/submit-question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: qName, email: qEmail, phone: qPhone, question: qMessage }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setQError(json.error ?? "Something went wrong. Please try again.");
+        setQSubmitting(false);
+        return;
+      }
+      setQSubmitted(true);
+    } catch {
+      setQError("Network error. Please check your connection.");
+      setQSubmitting(false);
+    }
+  };
+
+  const handleFitFieldChange = (field: string, value: string) => {
+    setFitFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleFitSubmit = async () => {
+    setFitSubmitting(true);
+    setFitError("");
+    const allFields = content.form.steps.flatMap(s => s.fields);
+
+    // Build a clean label→value map for the email
+    const additionalFields: Record<string, string> = {};
+    allFields.forEach(f => { additionalFields[f] = fitFormData[f] ?? ""; });
+    // Also include company name from the final step
+    if (fitFormData["Company Name"]) additionalFields["Company Name"] = fitFormData["Company Name"];
+
+    try {
+      const res = await fetch("/api/submit-plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${fitFormData["First Name"] ?? ""} ${fitFormData["Last Name"] ?? ""}`.trim() || "Unknown",
+          email: fitFormData["Work Email"] ?? "",
+          volume: fitFormData["Average monthly orders"] ?? fitFormData["Monthly units"] ?? "Not specified",
+          friction: "Fit Review submission",
+          additionalFields,
+          loadedAt: fitLoadedAt.current,
+          submittedAt: Date.now(),
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        setFitError(json.error ?? "Something went wrong. Please try again.");
+        setFitSubmitting(false);
+        return;
+      }
+      setFitSubmitted(true);
+    } catch {
+      setFitError("Network error. Please check your connection.");
+      setFitSubmitting(false);
+    }
+  };
+
   // Helper to change paths and reset the form
   const handlePathChange = (path: PathType) => {
     setActivePath(path);
@@ -694,6 +781,7 @@ export default function LandingPage() {
             <motion.a whileHover={{ y: -1 }} href="#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
             <motion.a whileHover={{ y: -1 }} href="#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
             <motion.a whileHover={{ y: -1 }} href="/estimator" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Cost Estimator</motion.a>
+            <motion.button whileHover={{ y: -1 }} onClick={openQuestions} className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Questions</motion.button>
           </nav>
           <motion.button 
             whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}
@@ -1326,103 +1414,132 @@ export default function LandingPage() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-2xl font-bold text-zinc-950 mb-3 mt-2">{content.form.title}</h3>
-                  <p className="text-sm text-zinc-500 mb-8">{content.form.intro}</p>
+                  <h3 className="text-2xl font-bold text-zinc-950 mb-3 mt-2">{fitSubmitted ? "You're on the list." : content.form.title}</h3>
+                  <p className="text-sm text-zinc-500 mb-8">{fitSubmitted ? `Thanks, ${fitFormData["First Name"] || "friend"}. We'll be in touch with a tailored strategy shortly.` : content.form.intro}</p>
                   
-                  <div className="relative min-h-[220px]">
-                    <AnimatePresence mode="wait">
-                      {formStep <= 3 ? (
-                        <motion.div
-                          key={`step-${formStep}`}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute inset-0"
-                        >
-                          <div className="mb-6">
-                            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Step {formStep} of 4</span>
-                            <h4 className="text-lg font-bold text-zinc-900 mt-1">{content.form.steps[formStep - 1].title}</h4>
-                          </div>
-                          <div className="space-y-4">
-                            {content.form.steps[formStep - 1].fields.map((field) => (
-                              <motion.div key={field} whileHover={{ scale: 1.01, x: 2 }} className="relative cursor-text">
-                                <div className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl flex items-center px-4 hover:border-emerald-300 hover:bg-white transition-colors shadow-inner">
-                                  <span className="text-sm text-zinc-400">{field}</span>
+                  {fitSubmitted ? (
+                    <div className="flex flex-col items-center justify-center py-10 gap-4">
+                      <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl">✓</div>
+                      <p className="text-sm text-zinc-500 text-center max-w-xs">No generic pitch. Just a real conversation about whether we&apos;re the right fit for your operation.</p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="relative">
+                        <AnimatePresence mode="wait">
+                          {formStep <= 3 ? (
+                            <motion.div
+                              key={`step-${formStep}`}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -20 }}
+                              transition={{ duration: 0.3 }}
+                              className="w-full"
+                            >
+                              <div className="mb-6">
+                                <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Step {formStep} of 4</span>
+                                <h4 className="text-lg font-bold text-zinc-900 mt-1">{content.form.steps[formStep - 1].title}</h4>
+                              </div>
+                              <div className="space-y-4">
+                                {content.form.steps[formStep - 1].fields.map((field) => (
+                                  <div key={field}>
+                                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">{field}</label>
+                                    <input
+                                      type="text"
+                                      value={fitFormData[field] ?? ""}
+                                      onChange={e => handleFitFieldChange(field, e.target.value)}
+                                      placeholder={`Enter ${field.toLowerCase()}…`}
+                                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="step-4"
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -20 }}
+                              transition={{ duration: 0.3 }}
+                              className="w-full"
+                            >
+                              <div className="mb-6">
+                                <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Final Step</span>
+                                <h4 className="text-lg font-bold text-zinc-900 mt-1">Where should we send your strategy?</h4>
+                              </div>
+                              <div className="space-y-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                  {["First Name", "Last Name"].map(field => (
+                                    <div key={field}>
+                                      <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">{field}</label>
+                                      <input
+                                        type="text"
+                                        value={fitFormData[field] ?? ""}
+                                        onChange={e => handleFitFieldChange(field, e.target.value)}
+                                        placeholder={field === "First Name" ? "John" : "Smith"}
+                                        className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner"
+                                      />
+                                    </div>
+                                  ))}
                                 </div>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="step-4"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute inset-0"
-                        >
-                          <div className="mb-6">
-                            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Final Step</span>
-                            <h4 className="text-lg font-bold text-zinc-900 mt-1">Where should we send your strategy?</h4>
-                          </div>
-                          <div className="space-y-4">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                              <motion.div whileHover={{ scale: 1.02 }} className="h-14 bg-zinc-50 border border-zinc-200 rounded-xl flex items-center px-4 hover:border-emerald-300 hover:bg-white transition-colors shadow-inner cursor-text">
-                                <span className="text-sm text-zinc-400">First Name</span>
-                              </motion.div>
-                              <motion.div whileHover={{ scale: 1.02 }} className="h-14 bg-zinc-50 border border-zinc-200 rounded-xl flex items-center px-4 hover:border-emerald-300 hover:bg-white transition-colors shadow-inner cursor-text">
-                                <span className="text-sm text-zinc-400">Last Name</span>
-                              </motion.div>
-                            </div>
-                            <motion.div whileHover={{ scale: 1.01, x: 2 }} className="h-14 bg-zinc-50 border border-zinc-200 rounded-xl flex items-center px-4 hover:border-emerald-300 hover:bg-white transition-colors shadow-inner cursor-text">
-                              <span className="text-sm text-zinc-400">Work Email</span>
+                                {["Work Email", "Company Name"].map(field => (
+                                  <div key={field}>
+                                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">{field}</label>
+                                    <input
+                                      type={field === "Work Email" ? "email" : "text"}
+                                      value={fitFormData[field] ?? ""}
+                                      onChange={e => handleFitFieldChange(field, e.target.value)}
+                                      placeholder={field === "Work Email" ? "john@company.com" : "Acme Inc."}
+                                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner"
+                                    />
+                                  </div>
+                                ))}
+                                {fitError && <p className="text-red-500 text-xs text-center">{fitError}</p>}
+                              </div>
                             </motion.div>
-                            <motion.div whileHover={{ scale: 1.01, x: 2 }} className="h-14 bg-zinc-50 border border-zinc-200 rounded-xl flex items-center px-4 hover:border-emerald-300 hover:bg-white transition-colors shadow-inner cursor-text">
-                              <span className="text-sm text-zinc-400">Company Name</span>
-                            </motion.div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                          )}
+                        </AnimatePresence>
+                      </div>
 
-                  <div className="mt-8 flex gap-4">
-                    {formStep > 1 && (
-                      <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => setFormStep(s => s - 1)}
-                        className="h-14 px-6 rounded-xl bg-zinc-100 text-zinc-600 font-medium hover:bg-zinc-200 transition-colors"
-                      >
-                        Back
-                      </motion.button>
-                    )}
-                    
-                    {formStep < 4 ? (
-                      <motion.button 
-                        whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(16,185,129,0.3)" }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => setFormStep(s => s + 1)}
-                        className="flex-1 h-14 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition-colors shadow-lg flex items-center justify-center gap-2"
-                      >
-                        Continue <ArrowRight size={18} />
-                      </motion.button>
-                    ) : (
-                      <motion.button 
-                        whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)" }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex-1 h-14 rounded-xl bg-zinc-950 text-white font-medium hover:bg-zinc-800 transition-colors shadow-lg flex items-center justify-center"
-                      >
-                        {content.form.cta}
-                      </motion.button>
-                    )}
-                  </div>
-                  {formStep === 4 && (
-                    <p className="text-center text-xs text-zinc-500 mt-4">
-                      No pressure. No automatic email blasts. Just seeing if we align.
-                    </p>
+                      <div className="mt-8 flex gap-4">
+                        {formStep > 1 && (
+                          <motion.button 
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setFormStep(s => s - 1)}
+                            className="h-14 px-6 rounded-xl bg-zinc-100 text-zinc-600 font-medium hover:bg-zinc-200 transition-colors"
+                          >
+                            Back
+                          </motion.button>
+                        )}
+                        
+                        {formStep < 4 ? (
+                          <motion.button 
+                            whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(16,185,129,0.3)" }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => setFormStep(s => s + 1)}
+                            className="flex-1 h-14 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition-colors shadow-lg flex items-center justify-center gap-2"
+                          >
+                            Continue <ArrowRight size={18} />
+                          </motion.button>
+                        ) : (
+                          <motion.button 
+                            whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)" }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={handleFitSubmit}
+                            disabled={fitSubmitting || !fitFormData["Work Email"]}
+                            className="flex-1 h-14 rounded-xl bg-zinc-950 text-white font-medium hover:bg-zinc-800 transition-colors shadow-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            {fitSubmitting ? "Sending…" : content.form.cta}
+                          </motion.button>
+                        )}
+                      </div>
+                      {formStep === 4 && (
+                        <p className="text-center text-xs text-zinc-500 mt-4">
+                          No pressure. No automatic email blasts. Just seeing if we align.
+                        </p>
+                      )}
+                    </>
                   )}
                 </motion.div>
               </AnimatePresence>
@@ -1473,6 +1590,142 @@ export default function LandingPage() {
           </motion.div>
         </section>
       </main>
+
+      {/* ── Questions Modal ──────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {showQuestions && (
+          <div
+            className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowQuestions(false); }}
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 48 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 48 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full sm:max-w-lg bg-white rounded-t-[2.5rem] sm:rounded-[2rem] shadow-2xl border border-zinc-200 overflow-hidden"
+            >
+              {/* Gradient top bar */}
+              <div className="h-1.5 w-full bg-gradient-to-r from-emerald-500 to-cyan-500" />
+
+              <div className="p-8">
+                {/* Close */}
+                <button
+                  onClick={() => setShowQuestions(false)}
+                  className="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full bg-zinc-100 text-zinc-500 hover:bg-zinc-200 transition-colors text-lg"
+                >
+                  ✕
+                </button>
+
+                <AnimatePresence mode="wait">
+                  {qSubmitted ? (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.96 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex flex-col items-center text-center gap-5 py-8"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl">
+                        ✓
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-bold text-zinc-950 mb-2">Question received, {qName.split(" ")[0]}.</h2>
+                        <p className="text-sm text-zinc-500 max-w-xs leading-relaxed">
+                          We read every message personally and will get back to you within one business day.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setShowQuestions(false)}
+                        className="mt-1 text-sm font-semibold text-emerald-600 hover:underline"
+                      >
+                        Close
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-600/10 border border-emerald-600/20 text-emerald-700 text-xs font-semibold uppercase tracking-widest mb-4">
+                        💬 Questions
+                      </div>
+                      <h2 className="text-2xl font-bold text-zinc-950 mb-1">Ask us anything.</h2>
+                      <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
+                        Not sure if we're the right fit? Curious about a service? We respond to every question personally.
+                      </p>
+
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Your Name</label>
+                            <input
+                              type="text"
+                              value={qName}
+                              onChange={e => setQName(e.target.value)}
+                              placeholder="John Smith"
+                              className="h-12 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Phone <span className="normal-case text-zinc-400">(optional)</span></label>
+                            <input
+                              type="tel"
+                              value={qPhone}
+                              onChange={e => setQPhone(e.target.value)}
+                              placeholder="(406) 555-0100"
+                              className="h-12 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Email Address</label>
+                          <input
+                            type="email"
+                            value={qEmail}
+                            onChange={e => setQEmail(e.target.value)}
+                            placeholder="john@company.com"
+                            className="h-12 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">What questions do you have?</label>
+                          <textarea
+                            value={qMessage}
+                            onChange={e => setQMessage(e.target.value)}
+                            placeholder="I'm wondering about your FBA prep process for oversized items..."
+                            rows={4}
+                            className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all resize-none leading-relaxed"
+                          />
+                        </div>
+
+                        {qError && <p className="text-red-500 text-xs">{qError}</p>}
+
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={handleQuestionSubmit}
+                          disabled={qSubmitting || !qName.trim() || !qEmail.trim() || !qMessage.trim()}
+                          className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-500/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                        >
+                          {qSubmitting ? "Sending…" : "Send My Question →"}
+                        </motion.button>
+
+                        <p className="text-center text-xs text-zinc-400">We read every message and respond personally.</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* 10. Footer */}
       <footer className="bg-zinc-950 pt-20 pb-10 px-4 text-zinc-400">
