@@ -181,11 +181,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: "Question is too long (max 2,000 characters)." }, { status: 400 });
 
   const resend  = new Resend(process.env.RESEND_API_KEY);
-  const toEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
+  const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
+  const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
 
   const { error } = await resend.emails.send({
     from:    "Such Group e-Commerce <leads@suchgroupecommerce.com>",
-    to:      toEmail,
+    to:      toEmails,
     replyTo: email,
     subject: `💬 New Question from ${name}`,
     html: buildQuestionEmail({
