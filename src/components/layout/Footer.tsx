@@ -1,12 +1,13 @@
+import React from "react";
 import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-[#0B1120] py-12 text-center md:text-left relative overflow-hidden">
-      <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8 relative z-10 max-w-6xl">
-        <div className="md:col-span-2">
-          <Link href="/" className="inline-block flex items-center space-x-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 shadow-sm">
+    <footer className="bg-zinc-950 pt-20 pb-10 px-4 text-zinc-400">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+        <div>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
               <svg aria-hidden="true" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
@@ -14,31 +15,36 @@ export function Footer() {
                 <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
               </svg>
             </div>
-            <span className="font-bold text-xl text-white tracking-tight">Such Group E-Commerce</span>
-          </Link>
-          <p className="text-slate-400 mt-4 max-w-sm mx-auto md:mx-0 leading-relaxed font-sans">
-            Tax-Free Montana Prep. 48-Hour Turnaround Guaranteed. The scalable solution for high-volume Amazon sellers.
+            <span className="text-xl font-bold tracking-tight text-white block">Such Group E-Commerce</span>
+          </div>
+          <p className="text-sm max-w-sm leading-relaxed">
+            Tax-free prep, robust fulfillment, and pristine storage support for high-volume sellers operating out of Montana.
           </p>
         </div>
-        <div>
-          <h4 className="font-bold text-white mb-4 uppercase text-sm tracking-widest">Services</h4>
-          <ul className="space-y-3 text-slate-400 text-sm font-sans">
-            <li><Link href="/#services" className="hover:text-emerald-400 transition-colors">Online Arbitrage</Link></li>
-            <li><Link href="/#services" className="hover:text-emerald-400 transition-colors">Wholesale &amp; PL</Link></li>
-            <li><Link href="/estimator" className="hover:text-emerald-400 transition-colors">Pricing Estimator</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold text-white mb-4 uppercase text-sm tracking-widest">Company</h4>
-          <ul className="space-y-3 text-slate-400 text-sm font-sans">
-            <li><Link href="/#" className="hover:text-emerald-400 transition-colors">About Us</Link></li>
-            <li><Link href="/#intake-flow" className="hover:text-emerald-400 transition-colors">Contact</Link></li>
-            <li><Link href="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link></li>
-          </ul>
+        <div className="flex gap-12 md:justify-end flex-wrap">
+          <div className="flex flex-col gap-3">
+            <span className="font-bold text-white mb-2 uppercase tracking-widest text-xs">Regional Tax Savings</span>
+            <Link href="/tax-savings/california-to-montana-3pl" className="text-sm transition-colors hover:text-white w-max">California FBA Prep Savings</Link>
+            <Link href="/tax-savings/washington-to-montana-3pl" className="text-sm transition-colors hover:text-white w-max">Washington FBA Prep Savings</Link>
+            <Link href="/tax-savings/texas-to-montana-3pl" className="text-sm transition-colors hover:text-white w-max">Texas FBA Prep Savings</Link>
+            <Link href="/tax-savings/new-york-to-montana-3pl" className="text-sm transition-colors hover:text-white w-max">New York FBA Prep Savings</Link>
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="font-bold text-white mb-2 uppercase tracking-widest text-xs">Core Services</span>
+            <Link href="/montana-tax-free-3pl" className="text-sm transition-colors hover:text-white w-max text-emerald-400">Tax-Free 3PL</Link>
+            <a href="/#services" className="text-sm transition-colors hover:text-white w-max">Amazon Prep</a>
+            <a href="/#services" className="text-sm transition-colors hover:text-white w-max">Ecommerce Fulfillment</a>
+          </div>
+          <div className="flex flex-col gap-3">
+            <span className="font-bold text-white mb-2 uppercase tracking-widest text-xs">Company</span>
+            <a href="/#fit-review" className="text-sm transition-colors hover:text-white w-max">Fit Review</a>
+            <a href="/#process" className="text-sm transition-colors hover:text-white w-max">Onboarding</a>
+            <Link href="/privacy-policy" className="text-sm transition-colors hover:text-white w-max">Privacy Policy</Link>
+          </div>
         </div>
       </div>
-      <div className="container mx-auto max-w-6xl px-4 mt-16 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm relative z-10 font-sans">
-        &copy; {new Date().getFullYear()} Such Group E-Commerce. All rights reserved.
+      <div className="max-w-7xl mx-auto border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <p className="text-xs">© {new Date().getFullYear()} Such Group E-Commerce. All rights reserved. Located proudly in Montana.</p>
       </div>
     </footer>
   );

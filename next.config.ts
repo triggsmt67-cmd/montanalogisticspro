@@ -50,6 +50,13 @@ const securityHeaders = [
   },
 ];
 
+if (process.env.VERCEL_ENV !== "production") {
+  securityHeaders.push({
+    key: "X-Robots-Tag",
+    value: "noindex, nofollow",
+  });
+}
+
 const nextConfig: NextConfig = {
   async headers() {
     return [

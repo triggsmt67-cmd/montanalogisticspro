@@ -2,7 +2,10 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import DeconstructedWarehouseScene from "@/components/ui/DeconstructedWarehouseScene";
+import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   PackageCheck, 
@@ -18,7 +21,6 @@ import {
   Layers,
   Search,
   CheckSquare,
-  Calculator,
   DollarSign
 } from "lucide-react";
 
@@ -237,180 +239,6 @@ const PATH_CONTENT = {
   }
 };
 
-function TaxSavingsCalculator() {
-  const [monthlyUnits, setMonthlyUnits] = useState<number>(5000);
-  const [costPerUnit, setCostPerUnit] = useState<number>(15);
-  const [taxRate, setTaxRate] = useState<number>(0.0825); // Default: California (8.25%)
-
-  const monthlySpend = monthlyUnits * costPerUnit;
-  const annualSavings = monthlySpend * 12 * taxRate;
-
-  const states = [
-    { name: "Alabama (4.0%)", rate: 0.04 },
-    { name: "Alaska (0.0%)", rate: 0.0 },
-    { name: "Arizona (5.6%)", rate: 0.056 },
-    { name: "Arkansas (6.5%)", rate: 0.065 },
-    { name: "California (8.25%)", rate: 0.0825 },
-    { name: "Colorado (2.9%)", rate: 0.029 },
-    { name: "Connecticut (6.35%)", rate: 0.0635 },
-    { name: "Delaware (0.0%)", rate: 0.0 },
-    { name: "Florida (6.0%)", rate: 0.06 },
-    { name: "Georgia (4.0%)", rate: 0.04 },
-    { name: "Hawaii (4.0%)", rate: 0.04 },
-    { name: "Idaho (6.0%)", rate: 0.06 },
-    { name: "Illinois (8.5%)", rate: 0.085 },
-    { name: "Indiana (7.0%)", rate: 0.07 },
-    { name: "Iowa (6.0%)", rate: 0.06 },
-    { name: "Kansas (6.5%)", rate: 0.065 },
-    { name: "Kentucky (6.0%)", rate: 0.06 },
-    { name: "Louisiana (4.45%)", rate: 0.0445 },
-    { name: "Maine (5.5%)", rate: 0.055 },
-    { name: "Maryland (6.0%)", rate: 0.06 },
-    { name: "Massachusetts (6.25%)", rate: 0.0625 },
-    { name: "Michigan (6.0%)", rate: 0.06 },
-    { name: "Minnesota (6.875%)", rate: 0.06875 },
-    { name: "Mississippi (7.0%)", rate: 0.07 },
-    { name: "Missouri (4.225%)", rate: 0.04225 },
-    { name: "Montana (0.0%)", rate: 0.0 },
-    { name: "Nebraska (5.5%)", rate: 0.055 },
-    { name: "Nevada (6.85%)", rate: 0.0685 },
-    { name: "New Hampshire (0.0%)", rate: 0.0 },
-    { name: "New Jersey (6.625%)", rate: 0.06625 },
-    { name: "New Mexico (5.125%)", rate: 0.05125 },
-    { name: "New York (8.875%)", rate: 0.08875 },
-    { name: "North Carolina (4.75%)", rate: 0.0475 },
-    { name: "North Dakota (5.0%)", rate: 0.05 },
-    { name: "Ohio (5.75%)", rate: 0.0575 },
-    { name: "Oklahoma (4.5%)", rate: 0.045 },
-    { name: "Oregon (0.0%)", rate: 0.0 },
-    { name: "Pennsylvania (6.0%)", rate: 0.06 },
-    { name: "Rhode Island (7.0%)", rate: 0.07 },
-    { name: "South Carolina (6.0%)", rate: 0.06 },
-    { name: "South Dakota (4.2%)", rate: 0.042 },
-    { name: "Tennessee (7.0%)", rate: 0.07 },
-    { name: "Texas (6.25%)", rate: 0.0625 },
-    { name: "Utah (4.85%)", rate: 0.0485 },
-    { name: "Vermont (6.0%)", rate: 0.06 },
-    { name: "Virginia (5.3%)", rate: 0.053 },
-    { name: "Washington (9.0%)", rate: 0.09 },
-    { name: "West Virginia (6.0%)", rate: 0.06 },
-    { name: "Wisconsin (5.0%)", rate: 0.05 },
-    { name: "Wyoming (4.0%)", rate: 0.04 },
-    { name: "National Average (7.5%)", rate: 0.075 }
-  ];
-
-  return (
-    <motion.div 
-      whileHover={{ y: -4, boxShadow: "0 40px 80px -20px rgba(16, 185, 129, 0.15)" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="bg-zinc-900 rounded-[2.5rem] p-8 md:p-12 border border-zinc-800/80 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] relative overflow-hidden group cursor-default"
-    >
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3 pointer-events-none transition-opacity duration-700 group-hover:opacity-100 opacity-50" />
-      
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              <Calculator size={24} strokeWidth={2} />
-            </div>
-            <h3 className="text-2xl font-bold text-white tracking-tight">The Montana Advantage</h3>
-          </div>
-          <p className="text-zinc-400 leading-relaxed mb-6">
-            Montana has <strong>zero state sales tax</strong>. When you route your inventory purchasing through our facility, you stop paying an automatic premium to state governments. 
-            Calculate your invisible savings.
-          </p>
-          
-          <div className="space-y-6">
-            {/* Units Slider */}
-            <div className="space-y-3">
-              <div className="flex justify-between items-end">
-                <label className="text-sm font-medium text-zinc-300">Monthly Units Processed</label>
-                <motion.span key={monthlyUnits} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xl font-bold text-white">
-                  {monthlyUnits.toLocaleString()} units
-                </motion.span>
-              </div>
-              <motion.input 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="range" 
-                min="1000" 
-                max="100000" 
-                step="500"
-                value={monthlyUnits}
-                onChange={(e) => setMonthlyUnits(parseInt(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500 hover:accent-emerald-400 transition-all duration-200"
-              />
-              <div className="flex justify-between text-xs text-zinc-500">
-                <span>1k</span>
-                <span>100k+</span>
-              </div>
-            </div>
-
-            {/* Cost Slider */}
-            <div className="space-y-3">
-              <div className="flex justify-between items-end">
-                <label className="text-sm font-medium text-zinc-300">Average Cost Per Unit</label>
-                <motion.span key={costPerUnit} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xl font-bold text-white">
-                  ${costPerUnit}
-                </motion.span>
-              </div>
-              <motion.input 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="range" 
-                min="1" 
-                max="250" 
-                step="1"
-                value={costPerUnit}
-                onChange={(e) => setCostPerUnit(parseInt(e.target.value))}
-                className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500 hover:accent-emerald-400 transition-all duration-200"
-              />
-              <div className="flex justify-between text-xs text-zinc-500">
-                <span>$1</span>
-                <span>$250+</span>
-              </div>
-            </div>
-
-            {/* State Dropdown */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Current Prep State</label>
-              <select 
-                value={taxRate} 
-                onChange={(e) => setTaxRate(parseFloat(e.target.value))}
-                className="w-full h-12 bg-zinc-900 border border-zinc-700 rounded-xl px-4 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors cursor-pointer appearance-none"
-                style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2em' }}
-              >
-                {states.map(s => (
-                  <option key={s.name} value={s.rate} className="bg-zinc-900 text-white">{s.name}</option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <motion.div 
-          whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -10px rgba(16, 185, 129, 0.2)" }}
-          transition={{ duration: 0.3 }}
-          className="bg-emerald-950/40 border border-emerald-800/50 rounded-3xl p-8 text-center flex flex-col items-center justify-center relative shadow-inner h-full min-h-[300px]"
-        >
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-30 mix-blend-overlay rounded-3xl" />
-          <span className="text-emerald-400 text-sm font-bold tracking-widest uppercase mb-2 relative z-10">Estimated Annual Savings</span>
-          <motion.div 
-            key={annualSavings}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-5xl md:text-6xl font-bold text-white tracking-tighter mb-4 relative z-10 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-          >
-            ${Math.round(annualSavings).toLocaleString()}
-          </motion.div>
-          <p className="text-zinc-400 text-sm relative z-10">
-            Straight to your bottom line, just by changing your shipping address to Montana.
-          </p>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
 
 interface ServiceItem {
   title: string;
@@ -760,42 +588,7 @@ export default function LandingPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden">
       
       {/* 1. Header */}
-      <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm shrink-0">
-              <svg aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                <line x1="12" y1="22.08" x2="12" y2="12" />
-                <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-xl font-bold tracking-tight text-zinc-900 leading-tight">Such Group E-Commerce</span>
-              <span className="text-[9px] sm:text-xs font-medium text-zinc-500 tracking-wide uppercase mt-0.5">Prep • Fulfillment • Storage</span>
-            </div>
-          </div>
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
-            <motion.a whileHover={{ y: -1 }} href="#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</motion.a>
-            <motion.a whileHover={{ y: -1 }} href="#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
-            <motion.a whileHover={{ y: -1 }} href="#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
-            <motion.a whileHover={{ y: -1 }} href="/estimator" className="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors">Cost Estimator</motion.a>
-            <motion.button whileHover={{ y: -1 }} onClick={openQuestions} className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Questions</motion.button>
-          </nav>
-          <motion.button 
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              document.getElementById('fit-review')?.scrollIntoView({ behavior: 'smooth' });
-              setFormStep(1);
-            }}
-            className="flex items-center justify-center h-9 md:h-10 px-4 md:px-6 rounded-full bg-zinc-900 text-white text-xs md:text-sm font-medium hover:bg-zinc-800 transition-colors"
-          >
-            Start Fit Review
-          </motion.button>
-        </div>
-      </header>
+      <Navbar onOpenQuestions={openQuestions} />
 
       <main className="pb-32">
         {/* 2. Hero Section */}
@@ -1042,6 +835,12 @@ export default function LandingPage() {
             </div>
             
             <TaxSavingsCalculator />
+            <div className="mt-8 text-center relative z-10">
+              <a href="/montana-tax-free-3pl" className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors group">
+                See the full breakdown of our Tax-Free Sourcing Mechanics
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+            </div>
 
             {/* Trust Guarantee Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20 border-t border-zinc-800/80 pt-16">
@@ -1728,40 +1527,7 @@ export default function LandingPage() {
       </AnimatePresence>
 
       {/* 10. Footer */}
-      <footer className="bg-zinc-950 pt-20 pb-10 px-4 text-zinc-400">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-sm">
-                <svg aria-hidden="true" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
-                  <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
-                </svg>
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white block">Such Group E-Commerce</span>
-            </div>
-            <p className="text-sm max-w-sm leading-relaxed">
-              Tax-free prep, robust fulfillment, and pristine storage support for high-volume sellers operating out of Montana.
-            </p>
-          </div>
-          <div className="flex gap-12 md:justify-end">
-            <div className="flex flex-col gap-3">
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#services" className="text-sm transition-colors w-max">Amazon Prep</motion.a>
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#services" className="text-sm transition-colors w-max">Ecommerce Fulfillment</motion.a>
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#process" className="text-sm transition-colors w-max">Onboarding</motion.a>
-            </div>
-            <div className="flex flex-col gap-3">
-              <motion.a onClick={() => setFormStep(1)} whileHover={{ x: 3, color: "#fff" }} href="#fit-review" className="text-sm transition-colors w-max">Fit Review</motion.a>
-              <motion.a whileHover={{ x: 3, color: "#fff" }} href="#intake-flow" className="text-sm transition-colors w-max">Contact</motion.a>
-            </div>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-xs">© {new Date().getFullYear()} Such Group E-Commerce. All rights reserved. Located proudly in Montana.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -17,7 +17,7 @@ const SITE_DESCRIPTION =
   "Tax-free Amazon FBA prep & 3PL fulfillment from Montana. 48-hour turnaround guaranteed. Save up to 8% on every wholesale order — zero state sales tax.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://suchgroupecommerce.com"),
 
   title: {
     default: `${SITE_NAME} | Tax-Free Amazon Prep & 3PL in Montana`,
