@@ -530,8 +530,11 @@ export default function MontanaLogisticsCalculatorPage() {
                 Cost Estimator
               </div>
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl leading-tight transition-colors">
-                Get your exact numbers before you ship.
+                Tax-Free Fulfillment Pricing Calculator
               </h1>
+              <h2 className="mt-2 max-w-3xl text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl leading-snug">
+                Get your exact numbers before you ship.
+              </h2>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
                 Answer a few questions to map your prep, storage, or forwarding costs. If your project requires custom logistics, we tell you upfront instead of generating fake math.
               </p>
@@ -792,8 +795,75 @@ export default function MontanaLogisticsCalculatorPage() {
               </Card>
             </div>
           </div>
+
+          {/* Static FAQ Section */}
+          <section className="mt-16 border-t border-gray-800 pt-12">
+            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold text-lg">How much does FBA prep cost?</h3>
+                <p className="text-gray-400 mt-2">We charge a flat $1.45 per unit for standard retail sourcing prep. Volumes over 10,000 units require a capacity review.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">Are there hidden 3PL storage fees?</h3>
+                <p className="text-gray-400 mt-2">No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">Do I pay sales tax on Montana 3PL services?</h3>
+                <p className="text-gray-400 mt-2">Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility.</p>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebApplication",
+                "name": "Tax-Free Fulfillment Pricing Calculator",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "All",
+                "description": "Calculate exact prep, storage, and forwarding costs for your eCommerce or Amazon FBA business using our Montana tax-free facility."
+              },
+              {
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "How much does FBA prep cost?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We charge a flat $1.45 per unit for standard retail sourcing prep. Volumes over 10,000 units require a capacity review."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Are there hidden 3PL storage fees?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Do I pay sales tax on Montana 3PL services?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility."
+                    }
+                  }
+                ]
+              }
+            ]
+          }),
+        }}
+      />
 
       {/* Footer from Layout */}
       <Footer />
