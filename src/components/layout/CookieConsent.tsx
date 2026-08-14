@@ -7,25 +7,12 @@ import { ShieldCheck } from "lucide-react";
 
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: Array<Record<string, unknown> | string | Date>;
   }
 }
 
 export function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
-
-  useEffect(() => {
-    // Check if consent has already been given/denied
-    const consent = localStorage.getItem("cookie-consent-status");
-    if (!consent) {
-      // Small delay for clean entrance
-      const timer = setTimeout(() => setShowBanner(true), 1500);
-      return () => clearTimeout(timer);
-    } else {
-      // If consent already exists, push it to GTM dataLayer on load
-      pushConsentToGTM(consent === "granted");
-    }
-  }, []);
 
   const pushConsentToGTM = (granted: boolean) => {
     if (typeof window === "undefined") return;
@@ -49,6 +36,19 @@ export function CookieConsent() {
       event: granted ? "consent_granted" : "consent_denied",
     });
   };
+
+  useEffect(() => {
+    // Check if consent has already been given/denied
+    const consent = localStorage.getItem("cookie-consent-status");
+    if (!consent) {
+      // Small delay for clean entrance
+      const timer = setTimeout(() => setShowBanner(true), 1500);
+      return () => clearTimeout(timer);
+    } else {
+      // If consent already exists, push it to GTM dataLayer on load
+      pushConsentToGTM(consent === "granted");
+    }
+  }, []);
 
   const handleAccept = () => {
     localStorage.setItem("cookie-consent-status", "granted");

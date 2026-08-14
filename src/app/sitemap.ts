@@ -1,51 +1,44 @@
-import type { MetadataRoute } from "next";
-import { SERVICES_DATA } from "@/data/servicesData";
-
-const BASE_URL = "https://suchgroupecommerce.com";
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const baseUrl = 'https://suchgroupecommerce.com';
 
-  // Static routes
-  const staticRoutes: MetadataRoute.Sitemap = [
+  return [
     {
-      url: BASE_URL,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1.0,
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
     },
     {
-      url: `${BASE_URL}/estimator`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/montana-tax-free-3pl`,
-      lastModified: now,
-      changeFrequency: "monthly",
+      url: `${baseUrl}/services/tax-free-amazon-fba-prep`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/privacy-policy`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.5,
+      url: `${baseUrl}/services/dtc-ecommerce-fulfillment`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
-  ];
-
-  // Dynamic service detail pages
-  const serviceRoutes: MetadataRoute.Sitemap = [];
-  for (const [category, services] of Object.entries(SERVICES_DATA)) {
-    for (const slug of Object.keys(services)) {
-      serviceRoutes.push({
-        url: `${BASE_URL}/services/${category}/${slug}`,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.7,
-      });
+    {
+      url: `${baseUrl}/services/wholesale-inventory-storage`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/montana-tax-free-3pl`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/montana-tax-savings-calculator`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     }
-  }
-
-  return [...staticRoutes, ...serviceRoutes];
+  ];
 }

@@ -112,7 +112,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4 border border-emerald-200">3</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">See the difference</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  The calculator instantly compares your current tax cost against Montana's zero percent rate. That gap is recovered capital you can reinvest into more inventory.
+                  The calculator instantly compares your current tax cost against Montana&apos;s zero percent rate. That gap is recovered capital you can reinvest into more inventory.
                 </p>
               </div>
             </div>
@@ -156,12 +156,12 @@ export default function MontanaTaxSavingsCalculatorPage() {
                   Ready to stake your claim on tax-free sourcing? Reach out to Such Group E-commerce and set up your pipeline out of Great Falls.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a
+                  <Link
                     href="/#fit-review"
                     className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-colors shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                   >
                     Start Your Fit Review
-                  </a>
+                  </Link>
                   <Link
                     href="/montana-tax-free-3pl"
                     className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white font-medium text-sm transition-colors border border-zinc-700"

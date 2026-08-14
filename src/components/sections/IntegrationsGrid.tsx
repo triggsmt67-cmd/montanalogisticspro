@@ -58,7 +58,7 @@ export function IntegrationsGrid() {
               </div>
               <h3 className="text-2xl font-medium text-white mb-3 tracking-tight group-hover:text-emerald-400 transition-colors duration-500">Complete FBA Prep & Bundling</h3>
               <p className="text-zinc-400 text-base max-w-md leading-relaxed group-hover:text-zinc-300 transition-colors duration-500">
-                We handle it all: FNSKU labeling, suffocation warnings, poly-bagging, bubble wrapping, and "Sold as Set" stickers. Need custom multi-pack assembly? Our team executes complex bundling flawlessly.
+                We handle it all: FNSKU labeling, suffocation warnings, poly-bagging, bubble wrapping, and &quot;Sold as Set&quot; stickers. Need custom multi-pack assembly? Our team executes complex bundling flawlessly.
               </p>
             </div>
             

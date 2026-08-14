@@ -45,7 +45,7 @@ export function SavingsCalculator() {
                     min={100}
                     max={10000} 
                     step={100} 
-                    onValueChange={(val) => setUnits(Array.isArray(val) ? val : [val as any])}
+                    onValueChange={(val) => setUnits(Array.isArray(val) ? val : [val as number])}
                     className="py-4 [&_[role=slider]]:bg-emerald-500 [&_[role=slider]]:border-emerald-500"
                   />
                 </div>
@@ -61,7 +61,7 @@ export function SavingsCalculator() {
                     min={5}
                     max={200} 
                     step={1} 
-                    onValueChange={(val) => setUnitValue(Array.isArray(val) ? val : [val as any])}
+                    onValueChange={(val) => setUnitValue(Array.isArray(val) ? val : [val as number])}
                     className="py-4 [&_[role=slider]]:bg-cyan-500 [&_[role=slider]]:border-cyan-500"
                   />
                 </div>

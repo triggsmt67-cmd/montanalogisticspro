@@ -24,14 +24,14 @@ import {
   DollarSign
 } from "lucide-react";
 
-type PathType = "amazon" | "ecommerce";
+type PathType = "amazon" | "ecommerce" | "wholesale";
 
 const PATH_CONTENT = {
   amazon: {
     hero: {
       eyebrow: "Amazon FBA & FBM Prep",
       headline: "Skip the compliance headaches. And the sales tax.",
-      body: "FBA compliance is strict, and mistakes quietly eat your margins. We handle receiving, labeling, and prep with 99.9% accuracy—all from our zero-sales-tax facility in Montana. Keep your inventory moving and your margins intact.",
+      body: "FBA compliance is strict. Mistakes quietly eat your margins. We handle receiving, strict 1.5 mil poly-bagging, and FNSKU labeling for a flat $1.45 per unit. Keep your inventory moving and your margins intact.",
       primaryCta: "Get Your Custom Prep Plan",
       secondaryCta: "Explore Prep Services",
       metrics: ["Zero Sales Tax", "99.9% Accuracy", "FBA Compliance", "Fast Turnarounds", "Transparent Pricing"],
@@ -57,7 +57,7 @@ const PATH_CONTENT = {
         },
         {
           title: "Sales tax is an invisible penalty",
-          body: "If your prep center isn't in a tax-free state like Montana, you are losing up to 8% of your wholesale budget to state taxes before making a single sale.",
+          body: "If your prep center sits in a high-tax state, you lose up to 10% of your retail sourcing budget to destination-based checkout taxes before you make a single sale.",
           icon: DollarSign
         }
       ]
@@ -101,7 +101,7 @@ const PATH_CONTENT = {
       },
       {
         title: "Route to Montana",
-        body: "Send your wholesale shipments directly to our tax-free facility. You immediately stop paying sales tax on inventory."
+        body: "Route your retail inventory directly to our tax-free facility. You instantly drop your checkout tax to zero and protect your front-end capital."
       },
       {
         title: "We prep and verify",
@@ -118,7 +118,7 @@ const PATH_CONTENT = {
       steps: [
         {
           title: "Scale & Volume",
-          fields: ["Average monthly units", "Number of active SKUs"]
+          fields: ["Average monthly units", "Number of active SKUs", "Sourcing Method"]
         },
         {
           title: "Operations",
@@ -129,7 +129,7 @@ const PATH_CONTENT = {
           fields: ["Target start date", "Current 3PL setup"]
         }
       ],
-      cta: "Calculate My Prep Savings"
+      cta: "Submit Prep Review"
     }
   },
   ecommerce: {
@@ -223,7 +223,7 @@ const PATH_CONTENT = {
       steps: [
         {
           title: "Scale & Volume",
-          fields: ["Average monthly orders", "Number of active SKUs"]
+          fields: ["Average monthly orders", "Number of active SKUs", "Average Item Weight"]
         },
         {
           title: "Operations",
@@ -234,7 +234,112 @@ const PATH_CONTENT = {
           fields: ["Target start date", "Current 3PL setup"]
         }
       ],
-      cta: "Get My Fulfillment Quote"
+      cta: "Submit Fulfillment Review"
+    }
+  },
+  wholesale: {
+    hero: {
+      eyebrow: "B2B Wholesale Storage",
+      headline: "Stage inventory tax-free. Cross-dock at scale.",
+      body: "Enterprise wholesalers use our Great Falls facility to eliminate inventory property taxes, access BNSF rail transloading, and exploit Foreign-Trade Zone 274 tariff deferrals.",
+      primaryCta: "Start Storage Review",
+      secondaryCta: "See Storage Services",
+      metrics: ["Zero Inventory Tax", "BNSF Rail Access", "FTZ 274", "Climate-Controlled", "Cross-Docking"],
+    },
+    problems: {
+      headline: "Enterprise storage gets punished in the wrong state.",
+      intro: "Most wholesalers bleed capital on inventory property taxes and miss freight advantages hiding in plain sight.",
+      items: [
+        {
+          title: "Inventory taxes drain capital",
+          body: "States like Texas assess annual property taxes on your unsold stock. Every pallet sitting on January 1st costs you money.",
+          icon: DollarSign
+        },
+        {
+          title: "Tariff costs pile up",
+          body: "Imported goods trigger immediate duty payments. Without Foreign-Trade Zone access, you pay tariffs before you sell a single unit.",
+          icon: AlertCircle
+        },
+        {
+          title: "Vendor systems reject Montana",
+          body: "Automated compliance portals look for a 9-digit state tax permit. Montana does not issue them. Your drop-ship pipeline stalls.",
+          icon: FileBox
+        },
+        {
+          title: "Rail access is an afterthought",
+          body: "Most 3PLs force you into truck-only receiving. You miss the cost advantage of direct rail-to-warehouse transloading.",
+          icon: Truck
+        }
+      ]
+    },
+    services: [
+      {
+        title: "Climate-Controlled Staging",
+        body: "Temperature-managed storage for inventory subject to degradation or strict manufacturer requirements.",
+        icon: Layers
+      },
+      {
+        title: "BNSF Rail Transloading",
+        body: "Direct railcar-to-truck freight handling off the BNSF mainline for high-volume inbound shipments.",
+        icon: Truck
+      },
+      {
+        title: "Cross-Docking Operations",
+        body: "High-velocity LTL and FTL receiving. We break bulk freight and route it to outbound carriers fast.",
+        icon: PackageCheck
+      },
+      {
+        title: "FTZ 274 Tariff Deferrals",
+        body: "Stage imported goods in Foreign-Trade Zone 274. Defer tariffs and duties until domestic entry.",
+        icon: DollarSign
+      },
+      {
+        title: "Cycle Count Auditing",
+        body: "Continuous inventory integrity audits to ensure perfect pallet counts over long staging periods.",
+        icon: BarChart4
+      },
+      {
+        title: "Vendor Credential Support",
+        body: "We provide exact statutory proof and escalation protocols to force manual overrides with strict vendor portals.",
+        icon: FileBox
+      }
+    ],
+    process: [
+      {
+        title: "Scope your footprint",
+        body: "We evaluate your pallet count, rail transload needs, and staging duration to build a custom plan."
+      },
+      {
+        title: "Route to Great Falls",
+        body: "Ship via BNSF rail or long-haul truck directly to our tax-free Montana facility."
+      },
+      {
+        title: "Receive and stage",
+        body: "Your inventory is scanned, audited, and staged in climate-controlled storage with zero inventory property tax."
+      },
+      {
+        title: "Cross-dock and distribute",
+        body: "We break bulk freight and route it to outbound carriers for Pacific Northwest, Canada, and national distribution."
+      }
+    ],
+    form: {
+      title: "Wholesale Storage Review",
+      intro: "Tell us about your pallet volume and staging requirements.",
+      steps: [
+        {
+          title: "Scale & Volume",
+          fields: ["Pallet Volume", "Inbound Frequency"]
+        },
+        {
+          title: "Operations & Routing",
+          fields: ["Need BNSF Rail Access?", "Require Cross-docking?", "Need long-term staging?"]
+        },
+        {
+          title: "Timeline",
+          fields: ["Target start date", "Current 3PL setup"]
+        }
+      ],
+      cta: "Submit Storage Review"
     }
   }
 };
@@ -248,7 +353,7 @@ interface ServiceItem {
 
 interface ServiceCardProps {
   service: ServiceItem;
-  activePath: "amazon" | "ecommerce";
+  activePath: "amazon" | "ecommerce" | "wholesale";
   index: number;
 }
 
@@ -259,12 +364,32 @@ function ServiceCard({ service, activePath, index }: ServiceCardProps) {
   const [loadingText, setLoadingText] = useState("Initializing...");
   const Icon = service.icon;
 
-  const getServiceSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+  const getTargetServiceRoute = (path: "amazon" | "ecommerce" | "wholesale", title: string): string => {
+    if (path === "wholesale") {
+      return "/services/wholesale-inventory-storage";
+    }
+
+    const storageTitles = [
+      "Tax-Free Inventory Storage",
+      "Secure Warehousing",
+      "B2B & Retail Routing",
+      "Climate-Controlled Staging",
+      "BNSF Rail Transloading",
+      "Cross-Docking Operations",
+      "FTZ 274 Tariff Deferrals",
+      "Cycle Count Auditing",
+      "Direct Inbound Receiving",
+    ];
+
+    if (storageTitles.includes(title)) {
+      return "/services/wholesale-inventory-storage";
+    }
+
+    if (path === "amazon") {
+      return "/services/tax-free-amazon-fba-prep";
+    }
+
+    return "/services/dtc-ecommerce-fulfillment";
   };
 
   const handleFlip = () => {
@@ -294,8 +419,8 @@ function ServiceCard({ service, activePath, index }: ServiceCardProps) {
 
       if (elapsed >= duration) {
         clearInterval(timer);
-        const slug = getServiceSlug(service.title);
-        router.push(`/services/${activePath}/${slug}`);
+        const destination = getTargetServiceRoute(activePath, service.title);
+        router.push(destination);
       }
     }, 30);
   };
@@ -493,10 +618,13 @@ export default function LandingPage() {
 
   // Fit Review form state
   const [fitFormData, setFitFormData] = useState<Record<string, string>>({});
+  const [fitHoneypotWebsite, setFitHoneypotWebsite] = useState("");
+  const [fitHoneypotPhone, setFitHoneypotPhone] = useState("");
   const [fitSubmitting, setFitSubmitting] = useState(false);
   const [fitSubmitted, setFitSubmitted] = useState(false);
   const [fitError, setFitError] = useState("");
-  const fitLoadedAt = useRef(Date.now());
+  const fitLoadedAt = useRef(0);
+  useEffect(() => { fitLoadedAt.current = Date.now(); }, []);
 
   // Questions modal state
   const [showQuestions, setShowQuestions] = useState(false);
@@ -504,14 +632,17 @@ export default function LandingPage() {
   const [qEmail, setQEmail]       = useState("");
   const [qPhone, setQPhone]       = useState("");
   const [qMessage, setQMessage]   = useState("");
+  const [qHoneypotWebsite, setQHoneypotWebsite] = useState("");
   const [qSubmitting, setQSubmitting] = useState(false);
   const [qSubmitted, setQSubmitted]   = useState(false);
   const [qError, setQError]           = useState("");
+  const qLoadedAt = useRef(0);
 
   const openQuestions = () => {
     setShowQuestions(true);
     setQSubmitted(false);
     setQError("");
+    qLoadedAt.current = Date.now();
   };
 
   const handleQuestionSubmit = async () => {
@@ -521,7 +652,15 @@ export default function LandingPage() {
       const res = await fetch("/api/submit-question", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: qName, email: qEmail, phone: qPhone, question: qMessage }),
+        body: JSON.stringify({
+          name: qName,
+          email: qEmail,
+          phone: qPhone,
+          question: qMessage,
+          website: qHoneypotWebsite,
+          loadedAt: qLoadedAt.current,
+          submittedAt: qLoadedAt.current ? Date.now() : 0,
+        }),
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
@@ -560,9 +699,11 @@ export default function LandingPage() {
           email: fitFormData["Work Email"] ?? "",
           volume: fitFormData["Average monthly orders"] ?? fitFormData["Monthly units"] ?? "Not specified",
           friction: "Fit Review submission",
+          website: fitHoneypotWebsite,
+          phone_confirm: fitHoneypotPhone,
           additionalFields,
           loadedAt: fitLoadedAt.current,
-          submittedAt: Date.now(),
+          submittedAt: fitLoadedAt.current ? Date.now() : 0,
         }),
       });
       const json = await res.json();
@@ -630,7 +771,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-lg md:text-xl text-zinc-700 leading-relaxed max-w-[65ch] font-medium drop-shadow-sm mb-8"
                 >
-                  Choose your main sales channel below and see how our zero-tax Montana facility can help with product prep, storage, and order fulfillment — without adding more operational drag.
+                  Choose your primary sales channel below. See how our Great Falls facility handles product prep, storage, and order fulfillment. Stop bleeding margin and scale your logistics without the operational friction.
                 </motion.p>
 
                 {/* Primary/Secondary CTA buttons inside Hero layout matching Confluence visual style */}
@@ -674,7 +815,7 @@ export default function LandingPage() {
         {/* 4. Channel Selection Section */}
         <section className="px-4 max-w-7xl mx-auto pt-24 pb-16 relative z-10">
           <LogoTicker />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
             {/* Path 1: Amazon */}
             <motion.button
               whileHover={activePath !== "amazon" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
@@ -728,6 +869,34 @@ export default function LandingPage() {
               <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "ecommerce" ? "text-zinc-300" : "text-zinc-600"}`}>
                 API-driven pick/pack, kitting, and returns for Shopify, DTC, and multi-channel retail brands.
+              </p>
+            </motion.button>
+
+            {/* Path 3: Wholesale */}
+            <motion.button
+              whileHover={activePath !== "wholesale" ? { y: -6, boxShadow: "0 25px 50px -12px rgba(0,0,0,0.1)" } : undefined}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => handlePathChange("wholesale")}
+              className={`text-left p-8 rounded-[2.5rem] border transition-all duration-500 relative overflow-hidden group ${
+                activePath === "wholesale" 
+                  ? "bg-zinc-950 text-white border-zinc-900 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] scale-[1.02] z-10" 
+                  : "bg-white/80 backdrop-blur-md text-zinc-900 border-zinc-200/80 shadow-md"
+              }`}
+            >
+              <div className="flex items-start justify-between mb-8 relative z-10">
+                <motion.div 
+                  whileHover={{ rotate: -5, scale: 1.1 }}
+                  className={`p-3 rounded-2xl transition-colors duration-300 ${activePath === "wholesale" ? "bg-white/10 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-zinc-100 text-zinc-600 group-hover:bg-emerald-50 group-hover:text-emerald-600"}`}
+                >
+                  <Truck size={28} strokeWidth={1.5} />
+                </motion.div>
+                {activePath === "wholesale" && (
+                  <motion.div layoutId="activePathIndicator" className="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,1)]" />
+                )}
+              </div>
+              <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Need B2B Storage</p>
+              <p className={`text-base leading-relaxed relative z-10 ${activePath === "wholesale" ? "text-zinc-300" : "text-zinc-600"}`}>
+                Enterprise pallet staging, BNSF rail cross-docking, and FTZ 274 tariff deferrals for wholesale operations.
               </p>
             </motion.button>
           </div>
@@ -830,7 +999,7 @@ export default function LandingPage() {
                 Calculate your sales tax savings.
               </h2>
               <p className="text-lg text-zinc-400 leading-relaxed">
-                By routing your inventory through our zero-sales-tax Montana facility, you stop paying an automatic markup to state governments on your wholesale purchases.
+                Retail checkout systems charge sales tax based on where your items are delivered. By routing your online retail sourcing through our Great Falls facility, you legally drop your checkout tax to zero.
               </p>
             </div>
             
@@ -994,7 +1163,7 @@ export default function LandingPage() {
                 Built to solve your specific bottlenecks.
               </h2>
               <p className="text-lg text-zinc-400 leading-relaxed">
-                We don't offer generic logistics. We provide precise interventions designed to remove friction from your supply chain, backed by strict Service Level Agreements (SLAs).
+                We don&apos;t offer generic logistics. We provide precise interventions designed to remove friction from your supply chain, backed by strict Service Level Agreements (SLAs).
               </p>
             </div>
 
@@ -1023,7 +1192,7 @@ export default function LandingPage() {
                 Visibility replaces anxiety.
               </h2>
               <p className="text-lg text-zinc-600 leading-relaxed mb-8">
-                You shouldn't have to send an email to know if your shipment arrived. Our systems provide real-time status updates so you have total control over your inventory lifecycle.
+                You shouldn&apos;t have to send an email to know if your shipment arrived. Our systems provide real-time status updates so you have total control over your inventory lifecycle.
               </p>
 
               <div className="space-y-6">
@@ -1178,7 +1347,7 @@ export default function LandingPage() {
                 Stop guessing. Start a Fit Review.
               </h2>
               <p className="text-lg text-zinc-600 leading-relaxed mb-6">
-                We don't do blind RFP quotes. We use a structured Fit Review to ensure our capabilities perfectly align with your operational needs. If we aren't the right fit, we will tell you immediately.
+                We don&apos;t do blind RFP quotes. We use a structured Fit Review to ensure our capabilities perfectly align with your operational needs. If we aren&apos;t the right fit, we will tell you immediately.
               </p>
               <motion.div 
                 whileHover={{ scale: 1.01, boxShadow: "0 10px 30px -10px rgba(16,185,129,0.2)" }}
@@ -1239,18 +1408,39 @@ export default function LandingPage() {
                                 <h4 className="text-lg font-bold text-zinc-900 mt-1">{content.form.steps[formStep - 1].title}</h4>
                               </div>
                               <div className="space-y-4">
-                                {content.form.steps[formStep - 1].fields.map((field) => (
-                                  <div key={field}>
-                                    <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">{field}</label>
-                                    <input
-                                      type="text"
-                                      value={fitFormData[field] ?? ""}
-                                      onChange={e => handleFitFieldChange(field, e.target.value)}
-                                      placeholder={`Enter ${field.toLowerCase()}…`}
-                                      className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner"
-                                    />
-                                  </div>
-                                ))}
+                                {content.form.steps[formStep - 1].fields.map((field) => {
+                                  const dropdownOptions: Record<string, string[]> = {
+                                    "Sourcing Method": ["Online Retail Arbitrage", "Direct Wholesale", "Private Label"],
+                                    "Average Item Weight": ["Under 1 lb", "1-5 lbs", "5-20 lbs", "20+ lbs"],
+                                  };
+                                  const options = dropdownOptions[field];
+
+                                  return (
+                                    <div key={field}>
+                                      <label className="block text-xs font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">{field}</label>
+                                      {options ? (
+                                        <select
+                                          value={fitFormData[field] ?? ""}
+                                          onChange={e => handleFitFieldChange(field, e.target.value)}
+                                          className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner appearance-none"
+                                        >
+                                          <option value="">Select {field.toLowerCase()}…</option>
+                                          {options.map(opt => (
+                                            <option key={opt} value={opt}>{opt}</option>
+                                          ))}
+                                        </select>
+                                      ) : (
+                                        <input
+                                          type="text"
+                                          value={fitFormData[field] ?? ""}
+                                          onChange={e => handleFitFieldChange(field, e.target.value)}
+                                          placeholder={`Enter ${field.toLowerCase()}…`}
+                                          className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all shadow-inner"
+                                        />
+                                      )}
+                                    </div>
+                                  );
+                                })}
                               </div>
                             </motion.div>
                           ) : (
@@ -1293,7 +1483,30 @@ export default function LandingPage() {
                                     />
                                   </div>
                                 ))}
-                                {fitError && <p className="text-red-500 text-xs text-center">{fitError}</p>}
+                                  {/* Honeypot fields for bot traps */}
+                                  <div className="opacity-0 absolute -left-[9999px] -top-[9999px] h-0 w-0 z-[-1] pointer-events-none" aria-hidden="true">
+                                    <label htmlFor="fit_website">Website</label>
+                                    <input
+                                      id="fit_website"
+                                      type="text"
+                                      name="website"
+                                      tabIndex={-1}
+                                      autoComplete="off"
+                                      value={fitHoneypotWebsite}
+                                      onChange={e => setFitHoneypotWebsite(e.target.value)}
+                                    />
+                                    <label htmlFor="fit_phone_confirm">Confirm Phone</label>
+                                    <input
+                                      id="fit_phone_confirm"
+                                      type="text"
+                                      name="phone_confirm"
+                                      tabIndex={-1}
+                                      autoComplete="off"
+                                      value={fitHoneypotPhone}
+                                      onChange={e => setFitHoneypotPhone(e.target.value)}
+                                    />
+                                  </div>
+                                  {fitError && <p className="text-red-500 text-xs text-center">{fitError}</p>}
                               </div>
                             </motion.div>
                           )}
@@ -1312,30 +1525,48 @@ export default function LandingPage() {
                           </motion.button>
                         )}
                         
-                        {formStep < 4 ? (
-                          <motion.button 
-                            whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(16,185,129,0.3)" }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={() => setFormStep(s => s + 1)}
-                            className="flex-1 h-14 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition-colors shadow-lg flex items-center justify-center gap-2"
-                          >
-                            Continue <ArrowRight size={18} />
-                          </motion.button>
-                        ) : (
-                          <motion.button 
-                            whileHover={{ scale: 1.02, boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)" }}
-                            whileTap={{ scale: 0.98 }}
-                            onClick={handleFitSubmit}
-                            disabled={fitSubmitting || !fitFormData["Work Email"]}
-                            className="flex-1 h-14 rounded-xl bg-zinc-950 text-white font-medium hover:bg-zinc-800 transition-colors shadow-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            {fitSubmitting ? "Sending…" : content.form.cta}
-                          </motion.button>
-                        )}
+                        {formStep < 4 ? (() => {
+                          const currentFields = content.form.steps[formStep - 1].fields;
+                          const allFilled = currentFields.every((f: string) => (fitFormData[f] ?? "").toString().trim() !== "");
+                          return (
+                            <motion.button 
+                              whileHover={allFilled ? { scale: 1.02, boxShadow: "0 10px 25px -5px rgba(16,185,129,0.3)" } : undefined}
+                              whileTap={allFilled ? { scale: 0.98 } : undefined}
+                              onClick={() => allFilled && setFormStep(s => s + 1)}
+                              disabled={!allFilled}
+                              className="flex-1 h-14 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-500 transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-emerald-600"
+                            >
+                              Continue <ArrowRight size={18} />
+                            </motion.button>
+                          );
+                        })() : (() => {
+                          const step4Fields = ["First Name", "Last Name", "Work Email", "Company Name"];
+                          const allStep4Filled = step4Fields.every(f => (fitFormData[f] ?? "").toString().trim() !== "");
+                          return (
+                            <motion.button 
+                              whileHover={allStep4Filled ? { scale: 1.02, boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)" } : undefined}
+                              whileTap={allStep4Filled ? { scale: 0.98 } : undefined}
+                              onClick={handleFitSubmit}
+                              disabled={fitSubmitting || !allStep4Filled}
+                              className="flex-1 h-14 rounded-xl bg-zinc-950 text-white font-medium hover:bg-zinc-800 transition-colors shadow-lg flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-zinc-950"
+                            >
+                              {fitSubmitting ? "Sending…" : content.form.cta}
+                            </motion.button>
+                          );
+                        })()}
                       </div>
+                      {formStep <= 3 && (() => {
+                        const currentFields = content.form.steps[formStep - 1].fields;
+                        const emptyCount = currentFields.filter((f: string) => (fitFormData[f] ?? "").toString().trim() === "").length;
+                        return emptyCount > 0 ? (
+                          <p className="text-center text-xs text-zinc-400 mt-3">
+                            {emptyCount === 1 ? "1 required field remaining" : `${emptyCount} required fields remaining`}
+                          </p>
+                        ) : null;
+                      })()}
                       {formStep === 4 && (
                         <p className="text-center text-xs text-zinc-500 mt-4">
-                          No pressure. No automatic email blasts. Just seeing if we align.
+                          All fields required. No pressure. No automatic email blasts. Just seeing if we align.
                         </p>
                       )}
                     </>
@@ -1346,48 +1577,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* 9. Final CTA Section */}
-        <section className="px-4 max-w-7xl mx-auto">
-          <motion.div 
-            whileHover={{ boxShadow: "0 40px 80px -20px rgba(6, 78, 59, 0.5)" }}
-            transition={{ duration: 0.5 }}
-            className="bg-emerald-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl"
-          >
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 mix-blend-overlay" />
-            
-            {/* Ambient glows */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[800px] bg-emerald-500/20 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6 drop-shadow-md">
-                Protect your margins today.
-              </h2>
-              <p className="text-lg text-emerald-100/90 leading-relaxed mb-10 font-medium drop-shadow-sm">
-                Stop overpaying on state sales tax and let our expert team handle the operational heavy lifting. Choose your path and request a precise, custom strategy.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <motion.button 
-                  onClick={() => {
-                    document.getElementById('fit-review')?.scrollIntoView({ behavior: 'smooth' });
-                    setFormStep(1);
-                  }}
-                  whileHover={{ scale: 1.05, boxShadow: "0 15px 30px -5px rgba(255,255,255,0.2)" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto h-14 px-8 rounded-full bg-white text-emerald-950 font-bold transition-colors shadow-xl"
-                >
-                  Start a Fit Review
-                </motion.button>
-                <motion.button 
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(6, 95, 70, 0.8)", borderColor: "rgba(16, 185, 129, 0.6)" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto h-14 px-8 rounded-full bg-emerald-800/50 text-white font-medium transition-colors border border-emerald-700/50 shadow-md backdrop-blur-sm"
-                >
-                  Compare Both Logistics Paths
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-        </section>
       </main>
 
       {/* ── Questions Modal ──────────────────────────────────────────────────── */}
@@ -1454,7 +1643,7 @@ export default function LandingPage() {
                       </div>
                       <h2 className="text-2xl font-bold text-zinc-950 mb-1">Ask us anything.</h2>
                       <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
-                        Not sure if we're the right fit? Curious about a service? We respond to every question personally.
+                        Not sure if we&apos;re the right fit? Curious about a service? We respond to every question personally.
                       </p>
 
                       <div className="space-y-4">
@@ -1500,6 +1689,20 @@ export default function LandingPage() {
                             placeholder="I'm wondering about your FBA prep process for oversized items..."
                             rows={4}
                             className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all resize-none leading-relaxed"
+                          />
+                        </div>
+
+                        {/* Honeypot field for bot traps */}
+                        <div className="opacity-0 absolute -left-[9999px] -top-[9999px] h-0 w-0 z-[-1] pointer-events-none" aria-hidden="true">
+                          <label htmlFor="q_website">Website</label>
+                          <input
+                            id="q_website"
+                            type="text"
+                            name="website"
+                            tabIndex={-1}
+                            autoComplete="off"
+                            value={qHoneypotWebsite}
+                            onChange={e => setQHoneypotWebsite(e.target.value)}
                           />
                         </div>
 

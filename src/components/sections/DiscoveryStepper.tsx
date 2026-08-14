@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,7 +32,8 @@ export function DiscoveryStepper() {
   const [honeypotPhoneConfirm, setHoneypotPhoneConfirm] = useState("");
 
   // Record the time the page/component loaded for submission timing check
-  const loadedAt = useRef(Date.now());
+  const loadedAt = useRef(0);
+  useEffect(() => { loadedAt.current = Date.now(); }, []);
 
   const handleNext = async () => {
     if (currentStep < STEPS.length - 1) {
@@ -178,7 +179,7 @@ export function DiscoveryStepper() {
           <h2 className="text-3xl md:text-5xl font-medium text-white mb-4 tracking-tight">
             Get Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Custom Prep Plan</span>
           </h2>
-          <p className="text-zinc-400 text-base md:text-lg">Tell us about your business, and we'll show you exactly how much time and money you can save.</p>
+          <p className="text-zinc-400 text-base md:text-lg">Tell us about your business, and we&apos;ll show you exactly how much time and money you can save.</p>
         </motion.div>
 
         <div className="linear-card overflow-hidden p-8 md:p-12 min-h-[450px] flex flex-col relative shadow-[0_0_40px_rgba(16,185,129,0.05)] border-white/[0.08]">
@@ -208,7 +209,7 @@ export function DiscoveryStepper() {
                 </div>
                 <h3 className="text-2xl font-medium text-white tracking-tight">Request Received</h3>
                 <p className="text-zinc-400 max-w-sm mx-auto text-sm leading-relaxed">
-                  Thanks, <span className="text-emerald-400 font-medium">{formData.name || "friend"}</span>. We're reviewing your info and will reach out with your custom plan shortly.
+                  Thanks, <span className="text-emerald-400 font-medium">{formData.name || "friend"}</span>. We&apos;re reviewing your info and will reach out with your custom plan shortly.
                 </p>
               </motion.div>
             ) : (

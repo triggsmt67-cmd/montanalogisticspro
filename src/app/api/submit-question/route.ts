@@ -1,6 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
+// ── Rate Limiting (in-memory per instance) ───────────────────────────────────
+const rateLimitMap = new Map<string, { count: number; firstRequest: number }>();
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 5;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now - entry.firstRequest > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, firstRequest: now });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX_REQUESTS) return true;
+
+  entry.count++;
+  return false;
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function buildQuestionEmail(data: {
@@ -11,7 +40,12 @@ function buildQuestionEmail(data: {
   ip: string;
   submittedAt: string;
 }): string {
-  const { name, email, phone, question, ip, submittedAt } = data;
+  const name = escapeHtml(data.name);
+  const email = escapeHtml(data.email);
+  const phone = escapeHtml(data.phone);
+  const question = escapeHtml(data.question);
+  const ip = escapeHtml(data.ip);
+  const submittedAt = escapeHtml(data.submittedAt);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -91,7 +125,7 @@ function buildQuestionEmail(data: {
                           <p style="margin:4px 0 0;font-size:13px;color:#9ca3af;">Hit reply while the question is fresh.</p>
                         </td>
                         <td align="right" style="padding-left:16px;vertical-align:middle;white-space:nowrap;">
-                          <a href="mailto:${email}?subject=Re%3A%20Your%20Question%20%E2%80%94%20Such%20Group%20e-Commerce&body=Hi%20${encodeURIComponent(name.split(" ")[0])}%2C%0A%0AThanks%20for%20reaching%20out!%20"
+                          <a href="mailto:${email}?subject=Re%3A%20Your%20Question%20%E2%80%94%20Such%20Group%20e-Commerce&body=Hi%20${encodeURIComponent(data.name.split(" ")[0])}%2C%0A%0AThanks%20for%20reaching%20out!%20"
                             style="display:inline-block;background:linear-gradient(135deg,#10b981,#06b6d4);color:#000000;font-size:13px;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:100px;">
                             Reply Now →
                           </a>
@@ -159,11 +193,35 @@ export async function POST(req: NextRequest) {
     req.headers.get("x-real-ip") ??
     "unknown";
 
+  // Rate limit check
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      { success: false, error: "Too many requests. Please wait a moment." },
+      { status: 429 }
+    );
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  }
+
+  // ── Honeypot trap ──────────────────────────────────────────────────────────
+  if (body.website || body.phone_confirm || body.company_url || body.hp_check) {
+    // Return fake success to waste bot resources
+    return NextResponse.json({ success: true });
+  }
+
+  // ── Time-on-page check ─────────────────────────────────────────────────────
+  const submittedAt = Number(body.submittedAt);
+  const loadedAt = Number(body.loadedAt);
+  if (submittedAt && loadedAt && submittedAt - loadedAt < 500) {
+    return NextResponse.json(
+      { success: false, error: "Submission rejected." },
+      { status: 400 }
+    );
   }
 
   const name     = String(body.name     ?? "").trim();
@@ -175,6 +233,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: "Please enter your name." }, { status: 400 });
   if (!email || !EMAIL_RE.test(email) || email.length > 254)
     return NextResponse.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
+  if (phone && phone.length > 30)
+    return NextResponse.json({ success: false, error: "Phone number is too long." }, { status: 400 });
   if (!question || question.length < 5)
     return NextResponse.json({ success: false, error: "Please enter your question." }, { status: 400 });
   if (question.length > 2000)

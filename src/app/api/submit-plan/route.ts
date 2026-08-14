@@ -30,6 +30,15 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // Basic email regex — enough for server-side sanity check
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -43,7 +52,13 @@ function buildLeadEmail(data: {
   submittedAt: string;
   additionalFields?: Record<string, string>;
 }): string {
-  const { name, email, volume, friction, ip, submittedAt, additionalFields } = data;
+  const name = escapeHtml(data.name);
+  const email = escapeHtml(data.email);
+  const volume = escapeHtml(data.volume);
+  const friction = escapeHtml(data.friction);
+  const ip = escapeHtml(data.ip);
+  const submittedAt = escapeHtml(data.submittedAt);
+  const additionalFields = data.additionalFields;
 
   const frictionMap: Record<string, string> = {
     "Paying Too Much Sales Tax": "💸 Paying Too Much Sales Tax",
@@ -66,8 +81,8 @@ function buildLeadEmail(data: {
     ? Object.entries(additionalFields).map(([label, value], i, arr) => `
         <tr>
           <td style="padding:14px 24px;${i < arr.length - 1 ? "border-bottom:1px solid #2a2a2a;" : ""}">
-            <p style="margin:0;font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;font-weight:600;">${label}</p>
-            <p style="margin:5px 0 0;font-size:14px;font-weight:600;color:#f9fafb;">${value || "<em style='color:#4b5563'>Not provided</em>"}</p>
+            <p style="margin:0;font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;font-weight:600;">${escapeHtml(label)}</p>
+            <p style="margin:5px 0 0;font-size:14px;font-weight:600;color:#f9fafb;">${value ? escapeHtml(value) : "<em style='color:#4b5563'>Not provided</em>"}</p>
           </td>
         </tr>`).join("")
     : "";
@@ -390,7 +405,7 @@ export async function POST(req: NextRequest) {
 
   // ── Honeypot check ─────────────────────────────────────────────────────────
   // Bots fill every field including hidden ones. Humans never see this field.
-  if (body.website || body.phone_confirm) {
+  if (body.website || body.phone_confirm || body.company_url || body.hp_check) {
     // Silently accept but do nothing — don't tip off the bot
     return NextResponse.json({ success: true });
   }

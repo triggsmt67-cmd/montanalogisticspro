@@ -112,7 +112,7 @@ export default function TexasToMontanaPage() {
                 <div>
                   <h3 className="text-lg font-bold text-zinc-900 mb-2">The January 1st inventory property tax</h3>
                   <p className="text-zinc-700 leading-relaxed">
-                    Texas is one of the only states that lets county appraisal districts tax your unsold inventory. Every year on January 1st, they snapshot whatever goods sit inside the state. You get a rendition form. You owe property tax on the assessed value of those products. It does not matter if you sell them the next day. If they were in Texas on New Year's Day, you pay.
+                    Texas is one of the only states that lets county appraisal districts tax your unsold inventory. Every year on January 1st, they snapshot whatever goods sit inside the state. You get a rendition form. You owe property tax on the assessed value of those products. It does not matter if you sell them the next day. If they were in Texas on New Year&apos;s Day, you pay.
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function TexasToMontanaPage() {
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
                 <p className="font-bold text-zinc-900">Checkout tax drops to zero</p>
-                <p className="text-sm text-zinc-600 mt-1">Every online purchase shipped to our Montana address skips the 8.25% automatically. The retailer's system sees a 0% tax state and charges nothing.</p>
+                <p className="text-sm text-zinc-600 mt-1">Every online purchase shipped to our Montana address skips the 8.25% automatically. The retailer&apos;s system sees a 0% tax state and charges nothing.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
@@ -181,7 +181,7 @@ export default function TexasToMontanaPage() {
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
                 <p className="font-bold text-zinc-900">Central US distribution stays fast</p>
-                <p className="text-sm text-zinc-600 mt-1">Once prepped, your units go directly into Amazon's inbound network. Amazon distributes them to fulfillment centers nationwide. The end customer sees the same delivery speed.</p>
+                <p className="text-sm text-zinc-600 mt-1">Once prepped, your units go directly into Amazon&apos;s inbound network. Amazon distributes them to fulfillment centers nationwide. The end customer sees the same delivery speed.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">

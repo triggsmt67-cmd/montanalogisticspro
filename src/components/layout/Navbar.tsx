@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
@@ -15,25 +16,38 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
     <>
       <header className="sticky top-0 z-50 bg-[#f9fafb]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-              <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-600/10 text-emerald-600 border border-emerald-600/20 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
-                <svg aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
-                  <polygon points="12 8 8 10 12 12 16 10" fill="currentColor" fillOpacity="0.2" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm sm:text-xl font-bold tracking-tight text-zinc-900 leading-tight">Such Group E-Commerce</span>
-                <span className="text-[9px] sm:text-xs font-medium text-zinc-500 tracking-wide uppercase mt-0.5">Prep • Fulfillment • Storage</span>
-              </div>
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center group py-1">
+              <Image 
+                src="/logo.png" 
+                alt="Such Group E-Commerce" 
+                width={200} 
+                height={70} 
+                className="h-12 sm:h-14 md:h-[58px] w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
             </Link>
           </div>
           
           <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
-            <motion.a whileHover={{ y: -1 }} href="/#services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Services</motion.a>
+            <div className="relative group">
+              <button className="flex items-center gap-1 text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors h-20">
+                Services
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div className="absolute top-20 left-1/2 -translate-x-1/2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
+                <div className="bg-white rounded-2xl shadow-xl border border-zinc-100 overflow-hidden p-4">
+                  <div className="flex flex-col gap-2">
+                    <Link href="/services/tax-free-amazon-fba-prep" className="block text-sm font-medium text-zinc-900 hover:text-emerald-600 transition-colors">Tax-Free Amazon FBA Prep</Link>
+                    <Link href="/services/dtc-ecommerce-fulfillment" className="block text-sm font-medium text-zinc-900 hover:text-emerald-600 transition-colors">DTC E-Commerce Fulfillment</Link>
+                    <Link href="/services/wholesale-inventory-storage" className="block text-sm font-medium text-zinc-900 hover:text-emerald-600 transition-colors">Wholesale Inventory Storage</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
             <motion.a whileHover={{ y: -1 }} href="/#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
             <motion.a whileHover={{ y: -1 }} href="/#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
             
@@ -74,12 +88,12 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
           </nav>
 
           <div className="flex items-center gap-4">
-            <a 
+            <Link 
               href="/#fit-review"
               className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
             >
               Start Fit Review
-            </a>
+            </Link>
             <button 
               className="md:hidden p-2 text-zinc-600"
               onClick={() => setMobileMenuOpen(true)}
@@ -109,9 +123,17 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
               </button>
             </div>
             <div className="p-6 flex flex-col gap-6">
-              <a onClick={() => setMobileMenuOpen(false)} href="/#services" className="text-lg font-medium text-zinc-900">Services</a>
-              <a onClick={() => setMobileMenuOpen(false)} href="/#process" className="text-lg font-medium text-zinc-900">Process</a>
-              <a onClick={() => setMobileMenuOpen(false)} href="/#fit-review" className="text-lg font-medium text-zinc-900">Fit Review</a>
+              <Link onClick={() => setMobileMenuOpen(false)} href="/#process" className="text-lg font-medium text-zinc-900">Process</Link>
+              <Link onClick={() => setMobileMenuOpen(false)} href="/#fit-review" className="text-lg font-medium text-zinc-900">Fit Review</Link>
+
+              <div className="border-t border-zinc-200 pt-6">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">Services</h4>
+                <div className="flex flex-col gap-4 pl-4 border-l-2 border-emerald-500">
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/services/tax-free-amazon-fba-prep" className="text-zinc-900 font-medium">Tax-Free Amazon FBA Prep</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/services/dtc-ecommerce-fulfillment" className="text-zinc-900 font-medium">DTC E-Commerce Fulfillment</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/services/wholesale-inventory-storage" className="text-zinc-900 font-medium">Wholesale Inventory Storage</Link>
+                </div>
+              </div>
               
               <div className="border-t border-zinc-200 pt-6">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">Tax-Free 3PL Resources</h4>
@@ -133,13 +155,13 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
               </div>
 
               <div className="mt-8">
-                <a 
+                <Link 
                   href="/#fit-review"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center h-12 w-full rounded-full bg-zinc-900 text-white font-medium hover:bg-zinc-800 transition-colors"
                 >
                   Start Fit Review
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

@@ -18,15 +18,15 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 const paths = [
   {
     id: "fba",
-    label: "Prep products for Amazon FBA",
-    plain: "I’m sending inventory to Amazon.",
+    label: "Retail Sourcing FBA Prep",
+    plain: "I am routing online purchases to Amazon.",
     icon: Package,
     colorClass: "bg-blue-600 border-blue-600 shadow-blue-600/20",
     textClass: "text-blue-600",
@@ -37,8 +37,8 @@ const paths = [
   },
   {
     id: "wholesale",
-    label: "Prep wholesale inventory",
-    plain: "I have same-FNSKU inventory to prep in bulk.",
+    label: "Bulk FBA Prep",
+    plain: "I have same-SKU inventory to prep in massive volume.",
     icon: Warehouse,
     colorClass: "bg-indigo-600 border-indigo-600 shadow-indigo-600/20",
     textClass: "text-indigo-600",
@@ -49,8 +49,8 @@ const paths = [
   },
   {
     id: "carton",
-    label: "Store and forward cartons",
-    plain: "I need cartons held and sent later.",
+    label: "Wholesale Storage & Cross-Docking",
+    plain: "I need pallets staged or forwarded.",
     icon: Truck,
     colorClass: "bg-amber-500 border-amber-500 shadow-amber-500/20",
     textClass: "text-amber-600",
@@ -61,8 +61,8 @@ const paths = [
   },
   {
     id: "ecommerce",
-    label: "Ship eCommerce orders",
-    plain: "I need individual orders picked, packed, and shipped.",
+    label: "DTC E-Commerce Fulfillment",
+    plain: "I need individual Shopify or TikTok Shop orders shipped.",
     icon: ShoppingCart,
     colorClass: "bg-emerald-600 border-emerald-600 shadow-emerald-600/20",
     textClass: "text-emerald-600",
@@ -293,7 +293,7 @@ export default function MontanaLogisticsCalculatorPage() {
   const [cartonsForwarded, setCartonsForwarded] = useState<number | "">("");
   const [palletsForwarded, setPalletsForwarded] = useState<number | "">("");
 
-  const toNum = (val: number | ""): number => (val === "" ? 0 : val);(1);
+  const toNum = (val: number | ""): number => (val === "" ? 0 : val);
 
   const selectedPath = paths.find((path) => path.id === service) || paths[0];
   const SelectedIcon = selectedPath.icon || Calculator;
@@ -308,7 +308,10 @@ export default function MontanaLogisticsCalculatorPage() {
   const [quoteBusiness, setQuoteBusiness] = useState("");
   const [quoteLastName, setQuoteLastName] = useState("");
   const [quotePhone, setQuotePhone] = useState("");
-  const quoteLoadedAt = React.useRef(Date.now());
+  const [quoteHoneypotWebsite, setQuoteHoneypotWebsite] = useState("");
+  const [quoteHoneypotPhone, setQuoteHoneypotPhone] = useState("");
+  const quoteLoadedAt = React.useRef(0);
+  React.useEffect(() => { quoteLoadedAt.current = Date.now(); }, []);
 
   const handleQuoteSubmit = async () => {
     setQuoteSubmitting(true);
@@ -369,10 +372,13 @@ export default function MontanaLogisticsCalculatorPage() {
           email: quoteEmail.trim(),
           volume: service,
           friction: "Estimator quote request",
+          website: quoteHoneypotWebsite,
+          phone_confirm: quoteHoneypotPhone,
           additionalFields: fields,
           sendToCustomer: true,
           loadedAt: quoteLoadedAt.current,
-          submittedAt: Date.now(),
+          // eslint-disable-next-line react-hooks/purity
+          submittedAt: quoteLoadedAt.current ? Date.now() : 0,
         }),
       });
       const json = await res.json();
@@ -524,10 +530,10 @@ export default function MontanaLogisticsCalculatorPage() {
                 Cost Estimator
               </div>
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl leading-tight transition-colors">
-                Get a practical cost estimate before you send inventory.
+                Get your exact numbers before you ship.
               </h1>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
-                Answer a few questions and get a ballpark estimate for prep, storage, or forwarding. If the job needs custom pricing, we’ll tell you instead of giving a fake number.
+                Answer a few questions to map your prep, storage, or forwarding costs. If your project requires custom logistics, we tell you upfront instead of generating fake math.
               </p>
             </div>
 
@@ -577,8 +583,8 @@ export default function MontanaLogisticsCalculatorPage() {
                 <Section title="Basic shipment details" eyebrow="Step 2">
                   {service === "fba" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Over 10,000 items needs a custom quote." min={500} />
-                      <NumberInput label="Any books?" value={books} onChange={setBooks} placeholder="e.g. 150" helper="$2.50 each, including grading and FNSKU labeling." />
+                      <NumberInput label="How many standard FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Standard items prep at a flat $1.45. Volumes over 10,000 units require a capacity and timeline review." min={500} />
+                      <NumberInput label="Any books?" value={books} onChange={setBooks} placeholder="e.g. 150" helper="$2.50 flat rate per unit. Includes grading and FNSKU application." />
                     </div>
                   )}
 
@@ -649,7 +655,7 @@ export default function MontanaLogisticsCalculatorPage() {
                 <Section title="Storage" eyebrow="Optional">
                   {service !== "storage" && service !== "carton" && (
                     <div className="mb-6">
-                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Will anything stay longer than 2 weeks?" helper="The first 14 days are free. Monthly storage rates apply after that." />
+                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Staging longer than 14 days?" helper="Your first two weeks are completely free. Standard monthly storage rates apply on day 15." />
                     </div>
                   )}
 
@@ -778,7 +784,7 @@ export default function MontanaLogisticsCalculatorPage() {
                     <div>
                       <h3 className="font-bold text-lg text-amber-950">Estimate notes</h3>
                       <p className="mt-3 text-sm font-semibold leading-relaxed text-amber-900">
-                        This is a ballpark estimate. It does not include carrier postage, oversized box charges, unusual prep needs, or quote-only services like FBM. Final pricing may change after inspection.
+                        This is your baseline estimate. It excludes outbound carrier freight, oversized box surcharges, specialized prep requirements, and custom FBM workflows. Final pricing locks in after physical inspection on our dock.
                       </p>
                     </div>
                   </div>
@@ -820,8 +826,8 @@ export default function MontanaLogisticsCalculatorPage() {
             {quoteSubmitted ? (
               <div className="flex flex-col items-center text-center gap-4 py-6">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 text-3xl">✓</div>
-                <h2 className="text-2xl font-bold text-zinc-950">You're all set, {quoteName.split(" ")[0]}.</h2>
-                <p className="text-sm text-zinc-500 max-w-xs leading-relaxed">A copy of your estimate is headed to your inbox now. We'll follow up with a full, itemized quote within one business day.</p>
+                <h2 className="text-2xl font-bold text-zinc-950">You&apos;re all set, {quoteName.split(" ")[0]}.</h2>
+                <p className="text-sm text-zinc-500 max-w-xs leading-relaxed">A copy of your estimate is headed to your inbox now. We&apos;ll follow up with a full, itemized quote within one business day.</p>
                 <button onClick={() => setShowModal(false)} className="mt-2 text-sm font-semibold text-emerald-600 hover:underline">Close</button>
               </div>
             ) : (
@@ -830,7 +836,7 @@ export default function MontanaLogisticsCalculatorPage() {
                   {selectedPath.label}
                 </div>
                 <h2 className="text-2xl font-bold text-zinc-950 mb-1">Request your quote</h2>
-                <p className="text-sm text-zinc-500 mb-6">We'll send a detailed, itemized quote based on the estimate you just built.</p>
+                <p className="text-sm text-zinc-500 mb-6">We&apos;ll send a detailed, itemized quote based on the estimate you just built.</p>
 
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
@@ -883,6 +889,29 @@ export default function MontanaLogisticsCalculatorPage() {
                       onChange={e => setQuotePhone(e.target.value)}
                       placeholder="(406) 555-0100"
                       className="h-14 w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 text-sm text-zinc-900 placeholder:text-zinc-400 hover:border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:bg-white outline-none transition-all"
+                    />
+                  </div>
+                  {/* Honeypot fields for bot traps */}
+                  <div className="opacity-0 absolute -left-[9999px] -top-[9999px] h-0 w-0 z-[-1] pointer-events-none" aria-hidden="true">
+                    <label htmlFor="quote_website">Website</label>
+                    <input
+                      id="quote_website"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={quoteHoneypotWebsite}
+                      onChange={e => setQuoteHoneypotWebsite(e.target.value)}
+                    />
+                    <label htmlFor="quote_phone_confirm">Confirm Phone</label>
+                    <input
+                      id="quote_phone_confirm"
+                      type="text"
+                      name="phone_confirm"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={quoteHoneypotPhone}
+                      onChange={e => setQuoteHoneypotPhone(e.target.value)}
                     />
                   </div>
                   {quoteError && <p className="text-red-500 text-xs">{quoteError}</p>}

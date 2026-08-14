@@ -68,6 +68,154 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  async redirects() {
+    return [
+      // ── Master Service 301 Redirects ─────────────────────────────────────
+      // Amazon Prep Category routes
+      {
+        source: "/services/amazon/fba-prep-and-labeling",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/amazon/bundling-and-multipacks",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/amazon/poly-bagging-and-fragile-handling",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/amazon/removal-order-processing",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/amazon/inbound-shipment-creation",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/amazon/tax-free-inventory-storage",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+
+      // Ecommerce / DTC Category routes
+      {
+        source: "/services/ecommerce/direct-to-consumer-pick-and-pack",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce/custom-kitting-and-assembly",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce/streamlined-returns",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce/branded-unboxing-experience",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce/secure-warehousing",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce/b2b-and-retail-routing",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+
+      // Direct slug routes (without category prefix)
+      {
+        source: "/services/tax-free-inventory-storage",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+      {
+        source: "/services/secure-warehousing",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+      {
+        source: "/services/b2b-and-retail-routing",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+      {
+        source: "/services/fba-prep-and-labeling",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/bundling-and-multipacks",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/poly-bagging-and-fragile-handling",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/removal-order-processing",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/inbound-shipment-creation",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/direct-to-consumer-pick-and-pack",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/custom-kitting-and-assembly",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/streamlined-returns",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/branded-unboxing-experience",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+
+      // Category root fallbacks
+      {
+        source: "/services/amazon",
+        destination: "/services/tax-free-amazon-fba-prep",
+        permanent: true,
+      },
+      {
+        source: "/services/ecommerce",
+        destination: "/services/dtc-ecommerce-fulfillment",
+        permanent: true,
+      },
+      {
+        source: "/services/wholesale",
+        destination: "/services/wholesale-inventory-storage",
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       // ── Google Tag Manager first-party proxy ──────────────────────────────
