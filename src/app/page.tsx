@@ -733,6 +733,11 @@ export default function LandingPage() {
       if (typeof window !== "undefined") {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
+          event: "fit_review_submitted",
+          form_name: "fit_review",
+          service_path: activePath,
+        });
+        window.dataLayer.push({
           event: "generate_lead",
           form_name: "fit_review",
           service_path: activePath,

@@ -75,6 +75,17 @@ export function DiscoveryStepper() {
         }
 
         setIsSubmitted(true);
+        if (typeof window !== "undefined") {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "fit_review_submitted",
+            form_name: "discovery_stepper",
+          });
+          window.dataLayer.push({
+            event: "generate_lead",
+            form_name: "discovery_stepper",
+          });
+        }
       } catch {
         setSubmitError("Network error. Please check your connection and try again.");
         setIsSubmitting(false);
