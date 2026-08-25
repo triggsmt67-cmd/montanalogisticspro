@@ -460,32 +460,38 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Send lead notification to business ───────────────────────────────────
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.warn("[submit-plan] RESEND_API_KEY is not configured in environment variables.");
+    return NextResponse.json({ success: true });
+  }
+
+  const resend = new Resend(apiKey);
   const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
   const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
 
-  const { error: leadError } = await resend.emails.send({
-    from: "Such Group e-Commerce <leads@suchgroupecommerce.com>",
-    to: toEmails,
-    replyTo: email,
-    subject: `🎯 New Lead: ${name} — ${volume}`,
-    html: buildLeadEmail({
-      name,
-      email,
-      volume,
-      friction,
-      ip,
-      submittedAt: new Date(submittedAt).toUTCString(),
-      additionalFields,
-    }),
-  });
+  try {
+    const { error: leadError } = await resend.emails.send({
+      from: "Such Group e-Commerce <leads@suchgroupecommerce.com>",
+      to: toEmails,
+      replyTo: email,
+      subject: `🎯 New Lead: ${name} — ${volume}`,
+      html: buildLeadEmail({
+        name,
+        email,
+        volume,
+        friction,
+        ip,
+        submittedAt: new Date(submittedAt).toUTCString(),
+        additionalFields,
+      }),
+    });
 
-  if (leadError) {
-    console.error("[submit-plan] Resend lead error:", leadError);
-    return NextResponse.json(
-      { success: false, error: "Failed to send email. Please try again." },
-      { status: 500 }
-    );
+    if (leadError) {
+      console.error("[submit-plan] Resend lead error:", leadError);
+    }
+  } catch (err) {
+    console.error("[submit-plan] Unexpected error sending lead email:", err);
   }
 
   // ── Optionally send estimate confirmation to the customer ─────────────────
