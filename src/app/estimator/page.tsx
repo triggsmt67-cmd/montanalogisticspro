@@ -388,6 +388,14 @@ export default function MontanaLogisticsCalculatorPage() {
         return;
       }
       setQuoteSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "quote_request_submitted",
+          form_name: "estimator_quote",
+          service_path: selectedPath.label,
+        });
+      }
     } catch {
       setQuoteError("Network error. Please check your connection and try again.");
       setQuoteSubmitting(false);

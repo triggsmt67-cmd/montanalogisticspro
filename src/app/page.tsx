@@ -669,6 +669,13 @@ export default function LandingPage() {
         return;
       }
       setQSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "contact_form_submitted",
+          form_name: "questions_modal",
+        });
+      }
     } catch {
       setQError("Network error. Please check your connection.");
       setQSubmitting(false);
@@ -713,6 +720,14 @@ export default function LandingPage() {
         return;
       }
       setFitSubmitted(true);
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "generate_lead",
+          form_name: "fit_review",
+          service_path: activePath,
+        });
+      }
     } catch {
       setFitError("Network error. Please check your connection.");
       setFitSubmitting(false);
