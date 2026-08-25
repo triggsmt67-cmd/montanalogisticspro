@@ -250,7 +250,7 @@ function SummaryGroup({ title, rows }: SummaryGroupProps) {
   );
 }
 
-export default function MontanaLogisticsCalculatorPage() {
+export default function EstimatorPage() {
   const [service, setService] = useState("fba");
 
   const [items, setItems] = useState<number | "">("");

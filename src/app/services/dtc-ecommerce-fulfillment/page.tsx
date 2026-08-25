@@ -118,7 +118,7 @@ export default function DTCEcommerceFulfillmentPage() {
             DTC Fulfillment &bull; Great Falls, Montana
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.1] mb-6">
-            DTC E-Commerce Fulfillment: The Real Math on Montana Logistics
+            DTC E-Commerce Fulfillment: The Total Cost of Fulfillment Math in Montana
           </h1>
         </header>
 

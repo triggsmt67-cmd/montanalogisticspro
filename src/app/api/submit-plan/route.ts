@@ -280,106 +280,6 @@ function buildLeadEmail(data: {
 </html>`;
 }
 
-// ── Customer Confirmation Email ───────────────────────────────────────────────
-function buildCustomerEmail(data: {
-  name: string;
-  email: string;
-  additionalFields: Record<string, string>;
-}): string {
-  const { name, additionalFields } = data;
-  const firstName = name.split(" ")[0] || name;
-
-  const rows = Object.entries(additionalFields).map(([label, value], i, arr) => `
-    <tr>
-      <td style="padding:14px 24px;${i < arr.length - 1 ? "border-bottom:1px solid #e5e7eb;" : ""}">
-        <p style="margin:0;font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;font-weight:600;">${label}</p>
-        <p style="margin:5px 0 0;font-size:14px;font-weight:600;color:#111827;">${value || "—"}</p>
-      </td>
-    </tr>`).join("");
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Estimate — Such Group e-Commerce</title>
-</head>
-<body style="margin:0;padding:0;background-color:#f9fafb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
-
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f9fafb;padding:40px 16px;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;">
-
-          <!-- Header -->
-          <tr>
-            <td style="background:linear-gradient(135deg,#064e3b 0%,#0e7490 100%);border-radius:16px 16px 0 0;padding:40px 40px 36px;">
-              <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);">Such Group e-Commerce</p>
-              <h1 style="margin:0;font-size:26px;font-weight:700;color:#ffffff;line-height:1.2;">📋 Your Estimate Summary</h1>
-              <p style="margin:10px 0 0;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5;">Hi ${firstName}, thanks for using our cost estimator. Here's a copy of everything you submitted — we'll follow up with a detailed quote shortly.</p>
-            </td>
-          </tr>
-
-          <!-- Estimate Details -->
-          <tr>
-            <td style="background:#ffffff;padding:32px 40px 0;">
-              <p style="margin:0 0 16px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;">Your Estimate Details</p>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
-                ${rows}
-              </table>
-            </td>
-          </tr>
-
-          <!-- What's Next -->
-          <tr>
-            <td style="background:#ffffff;padding:28px 40px 0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,rgba(6,78,59,0.06) 0%,rgba(14,116,144,0.06) 100%);border:1px solid rgba(16,185,129,0.2);border-radius:12px;">
-                <tr>
-                  <td style="padding:24px 28px;">
-                    <p style="margin:0;font-size:15px;font-weight:700;color:#111827;">What happens next?</p>
-                    <p style="margin:8px 0 0;font-size:13px;color:#6b7280;line-height:1.6;">Our team will review your estimate and reach out within <strong>one business day</strong> with a detailed, itemized quote. If your job needs custom pricing, we'll explain exactly why instead of giving you a fake number.</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Estimate Disclaimer -->
-          <tr>
-            <td style="background:#ffffff;padding:20px 40px 0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;">
-                <tr>
-                  <td style="padding:20px 24px;">
-                    <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#92400e;">Estimate Notes</p>
-                    <p style="margin:0;font-size:13px;color:#78350f;line-height:1.6;">This is a ballpark estimate. It does not include carrier postage, oversized box charges, unusual prep needs, or quote-only services like FBM. Final pricing may change after inspection.</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-            <td style="background:#ffffff;padding:28px 40px 32px;border-radius:0 0 16px 16px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #f3f4f6;padding-top:24px;">
-                <tr>
-                  <td align="center">
-                    <p style="margin:0;font-size:12px;color:#9ca3af;line-height:1.6;">
-                      This summary was sent by <strong style="color:#6b7280;">Such Group e-Commerce</strong>.<br/>
-                      <a href="https://suchgroupecommerce.com" style="color:#10b981;text-decoration:none;">suchgroupecommerce.com</a>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-
-</body>
-</html>`;
-}
-
 export async function POST(req: NextRequest) {
   // ── Payload Size Limit Check ───────────────────────────────────────────────
   const contentLength = Number(req.headers.get("content-length") ?? 0);
@@ -477,12 +377,19 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(apiKey);
-  const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
-  const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
+  const rawRecipients = process.env.LEAD_TO_EMAILS ?? process.env.LEAD_TO_EMAIL ?? "leads@suchgroupecommerce.com";
+  const toEmails = rawRecipients
+    .split(",")
+    .map(e => e.trim())
+    .filter(e => EMAIL_RE.test(e));
+
+  if (toEmails.length === 0) {
+    toEmails.push("leads@suchgroupecommerce.com");
+  }
 
   try {
     const { error: leadError } = await resend.emails.send({
-      from: "Such Group e-Commerce <leads@suchgroupecommerce.com>",
+      from: "Such Group E-Commerce <leads@suchgroupecommerce.com>",
       to: toEmails,
       replyTo: email,
       subject: `🎯 New Lead: ${name} — ${volume}`,

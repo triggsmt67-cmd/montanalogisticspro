@@ -82,6 +82,9 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
               </div>
             </div>
 
+            <motion.a whileHover={{ y: -1 }} href="/about" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">About</motion.a>
+            <motion.a whileHover={{ y: -1 }} href="/contact" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contact</motion.a>
+
             {onOpenQuestions && (
               <motion.button whileHover={{ y: -1 }} onClick={onOpenQuestions} className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Questions</motion.button>
             )}
@@ -125,6 +128,8 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
             <div className="p-6 flex flex-col gap-6">
               <Link onClick={() => setMobileMenuOpen(false)} href="/#process" className="text-lg font-medium text-zinc-900">Process</Link>
               <Link onClick={() => setMobileMenuOpen(false)} href="/#fit-review" className="text-lg font-medium text-zinc-900">Fit Review</Link>
+              <Link onClick={() => setMobileMenuOpen(false)} href="/about" className="text-lg font-medium text-zinc-900">About Us</Link>
+              <Link onClick={() => setMobileMenuOpen(false)} href="/contact" className="text-lg font-medium text-zinc-900">Contact</Link>
 
               <div className="border-t border-zinc-200 pt-6">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">Services</h4>

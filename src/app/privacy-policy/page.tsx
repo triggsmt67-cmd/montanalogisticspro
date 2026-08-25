@@ -106,9 +106,9 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 6 */}
           <section className="space-y-4">
-            <h2 className="text-xl sm:text-2xl font-semibold text-white tracking-tight border-b border-white/5 pb-2">6. Contact Us</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold text-white tracking-tight border-b border-white/5 pb-2">6. Contact &amp; Data Inquiries</h2>
             <p>
-              If you have any questions about this Privacy &amp; Cookie Policy, or how your personal information is stored and handled, please reach out to us through our custom fit flow on the main page.
+              If you have any questions about this Privacy &amp; Cookie Policy, or how your personal information is stored and handled, please reach out to Such Group E-Commerce via our <Link href="/contact" className="text-emerald-400 hover:underline">Contact Page</Link>.
             </p>
           </section>
         </div>

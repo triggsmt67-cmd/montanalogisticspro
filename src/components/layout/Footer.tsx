@@ -37,14 +37,16 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-3">
             <span className="font-bold text-white mb-2 uppercase tracking-widest text-xs">Company</span>
+            <Link href="/about" className="text-sm transition-colors hover:text-white w-max">About Us</Link>
+            <Link href="/contact" className="text-sm transition-colors hover:text-white w-max">Contact</Link>
+            <Link href="/estimator" className="text-sm transition-colors hover:text-white w-max">Cost Estimator</Link>
             <Link href="/#fit-review" className="text-sm transition-colors hover:text-white w-max">Fit Review</Link>
-            <Link href="/#process" className="text-sm transition-colors hover:text-white w-max">Onboarding</Link>
             <Link href="/privacy-policy" className="text-sm transition-colors hover:text-white w-max">Privacy Policy</Link>
           </div>
         </div>
       </div>
       <div className="max-w-7xl mx-auto border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-        <p className="text-xs">© {new Date().getFullYear()} Such Group E-Commerce. All rights reserved. Located proudly in Montana.</p>
+        <p className="text-xs">© {new Date().getFullYear()} Such Group E-Commerce. All rights reserved. Located in Great Falls, Montana.</p>
       </div>
     </footer>
   );

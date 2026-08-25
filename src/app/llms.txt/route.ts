@@ -12,6 +12,9 @@ export async function GET() {
 ## Resources
 - [Master 3PL Pillar Guide](https://suchgroupecommerce.com/montana-tax-free-3pl)
 - [Tax Savings Calculator](https://suchgroupecommerce.com/montana-tax-savings-calculator)
+- [FBA Prep Cost Estimator](https://suchgroupecommerce.com/estimator)
+- [About Such Group E-Commerce](https://suchgroupecommerce.com/about)
+- [Contact Us](https://suchgroupecommerce.com/contact)
 `;
 
   return new Response(content, {

@@ -63,7 +63,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "FBA Prep & Labeling Services | Montana Logistics Pro",
+        title: "FBA Prep & Labeling Services | Such Group E-Commerce",
         description: "Zero-error Amazon FBA prep and labeling. Avoid compliance chargebacks with 48-hour turnarounds in tax-free Montana."
       }
     },
@@ -108,7 +108,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Amazon Bundling & Multipack Assembly | Montana Logistics Pro",
+        title: "Amazon Bundling & Multipack Assembly | Such Group E-Commerce",
         description: "Boost listings with custom Amazon kitting, bundling, and multipacks. Tax-free storage and fast turnaround in Montana."
       }
     },
@@ -153,7 +153,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Amazon Poly Bagging & Fragile Handling | Montana Logistics Pro",
+        title: "Amazon Poly Bagging & Fragile Handling | Such Group E-Commerce",
         description: "Secure packaging and poly bagging for fragile, liquid, and sharp items. Guaranteed FBA compliance in Montana."
       }
     },
@@ -198,7 +198,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Tax-Free Inventory Storage in Montana | Montana Logistics Pro",
+        title: "Tax-Free Inventory Storage in Montana | Such Group E-Commerce",
         description: "Store bulk inventory completely tax-free in Montana. Climate-controlled warehouses with 24/7 security and live audits."
       }
     },
@@ -243,7 +243,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Amazon Removal Order Processing | Montana Logistics Pro",
+        title: "Amazon Removal Order Processing | Such Group E-Commerce",
         description: "Recover stranded Amazon FBA stock. We receive, inspect, photo-document, and re-prep removal orders tax-free."
       }
     },
@@ -288,7 +288,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Amazon Inbound Shipment Creation | Montana Logistics Pro",
+        title: "Amazon Inbound Shipment Creation | Such Group E-Commerce",
         description: "Hands-free FBA shipment creation. We handle box content details, palletizing, and shipping labels via SP-API."
       }
     }
@@ -335,7 +335,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Secure Warehousing & Storage | Montana Logistics Pro",
+        title: "Secure Warehousing & Storage | Such Group E-Commerce",
         description: "Climate-controlled, secure warehousing in tax-free Montana. Weekly cycle counts and real-time inventory tracking."
       }
     },
@@ -380,7 +380,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "DTC Pick & Pack Fulfillment | Montana Logistics Pro",
+        title: "DTC Pick & Pack Fulfillment | Such Group E-Commerce",
         description: "Same-day e-commerce order fulfillment. Real-time Shopify integration, rate shopping, and 99.9% pick accuracy."
       }
     },
@@ -425,7 +425,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "E-commerce Kitting & Assembly | Montana Logistics Pro",
+        title: "E-commerce Kitting & Assembly | Such Group E-Commerce",
         description: "Custom subscription box assembly, multi-SKU kitting, and custom branded packaging. Error-free retail kitting."
       }
     },
@@ -470,7 +470,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "E-commerce Return Processing | Montana Logistics Pro",
+        title: "E-commerce Return Processing | Such Group E-Commerce",
         description: "Recover margins with fast, structured return logistics. Auditing, condition checks, and restocking in Montana."
       }
     },
@@ -515,7 +515,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "Branded Unboxing & Custom Packaging | Montana Logistics Pro",
+        title: "Branded Unboxing & Custom Packaging | Such Group E-Commerce",
         description: "Delight e-commerce customers with custom unboxing. We pack with branded boxes, tissue paper, and cards."
       }
     },
@@ -560,7 +560,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         }
       ],
       seo: {
-        title: "B2B Retail Routing & Compliance | Montana Logistics Pro",
+        title: "B2B Retail Routing & Compliance | Such Group E-Commerce",
         description: "Avoid distributor chargebacks with compliant B2B retail routing. UCC-128 barcodes, EDI, and palletization in Montana."
       }
     }

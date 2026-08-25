@@ -257,11 +257,18 @@ export async function POST(req: NextRequest) {
 
   try {
     const resend = new Resend(apiKey);
-    const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
-    const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
+    const rawRecipients = process.env.LEAD_TO_EMAILS ?? process.env.LEAD_TO_EMAIL ?? "leads@suchgroupecommerce.com";
+    const toEmails = rawRecipients
+      .split(",")
+      .map(e => e.trim())
+      .filter(e => EMAIL_RE.test(e));
+
+    if (toEmails.length === 0) {
+      toEmails.push("leads@suchgroupecommerce.com");
+    }
 
     const { error } = await resend.emails.send({
-      from:    "Such Group e-Commerce <leads@suchgroupecommerce.com>",
+      from:    "Such Group E-Commerce <leads@suchgroupecommerce.com>",
       to:      toEmails,
       replyTo: email,
       subject: `💬 New Question from ${name}`,

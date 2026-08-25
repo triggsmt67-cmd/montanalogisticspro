@@ -1775,7 +1775,7 @@ export default function LandingPage() {
                 "name": "Such Group E-Commerce",
                 "url": "https://suchgroupecommerce.com",
                 "logo": "https://suchgroupecommerce.com/icon.png",
-                "description": "Tax-free Amazon FBA prep, DTC fulfillment, and B2B wholesale storage out of Great Falls, Montana.",
+                "description": "Tax-free Amazon FBA prep, DTC fulfillment, and B2B wholesale storage based in Great Falls, Montana.",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Great Falls",
@@ -1785,7 +1785,7 @@ export default function LandingPage() {
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "contactType": "customer support",
-                  "email": "montanalogisticspro@gmail.com"
+                  "url": "https://suchgroupecommerce.com/contact"
                 }
               },
               {
