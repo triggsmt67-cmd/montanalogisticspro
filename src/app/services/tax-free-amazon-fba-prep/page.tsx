@@ -117,7 +117,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                 The Bottom Line
               </p>
               <p className="text-base sm:text-lg md:text-xl text-zinc-900 font-medium leading-relaxed">
-                Retail checkout systems operate on destination-based sales tax rules. Shipping online retail purchases to our Great Falls, Montana 3PL legally drops your checkout tax to 0%. We protect your margins and execute strict Amazon FBA prep compliance for a flat $1.45 per unit. We handle the 1.5 mil poly-bags, the mandatory suffocation warnings, and the FNSKU labeling so your boxes hit the Amazon dock ready to stow.
+                Retail checkout systems operate on destination-based sales tax rules. Shipping online retail purchases to our Great Falls, Montana 3PL legally drops your checkout tax to 0%. We protect your margins and execute strict Amazon FBA prep compliance with volume-tiered rates starting at $1.45 down to $1.00 per unit. We handle receiving, inspection, wrapping, 1.5 mil poly-bags, mandatory suffocation warnings, FNSKU labeling, reused boxes, and dunnage so your inventory hits the Amazon dock ready to stow.
               </p>
             </div>
           </div>
@@ -175,43 +175,115 @@ export default function TaxFreeAmazonFBAPrepPage() {
             </div>
           </section>
 
-          {/* Section 3: Flat-Rate FBA Prep */}
+          {/* Section 3: Transparent Volume-Tiered Pricing */}
           <section>
             <div className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-                Flat-Rate FBA Prep
+                Transparent Volume Pricing
               </h2>
 
               <div className="text-zinc-700 text-base sm:text-lg leading-relaxed">
                 <p>
-                  We keep the math simple. No volume tiers to guess. No hidden fees. Just complete Amazon compliance and fast turnaround for a flat $1.45 per unit.
+                  We keep the pricing simple, predictable, and fully transparent. As your monthly volume grows, your unit cost automatically drops. Every tier includes all core prep materials and inspection.
                 </p>
               </div>
             </div>
 
-            {/* $1.45 Value Card */}
-            <div className="bg-zinc-950 text-white rounded-2xl border border-zinc-800 overflow-hidden shadow-lg">
-              {/* Price Header */}
-              <div className="p-6 sm:p-8 md:p-10 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            {/* Pricing Tables Card */}
+            <div className="bg-zinc-950 text-white rounded-2xl border border-zinc-800 overflow-hidden shadow-lg mb-8">
+              {/* Header */}
+              <div className="p-6 sm:p-8 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
-                    What You Get For
+                  <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                    Monthly FBA Prep Tiers
                   </p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-5xl sm:text-6xl font-extrabold tracking-tight text-white">$1.45</span>
-                    <span className="text-zinc-400 text-lg font-medium">per unit</span>
-                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    Standard Retail Sourcing FBA Prep
+                  </h3>
                 </div>
                 <Link
-                  href="/#fit-review"
+                  href="/estimator"
                   className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold px-6 py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.25)] text-sm shrink-0"
                 >
-                  <span>Start Fit Review</span>
+                  <span>Open Cost Estimator</span>
                   <ArrowRight size={16} />
                 </Link>
               </div>
 
+              {/* FBA Pricing Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-y sm:divide-y-0 divide-x divide-zinc-800 border-b border-zinc-800">
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">1 – 500 units</p>
+                  <p className="text-3xl font-extrabold text-white tracking-tight">$1.45</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">501 – 1,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$1.35</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">1,001 – 2,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$1.25</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">2,001 – 5,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$1.15</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">5,001 – 10,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$1.00</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-900/60 flex flex-col justify-center">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">10,000+ units</p>
+                  <p className="text-lg font-bold text-white">Custom Quote</p>
+                  <p className="text-[11px] text-emerald-400 mt-0.5">Contact Us</p>
+                </div>
+              </div>
+
+              {/* Wholesale Pricing Header */}
+              <div className="p-6 sm:p-8 border-b border-zinc-800 bg-zinc-900/30">
+                <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                  Bulk Wholesale Tiers (Same-SKU)
+                </p>
+                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Wholesale Prep Pricing (per Unit)
+                </h4>
+              </div>
+
+              {/* Wholesale Pricing Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-zinc-800 border-b border-zinc-800">
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">300 – 2,500 units</p>
+                  <p className="text-3xl font-extrabold text-white tracking-tight">$1.15</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">2,501 – 5,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$1.00</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-950/50">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">5,001 – 10,000 units</p>
+                  <p className="text-3xl font-extrabold text-emerald-400 tracking-tight">$0.90</p>
+                  <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
+                </div>
+                <div className="p-5 text-center bg-zinc-900/60 flex flex-col justify-center">
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">10,000+ units</p>
+                  <p className="text-lg font-bold text-white">Custom Quote</p>
+                  <p className="text-[11px] text-emerald-400 mt-0.5">Contact Us</p>
+                </div>
+              </div>
+
               {/* Inclusions Grid */}
+              <div className="p-6 sm:p-8 bg-zinc-900/20 border-b border-zinc-800">
+                <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">All Pricing Includes</p>
+                <p className="text-sm text-zinc-300">Receiving, Inspection, Wrapping, Poly bag, FNSKU Label, boxes (reused), and dunnage.</p>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
                 <div className="bg-zinc-950 p-5 sm:p-6 flex items-start gap-3.5">
                   <div className="p-2 bg-emerald-500/10 text-emerald-400 rounded-lg shrink-0 mt-0.5">
@@ -219,7 +291,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">Receiving &amp; Inspection</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">We check for damage the second your inventory hits our dock.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">We audit every carton and check for damaged units the second freight hits our dock.</p>
                   </div>
                 </div>
 
@@ -229,7 +301,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">Compliance Packaging</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">1.5 mil poly-bags and mandatory suffocation warnings are included.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">1.5 mil poly-bags, wrapping, reused shipping boxes, and dunnage included.</p>
                   </div>
                 </div>
 
@@ -239,7 +311,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">FNSKU Labeling</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">Precision barcode application so your units scan perfectly at Amazon.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">High-contrast thermal barcode application with double-scan verification.</p>
                   </div>
                 </div>
 
@@ -258,15 +330,15 @@ export default function TaxFreeAmazonFBAPrepPage() {
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-1">Free Storage</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">Your first 14 days of staging are completely free.</p>
+                    <p className="text-white font-semibold text-sm mb-1">14 Days Free Storage</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">Your first 14 days of inventory staging are completely free.</p>
                   </div>
                 </div>
 
                 <div className="bg-zinc-950 p-5 sm:p-6 flex items-center justify-center">
                   <div className="text-center">
-                    <p className="text-emerald-400 font-bold text-sm mb-1">No volume tiers.</p>
-                    <p className="text-emerald-400 font-bold text-sm">No hidden fees.</p>
+                    <p className="text-emerald-400 font-bold text-sm mb-1">No hidden fees.</p>
+                    <p className="text-zinc-400 text-xs">Zero state sales tax.</p>
                   </div>
                 </div>
               </div>

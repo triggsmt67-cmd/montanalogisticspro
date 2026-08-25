@@ -33,19 +33,19 @@ const paths = [
     bgMuted: "bg-blue-50",
     dotClass: "bg-blue-400",
     activeText: "text-blue-50",
-    included: ["Receiving", "Inspection", "FNSKU labels", "Polybag", "Dunnage", "Shipment creation", "Warehouse tracking"],
+    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Reused boxes", "Dunnage", "Software management", "First 14 days free storage"],
   },
   {
     id: "wholesale",
-    label: "Bulk FBA Prep",
-    plain: "I have same-SKU inventory to prep in massive volume.",
+    label: "Bulk Wholesale FBA Prep",
+    plain: "I have same-SKU inventory to prep in volume (300+ units).",
     icon: Warehouse,
     colorClass: "bg-indigo-600 border-indigo-600 shadow-indigo-600/20",
     textClass: "text-indigo-600",
     bgMuted: "bg-indigo-50",
     dotClass: "bg-indigo-400",
     activeText: "text-indigo-50",
-    included: ["Receiving", "Inspection", "Wrapping", "Polybag", "FNSKU labels", "Reused boxes", "Dunnage"],
+    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Reused boxes", "Dunnage", "Volume rates from $1.15 to $0.90"],
   },
   {
     id: "carton",
@@ -116,7 +116,7 @@ function getWholesaleRate(units: number) {
   if (units > 10000) return null;
   if (units >= 5001) return 0.9;
   if (units >= 2501) return 1;
-  if (units >= 500) return 1.15;
+  if (units >= 300) return 1.15;
   return null;
 }
 
@@ -466,7 +466,7 @@ export default function MontanaLogisticsCalculatorPage() {
     if (service === "wholesale") {
       const wholesaleNum = toNum(wholesaleUnits);
       const rate = getWholesaleRate(wholesaleNum);
-      if (wholesaleNum < 500) quoteReasons.push("Wholesale pricing starts at 500 units.");
+      if (wholesaleNum < 300) quoteReasons.push("Wholesale pricing starts at 300 units.");
       if (wholesaleNum > 10000) quoteReasons.push("Wholesale prep over 10,000 units requires a custom quote.");
       const base = rate ? wholesaleNum * rate : 0;
       total += base;
@@ -586,20 +586,20 @@ export default function MontanaLogisticsCalculatorPage() {
                 <Section title="Basic shipment details" eyebrow="Step 2">
                   {service === "fba" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many standard FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Standard items prep at a flat $1.45. Volumes over 10,000 units require a capacity and timeline review." min={500} />
+                      <NumberInput label="How many standard FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Monthly tiers: 1–500 ($1.45), 501–1k ($1.35), 1,001–2k ($1.25), 2,001–5k ($1.15), 5,001–10k ($1.00). Over 10,000 units requires a custom quote." min={1} />
                       <NumberInput label="Any books?" value={books} onChange={setBooks} placeholder="e.g. 150" helper="$2.50 flat rate per unit. Includes grading and FNSKU application." />
                     </div>
                   )}
 
                   {service === "wholesale" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} placeholder="e.g. 1200" helper="Listed wholesale pricing starts at 500 units and assumes the same FNSKU." min={500} />
+                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} placeholder="e.g. 1200" helper="Wholesale tiers: 300–2,500 ($1.15), 2,501–5,000 ($1.00), 5,001–10,000 ($0.90). Over 10,000 units requires a custom quote. Price includes receiving, inspection, wrapping, poly bag, FNSKU, reused boxes & dunnage." min={300} />
                     </div>
                   )}
 
                   {service === "ecommerce" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="Monthly orders" value={orders} onChange={setOrders} placeholder="e.g. 400" helper="Over 2,500 monthly orders needs a custom quote." />
+                      <NumberInput label="Monthly orders" value={orders} onChange={setOrders} placeholder="e.g. 400" helper="Monthly order tiers: 1–500 ($2.50/order + $0.50/item), 501–1,000 ($2.25/order + $0.40/item), 1,001–2,500 ($2.00/order + $0.30/item). Over 2,500 orders requires a custom quote." min={1} />
                       <NumberInput label="Average items per order" value={avgItems} onChange={setAvgItems} placeholder="e.g. 2" />
                     </div>
                   )}
@@ -797,20 +797,28 @@ export default function MontanaLogisticsCalculatorPage() {
           </div>
 
           {/* Static FAQ Section */}
-          <section className="mt-16 border-t border-gray-800 pt-12">
-            <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <section className="mt-16 border-t border-zinc-200 pt-12">
+            <h2 className="text-2xl font-bold mb-6 text-zinc-900">Frequently Asked Questions</h2>
             <div className="space-y-6">
               <div>
-                <h3 className="font-semibold text-lg">How much does FBA prep cost?</h3>
-                <p className="text-gray-400 mt-2">We charge a flat $1.45 per unit for standard retail sourcing prep. Volumes over 10,000 units require a capacity review.</p>
+                <h3 className="font-semibold text-lg text-zinc-900">How much does FBA prep cost?</h3>
+                <p className="text-zinc-600 mt-2">
+                  We charge volume-tiered rates for monthly standard FBA prep: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit. Over 10,000 units receives custom pricing. Price includes receiving, inspection, wrapping, 1.5 mil poly bag, FNSKU label, reused boxes, and dunnage.
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Are there hidden 3PL storage fees?</h3>
-                <p className="text-gray-400 mt-2">No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15.</p>
+                <h3 className="font-semibold text-lg text-zinc-900">What are your wholesale and ecommerce fulfillment rates?</h3>
+                <p className="text-zinc-600 mt-2">
+                  Wholesale prep (same-SKU) is $1.15/unit (300–2,500 units), $1.00/unit (2,501–5,000 units), and $0.90/unit (5,001–10,000 units). DTC E-Commerce is $2.50/order + $0.50/item (1–500 orders), $2.25/order + $0.40/item (501–1,000 orders), and $2.00/order + $0.30/item (1,001–2,500 orders).
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Do I pay sales tax on Montana 3PL services?</h3>
-                <p className="text-gray-400 mt-2">Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility.</p>
+                <h3 className="font-semibold text-lg text-zinc-900">Are there hidden 3PL storage fees?</h3>
+                <p className="text-zinc-600 mt-2">No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg text-zinc-900">Do I pay sales tax on Montana 3PL services?</h3>
+                <p className="text-zinc-600 mt-2">Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility.</p>
               </div>
             </div>
           </section>
@@ -839,7 +847,15 @@ export default function MontanaLogisticsCalculatorPage() {
                     "name": "How much does FBA prep cost?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "We charge a flat $1.45 per unit for standard retail sourcing prep. Volumes over 10,000 units require a capacity review."
+                      "text": "We charge volume-tiered rates for monthly standard FBA prep: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit. Over 10,000 units receives custom pricing."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "What are your wholesale and ecommerce fulfillment rates?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Wholesale prep is $1.15 (300–2,500 units), $1.00 (2,501–5,000 units), and $0.90 (5,001–10,000 units). DTC E-Commerce is $2.50/order + $0.50/item (1–500), $2.25/order + $0.40/item (501–1,000), and $2.00/order + $0.30/item (1,001–2,500)."
                     }
                   },
                   {

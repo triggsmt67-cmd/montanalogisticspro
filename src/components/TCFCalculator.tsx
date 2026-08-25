@@ -5,12 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calculator } from "lucide-react";
 import Link from "next/link";
 
+function getFbaTierFee(vol: number): number {
+  if (vol > 5000) return 1.00;
+  if (vol > 2000) return 1.15;
+  if (vol > 1000) return 1.25;
+  if (vol > 500) return 1.35;
+  return 1.45;
+}
+
 export default function TCFCalculator() {
   const [acquisitionCost, setAcquisitionCost] = useState<number>(25);
   const [taxRate, setTaxRate] = useState<number>(8.25);
-  const [prepFee, setPrepFee] = useState<number>(1.45);
+  const [prepFee, setPrepFee] = useState<number>(1.35);
   const [freightPremium, setFreightPremium] = useState<number>(0.35);
   const [volume, setVolume] = useState<number>(1000);
+  const [manualPrepFee, setManualPrepFee] = useState(false);
+
+  const handleVolumeChange = (newVol: number) => {
+    setVolume(newVol);
+    if (!manualPrepFee) {
+      setPrepFee(getFbaTierFee(newVol));
+    }
+  };
 
   const taxSavedPerUnit = acquisitionCost * (taxRate / 100);
   const prepAndFreightPerUnit = prepFee + freightPremium;
@@ -77,7 +93,10 @@ export default function TCFCalculator() {
 
             {/* Prep Fee */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Such Group Prep Fee</label>
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium text-zinc-300 block">Such Group Prep Fee</label>
+                <span className="text-xs text-emerald-400 font-mono">Tier: ${prepFee.toFixed(2)}/unit</span>
+              </div>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono">$</span>
                 <input 
@@ -85,7 +104,10 @@ export default function TCFCalculator() {
                   step="0.01"
                   min="0"
                   value={prepFee === 0 ? "" : prepFee}
-                  onChange={(e) => setPrepFee(parseFloat(e.target.value) || 0)}
+                  onChange={(e) => {
+                    setManualPrepFee(true);
+                    setPrepFee(parseFloat(e.target.value) || 0);
+                  }}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-8 pr-4 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                 />
               </div>
@@ -116,7 +138,7 @@ export default function TCFCalculator() {
                   step="1"
                   min="0"
                   value={volume === 0 ? "" : volume}
-                  onChange={(e) => setVolume(parseFloat(e.target.value) || 0)}
+                  onChange={(e) => handleVolumeChange(parseFloat(e.target.value) || 0)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-4 pr-16 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono text-sm">units</span>

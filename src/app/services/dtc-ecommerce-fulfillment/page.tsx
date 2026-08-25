@@ -319,6 +319,25 @@ export default function DTCEcommerceFulfillmentPage() {
 
               <div className="border-t border-zinc-100 pt-8">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">
+                  How is DTC e-commerce fulfillment priced?
+                </h3>
+                <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
+                  Our monthly order fulfillment rates are transparently tiered:
+                  <br />
+                  &bull; <strong>1 – 500 monthly orders:</strong> $2.50 per order + $0.50 per item
+                  <br />
+                  &bull; <strong>501 – 1,000 monthly orders:</strong> $2.25 per order + $0.40 per item
+                  <br />
+                  &bull; <strong>1,001 – 2,500 monthly orders:</strong> $2.00 per order + $0.30 per item
+                  <br />
+                  &bull; <strong>2,500+ monthly orders:</strong> Contact us for a custom quote
+                  <br />
+                  Your first 14 days of inventory storage are completely free.
+                </p>
+              </div>
+
+              <div className="border-t border-zinc-100 pt-8">
+                <h3 className="text-lg font-bold text-zinc-900 mb-2">
                   What time are your daily carrier cutoffs?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">

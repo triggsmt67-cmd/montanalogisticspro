@@ -232,7 +232,7 @@ export default function MontanaTaxFree3PLPage() {
               </div>
               <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">What are the baseline prep rates for Such Group E-commerce?</h3>
-                <p className="m-0 leading-relaxed">Pricing starts at $1.45 per unit for standard orders, with volume discounts dropping prep fees to $1.00 per unit for commitments over 5,000 units. Storage is free for the first 14 days.</p>
+                <p className="m-0 leading-relaxed">Monthly FBA prep pricing is volume-tiered: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit (over 10,000 by quote). Wholesale prep is $1.15 down to $0.90 per unit. Price includes receiving, inspection, wrapping, poly-bagging, FNSKU labeling, reused boxes, and dunnage. Storage is free for the first 14 days.</p>
               </div>
               <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Does holding inventory in Montana create state income tax liability?</h3>

@@ -313,14 +313,20 @@ export default function WholesaleInventoryStoragePage() {
 
               <div className="border-t border-zinc-100 pt-8">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">
-                  Do you offer tiered pricing for wholesale storage?
+                  Do you offer tiered pricing for wholesale prep and storage?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Every enterprise operation requires a custom footprint. We do
-                  not force you into rigid volume tiers. We evaluate your pallet
-                  count, rail transload needs, and staging duration to build a
-                  flat, predictable pricing structure for your specific supply
-                  chain.
+                  Yes. For bulk wholesale prep (same-SKU), our volume-tiered rates are:
+                  <br />
+                  &bull; <strong>300 – 2,500 units:</strong> $1.15 / unit
+                  <br />
+                  &bull; <strong>2,501 – 5,000 units:</strong> $1.00 / unit
+                  <br />
+                  &bull; <strong>5,001 – 10,000 units:</strong> $0.90 / unit
+                  <br />
+                  &bull; <strong>10,000+ units:</strong> Contact us for a custom quote
+                  <br />
+                  Price includes receiving, inspection, wrapping, poly bag, FNSKU label, reused boxes, and dunnage. For enterprise freight storage, rail transloading, and FTZ cross-docking, we evaluate your pallet count and staging duration for a flat, predictable structure.
                 </p>
               </div>
             </div>

@@ -31,7 +31,7 @@ const PATH_CONTENT = {
     hero: {
       eyebrow: "Amazon FBA & FBM Prep",
       headline: "Skip the compliance headaches. And the sales tax.",
-      body: "FBA compliance is strict. Mistakes quietly eat your margins. We handle receiving, strict 1.5 mil poly-bagging, and FNSKU labeling for a flat $1.45 per unit. Keep your inventory moving and your margins intact.",
+      body: "FBA compliance is strict. Mistakes quietly eat your margins. We handle receiving, inspection, wrapping, poly-bagging, and FNSKU labeling with volume tiers starting at $1.45 down to $1.00 per unit. Keep your inventory moving and your margins intact.",
       primaryCta: "Get Your Custom Prep Plan",
       secondaryCta: "Explore Prep Services",
       metrics: ["Zero Sales Tax", "99.9% Accuracy", "FBA Compliance", "Fast Turnarounds", "Transparent Pricing"],
