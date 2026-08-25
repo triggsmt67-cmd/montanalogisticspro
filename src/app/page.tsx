@@ -1761,6 +1761,55 @@ export default function LandingPage() {
 
       {/* 10. Footer */}
       <Footer />
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://suchgroupecommerce.com/#organization",
+                "name": "Such Group E-Commerce",
+                "url": "https://suchgroupecommerce.com",
+                "logo": "https://suchgroupecommerce.com/icon.png",
+                "description": "Tax-free Amazon FBA prep, DTC fulfillment, and B2B wholesale storage out of Great Falls, Montana.",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Great Falls",
+                  "addressRegion": "MT",
+                  "addressCountry": "US"
+                },
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "contactType": "customer support",
+                  "email": "montanalogisticspro@gmail.com"
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://suchgroupecommerce.com/#website",
+                "url": "https://suchgroupecommerce.com",
+                "name": "Such Group E-Commerce",
+                "publisher": {
+                  "@id": "https://suchgroupecommerce.com/#organization"
+                }
+              },
+              {
+                "@type": "Service",
+                "name": "Tax-Free Amazon FBA Prep",
+                "provider": {
+                  "@id": "https://suchgroupecommerce.com/#organization"
+                },
+                "areaServed": "US",
+                "description": "Zero sales tax receiving, inspection, wrapping, poly-bagging, and FNSKU labeling in Great Falls, Montana."
+              }
+            ]
+          }),
+        }}
+      />
     </div>
   );
 }
