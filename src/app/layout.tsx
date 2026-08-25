@@ -9,7 +9,7 @@ const inter = Inter({
   variable: "--font-sans",
 });
 
-const GTM_ID = "GTM-TRW2LWQ7";
+const GTM_ID = "GTM-NXN9MTXW";
 const GA_MEASUREMENT_ID = "G-EMR88WJD0N";
 
 const SITE_URL = "https://suchgroupecommerce.com";
