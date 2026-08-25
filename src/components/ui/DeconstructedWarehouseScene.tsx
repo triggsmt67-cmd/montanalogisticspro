@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ShieldCheck, DollarSign } from 'lucide-react';
 
@@ -49,9 +50,11 @@ const LogisticsFragment: React.FC<FragmentProps> = ({
         ...style 
       }}
     >
-      <img
+      <Image
         src={src}
         alt="Logistics Element"
+        width={300}
+        height={300}
         className="w-full h-full object-contain pointer-events-none select-none"
       />
     </motion.div>

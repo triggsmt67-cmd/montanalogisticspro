@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowRight, ArrowLeft, CheckCircle } from "lucide-react";
+import { pushDataLayerEvent } from "@/lib/analytics";
 
 const STEPS = [
   { id: "volume", title: "What's your monthly volume?" },
@@ -75,17 +76,14 @@ export function DiscoveryStepper() {
         }
 
         setIsSubmitted(true);
-        if (typeof window !== "undefined") {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: "fit_review_submitted",
-            form_name: "discovery_stepper",
-          });
-          window.dataLayer.push({
-            event: "generate_lead",
-            form_name: "discovery_stepper",
-          });
-        }
+        pushDataLayerEvent({
+          event: "fit_review_submitted",
+          form_name: "discovery_stepper",
+        });
+        pushDataLayerEvent({
+          event: "generate_lead",
+          form_name: "discovery_stepper",
+        });
       } catch {
         setSubmitError("Network error. Please check your connection and try again.");
         setIsSubmitting(false);

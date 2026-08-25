@@ -55,6 +55,8 @@ export function HeroSection() {
           loop 
           muted 
           playsInline
+          preload="metadata"
+          poster="/icon.png"
           style={{
             maskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)',
             WebkitMaskImage: 'radial-gradient(circle at center, black 0%, transparent 60%)'

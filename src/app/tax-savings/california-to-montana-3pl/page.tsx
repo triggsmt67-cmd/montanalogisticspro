@@ -7,9 +7,22 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "California to Montana 3PL: Avoid 10.25% Sales Tax on FBA Prep",
   description:
-    "California Amazon sellers pay up to 10.25% checkout tax on inventory. Ship to Such Group E-commerce in Montana instead. Zero sales tax. FBA prep from $1.45/unit.",
+    "California sellers pay up to 10.25% sales tax on retail arbitrage and inventory. Ship to Such Group E-commerce in Montana to legally eliminate checkout tax. FBA prep from $1.45/unit.",
   alternates: {
     canonical: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
+  },
+  openGraph: {
+    title: "California to Montana 3PL: Avoid 10.25% Sales Tax | Such Group E-Commerce",
+    description:
+      "California sellers pay up to 10.25% sales tax. Ship to Montana to legally eliminate checkout tax.",
+    url: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "California to Montana 3PL: Avoid 10.25% Sales Tax | Such Group E-Commerce",
+    description:
+      "California sellers pay up to 10.25% sales tax. Ship to Montana to legally eliminate checkout tax.",
   },
 };
 
@@ -281,6 +294,19 @@ export default function CaliforniaToMontanaPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Regulatory & Tax Disclaimer */}
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+          <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
+            Regulatory Notice &amp; Tax Disclaimer
+          </p>
+          <p>
+            <strong>Operational Information Only:</strong> The comparisons provided on this page are for logistical and operational planning purposes. Such Group E-Commerce is a 3PL fulfillment warehouse and not a tax or legal advisor.
+          </p>
+          <p>
+            Sales tax sourcing, physical presence nexus, and California CDTFA regulations depend on individual corporate structures and sourcing channels. Sellers should verify their specific tax obligations with a certified public accountant (CPA) or tax attorney.
+          </p>
         </section>
       </main>
 

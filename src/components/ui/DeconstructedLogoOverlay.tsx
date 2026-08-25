@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 interface DeconstructedLogoOverlayProps {
   imgSrc: string;
@@ -24,10 +25,12 @@ export function DeconstructedLogoOverlay({
   return (
     <div className={`relative w-full overflow-hidden group rounded-[2.5rem] border border-zinc-200/80 shadow-2xl bg-zinc-100 ${className} ${aspectRatioClassName}`}>
       {/* 1. Base image layer */}
-      <img
+      <Image
         src={imgSrc}
         alt={altText}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
       />
 
       {/* Subtle global gradient vignette to protect readable overlay text if any */}
@@ -56,10 +59,12 @@ export function DeconstructedLogoOverlay({
         className="absolute inset-0 w-full h-full pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:translate-x-1 group-hover:translate-y-1"
         style={{ clipPath: `url(#clip-shield-${shieldId})` }}
       >
-        <img
+        <Image
           src={imgSrc}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover filter brightness-[1.06] contrast-[1.03]"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover filter brightness-[1.06] contrast-[1.03]"
         />
         {/* Subtle branding tint inside the shield */}
         <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay" />
@@ -71,10 +76,12 @@ export function DeconstructedLogoOverlay({
         className="absolute inset-0 w-full h-full pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07] group-hover:-translate-x-1 group-hover:-translate-y-1"
         style={{ clipPath: `url(#clip-letter-${letterEId})` }}
       >
-        <img
+        <Image
           src={imgSrc}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover filter brightness-[0.92] contrast-[1.08] saturate-[1.05]"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover filter brightness-[0.92] contrast-[1.08] saturate-[1.05]"
         />
         <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
       </div>

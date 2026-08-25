@@ -19,11 +19,24 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Tax-Free Amazon FBA Prep in Montana | Such Group E-commerce",
+  title: "Tax-Free Amazon FBA Prep in Montana",
   description:
-    "Scale your retail sourcing business with zero checkout tax. We provide expert FBA prep, strictly adhere to Amazon's 2026 inbound compliance rules, and protect your margins.",
+    "Scale your retail sourcing business with zero checkout tax. We provide expert FBA prep, strictly adhere to Amazon's inbound compliance rules, and protect your margins.",
   alternates: {
     canonical: "https://suchgroupecommerce.com/services/tax-free-amazon-fba-prep",
+  },
+  openGraph: {
+    title: "Tax-Free Amazon FBA Prep in Montana | Such Group E-Commerce",
+    description:
+      "Scale your retail sourcing business with zero checkout tax. Expert FBA prep from Great Falls, Montana.",
+    url: "https://suchgroupecommerce.com/services/tax-free-amazon-fba-prep",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tax-Free Amazon FBA Prep in Montana | Such Group E-Commerce",
+    description:
+      "Scale your retail sourcing business with zero checkout tax. Expert FBA prep from Great Falls, Montana.",
   },
 };
 

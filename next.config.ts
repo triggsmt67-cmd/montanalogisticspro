@@ -65,11 +65,34 @@ const nextConfig: NextConfig = {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      {
+        // Long-lived immutable cache for static media and fonts
+        source: "/:path*.(png|jpg|jpeg|gif|webp|svg|ico|mp4|webm|woff|woff2)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 
   async redirects() {
     return [
+      // ── Canonical WWW to Apex 301 Redirect ───────────────────────────────
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.suchgroupecommerce.com",
+          },
+        ],
+        destination: "https://suchgroupecommerce.com/:path*",
+        permanent: true,
+      },
+
       // ── Master Service 301 Redirects ─────────────────────────────────────
       // Amazon Prep Category routes
       {

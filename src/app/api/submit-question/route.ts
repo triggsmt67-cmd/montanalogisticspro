@@ -188,6 +188,15 @@ function buildQuestionEmail(data: {
 }
 
 export async function POST(req: NextRequest) {
+  // ── Payload Size Limit Check ───────────────────────────────────────────────
+  const contentLength = Number(req.headers.get("content-length") ?? 0);
+  if (contentLength > 50_000) {
+    return NextResponse.json(
+      { success: false, error: "Payload too large." },
+      { status: 413 }
+    );
+  }
+
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
@@ -224,10 +233,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const name     = String(body.name     ?? "").trim();
-  const email    = String(body.email    ?? "").trim();
-  const phone    = String(body.phone    ?? "").trim();
-  const question = String(body.question ?? "").trim();
+  const name     = String(body.name     ?? "").trim().replace(/[\r\n]/g, " ").slice(0, 100);
+  const email    = String(body.email    ?? "").trim().replace(/[\r\n]/g, "").slice(0, 254);
+  const phone    = String(body.phone    ?? "").trim().replace(/[\r\n]/g, " ").slice(0, 30);
+  const question = String(body.question ?? "").trim().slice(0, 2000);
 
   if (!name || name.length > 100)
     return NextResponse.json({ success: false, error: "Please enter your name." }, { status: 400 });

@@ -19,12 +19,25 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "DTC E-Commerce Fulfillment in Montana | Such Group E-commerce",
+  title: "DTC E-Commerce Fulfillment in Montana",
   description:
     "Fast, multi-channel DTC fulfillment from Great Falls, Montana. See the exact Total Cost of Fulfillment math for shipping your Shopify and TikTok Shop orders.",
   alternates: {
     canonical:
       "https://suchgroupecommerce.com/services/dtc-ecommerce-fulfillment",
+  },
+  openGraph: {
+    title: "DTC E-Commerce Fulfillment in Montana | Such Group E-Commerce",
+    description:
+      "Fast, multi-channel DTC fulfillment from Great Falls, Montana. Seamless Shopify and TikTok Shop integration.",
+    url: "https://suchgroupecommerce.com/services/dtc-ecommerce-fulfillment",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DTC E-Commerce Fulfillment in Montana | Such Group E-Commerce",
+    description:
+      "Fast, multi-channel DTC fulfillment from Great Falls, Montana. Seamless Shopify and TikTok Shop integration.",
   },
 };
 

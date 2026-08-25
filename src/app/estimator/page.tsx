@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { pushDataLayerEvent } from "@/lib/analytics";
 
 const paths = [
   {
@@ -388,14 +389,11 @@ export default function MontanaLogisticsCalculatorPage() {
         return;
       }
       setQuoteSubmitted(true);
-      if (typeof window !== "undefined") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "quote_request_submitted",
-          form_name: "estimator_quote",
-          service_path: selectedPath.label,
-        });
-      }
+      pushDataLayerEvent({
+        event: "quote_request_submitted",
+        form_name: "estimator_quote",
+        service_path: selectedPath.label,
+      });
     } catch {
       setQuoteError("Network error. Please check your connection and try again.");
       setQuoteSubmitting(false);

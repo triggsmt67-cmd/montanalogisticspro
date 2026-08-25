@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import DeconstructedWarehouseScene from "@/components/ui/DeconstructedWarehouseScene";
 import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
+import { pushDataLayerEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   PackageCheck, 
@@ -674,13 +676,10 @@ export default function LandingPage() {
         return;
       }
       setQSubmitted(true);
-      if (typeof window !== "undefined") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "contact_form_submitted",
-          form_name: "questions_modal",
-        });
-      }
+      pushDataLayerEvent({
+        event: "contact_form_submitted",
+        form_name: "questions_modal",
+      });
     } catch {
       setQError("Network error. Please check your connection.");
       setQSubmitting(false);
@@ -730,19 +729,16 @@ export default function LandingPage() {
         return;
       }
       setFitSubmitted(true);
-      if (typeof window !== "undefined") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "fit_review_submitted",
-          form_name: "fit_review",
-          service_path: activePath,
-        });
-        window.dataLayer.push({
-          event: "generate_lead",
-          form_name: "fit_review",
-          service_path: activePath,
-        });
-      }
+      pushDataLayerEvent({
+        event: "fit_review_submitted",
+        form_name: "fit_review",
+        service_path: activePath,
+      });
+      pushDataLayerEvent({
+        event: "generate_lead",
+        form_name: "fit_review",
+        service_path: activePath,
+      });
     } catch {
       setFitError("Network error. Please check your connection.");
       setFitSubmitting(false);
@@ -1132,10 +1128,12 @@ export default function LandingPage() {
                   whileHover={{ y: -2 }}
                   className="relative w-full rounded-[2.5rem] overflow-hidden border border-zinc-200/80 shadow-lg bg-zinc-50 group flex flex-col justify-end min-h-[350px] lg:min-h-full"
                 >
-                  <img 
+                  <Image 
                     src="/warehouse_prep.png" 
                     alt="Such Group E-Commerce Prep Station"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
                   <div className="relative z-10 p-6 text-white bg-zinc-950/20 backdrop-blur-[2px] m-4 rounded-3xl border border-white/10">
@@ -1249,10 +1247,12 @@ export default function LandingPage() {
                 whileHover={{ scale: 1.02 }}
                 className="relative h-48 rounded-[2rem] overflow-hidden border border-zinc-200/80 shadow-md mt-8 group"
               >
-                <img 
+                <Image 
                   src="/warehouse_receiving.png" 
                   alt="Such Group E-Commerce Inbound Audit Process" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-semibold bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-zinc-800/80 flex items-center justify-between shadow-lg">

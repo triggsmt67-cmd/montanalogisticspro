@@ -6,11 +6,24 @@ import { Footer } from "@/components/layout/Footer";
 import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
 
 export const metadata: Metadata = {
-  title: "Amazon Seller Sales Tax Savings Calculator | Montana 3PL ROI",
+  title: "Amazon Seller Sales Tax Savings Calculator",
   description:
     "Calculate your exact ROI with our 3PL tax calculator. See how much you save on Amazon FBA prep by routing retail and wholesale inventory through zero-tax Montana.",
   alternates: {
     canonical: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
+  },
+  openGraph: {
+    title: "Amazon Seller Sales Tax Savings Calculator | Such Group E-Commerce",
+    description:
+      "Calculate your exact ROI with our 3PL tax calculator. See how much you save by routing inventory through zero-tax Montana.",
+    url: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amazon Seller Sales Tax Savings Calculator | Such Group E-Commerce",
+    description:
+      "Calculate your exact ROI with our 3PL tax calculator. See how much you save by routing inventory through zero-tax Montana.",
   },
 };
 

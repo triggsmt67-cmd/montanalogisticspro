@@ -11,6 +11,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://suchgroupecommerce.com/montana-tax-free-3pl",
   },
+  openGraph: {
+    title: "Montana Tax-Free 3PL & FBA Prep Guide | Such Group E-Commerce",
+    description: "Learn how routing inventory through Such Group E-commerce in Montana eliminates checkout sales tax and cuts fulfillment costs.",
+    url: "https://suchgroupecommerce.com/montana-tax-free-3pl",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Montana Tax-Free 3PL & FBA Prep Guide | Such Group E-Commerce",
+    description: "Learn how routing inventory through Such Group E-commerce in Montana eliminates checkout sales tax and cuts fulfillment costs.",
+  },
 };
 
 export default function MontanaTaxFree3PLPage() {
@@ -236,9 +247,22 @@ export default function MontanaTaxFree3PLPage() {
               </div>
               <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Does holding inventory in Montana create state income tax liability?</h3>
-                <p className="m-0 leading-relaxed">No. Federal protection under Public Law 86-272 prevents states from imposing corporate income tax on remote sellers whose local activity is limited to warehousing through an independent third party.</p>
+                <p className="m-0 leading-relaxed">Under 15 U.S. Code &sect; 381 (Public Law 86-272), state corporate income tax is restricted on remote businesses whose local connection is limited to solicitation and third-party logistics warehousing. Always confirm your specific multi-state footprint with qualified tax counsel.</p>
               </div>
             </div>
+          </section>
+
+          {/* Tax & Legal Compliance Disclaimer */}
+          <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed">
+            <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
+              Regulatory &amp; Legal Notice
+            </p>
+            <p>
+              <strong>Educational &amp; Operational Information:</strong> The contents of this website and guide are provided solely for general operational planning and logistics information. Such Group E-Commerce is a third-party logistics (3PL) provider and does not provide legal, CPA, tax, or financial advisory services.
+            </p>
+            <p>
+              <strong>Primary Statutory References:</strong> Montana state sales tax status is governed under Montana Code Annotated (MCA) Title 15. Federal interstate commerce protections are defined under 15 U.S.C. &sect;&sect; 381–384 (Public Law 86-272). Physical presence, economic nexus thresholds, and sales tax sourcing rules vary by individual seller jurisdiction and business entity structure. Always consult a licensed CPA or tax attorney regarding your enterprise tax obligations.
+            </p>
           </section>
         </div>
       </main>

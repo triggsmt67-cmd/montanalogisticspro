@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
   },
+  openGraph: {
+    title: "Washington to Montana 3PL: Skip 10.6% Sales Tax | Such Group E-Commerce",
+    description:
+      "Washington sellers pay up to 10.6% tax. Ship to Montana to legally pay zero checkout tax.",
+    url: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Washington to Montana 3PL: Skip 10.6% Sales Tax | Such Group E-Commerce",
+    description:
+      "Washington sellers pay up to 10.6% tax. Ship to Montana to legally pay zero checkout tax.",
+  },
 };
 
 export default function WashingtonToMontanaPage() {
@@ -295,6 +308,19 @@ export default function WashingtonToMontanaPage() {
               </div>
             </details>
           </div>
+        </section>
+
+        {/* Regulatory & Tax Disclaimer */}
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+          <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
+            Regulatory Notice &amp; Tax Disclaimer
+          </p>
+          <p>
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, B&amp;O tax, or legal counsel.
+          </p>
+          <p>
+            State tax liabilities, Washington Department of Revenue guidelines, and nexus obligations vary based on entity structure and multi-state inventory staging. Sellers must consult a qualified CPA or tax attorney for formal determinations.
+          </p>
         </section>
       </main>
 

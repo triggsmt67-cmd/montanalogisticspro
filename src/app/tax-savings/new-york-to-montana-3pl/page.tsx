@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
   },
+  openGraph: {
+    title: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax | Such Group E-Commerce",
+    description:
+      "New York sellers pay up to 8.875% sales tax. Ship to Montana for zero checkout tax and lower prep costs.",
+    url: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax | Such Group E-Commerce",
+    description:
+      "New York sellers pay up to 8.875% sales tax. Ship to Montana for zero checkout tax and lower prep costs.",
+  },
 };
 
 export default function NewYorkToMontanaPage() {
@@ -275,9 +288,9 @@ export default function NewYorkToMontanaPage() {
             <div className="bg-white rounded-2xl p-6 border border-zinc-200 shadow-sm flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-lg font-bold">Q</div>
               <div>
-                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will this cause New York income tax issues?</h3>
+                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will this cause New York or Montana income tax issues?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  No. Storing goods in Montana through a third-party warehouse like ours is protected under federal Public Law 86-272. You will not owe Montana income tax just for having inventory in our building.
+                  Under 15 U.S. Code &sect; 381 (Public Law 86-272), state corporate income tax is protected for businesses whose local activity is limited to solicitation and 3PL warehousing. Your New York business retains its standard home state filings.
                 </p>
               </div>
             </div>
@@ -291,6 +304,19 @@ export default function NewYorkToMontanaPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Regulatory & Tax Disclaimer */}
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+          <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
+            Regulatory Notice &amp; Tax Disclaimer
+          </p>
+          <p>
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, legal, or accounting advice.
+          </p>
+          <p>
+            New York Department of Taxation and Finance regulations, pass-through entity taxes, and local sales tax rules depend on specific entity formation. Always consult a licensed CPA or tax attorney for formal determinations.
+          </p>
         </section>
       </main>
 

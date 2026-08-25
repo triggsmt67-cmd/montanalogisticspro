@@ -16,13 +16,25 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title:
-    "Wholesale Inventory Storage & Cross-Docking in Montana | Such Group E-commerce",
+  title: "Wholesale Inventory Storage & Cross-Docking in Montana",
   description:
     "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
   alternates: {
     canonical:
       "https://suchgroupecommerce.com/services/wholesale-inventory-storage",
+  },
+  openGraph: {
+    title: "Wholesale Inventory Storage & Cross-Docking in Montana | Such Group E-Commerce",
+    description:
+      "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
+    url: "https://suchgroupecommerce.com/services/wholesale-inventory-storage",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wholesale Inventory Storage & Cross-Docking in Montana | Such Group E-Commerce",
+    description:
+      "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
   },
 };
 

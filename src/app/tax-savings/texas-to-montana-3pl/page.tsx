@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
   },
+  openGraph: {
+    title: "Texas to Montana 3PL: Drop 8.25% Sales Tax | Such Group E-Commerce",
+    description:
+      "Texas sellers pay 8.25% tax. Ship to Montana for zero sales tax and no inventory property tax.",
+    url: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Texas to Montana 3PL: Drop 8.25% Sales Tax | Such Group E-Commerce",
+    description:
+      "Texas sellers pay 8.25% tax. Ship to Montana for zero sales tax and no inventory property tax.",
+  },
 };
 
 export default function TexasToMontanaPage() {
@@ -255,7 +268,7 @@ export default function TexasToMontanaPage() {
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Does this protect me from the January inventory tax?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Yes. Texas appraisal districts can only assess property tax on goods physically inside the state on January 1st. If your inventory is in our Montana warehouse, it is outside their reach.
+                Texas appraisal districts assess business personal property tax on goods physically located in Texas on January 1st. Inventory physically situated in Montana is generally outside Texas property tax jurisdiction. Verify filing requirements with your Texas property tax advisor.
               </p>
             </div>
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
@@ -265,6 +278,19 @@ export default function TexasToMontanaPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Regulatory & Tax Disclaimer */}
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+          <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
+            Regulatory Notice &amp; Tax Disclaimer
+          </p>
+          <p>
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, legal, or franchise tax counsel.
+          </p>
+          <p>
+            Texas Comptroller sales tax rules, Texas franchise tax nexus, and business personal property renditions depend on individual business facts and operations. Consult a licensed CPA or tax attorney.
+          </p>
         </section>
       </main>
 

@@ -357,9 +357,6 @@ function buildCustomerEmail(data: {
               </table>
             </td>
           </tr>
-
-          <!-- Footer -->
-          <tr>
             <td style="background:#ffffff;padding:28px 40px 32px;border-radius:0 0 16px 16px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #f3f4f6;padding-top:24px;">
                 <tr>
@@ -384,8 +381,18 @@ function buildCustomerEmail(data: {
 }
 
 export async function POST(req: NextRequest) {
-  // ── Rate limiting ──────────────────────────────────────────────────────────
+  // ── Payload Size Limit Check ───────────────────────────────────────────────
+  const contentLength = Number(req.headers.get("content-length") ?? 0);
+  if (contentLength > 50_000) {
+    return NextResponse.json(
+      { success: false, error: "Payload too large." },
+      { status: 413 }
+    );
+  }
+
   const ip = getClientIp(req);
+
+  // Rate limit check
   if (isRateLimited(ip)) {
     return NextResponse.json(
       { success: false, error: "Too many requests. Please wait a moment." },
@@ -404,14 +411,11 @@ export async function POST(req: NextRequest) {
   }
 
   // ── Honeypot check ─────────────────────────────────────────────────────────
-  // Bots fill every field including hidden ones. Humans never see this field.
   if (body.website || body.phone_confirm || body.company_url || body.hp_check) {
-    // Silently accept but do nothing — don't tip off the bot
     return NextResponse.json({ success: true });
   }
 
   // ── Time-on-page check ────────────────────────────────────────────────────
-  // A real user takes at least 500ms to interact — catches instant bot posts.
   const submittedAt = Number(body.submittedAt);
   const loadedAt = Number(body.loadedAt);
   if (!submittedAt || !loadedAt || submittedAt - loadedAt < 500) {
@@ -421,22 +425,28 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // ── Field validation ───────────────────────────────────────────────────────
-  const name = String(body.name ?? "").trim();
-  const email = String(body.email ?? "").trim();
-  const volume = String(body.volume ?? "").trim();
-  const friction = String(body.friction ?? "").trim();
-  // Optional: structured fields from the Fit Review / Estimator forms
-  const additionalFields = (
+  // ── Field validation & Sanitization ─────────────────────────────────────────
+  const name = String(body.name ?? "").trim().replace(/[\r\n]/g, " ").slice(0, 100);
+  const email = String(body.email ?? "").trim().replace(/[\r\n]/g, "").slice(0, 254);
+  const volume = String(body.volume ?? "").trim().replace(/[\r\n]/g, " ").slice(0, 100);
+  const friction = String(body.friction ?? "").trim().replace(/[\r\n]/g, " ").slice(0, 200);
+
+  // Optional: structured fields from the Fit Review / Estimator forms (strictly bounded)
+  const additionalFields: Record<string, string> = {};
+  if (
     body.additionalFields &&
     typeof body.additionalFields === "object" &&
     !Array.isArray(body.additionalFields)
-  )
-    ? (body.additionalFields as Record<string, string>)
-    : undefined;
-
-  // Whether to also send a confirmation copy to the customer
-  const sendToCustomer = body.sendToCustomer === true;
+  ) {
+    const entries = Object.entries(body.additionalFields as Record<string, unknown>).slice(0, 30);
+    for (const [k, v] of entries) {
+      const cleanKey = String(k).trim().slice(0, 100);
+      const cleanVal = String(v ?? "").trim().slice(0, 500);
+      if (cleanKey) {
+        additionalFields[cleanKey] = cleanVal;
+      }
+    }
+  }
 
   if (!name || name.length > 100) {
     return NextResponse.json(
@@ -459,7 +469,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // ── Send lead notification to business ───────────────────────────────────
+  // ── Send lead notification to business inboxes ONLY ────────────────────────
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.warn("[submit-plan] RESEND_API_KEY is not configured in environment variables.");
@@ -483,7 +493,7 @@ export async function POST(req: NextRequest) {
         friction,
         ip,
         submittedAt: new Date(submittedAt).toUTCString(),
-        additionalFields,
+        additionalFields: Object.keys(additionalFields).length > 0 ? additionalFields : undefined,
       }),
     });
 
@@ -492,17 +502,6 @@ export async function POST(req: NextRequest) {
     }
   } catch (err) {
     console.error("[submit-plan] Unexpected error sending lead email:", err);
-  }
-
-  // ── Optionally send estimate confirmation to the customer ─────────────────
-  if (sendToCustomer && additionalFields) {
-    // Fire-and-forget — don't block the response on this
-    resend.emails.send({
-      from: "Such Group e-Commerce <leads@suchgroupecommerce.com>",
-      to: email,
-      subject: `📋 Your Estimate Summary — Such Group e-Commerce`,
-      html: buildCustomerEmail({ name, email, additionalFields }),
-    }).catch((err) => console.error("[submit-plan] Customer email error:", err));
   }
 
   return NextResponse.json({ success: true });
