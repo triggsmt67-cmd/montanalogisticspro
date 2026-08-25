@@ -240,29 +240,40 @@ export async function POST(req: NextRequest) {
   if (question.length > 2000)
     return NextResponse.json({ success: false, error: "Question is too long (max 2,000 characters)." }, { status: 400 });
 
-  const resend  = new Resend(process.env.RESEND_API_KEY);
-  const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
-  const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
-
-  const { error } = await resend.emails.send({
-    from:    "Such Group e-Commerce <leads@suchgroupecommerce.com>",
-    to:      toEmails,
-    replyTo: email,
-    subject: `💬 New Question from ${name}`,
-    html: buildQuestionEmail({
-      name,
-      email,
-      phone,
-      question,
-      ip,
-      submittedAt: new Date().toUTCString(),
-    }),
-  });
-
-  if (error) {
-    console.error("[submit-question] Resend error:", error);
-    return NextResponse.json({ success: false, error: "Failed to send. Please try again." }, { status: 500 });
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("[submit-question] Missing RESEND_API_KEY environment variable");
+    return NextResponse.json({ success: false, error: "Email service configuration missing. Please contact support." }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true });
+  try {
+    const resend = new Resend(apiKey);
+    const primaryEmail = process.env.LEAD_TO_EMAIL ?? "trevor@truepath406.com";
+    const toEmails = [primaryEmail, "montanalogisticspro@gmail.com", "todds@sgigf.com"];
+
+    const { error } = await resend.emails.send({
+      from:    "Such Group e-Commerce <leads@suchgroupecommerce.com>",
+      to:      toEmails,
+      replyTo: email,
+      subject: `💬 New Question from ${name}`,
+      html: buildQuestionEmail({
+        name,
+        email,
+        phone,
+        question,
+        ip,
+        submittedAt: new Date().toUTCString(),
+      }),
+    });
+
+    if (error) {
+      console.error("[submit-question] Resend error:", error);
+      return NextResponse.json({ success: false, error: "Failed to send message. Please try again." }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (err: unknown) {
+    console.error("[submit-question] Unexpected error during email dispatch:", err);
+    return NextResponse.json({ success: false, error: "An unexpected error occurred. Please try again." }, { status: 500 });
+  }
 }

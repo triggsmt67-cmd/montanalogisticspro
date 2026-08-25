@@ -662,7 +662,12 @@ export default function LandingPage() {
           submittedAt: qLoadedAt.current ? Date.now() : 0,
         }),
       });
-      const json = await res.json();
+      let json: { success?: boolean; error?: string } = {};
+      try {
+        json = await res.json();
+      } catch {
+        json = { success: false, error: `Server error (${res.status}). Please try again shortly.` };
+      }
       if (!res.ok || !json.success) {
         setQError(json.error ?? "Something went wrong. Please try again.");
         setQSubmitting(false);
@@ -713,7 +718,12 @@ export default function LandingPage() {
           submittedAt: fitLoadedAt.current ? Date.now() : 0,
         }),
       });
-      const json = await res.json();
+      let json: { success?: boolean; error?: string } = {};
+      try {
+        json = await res.json();
+      } catch {
+        json = { success: false, error: `Server error (${res.status}). Please try again shortly.` };
+      }
       if (!res.ok || !json.success) {
         setFitError(json.error ?? "Something went wrong. Please try again.");
         setFitSubmitting(false);
