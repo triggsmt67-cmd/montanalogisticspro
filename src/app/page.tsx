@@ -1770,12 +1770,16 @@ export default function LandingPage() {
             "@context": "https://schema.org",
             "@graph": [
               {
-                "@type": "Organization",
+                "@type": "OnlineBusiness",
                 "@id": "https://suchgroupecommerce.com/#organization",
                 "name": "Such Group E-Commerce",
                 "url": "https://suchgroupecommerce.com",
                 "logo": "https://suchgroupecommerce.com/icon.png",
-                "description": "Tax-free Amazon FBA prep, DTC fulfillment, and B2B wholesale storage based in Great Falls, Montana.",
+                "description": "Nationwide Amazon FBA prep, DTC fulfillment, and B2B wholesale storage operated from Great Falls, Montana.",
+                "areaServed": {
+                  "@type": "Country",
+                  "name": "United States"
+                },
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Great Falls",

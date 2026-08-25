@@ -11,7 +11,7 @@ import {
   CheckCircle2, 
   AlertCircle, 
   Sparkles,
-  Clock
+  Globe2
 } from "lucide-react";
 
 export default function ContactPage() {
@@ -78,7 +78,7 @@ export default function ContactPage() {
         "isPartOf": {
           "@id": "https://suchgroupecommerce.com/#website"
         },
-        "description": "Contact Such Group E-Commerce for questions regarding zero sales tax Amazon FBA prep, DTC fulfillment, and inventory warehousing in Montana."
+        "description": "Contact Such Group E-Commerce about nationwide Amazon FBA prep, DTC fulfillment, and inventory warehousing operated from Montana."
       },
       {
         "@type": "BreadcrumbList",
@@ -131,6 +131,9 @@ export default function ContactPage() {
             <p className="text-zinc-400 text-sm leading-relaxed">
               Have questions about tax-free inventory routing, Amazon prep workflows, custom bundling, or pallet storage? Send us a message and our team will get back to you promptly.
             </p>
+            <p className="text-zinc-500 text-xs leading-relaxed">
+              We onboard and support clients remotely across the United States. Our Great Falls facility receives inventory for approved clients and is not open for walk-in customer service.
+            </p>
 
             <div className="space-y-4 pt-4">
               <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 flex items-start gap-4">
@@ -146,12 +149,12 @@ export default function ContactPage() {
 
               <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 flex items-start gap-4">
                 <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                  <Clock className="w-5 h-5" />
+                  <Globe2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Inbound Receiving Hours</h4>
-                  <p className="text-zinc-400 text-xs mt-0.5">Monday – Friday: Standard Business Hours</p>
-                  <p className="text-zinc-500 text-[11px] mt-1">24–48hr turnaround from dock arrival</p>
+                  <h4 className="text-sm font-bold text-white">Nationwide Client Service</h4>
+                  <p className="text-zinc-400 text-xs mt-0.5">Remote onboarding and support across the United States</p>
+                  <p className="text-zinc-500 text-[11px] mt-1">Inventory shipments accepted for approved clients only</p>
                 </div>
               </div>
             </div>

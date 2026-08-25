@@ -18,12 +18,12 @@ export interface SiteConfig {
     postalCode?: string;
     country: string;
   };
-  businessHours?: string;
+  areaServed: string;
+  facilityAccessNote: string;
   logoUrl: string;
   socialImageUrl: string;
   defaultDescription: string;
   socialProfiles: {
-    googleBusinessUrl?: string;
     linkedinUrl?: string;
     facebookUrl?: string;
     otherUrls?: string[];
@@ -43,10 +43,12 @@ export const SITE_CONFIG: SiteConfig = {
     state: "MT",
     country: "US",
   },
-  businessHours: undefined,
+  areaServed: "United States",
+  facilityAccessNote:
+    "Inventory receiving facility. Not open for walk-in customer service. Shipments are accepted for approved clients only.",
   logoUrl: "https://suchgroupecommerce.com/icon.png",
   socialImageUrl: "https://suchgroupecommerce.com/icon.png",
   defaultDescription:
-    "Tax-free Amazon FBA prep, DTC eCommerce fulfillment, and wholesale inventory storage based in Great Falls, Montana.",
+    "Nationwide Amazon FBA prep, DTC eCommerce fulfillment, and wholesale inventory storage operated from Great Falls, Montana.",
   socialProfiles: {},
 };

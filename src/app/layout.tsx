@@ -15,7 +15,7 @@ const GA_MEASUREMENT_ID = "G-EMR88WJD0N";
 const SITE_URL = "https://suchgroupecommerce.com";
 const SITE_NAME = "Such Group E-Commerce";
 const SITE_DESCRIPTION =
-  "Tax-free Amazon FBA prep & 3PL fulfillment from Montana. 48-hour turnaround guaranteed. Save up to 8% on every wholesale order — zero state sales tax.";
+  "Nationwide tax-free Amazon FBA prep and 3PL fulfillment operated from Montana. 48-hour turnaround guaranteed. Save up to 8% on every wholesale order.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://suchgroupecommerce.com"),

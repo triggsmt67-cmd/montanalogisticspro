@@ -16,14 +16,14 @@ import {
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Such Group E-Commerce — an independent third-party logistics (3PL) and Amazon FBA prep provider based in Great Falls, Montana.",
+    "Learn about Such Group E-Commerce — a nationwide third-party logistics (3PL) and Amazon FBA prep provider operating from Great Falls, Montana.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
     title: "About Such Group E-Commerce | Montana 3PL & FBA Prep",
     description:
-      "Independent 3PL and Amazon FBA prep warehouse in Great Falls, Montana. Built for retail arbitrage, DTC, and wholesale brands.",
+      "Nationwide 3PL and Amazon FBA prep operated from Great Falls, Montana for retail arbitrage, DTC, and wholesale brands.",
     url: "https://suchgroupecommerce.com/about",
     type: "website",
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Such Group E-Commerce | Montana 3PL & FBA Prep",
     description:
-      "Independent 3PL and Amazon FBA prep warehouse in Great Falls, Montana. Built for retail arbitrage, DTC, and wholesale brands.",
+      "Nationwide 3PL and Amazon FBA prep operated from Great Falls, Montana for retail arbitrage, DTC, and wholesale brands.",
   },
 };
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
         "isPartOf": {
           "@id": "https://suchgroupecommerce.com/#website"
         },
-        "description": "Learn about Such Group E-Commerce — an independent third-party logistics (3PL) and Amazon FBA prep provider based in Great Falls, Montana."
+        "description": "Learn about Such Group E-Commerce — a nationwide third-party logistics (3PL) and Amazon FBA prep provider operating from Great Falls, Montana."
       },
       {
         "@type": "BreadcrumbList",
@@ -91,13 +91,13 @@ export default function AboutPage() {
         <div className="space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            Independent Montana Logistics
+            Nationwide Fulfillment from Montana
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Built for Margin Protection and Seamless Fulfillment
           </h1>
           <p className="text-zinc-400 text-base sm:text-lg max-w-3xl leading-relaxed">
-            Such Group E-Commerce is an independent logistics company founded to provide high-precision Amazon FBA prep, DTC fulfillment, and wholesale warehousing directly out of Great Falls, Montana.
+            Such Group E-Commerce provides high-precision Amazon FBA prep, DTC fulfillment, and wholesale warehousing to ecommerce businesses across the United States from our Great Falls, Montana facility.
           </p>
         </div>
 
