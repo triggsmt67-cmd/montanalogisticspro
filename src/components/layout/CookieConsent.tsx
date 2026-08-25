@@ -7,7 +7,8 @@ import { ShieldCheck } from "lucide-react";
 
 declare global {
   interface Window {
-    dataLayer: Array<Record<string, unknown> | string | Date>;
+    dataLayer: Array<Record<string, unknown> | string | Date | unknown[] | IArguments>;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -21,17 +22,24 @@ export function CookieConsent() {
     // Google Consent Mode v2 Update call
     const state = granted ? "granted" : "denied";
     
-    // We push to dataLayer as per the gtag spec
-    window.dataLayer.push("js", new Date());
-    window.dataLayer.push("config", "GTM-TRW2LWQ7");
-    window.dataLayer.push("consent", "update", {
-      ad_storage: state,
-      ad_user_data: state,
-      ad_personalization: state,
-      analytics_storage: state,
-    });
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+      });
+    } else {
+      window.dataLayer.push({
+        event: "consent_update",
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+      });
+    }
 
-    // Custom event to trigger tag rules in GTM UI
+    // Custom event to trigger tag rules in GTM UI & GA4
     window.dataLayer.push({
       event: granted ? "consent_granted" : "consent_denied",
     });

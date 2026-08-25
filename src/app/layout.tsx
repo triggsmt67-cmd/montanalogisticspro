@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 const GTM_ID = "GTM-TRW2LWQ7";
+const GA_MEASUREMENT_ID = "G-EMR88WJD0N";
 
 const SITE_URL = "https://suchgroupecommerce.com";
 const SITE_NAME = "Such Group E-Commerce";
@@ -88,6 +89,7 @@ export default function RootLayout({
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){window.dataLayer.push(arguments);}
+              window.gtag = gtag;
               
               // Check local storage for existing consent preference
               var consentStatus = null;
@@ -102,6 +104,27 @@ export default function RootLayout({
                 'ad_user_data': state,
                 'ad_personalization': state,
                 'analytics_storage': state
+              });
+            `.trim(),
+          }}
+        />
+        {/* Google tag (gtag.js) for Google Analytics */}
+        <Script
+          id="google-tag-script"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script
+          id="google-tag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
               });
             `.trim(),
           }}
