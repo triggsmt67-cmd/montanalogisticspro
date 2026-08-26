@@ -5,24 +5,33 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Washington to Montana 3PL: Skip 10.6% Sales Tax and DOR Audits",
+  title: "Washington to Montana 3PL Tax Savings",
   description:
-    "Washington Amazon sellers pay up to 10.6% checkout tax in Seattle. Ship inventory to Such Group E-commerce in Montana to legally pay zero. FBA prep from $1.45/unit.",
+    "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
+    canonical: "/tax-savings/washington-to-montana-3pl",
   },
   openGraph: {
-    title: "Washington to Montana 3PL: Skip 10.6% Sales Tax | Such Group E-Commerce",
+    title: "Washington to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Washington sellers pay up to 10.6% tax. Ship to Montana to legally pay zero checkout tax.",
+      "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
     url: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Washington to Montana 3PL Tax Savings | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Washington to Montana 3PL: Skip 10.6% Sales Tax | Such Group E-Commerce",
+    title: "Washington to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Washington sellers pay up to 10.6% tax. Ship to Montana to legally pay zero checkout tax.",
+      "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -34,9 +43,9 @@ export default function WashingtonToMontanaPage() {
         "@type": "WebPage",
         "@id": "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
         url: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
-        name: "Washington to Montana 3PL: Skip 10.6% Sales Tax and DOR Audits",
+        name: "Washington to Montana 3PL: Avoid 10.55% Seattle Sales Tax",
         description:
-          "Washington Amazon FBA sellers save up to 10.6% on inventory costs by shipping to Such Group E-commerce in Montana. Avoid DOR audit friction and checkout tax.",
+          "Washington Amazon FBA sellers save on inventory costs by shipping to Such Group E-Commerce in Montana under destination-based sales tax sourcing rules.",
         isPartOf: {
           "@type": "WebSite",
           name: "Such Group E-Commerce",
@@ -101,17 +110,17 @@ export default function WashingtonToMontanaPage() {
         {/* Two Problems Section */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-4">
-            The Pacific Northwest Tax Trap for Amazon Businesses
+            The Pacific Northwest Tax Challenge for Amazon Sellers
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              <strong className="text-zinc-900">Problem one: the checkout tax.</strong> Washington State charges 6.5% sales tax at the base level. Local jurisdictions add on top of that. In Seattle, the combined rate is 10.25%. In Tacoma, 10.2%. Buy $30,000 worth of inventory shipped to a Washington address, and you hand over $3,000 before you sell a single unit.
+              <strong className="text-zinc-900">Problem one: the checkout tax.</strong> Washington State charges 6.5% sales tax at the base level. Local city and transit taxes push combined rates to 10.55% in Seattle (and up to 10.6% in select regional districts). Buy $30,000 worth of online inventory delivered to a Washington address, and you pay over $3,100 in sales tax at checkout before you sell a single unit.
             </p>
             <p>
-              <strong className="text-zinc-900">Problem two: the Department of Revenue.</strong> The Washington DOR is one of the most aggressive tax enforcement agencies in the country. They reject out-of-state resale certificates regularly. They track inventory stored in the state. They go after the B&amp;O tax on gross receipts, not net profit. If you hold goods in Washington, you are on their radar.
+              <strong className="text-zinc-900">Problem two: the Department of Revenue paperwork.</strong> The Washington DOR actively audits out-of-state resale certificates and monitors in-state warehousing. If retail suppliers decline your documentation, capital is tied up in tax payments.
             </p>
             <p>
-              Both problems disappear when you ship to Montana. <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Montana has no sales tax at all</Link>. No state rate. No local rate. No checkout tax. And no state revenue department coming after your resale paperwork.
+              Both frictions are resolved when you ship to Montana. <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Montana has no state or local general sales tax</Link>. Sourcing to a Montana delivery address applies 0% sales tax automatically under destination sourcing rules (RCW 82.32.730).
             </p>
           </div>
         </section>
@@ -148,18 +157,18 @@ export default function WashingtonToMontanaPage() {
               <tbody className="divide-y divide-zinc-200 bg-white text-zinc-700">
                 <tr>
                   <td className="px-6 py-4 font-medium text-zinc-900">Checkout sales tax</td>
-                  <td className="px-6 py-4">Up to 10.6%</td>
+                  <td className="px-6 py-4">10.55% (Seattle) / Up to 10.6%</td>
                   <td className="px-6 py-4 font-bold text-emerald-600">0%</td>
                 </tr>
                 <tr className="bg-zinc-50/50">
-                  <td className="px-6 py-4 font-medium text-zinc-900">DOR audit risk</td>
-                  <td className="px-6 py-4">High. Aggressive enforcement on resellers.</td>
-                  <td className="px-6 py-4 font-semibold text-emerald-600">None. No sales tax system to enforce.</td>
+                  <td className="px-6 py-4 font-medium text-zinc-900">Resale audit exposure</td>
+                  <td className="px-6 py-4">High. Aggressive scrutiny on reseller deductions.</td>
+                  <td className="px-6 py-4 font-semibold text-emerald-600">None on intake. 0% statutory Montana tax.</td>
                 </tr>
                 <tr>
-                  <td className="px-6 py-4 font-medium text-zinc-900">B&amp;O tax exposure</td>
-                  <td className="px-6 py-4">Yes. Gross receipts taxed.</td>
-                  <td className="px-6 py-4 font-semibold text-emerald-600">No. Federal PL 86-272 protection.</td>
+                  <td className="px-6 py-4 font-medium text-zinc-900">Montana B&amp;O tax</td>
+                  <td className="px-6 py-4">N/A</td>
+                  <td className="px-6 py-4 font-semibold text-emerald-600">0%. Montana has no B&amp;O tax.</td>
                 </tr>
                 <tr className="bg-zinc-50/50">
                   <td className="px-6 py-4 font-medium text-zinc-900">Resale certificate hassle</td>
@@ -286,16 +295,16 @@ export default function WashingtonToMontanaPage() {
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                Yes. Sales tax is based on where the goods are delivered. Ship to Montana and the checkout system charges zero. This is how destination-based tax rules work, and it is the standard in most US states.
+                Yes. Under Washington destination sourcing rules (RCW 82.32.730), sales tax on shipped tangible goods is determined by the point of delivery. Sourcing purchases directly to our Montana facility applies Montana&apos;s 0% sales tax rate at checkout.
               </div>
             </details>
             <details className="bg-white rounded-xl border border-zinc-200 shadow-sm group">
               <summary className="cursor-pointer px-6 py-5 text-lg font-bold text-zinc-900 list-none flex items-center justify-between">
-                Will the DOR come after me?
+                How does this affect Washington B&amp;O and home-state tax filing?
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                The DOR audits businesses that hold inventory and conduct sales activity in Washington. When your goods are in Montana and you have no other Washington presence, your exposure drops significantly. We also eliminate the resale certificate rejection problem because Montana does not require one for retail purchases.
+                Shipping inventory to Montana legally avoids destination sales tax on intake. However, businesses registered or domiciled in Washington must continue reporting Washington gross receipts for in-state sales. Always consult a licensed CPA regarding Washington B&amp;O and multi-state nexus filings.
               </div>
             </details>
             <details className="bg-white rounded-xl border border-zinc-200 shadow-sm group">
@@ -304,22 +313,41 @@ export default function WashingtonToMontanaPage() {
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                Yes. Sellers sourcing from British Columbia or Alberta can ship directly into Montana. The freight bypasses Washington entirely, so there is no state sales tax or DOR exposure at any point in the supply chain.
+                Yes. Sellers sourcing from British Columbia or Alberta can ship directly into Montana via the Sweetgrass/I-15 port of entry, bypassing Washington retail sales tax entirely.
               </div>
             </details>
           </div>
         </section>
 
+        {/* Primary Statutory Sources & Citations Block */}
+        <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 mt-12 shadow-sm">
+          <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            Primary Statutory Sources &amp; Citations [Last Reviewed: August 2026]
+          </h3>
+          <ul className="space-y-2 text-xs text-zinc-600">
+            <li>
+              &bull; <strong>[SRC-WA-DOR-001]</strong> Washington State Department of Revenue: <em>Local Sales &amp; Use Tax Rates &amp; Destination Sourcing (RCW 82.32.730)</em>. Confirms 6.5% state rate + 4.05% Seattle local rate (10.55% combined).
+            </li>
+            <li>
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+            </li>
+            <li>
+              &bull; <strong>[SRC-WA-DOR-002]</strong> Washington State Department of Revenue: <em>Business and Occupation (B&amp;O) Tax Guidelines (RCW 82.04)</em>.
+            </li>
+          </ul>
+        </section>
+
         {/* Regulatory & Tax Disclaimer */}
-        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-6">
           <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
             Regulatory Notice &amp; Tax Disclaimer
           </p>
           <p>
-            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, B&amp;O tax, or legal counsel.
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics provider and does not provide formal tax, B&amp;O, or legal counsel.
           </p>
           <p>
-            State tax liabilities, Washington Department of Revenue guidelines, and nexus obligations vary based on entity structure and multi-state inventory staging. Sellers must consult a qualified CPA or tax attorney for formal determinations.
+            Sales tax savings illustrations reflect checkout-tax differences under destination-based sourcing. State tax liabilities, Washington Department of Revenue rules, and nexus obligations vary based on entity structure and multi-state operations. Sellers must consult a qualified CPA or tax attorney for formal determinations.
           </p>
         </section>
       </main>

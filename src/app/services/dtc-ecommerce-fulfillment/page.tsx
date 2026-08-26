@@ -19,25 +19,33 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "DTC E-Commerce Fulfillment in Montana",
+  title: "DTC E-Commerce Fulfillment",
   description:
-    "Fast, multi-channel DTC fulfillment from Great Falls, Montana. See the exact Total Cost of Fulfillment math for shipping your Shopify and TikTok Shop orders.",
+    "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
   alternates: {
-    canonical:
-      "https://suchgroupecommerce.com/services/dtc-ecommerce-fulfillment",
+    canonical: "/services/dtc-ecommerce-fulfillment",
   },
   openGraph: {
-    title: "DTC E-Commerce Fulfillment in Montana | Such Group E-Commerce",
+    title: "DTC E-Commerce Fulfillment | Such Group E-Commerce",
     description:
-      "Fast, multi-channel DTC fulfillment from Great Falls, Montana. Seamless Shopify and TikTok Shop integration.",
+      "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
     url: "https://suchgroupecommerce.com/services/dtc-ecommerce-fulfillment",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DTC E-Commerce Fulfillment | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DTC E-Commerce Fulfillment in Montana | Such Group E-Commerce",
+    title: "DTC E-Commerce Fulfillment | Such Group E-Commerce",
     description:
-      "Fast, multi-channel DTC fulfillment from Great Falls, Montana. Seamless Shopify and TikTok Shop integration.",
+      "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
+    images: ["/og-image.png"],
   },
 };
 

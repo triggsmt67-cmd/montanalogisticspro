@@ -91,12 +91,14 @@ export default function TaxSavingsCalculator() {
             {/* Units Slider */}
             <div className="space-y-3">
               <div className="flex justify-between items-end">
-                <label className="text-sm font-medium text-zinc-300">Monthly Units Processed</label>
+                <label htmlFor="tax-monthly-units" className="text-sm font-medium text-zinc-300">Monthly Units Processed</label>
                 <motion.span key={monthlyUnits} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xl font-bold text-white">
                   {monthlyUnits.toLocaleString()} units
                 </motion.span>
               </div>
               <motion.input
+                id="tax-monthly-units"
+                aria-label="Monthly Units Processed"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="range"
@@ -116,12 +118,14 @@ export default function TaxSavingsCalculator() {
             {/* Cost Slider */}
             <div className="space-y-3">
               <div className="flex justify-between items-end">
-                <label className="text-sm font-medium text-zinc-300">Average Cost Per Unit</label>
+                <label htmlFor="tax-cost-per-unit" className="text-sm font-medium text-zinc-300">Average Cost Per Unit</label>
                 <motion.span key={costPerUnit} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-xl font-bold text-white">
                   ${costPerUnit}
                 </motion.span>
               </div>
               <motion.input
+                id="tax-cost-per-unit"
+                aria-label="Average Cost Per Unit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="range"
@@ -140,8 +144,10 @@ export default function TaxSavingsCalculator() {
 
             {/* State Dropdown */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Current Prep State</label>
+              <label htmlFor="tax-prep-state" className="text-sm font-medium text-zinc-300 block">Current Prep State</label>
               <select
+                id="tax-prep-state"
+                aria-label="Current Prep State"
                 value={taxRate}
                 onChange={(e) => setTaxRate(parseFloat(e.target.value))}
                 className="w-full h-12 bg-zinc-900 border border-zinc-700 rounded-xl px-4 text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors cursor-pointer appearance-none"
@@ -149,11 +155,11 @@ export default function TaxSavingsCalculator() {
                   backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "right 1rem center",
-                  backgroundSize: "1.2em",
+                  backgroundSize: "1.25rem",
                 }}
               >
-                {states.map((s) => (
-                  <option key={s.name} value={s.rate} className="bg-zinc-900 text-white">
+                {states.map((s, idx) => (
+                  <option key={idx} value={s.rate} className="bg-zinc-900 text-white">
                     {s.name}
                   </option>
                 ))}

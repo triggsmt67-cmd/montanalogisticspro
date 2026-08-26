@@ -16,22 +16,31 @@ import {
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Such Group E-Commerce — a nationwide third-party logistics (3PL) and Amazon FBA prep provider operating from Great Falls, Montana.",
+    "Such Group E-Commerce provides nationwide Amazon FBA prep, DTC fulfillment, and wholesale storage from our Great Falls, Montana logistics facility.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
     title: "About Such Group E-Commerce | Montana 3PL & FBA Prep",
     description:
-      "Nationwide 3PL and Amazon FBA prep operated from Great Falls, Montana for retail arbitrage, DTC, and wholesale brands.",
+      "Such Group E-Commerce provides nationwide Amazon FBA prep, DTC fulfillment, and wholesale storage from our Great Falls, Montana logistics facility.",
     url: "https://suchgroupecommerce.com/about",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Such Group E-Commerce | Montana 3PL & FBA Prep",
     description:
-      "Nationwide 3PL and Amazon FBA prep operated from Great Falls, Montana for retail arbitrage, DTC, and wholesale brands.",
+      "Such Group E-Commerce provides nationwide Amazon FBA prep, DTC fulfillment, and wholesale storage from our Great Falls, Montana logistics facility.",
+    images: ["/og-image.png"],
   },
 };
 

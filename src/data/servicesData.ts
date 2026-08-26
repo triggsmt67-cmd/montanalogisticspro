@@ -27,35 +27,35 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       slug: "fba-prep-and-labeling",
       tagline: "Flawless labeling, zero FBA rejection. Built for high-volume sellers.",
       description: "Amazon FBA requirements are notoriously rigid. A single mislabeled carton or missing suffocation warning can land your inventory in stranded status, costing you time, money, and valuable seller metrics. We audit, label, and prep your inventory to guarantee 100% compliance with Amazon’s FBA routing guides. Every unit is scanned at multiple checkpoints to ensure your barcodes are crisp, readable, and applied to the exact specification.",
-      sla: "100% compliance guarantee or we cover any associated Amazon prep error fees.",
-      turnaround: "24 to 48 hours from dock arrival to ready-to-ship.",
-      taxStatus: "100% Tax-Free. Shielded by Montana's zero state sales tax.",
+      sla: "Strict adherence to Amazon 2026 inbound prep guidelines with multi-checkpoint scan verification.*",
+      turnaround: "24 to 48 hours for standard prep orders from complete dock intake.*",
+      taxStatus: "0% Montana State Sales Tax on inventory intake under destination sourcing.",
       benefits: [
         {
-          title: "Zero-Error Scan SLA",
-          description: "Every item and shipping carton is double-scanned using custom scanning checkpoints to verify barcode validity before dispatch."
+          title: "Multi-Scan Verification",
+          description: "Every item and shipping carton is scanned at intake and boxing to verify barcode readability and FNSKU accuracy."
         },
         {
           title: "FNSKU Application",
-          description: "High-contrast thermal labels applied precisely over the original UPC, preventing Amazon from co-mingling your stock."
+          description: "High-contrast thermal labels applied precisely over original UPCs to maintain segregated inventory tracking."
         },
         {
           title: "Carton Labeling & Weighing",
-          description: "Precise box dimensions and weights recorded and printed on official FBA box labels to eliminate carrier and receiving disputes."
+          description: "Box dimensions and scale-calibrated weights printed on official FBA box labels to eliminate carrier disputes."
         },
         {
           title: "Expiration Date Compliance",
-          description: "For grocery and topical items, we verify dates, compile safety documents, and apply human-readable date labels to meet strict Amazon standards."
+          description: "For grocery and topical items, we verify dates and apply human-readable date labels meeting Amazon guidelines."
         }
       ],
       faqs: [
         {
           question: "How do you handle co-mingled inventory?",
-          answer: "We cover or replace original manufacturer UPCs with unique FNSKUs (Amazon barcodes) so your inventory is tracked exclusively to your seller account, eliminating the risk of co-mingled inventory issues."
+          answer: "We cover or replace manufacturer UPCs with unique FNSKUs (Amazon barcodes) so your inventory is tracked exclusively to your seller account."
         },
         {
-          question: "What happens if Amazon flags a prep error on a shipment you processed?",
-          answer: "Under our Compliance SLA, if Amazon issues a chargeback or warning due to a labeling or prep error we committed, we will reimburse the fee and process your next shipment free of charge."
+          question: "What happens if Amazon flags a prep defect on a shipment?",
+          answer: "We adhere strictly to Amazon's published inbound prep standards. In the rare event of a verified barcode or packaging error caused on our line, our team will re-prep and correct the affected units promptly at no additional labor charge."
         },
         {
           question: "Can you source custom shipping materials for our products?",
@@ -172,7 +172,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           title: "Secure Warehousing",
-          description: "Fully insured, climate-controlled, 24/7 video-monitored facility."
+          description: "Fully insured, climate-controlled (60°F–80°F year-round), 24/7 video-monitored facility."
         },
         {
           title: "Cycle Count Audits",
@@ -190,7 +190,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           question: "Is your facility climate-controlled?",
-          answer: "Yes. Our facility is kept within strict temperature ranges to protect sensitive items like cosmetics, nutritional supplements, and electronics from heat degradation."
+          answer: "Yes. Our facility is actively climate-controlled and maintained within a stable 60°F to 80°F range year-round, protecting cosmetics, packaged goods, and sensitive inventory from freezing winter temperatures and summer heat."
         },
         {
           question: "How long can we store inventory at your facility?",
@@ -298,14 +298,14 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       title: "Secure Warehousing",
       slug: "secure-warehousing",
       tagline: "Barcoded inventory tracking. 24/7 security. Zero state inventory tax.",
-      description: "Keep your inventory safe, organized, and accessible. Our Montana facility offers high-security, climate-controlled storage for products of all shapes and sizes. We manage inventory dynamically using barcoded shelf and pallet locations for instant searchability. Your inventory is audited weekly, ensuring physical stock perfectly mirrors your digital storefront data.",
-      sla: "99.98% inventory accuracy tracking with cycle counts.",
-      turnaround: "Inbound inventory received, audited, and binned in under 48 hours.",
+      description: "Keep your inventory safe, organized, and accessible. Our Montana facility offers high-security, climate-controlled warehousing (maintained at 60°F–80°F year-round) for products of all shapes and sizes. We manage inventory dynamically using barcoded shelf and pallet locations for instant searchability. Your inventory is audited regularly, ensuring physical stock mirrors your digital storefront data.",
+      sla: "99.98% inventory accuracy goal with scheduled cycle counts.*",
+      turnaround: "Inbound inventory received, audited, and binned within 24 to 48 business hours.*",
       taxStatus: "Zero state sales tax, receiving tax, or inventory holding taxes.",
       benefits: [
         {
-          title: "Climate-Controlled Storage",
-          description: "Temperature and humidity regulation to protect cosmetics, organic materials, and electronics."
+          title: "Climate-Controlled Storage (60°F–80°F)",
+          description: "Active temperature regulation (never below 60°F in winter, never exceeding 80°F) protecting retail inventory and product packaging."
         },
         {
           title: "Dynamic WMS Tracking",
@@ -331,12 +331,12 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           question: "How frequently do you perform cycle counts?",
-          answer: "We perform weekly cycle counts on high-velocity SKUs and monthly counts on slow-moving inventory to maintain 99.98% inventory data integrity."
+          answer: "We perform regular cycle counts on high-velocity SKUs and scheduled counts on storage inventory to maintain 99.98% inventory data integrity."
         }
       ],
       seo: {
         title: "Secure Warehousing & Storage | Such Group E-Commerce",
-        description: "Climate-controlled, secure warehousing in tax-free Montana. Weekly cycle counts and real-time inventory tracking."
+        description: "Climate-controlled, secure warehousing in tax-free Montana. Regular cycle counts and real-time inventory tracking."
       }
     },
     "direct-to-consumer-pick-and-pack": {
@@ -344,8 +344,8 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       slug: "direct-to-consumer-pick-and-pack",
       tagline: "Rapid order fulfillment. Seamless e-commerce API integrations.",
       description: "Delighting online shoppers requires speed and accuracy. Our team picks, packs, and ships your orders the same day they are placed, integrating directly with Shopify, WooCommerce, and other major storefronts via API. With our automated scanning system, order pick accuracy reaches 99.9%, drastically lowering return rates and keeping customer ratings high.",
-      sla: "Orders placed by 2 PM MT ship same-day with 99.9% pick accuracy.",
-      turnaround: "Same-day dispatch for orders within daily SLA window.",
+      sla: "Targeted same-day fulfillment for eligible orders received before 2:00 PM MT with a 99.9% pick accuracy performance target.*",
+      turnaround: "Same-business-day dispatch for eligible orders within the daily cutoff window.*",
       taxStatus: "No sales tax on picking, packing, or packaging supplies.",
       benefits: [
         {
@@ -353,16 +353,16 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
           description: "Orders sync automatically from your store to our warehouse, and tracking numbers sync back instantly."
         },
         {
-          title: "Same-Day Fulfillment",
-          description: "Prompt same-day handling ensuring your customers receive their packages as quickly as possible."
+          title: "Same-Day Fulfillment Target",
+          description: "Prompt handling ensuring eligible orders received before cutoff depart on the same business day."
         },
         {
           title: "Double-Scan Verification",
-          description: "Items are scanned at pick and scanned again at pack to completely eliminate wrong-item shipments."
+          description: "Items are scanned at pick and scanned again at pack to minimize incorrect item shipments."
         },
         {
           title: "Optimized Carrier Rates",
-          description: "We route packages dynamically through USPS, UPS, FedEx, and DHL to find the fastest, cheapest path."
+          description: "We route packages dynamically through official daily UPS and FedEx sweeps and USPS to find the most efficient path."
         }
       ],
       faqs: [
@@ -372,7 +372,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           question: "What is your daily cutoff time for same-day shipping?",
-          answer: "Our standard cutoff time is 2:00 PM Mountain Time. Orders received before this time are guaranteed to ship same-day."
+          answer: "Our standard cutoff target is 2:00 PM Mountain Time. Eligible orders received before this time are targeted for same-business-day carrier dispatch, subject to carrier sweep schedules."
         },
         {
           question: "How do you handle shipping rate selection?",

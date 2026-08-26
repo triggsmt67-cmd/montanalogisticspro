@@ -6,24 +6,33 @@ import { Footer } from "@/components/layout/Footer";
 import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
 
 export const metadata: Metadata = {
-  title: "Amazon Seller Sales Tax Savings Calculator",
+  title: "Amazon Tax Savings Calculator",
   description:
-    "Calculate your exact ROI with our 3PL tax calculator. See how much you save on Amazon FBA prep by routing retail and wholesale inventory through zero-tax Montana.",
+    "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
+    canonical: "/montana-tax-savings-calculator",
   },
   openGraph: {
-    title: "Amazon Seller Sales Tax Savings Calculator | Such Group E-Commerce",
+    title: "Amazon Tax Savings Calculator | Such Group E-Commerce",
     description:
-      "Calculate your exact ROI with our 3PL tax calculator. See how much you save by routing inventory through zero-tax Montana.",
+      "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
     url: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Amazon Tax Savings Calculator | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amazon Seller Sales Tax Savings Calculator | Such Group E-Commerce",
+    title: "Amazon Tax Savings Calculator | Such Group E-Commerce",
     description:
-      "Calculate your exact ROI with our 3PL tax calculator. See how much you save by routing inventory through zero-tax Montana.",
+      "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
+    images: ["/og-image.png"],
   },
 };
 

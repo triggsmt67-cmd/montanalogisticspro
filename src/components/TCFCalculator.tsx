@@ -61,13 +61,15 @@ export default function TCFCalculator() {
           <div className="space-y-6">
             {/* Acq Cost */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Product Acquisition Cost</label>
+              <label htmlFor="tcf-acq-cost" className="text-sm font-medium text-zinc-300 block">Product Acquisition Cost</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono" aria-hidden="true">$</span>
                 <input 
+                  id="tcf-acq-cost"
                   type="number" 
                   step="0.01"
                   min="0"
+                  aria-label="Product Acquisition Cost in dollars"
                   value={acquisitionCost === 0 ? "" : acquisitionCost}
                   onChange={(e) => setAcquisitionCost(parseFloat(e.target.value) || 0)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-8 pr-4 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
@@ -77,32 +79,36 @@ export default function TCFCalculator() {
 
             {/* Tax Rate */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Origin Checkout Sales Tax</label>
+              <label htmlFor="tcf-tax-rate" className="text-sm font-medium text-zinc-300 block">Origin Checkout Sales Tax</label>
               <div className="relative">
                 <input 
+                  id="tcf-tax-rate"
                   type="number" 
                   step="0.01"
                   min="0"
+                  aria-label="Origin Checkout Sales Tax percentage"
                   value={taxRate === 0 ? "" : taxRate}
                   onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-4 pr-8 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono">%</span>
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono" aria-hidden="true">%</span>
               </div>
             </div>
 
             {/* Prep Fee */}
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-zinc-300 block">Such Group Prep Fee</label>
+                <label htmlFor="tcf-prep-fee" className="text-sm font-medium text-zinc-300 block">Such Group Prep Fee</label>
                 <span className="text-xs text-emerald-400 font-mono">Tier: ${prepFee.toFixed(2)}/unit</span>
               </div>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono" aria-hidden="true">$</span>
                 <input 
+                  id="tcf-prep-fee"
                   type="number" 
                   step="0.01"
                   min="0"
+                  aria-label="Such Group Prep Fee in dollars"
                   value={prepFee === 0 ? "" : prepFee}
                   onChange={(e) => {
                     setManualPrepFee(true);
@@ -115,13 +121,15 @@ export default function TCFCalculator() {
 
             {/* Freight Premium */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Est. Freight Zone Premium</label>
+              <label htmlFor="tcf-freight-premium" className="text-sm font-medium text-zinc-300 block">Est. Freight Zone Premium</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono" aria-hidden="true">$</span>
                 <input 
+                  id="tcf-freight-premium"
                   type="number" 
                   step="0.01"
                   min="0"
+                  aria-label="Estimated Freight Zone Premium in dollars"
                   value={freightPremium === 0 ? "" : freightPremium}
                   onChange={(e) => setFreightPremium(parseFloat(e.target.value) || 0)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-8 pr-4 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
@@ -131,17 +139,19 @@ export default function TCFCalculator() {
 
             {/* Volume */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-zinc-300 block">Monthly Unit Volume</label>
+              <label htmlFor="tcf-monthly-volume" className="text-sm font-medium text-zinc-300 block">Monthly Unit Volume</label>
               <div className="relative">
                 <input 
+                  id="tcf-monthly-volume"
                   type="number" 
                   step="1"
                   min="0"
+                  aria-label="Monthly Unit Volume"
                   value={volume === 0 ? "" : volume}
                   onChange={(e) => handleVolumeChange(parseFloat(e.target.value) || 0)}
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-4 pr-16 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono text-sm">units</span>
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono text-sm" aria-hidden="true">units</span>
               </div>
             </div>
 

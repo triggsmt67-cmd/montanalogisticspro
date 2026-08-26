@@ -6,21 +6,33 @@ import { Footer } from "@/components/layout/Footer";
 import TCFCalculator from "@/components/TCFCalculator";
 import { ArrowLeft } from "lucide-react";
 export const metadata: Metadata = {
-  title: "Montana Tax-Free 3PL & FBA Prep: Sourcing Mechanics, Pricing, and Total Fulfillment Math",
-  description: "Learn how routing inventory through Such Group E-commerce in Montana eliminates checkout sales tax and cuts fulfillment costs for Amazon FBA and DTC brands.",
+  title: "Montana Tax-Free 3PL Guide",
+  description:
+    "Learn how sourcing inventory through Such Group E-Commerce in Montana eliminates checkout sales tax and cuts fulfillment costs for Amazon and DTC brands.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/montana-tax-free-3pl",
+    canonical: "/montana-tax-free-3pl",
   },
   openGraph: {
-    title: "Montana Tax-Free 3PL & FBA Prep Guide | Such Group E-Commerce",
-    description: "Learn how routing inventory through Such Group E-commerce in Montana eliminates checkout sales tax and cuts fulfillment costs.",
+    title: "Montana Tax-Free 3PL Guide | Such Group E-Commerce",
+    description:
+      "Learn how sourcing inventory through Such Group E-Commerce in Montana eliminates checkout sales tax and cuts fulfillment costs for Amazon and DTC brands.",
     url: "https://suchgroupecommerce.com/montana-tax-free-3pl",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Montana Tax-Free 3PL Guide | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Montana Tax-Free 3PL & FBA Prep Guide | Such Group E-Commerce",
-    description: "Learn how routing inventory through Such Group E-commerce in Montana eliminates checkout sales tax and cuts fulfillment costs.",
+    title: "Montana Tax-Free 3PL Guide | Such Group E-Commerce",
+    description:
+      "Learn how sourcing inventory through Such Group E-Commerce in Montana eliminates checkout sales tax and cuts fulfillment costs for Amazon and DTC brands.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -70,10 +82,10 @@ export default function MontanaTaxFree3PLPage() {
           },
           {
             "@type": "Question",
-            "name": "Does holding inventory in Montana create state income tax liability?",
+            "name": "Does holding inventory in Montana create state tax liability?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. Federal protection under Public Law 86-272 prevents states from imposing corporate income tax on remote sellers whose local activity is limited to warehousing through an independent third party."
+              "text": "Holding inventory in Montana triggers 0% Montana state sales tax under MCA Title 15. Remote businesses maintain standard home-state income and franchise tax obligations and should consult their CPA."
             }
           }
         ]
@@ -149,19 +161,19 @@ export default function MontanaTaxFree3PLPage() {
 
           {/* Section 3 */}
           <section className="space-y-4 text-zinc-700">
-            <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Physical Nexus & Multi-State Rules</h2>
+            <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Physical Sourcing &amp; Multi-State Tax Rules</h2>
             <ul className="list-disc pl-6 space-y-3">
-              <li><strong className="text-zinc-900">Montana Presence:</strong> Storing inventory at Such Group E-commerce establishes physical presence in Montana. Because Montana levies no statewide sales tax, no local tax returns or filings are triggered.</li>
-              <li><strong className="text-zinc-900">Income Tax Protection:</strong> Out-of-state merchants operating through independent Montana warehouses remain protected under Public Law 86-272, shielding remote entities from local corporate income tax.</li>
-              <li><strong className="text-zinc-900">Downstream Amazon Nexus:</strong> Once Such Group E-commerce ships prepped inventory into Amazon’s inbound network, physical presence nexus is triggered in destination states holding the inventory.</li>
+              <li><strong className="text-zinc-900">Montana Sourcing:</strong> Receiving inventory at Such Group E-Commerce applies destination-based sales tax sourcing. Because Montana levies 0% statewide sales tax (MCA Title 15), no sales tax is collected on intake.</li>
+              <li><strong className="text-zinc-900">Multi-State Tax Sourcing:</strong> Out-of-state merchants operating through independent Montana warehouses maintain their standard home-state income, franchise, and gross receipts tax filing obligations.</li>
+              <li><strong className="text-zinc-900">Downstream Amazon Nexus:</strong> Once Such Group E-Commerce ships prepped inventory into Amazon’s inbound network, physical presence nexus is triggered in destination states holding the inventory.</li>
             </ul>
           </section>
 
           {/* Section 4 */}
           <section className="space-y-4 text-zinc-700">
-            <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Such Group E-Commerce Operations & Service Tiers</h2>
+            <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Such Group E-Commerce Operations &amp; Service Tiers</h2>
             <p className="leading-relaxed">
-              Situated in Great Falls, Montana, Such Group E-commerce provides direct access to primary transport corridors (I-15 and I-90) for swift regional dispatch.
+              Situated in Great Falls, Montana, Such Group E-Commerce provides direct access to primary transport corridors (I-15 and I-90) for swift regional dispatch.
             </p>
 
             <h3 className="text-lg font-bold text-zinc-900 mt-6 mb-2">Unit Prep Pricing Schedule:</h3>
@@ -171,7 +183,7 @@ export default function MontanaTaxFree3PLPage() {
               <li>5,001 – 10,000+ units: $1.00 / unit</li>
             </ul>
 
-            <h3 className="text-lg font-bold text-zinc-900 mt-6 mb-2">Warehouse Terms & Specialized Capabilities:</h3>
+            <h3 className="text-lg font-bold text-zinc-900 mt-6 mb-2">Warehouse Terms &amp; Capabilities:</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-zinc-900">Storage Allocation:</strong> First 14 days free; tiered monthly storage thereafter.</li>
               <li><strong className="text-zinc-900">Channel Integrations:</strong> Amazon FBA/FBM, TikTok Shop, Shopify, Walmart Fulfillment Services (WFS).</li>
@@ -183,9 +195,9 @@ export default function MontanaTaxFree3PLPage() {
           <section className="space-y-4 text-zinc-700">
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Standard Operating Procedure: Getting Started</h2>
             <ol className="list-decimal pl-6 space-y-3">
-              <li><strong className="text-zinc-900">Address Configuration:</strong> Set your ship-to address in your sourcing tools to Such Group E-commerce’s Great Falls warehouse address.</li>
+              <li><strong className="text-zinc-900">Address Configuration:</strong> Set your ship-to address in your sourcing tools to Such Group E-Commerce’s Great Falls warehouse address.</li>
               <li><strong className="text-zinc-900">Inbound Pre-Alerts:</strong> Submit your receiving manifests with expected ASINs, unit counts, and carrier tracking details.</li>
-              <li><strong className="text-zinc-900">Receiving & FBA Prep:</strong> Staff inspect items, apply FNSKU barcodes, execute poly-bagging or bundling, and log inventory.</li>
+              <li><strong className="text-zinc-900">Receiving &amp; FBA Prep:</strong> Staff inspect items, apply FNSKU barcodes, execute poly-bagging or bundling, and log inventory.</li>
               <li><strong className="text-zinc-900">Outbound Dispatch:</strong> Box dimensions are uploaded to Amazon Seller Central, carrier labels are generated, and shipments head out to destination fulfillment centers.</li>
             </ol>
           </section>
@@ -206,10 +218,10 @@ export default function MontanaTaxFree3PLPage() {
               <Link href="/tax-savings/washington-to-montana-3pl" className="group flex flex-col p-6 bg-white border border-zinc-200 rounded-xl shadow-sm hover:shadow-md hover:border-amber-300 transition-all">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-zinc-900 text-lg group-hover:text-amber-600 transition-colors">Washington</span>
-                  <span className="text-sm font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">10.6% Savings</span>
+                  <span className="text-sm font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">10.55% Savings</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Eliminate Seattle/King County checkout taxes and DOR exposure.
+                  Eliminate Seattle/King County checkout sales taxes on inventory intake.
                 </p>
               </Link>
               <Link href="/tax-savings/texas-to-montana-3pl" className="group flex flex-col p-6 bg-white border border-zinc-200 rounded-xl shadow-sm hover:shadow-md hover:border-amber-300 transition-all">
@@ -242,12 +254,12 @@ export default function MontanaTaxFree3PLPage() {
                 <p className="m-0 leading-relaxed">Montana charges 0% retail sales tax. Shipping purchases directly to a Montana prep facility eliminates checkout tax under destination sourcing rules, saving 5% to 10% on inventory acquisition.</p>
               </div>
               <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
-                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">What are the baseline prep rates for Such Group E-commerce?</h3>
+                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">What are the baseline prep rates for Such Group E-Commerce?</h3>
                 <p className="m-0 leading-relaxed">Monthly FBA prep pricing is volume-tiered: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit (over 10,000 by quote). Wholesale prep is $1.15 down to $0.90 per unit. Price includes receiving, inspection, wrapping, poly-bagging, FNSKU labeling, reused boxes, and dunnage. Storage is free for the first 14 days.</p>
               </div>
               <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
-                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Does holding inventory in Montana create state income tax liability?</h3>
-                <p className="m-0 leading-relaxed">Under 15 U.S. Code &sect; 381 (Public Law 86-272), state corporate income tax is restricted on remote businesses whose local connection is limited to solicitation and third-party logistics warehousing. Always confirm your specific multi-state footprint with qualified tax counsel.</p>
+                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Does holding inventory in Montana create state tax liability?</h3>
+                <p className="m-0 leading-relaxed">Holding inventory in Montana incurs zero Montana state sales tax under MCA Title 15. For income and franchise taxes, multi-state nexus rules apply based on your entity structure. Always confirm your multi-state tax footprint with qualified CPA counsel.</p>
               </div>
             </div>
           </section>

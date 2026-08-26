@@ -47,7 +47,7 @@ export const SITE_CONFIG: SiteConfig = {
   facilityAccessNote:
     "Inventory receiving facility. Not open for walk-in customer service. Shipments are accepted for approved clients only.",
   logoUrl: "https://suchgroupecommerce.com/icon.png",
-  socialImageUrl: "https://suchgroupecommerce.com/icon.png",
+  socialImageUrl: "https://suchgroupecommerce.com/og-image.png",
   defaultDescription:
     "Nationwide Amazon FBA prep, DTC eCommerce fulfillment, and wholesale inventory storage operated from Great Falls, Montana.",
   socialProfiles: {},

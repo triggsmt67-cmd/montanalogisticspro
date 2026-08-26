@@ -16,25 +16,33 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Wholesale Inventory Storage & Cross-Docking in Montana",
+  title: "Wholesale Storage & Cross-Docking",
   description:
-    "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
+    "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
   alternates: {
-    canonical:
-      "https://suchgroupecommerce.com/services/wholesale-inventory-storage",
+    canonical: "/services/wholesale-inventory-storage",
   },
   openGraph: {
-    title: "Wholesale Inventory Storage & Cross-Docking in Montana | Such Group E-Commerce",
+    title: "Wholesale Storage & Cross-Docking | Such Group E-Commerce",
     description:
-      "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
+      "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
     url: "https://suchgroupecommerce.com/services/wholesale-inventory-storage",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Wholesale Storage & Cross-Docking | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wholesale Inventory Storage & Cross-Docking in Montana | Such Group E-Commerce",
+    title: "Wholesale Storage & Cross-Docking | Such Group E-Commerce",
     description:
-      "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
+      "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -224,10 +232,10 @@ export default function WholesaleInventoryStoragePage() {
                       <Globe className="w-6 h-6" />
                     </div>
                   </div>
-                  <p className="text-white font-bold text-sm mb-1">FTZ 274</p>
+                  <p className="text-white font-bold text-sm mb-1">B2B Cross-Docking</p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Tariff and duty deferrals on imported goods until domestic
-                    entry.
+                    Rapid freight de-consolidation, pallet staging, and regional
+                    freight routing.
                   </p>
                 </div>
 
@@ -241,7 +249,7 @@ export default function WholesaleInventoryStoragePage() {
                     Climate-Controlled
                   </p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Temperature-managed staging for sensitive inventory.
+                    Maintained at 60°F–80°F year-round for sensitive products.
                   </p>
                 </div>
               </div>
@@ -338,7 +346,7 @@ export default function WholesaleInventoryStoragePage() {
                   <br />
                   &bull; <strong>10,000+ units:</strong> Contact us for a custom quote
                   <br />
-                  Price includes receiving, inspection, wrapping, poly bag, FNSKU label, reused boxes, and dunnage. For enterprise freight storage, rail transloading, and FTZ cross-docking, we evaluate your pallet count and staging duration for a flat, predictable structure.
+                  Price includes receiving, inspection, wrapping, poly bag, FNSKU label, reused boxes, and dunnage. For enterprise freight storage, pallet cross-docking, and intermodal transport, we evaluate your pallet count and staging duration for a flat, predictable structure.
                 </p>
               </div>
             </div>

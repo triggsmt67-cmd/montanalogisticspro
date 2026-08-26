@@ -7,9 +7,32 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy & Cookie Policy",
-  description: "Learn how Such Group E-Commerce protects your data, handles cookies, and respects user consent.",
+  description:
+    "Read how Such Group E-Commerce collects, protects, and handles personal data, cookies, and user consent across our logistics platform and calculators.",
   alternates: {
     canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy & Cookie Policy | Such Group E-Commerce",
+    description:
+      "Read how Such Group E-Commerce collects, protects, and handles personal data, cookies, and user consent across our logistics platform and calculators.",
+    url: "https://suchgroupecommerce.com/privacy-policy",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Such Group E-Commerce Privacy & Cookie Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy & Cookie Policy | Such Group E-Commerce",
+    description:
+      "Read how Such Group E-Commerce collects, protects, and handles personal data, cookies, and user consent across our logistics platform and calculators.",
+    images: ["/og-image.png"],
   },
 };
 

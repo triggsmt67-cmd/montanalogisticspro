@@ -5,24 +5,33 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "California to Montana 3PL: Avoid 10.25% Sales Tax on FBA Prep",
+  title: "California to Montana 3PL Tax Savings",
   description:
-    "California sellers pay up to 10.25% sales tax on retail arbitrage and inventory. Ship to Such Group E-commerce in Montana to legally eliminate checkout tax. FBA prep from $1.45/unit.",
+    "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
+    canonical: "/tax-savings/california-to-montana-3pl",
   },
   openGraph: {
-    title: "California to Montana 3PL: Avoid 10.25% Sales Tax | Such Group E-Commerce",
+    title: "California to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "California sellers pay up to 10.25% sales tax. Ship to Montana to legally eliminate checkout tax.",
+      "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
     url: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "California to Montana 3PL Tax Savings | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "California to Montana 3PL: Avoid 10.25% Sales Tax | Such Group E-Commerce",
+    title: "California to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "California sellers pay up to 10.25% sales tax. Ship to Montana to legally eliminate checkout tax.",
+      "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -296,13 +305,32 @@ export default function CaliforniaToMontanaPage() {
           </div>
         </section>
 
+        {/* Primary Statutory Sources & Citations Block */}
+        <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 mt-12 shadow-sm">
+          <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            Primary Statutory Sources &amp; Citations [Last Reviewed: August 2026]
+          </h3>
+          <ul className="space-y-2 text-xs text-zinc-600">
+            <li>
+              &bull; <strong>[SRC-CDTFA-001]</strong> California Department of Tax and Fee Administration: <em>Sales and Use Tax Rates &amp; Regulation 1620 (Interstate Sourcing)</em>. Confirms 7.25% statewide base rate with combined district taxes up to 10.25%–11.25%.
+            </li>
+            <li>
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+            </li>
+            <li>
+              &bull; <strong>[SRC-CDTFA-002]</strong> California Department of Tax and Fee Administration: <em>Regulation 1668 (Sales for Resale)</em>.
+            </li>
+          </ul>
+        </section>
+
         {/* Regulatory & Tax Disclaimer */}
-        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-6">
           <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
             Regulatory Notice &amp; Tax Disclaimer
           </p>
           <p>
-            <strong>Operational Information Only:</strong> The comparisons provided on this page are for logistical and operational planning purposes. Such Group E-Commerce is a 3PL fulfillment warehouse and not a tax or legal advisor.
+            <strong>Operational Information Only:</strong> The comparisons provided on this page are for logistical and operational planning purposes. Such Group E-Commerce is a 3PL fulfillment provider and not a tax or legal advisor.
           </p>
           <p>
             Sales tax sourcing, physical presence nexus, and California CDTFA regulations depend on individual corporate structures and sourcing channels. Sellers should verify their specific tax obligations with a certified public accountant (CPA) or tax attorney.

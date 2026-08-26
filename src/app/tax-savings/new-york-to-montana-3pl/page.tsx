@@ -5,24 +5,33 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax on Amazon FBA Inventory",
+  title: "New York to Montana 3PL Tax Savings",
   description:
-    "New York Amazon sellers pay up to 8.875% sales tax in the NYC metro area. Ship inventory to Such Group E-commerce in Montana for zero checkout tax and lower warehouse costs. FBA prep from $1.45/unit.",
+    "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
+    canonical: "/tax-savings/new-york-to-montana-3pl",
   },
   openGraph: {
-    title: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax | Such Group E-Commerce",
+    title: "New York to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "New York sellers pay up to 8.875% sales tax. Ship to Montana for zero checkout tax and lower prep costs.",
+      "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
     url: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "New York to Montana 3PL Tax Savings | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax | Such Group E-Commerce",
+    title: "New York to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "New York sellers pay up to 8.875% sales tax. Ship to Montana for zero checkout tax and lower prep costs.",
+      "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -288,9 +297,9 @@ export default function NewYorkToMontanaPage() {
             <div className="bg-white rounded-2xl p-6 border border-zinc-200 shadow-sm flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-lg font-bold">Q</div>
               <div>
-                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will this cause New York or Montana income tax issues?</h3>
+                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will this cause New York or Montana tax filing issues?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  Under 15 U.S. Code &sect; 381 (Public Law 86-272), state corporate income tax is protected for businesses whose local activity is limited to solicitation and 3PL warehousing. Your New York business retains its standard home state filings.
+                  Sourcing inventory directly to Montana eliminates checkout sales tax at delivery under destination sourcing. Your New York entity maintains its standard home-state tax filings. Consult your CPA regarding New York franchise tax and corporate returns.
                 </p>
               </div>
             </div>
@@ -299,20 +308,39 @@ export default function NewYorkToMontanaPage() {
               <div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">How long does freight take from New York?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  Ground shipping from the NYC metro area to Great Falls takes 4 to 5 business days. If your suppliers are in the Midwest, transit drops to 2 to 3 days. We start processing your units within 24 hours of arrival.
+                  Ground shipping from the NYC metro area to Great Falls takes approximately 4 to 5 business days under normal carrier transit conditions. Midwest suppliers drop to 2 to 3 days.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
+        {/* Primary Statutory Sources & Citations Block */}
+        <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 mt-12 shadow-sm">
+          <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            Primary Statutory Sources &amp; Citations [Last Reviewed: August 2026]
+          </h3>
+          <ul className="space-y-2 text-xs text-zinc-600">
+            <li>
+              &bull; <strong>[SRC-NY-DTF-001]</strong> New York State Department of Taxation and Finance: <em>Publication 718 (New York State &amp; Local Sales Tax Rates)</em>. Confirms 4.0% state + 4.5% NYC + 0.375% MCTD surcharge (8.875% combined NYC rate).
+            </li>
+            <li>
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+            </li>
+            <li>
+              &bull; <strong>[SRC-NY-DTF-002]</strong> New York State Department of Taxation and Finance: <em>Form ST-120 (Resale Certificate Guidance)</em>.
+            </li>
+          </ul>
+        </section>
+
         {/* Regulatory & Tax Disclaimer */}
-        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-6">
           <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
             Regulatory Notice &amp; Tax Disclaimer
           </p>
           <p>
-            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, legal, or accounting advice.
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics provider and does not provide formal tax, legal, or accounting advice.
           </p>
           <p>
             New York Department of Taxation and Finance regulations, pass-through entity taxes, and local sales tax rules depend on specific entity formation. Always consult a licensed CPA or tax attorney for formal determinations.

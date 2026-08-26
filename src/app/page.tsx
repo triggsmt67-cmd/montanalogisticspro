@@ -243,10 +243,10 @@ const PATH_CONTENT = {
     hero: {
       eyebrow: "B2B Wholesale Storage",
       headline: "Stage inventory tax-free. Cross-dock at scale.",
-      body: "Enterprise wholesalers use our Great Falls facility to eliminate inventory property taxes, access BNSF rail transloading, and exploit Foreign-Trade Zone 274 tariff deferrals.",
+      body: "Enterprise wholesalers use our Great Falls facility to eliminate inventory property taxes, access regional rail freight corridors, and stage bulk pallets tax-free.",
       primaryCta: "Start Storage Review",
       secondaryCta: "See Storage Services",
-      metrics: ["Zero Inventory Tax", "BNSF Rail Access", "FTZ 274", "Climate-Controlled", "Cross-Docking"],
+      metrics: ["Zero Inventory Tax", "Rail Freight Access", "Climate-Controlled", "Cross-Docking", "Pallet Staging"],
     },
     problems: {
       headline: "Enterprise storage gets punished in the wrong state.",
@@ -258,8 +258,8 @@ const PATH_CONTENT = {
           icon: DollarSign
         },
         {
-          title: "Tariff costs pile up",
-          body: "Imported goods trigger immediate duty payments. Without Foreign-Trade Zone access, you pay tariffs before you sell a single unit.",
+          title: "Out-of-state holding fees add up",
+          body: "Holding inventory in states with property taxes or steep warehouse rates erodes bulk purchasing margins over long staging cycles.",
           icon: AlertCircle
         },
         {
@@ -277,7 +277,7 @@ const PATH_CONTENT = {
     services: [
       {
         title: "Climate-Controlled Staging",
-        body: "Temperature-managed storage for inventory subject to degradation or strict manufacturer requirements.",
+        body: "Temperature-managed storage (60°F–80°F) for inventory subject to degradation or strict manufacturer requirements.",
         icon: Layers
       },
       {
@@ -291,8 +291,8 @@ const PATH_CONTENT = {
         icon: PackageCheck
       },
       {
-        title: "FTZ 274 Tariff Deferrals",
-        body: "Stage imported goods in Foreign-Trade Zone 274. Defer tariffs and duties until domestic entry.",
+        title: "Zero Inventory Property Tax",
+        body: "Stage bulk inventory in Montana with zero state inventory property taxes or inventory holding levies.",
         icon: DollarSign
       },
       {
@@ -378,7 +378,7 @@ function ServiceCard({ service, activePath, index }: ServiceCardProps) {
       "Climate-Controlled Staging",
       "BNSF Rail Transloading",
       "Cross-Docking Operations",
-      "FTZ 274 Tariff Deferrals",
+      "Zero Inventory Property Tax",
       "Cycle Count Auditing",
       "Direct Inbound Receiving",
     ];
@@ -922,7 +922,7 @@ export default function LandingPage() {
               </div>
               <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Need B2B Storage</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "wholesale" ? "text-zinc-300" : "text-zinc-600"}`}>
-                Enterprise pallet staging, BNSF rail cross-docking, and FTZ 274 tariff deferrals for wholesale operations.
+                Enterprise pallet staging, BNSF rail cross-docking, and zero inventory property taxes for wholesale operations.
               </p>
             </motion.button>
           </div>

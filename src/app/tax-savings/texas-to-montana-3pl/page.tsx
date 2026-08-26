@@ -5,24 +5,33 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Texas to Montana 3PL: Drop 8.25% Sales Tax and Inventory Property Tax",
+  title: "Texas to Montana 3PL Tax Savings",
   description:
-    "Texas Amazon sellers pay 8.25% checkout tax and face annual inventory property taxes. Ship to Such Group E-commerce in Montana. Zero sales tax. No property tax on goods. FBA prep from $1.45/unit.",
+    "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
+    canonical: "/tax-savings/texas-to-montana-3pl",
   },
   openGraph: {
-    title: "Texas to Montana 3PL: Drop 8.25% Sales Tax | Such Group E-Commerce",
+    title: "Texas to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Texas sellers pay 8.25% tax. Ship to Montana for zero sales tax and no inventory property tax.",
+      "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
     url: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Texas to Montana 3PL Tax Savings | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Texas to Montana 3PL: Drop 8.25% Sales Tax | Such Group E-Commerce",
+    title: "Texas to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Texas sellers pay 8.25% tax. Ship to Montana for zero sales tax and no inventory property tax.",
+      "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -280,13 +289,32 @@ export default function TexasToMontanaPage() {
           </div>
         </section>
 
+        {/* Primary Statutory Sources & Citations Block */}
+        <section className="bg-white rounded-2xl border border-zinc-200 p-6 sm:p-8 mt-12 shadow-sm">
+          <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            Primary Statutory Sources &amp; Citations [Last Reviewed: August 2026]
+          </h3>
+          <ul className="space-y-2 text-xs text-zinc-600">
+            <li>
+              &bull; <strong>[SRC-TX-COMP-001]</strong> Texas Comptroller of Public Accounts: <em>Sales and Use Tax Rates (Rule 3.286)</em>. Confirms 6.25% state rate + local taxes up to 2.0% (8.25% maximum).
+            </li>
+            <li>
+              &bull; <strong>[SRC-TX-PROP-001]</strong> Texas Tax Code: <em>§ 11.01 (Real &amp; Tangible Personal Property) &amp; § 22.01 (Rendition Generally)</em>. Governs tangible personal property physically located in Texas on January 1.
+            </li>
+            <li>
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+            </li>
+          </ul>
+        </section>
+
         {/* Regulatory & Tax Disclaimer */}
-        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-12">
+        <section className="bg-zinc-100 rounded-2xl border border-zinc-200 p-6 sm:p-8 text-xs text-zinc-600 space-y-2 leading-relaxed mt-6">
           <p className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
             Regulatory Notice &amp; Tax Disclaimer
           </p>
           <p>
-            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics warehouse and does not provide formal tax, legal, or franchise tax counsel.
+            <strong>Operational Information Only:</strong> Such Group E-Commerce is a 3PL logistics provider and does not provide formal tax, legal, or franchise tax counsel.
           </p>
           <p>
             Texas Comptroller sales tax rules, Texas franchise tax nexus, and business personal property renditions depend on individual business facts and operations. Consult a licensed CPA or tax attorney.

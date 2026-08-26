@@ -68,9 +68,9 @@ export function SavingsCalculator() {
 
                 {/* Origin State */}
                 <div className="space-y-4">
-                  <label className="text-xs font-bold text-zinc-400 uppercase tracking-widest block">Origin State</label>
+                  <label htmlFor="origin-state-select" className="text-xs font-bold text-zinc-400 uppercase tracking-widest block">Origin State</label>
                   <Select defaultValue="0.0725" onValueChange={(val) => { if (val) setTaxRate(val); }}>
-                    <SelectTrigger className="w-full bg-white/[0.03] border-white/[0.1] text-white h-12 focus:ring-emerald-500/20">
+                    <SelectTrigger id="origin-state-select" aria-label="Select Origin State" className="w-full bg-white/[0.03] border-white/[0.1] text-white h-12 focus:ring-emerald-500/20">
                       <SelectValue placeholder="Select Origin State" />
                     </SelectTrigger>
                     <SelectContent className="bg-[#111] border-white/[0.1] text-white max-h-[300px]">

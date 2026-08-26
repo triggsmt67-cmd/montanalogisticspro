@@ -73,7 +73,7 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">By Origin State</h4>
                     <div className="flex flex-col gap-2">
                       <Link href="/tax-savings/california-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">California (10.25% Tax Avoidance)</Link>
-                      <Link href="/tax-savings/washington-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Washington (10.6% Tax Avoidance)</Link>
+                      <Link href="/tax-savings/washington-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Washington (10.55% Tax Avoidance)</Link>
                       <Link href="/tax-savings/texas-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Texas (8.25% Tax Avoidance)</Link>
                       <Link href="/tax-savings/new-york-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">New York (8.875% Tax Avoidance)</Link>
                     </div>
@@ -91,15 +91,16 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Link 
+            <Link
               href="/#fit-review"
               className="hidden md:flex items-center justify-center h-10 px-6 rounded-full bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
             >
               Start Fit Review
             </Link>
-            <button 
-              className="md:hidden p-2 text-zinc-600"
+            <button
+              className="md:hidden p-2 text-zinc-600 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-lg"
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open navigation menu"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -119,7 +120,11 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
           >
             <div className="flex items-center justify-between p-4 border-b border-zinc-200">
               <span className="font-bold text-zinc-900">Menu</span>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-zinc-600">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-zinc-600 hover:text-zinc-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-lg"
+                aria-label="Close navigation menu"
+              >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>

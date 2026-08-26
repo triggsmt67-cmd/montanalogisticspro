@@ -19,24 +19,33 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Tax-Free Amazon FBA Prep in Montana",
+  title: "Tax-Free Amazon FBA Prep",
   description:
-    "Scale your retail sourcing business with zero checkout tax. We provide expert FBA prep, strictly adhere to Amazon's inbound compliance rules, and protect your margins.",
+    "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
   alternates: {
-    canonical: "https://suchgroupecommerce.com/services/tax-free-amazon-fba-prep",
+    canonical: "/services/tax-free-amazon-fba-prep",
   },
   openGraph: {
-    title: "Tax-Free Amazon FBA Prep in Montana | Such Group E-Commerce",
+    title: "Tax-Free Amazon FBA Prep | Such Group E-Commerce",
     description:
-      "Scale your retail sourcing business with zero checkout tax. Expert FBA prep from Great Falls, Montana.",
+      "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
     url: "https://suchgroupecommerce.com/services/tax-free-amazon-fba-prep",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Tax-Free Amazon FBA Prep | Such Group E-Commerce",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tax-Free Amazon FBA Prep in Montana | Such Group E-Commerce",
+    title: "Tax-Free Amazon FBA Prep | Such Group E-Commerce",
     description:
-      "Scale your retail sourcing business with zero checkout tax. Expert FBA prep from Great Falls, Montana.",
+      "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
+    images: ["/og-image.png"],
   },
 };
 
