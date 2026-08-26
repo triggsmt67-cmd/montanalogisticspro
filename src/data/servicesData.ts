@@ -20,16 +20,21 @@ export interface ServiceDetail {
   };
 }
 
+/**
+ * @deprecated Legacy prototype content. No current route imports this object.
+ * Do not publish these entries without owner verification against `src/lib/pricing.ts`
+ * and the E-E-A-T claim register; several concepts remain future-scope placeholders.
+ */
 export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, ServiceDetail>> = {
   amazon: {
     "fba-prep-and-labeling": {
       title: "FBA Prep & Labeling",
       slug: "fba-prep-and-labeling",
-      tagline: "Flawless labeling, zero FBA rejection. Built for high-volume sellers.",
-      description: "Amazon FBA requirements are notoriously rigid. A single mislabeled carton or missing suffocation warning can land your inventory in stranded status, costing you time, money, and valuable seller metrics. We audit, label, and prep your inventory to guarantee 100% compliance with Amazon’s FBA routing guides. Every unit is scanned at multiple checkpoints to ensure your barcodes are crisp, readable, and applied to the exact specification.",
+      tagline: "Precision labeling and rigorous FBA inspection. Built for high-volume sellers.",
+      description: "Amazon FBA requirements are notoriously rigid. A single mislabeled carton or missing suffocation warning can land your inventory in stranded status, costing you time, money, and valuable seller metrics. We audit, label, and prep your inventory in strict alignment with Amazon’s FBA routing guides. Every unit is scanned at multiple checkpoints to ensure your barcodes are crisp, readable, and applied to the exact specification.",
       sla: "Strict adherence to Amazon 2026 inbound prep guidelines with multi-checkpoint scan verification.*",
       turnaround: "24 to 48 hours for standard prep orders from complete dock intake.*",
-      taxStatus: "0% Montana State Sales Tax on inventory intake under destination sourcing.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Multi-Scan Verification",
@@ -41,7 +46,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           title: "Carton Labeling & Weighing",
-          description: "Box dimensions and scale-calibrated weights printed on official FBA box labels to eliminate carrier disputes."
+          description: "Box dimensions and scale-calibrated weights printed on official FBA box labels to minimize carrier billing discrepancies."
         },
         {
           title: "Expiration Date Compliance",
@@ -74,7 +79,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       description: "Stand out on Amazon by creating custom multipacks and bundles that competitors can't easily replicate. We receive your inventory in bulk, verify count accuracy, assemble components into beautiful customer-ready kits, and seal them to meet FBA requirements. From kitting beauty bundles to putting together complex product kits with custom promotional inserts, we handle it with precision.",
       sla: "99.9% bundle assembly accuracy with strict visual inspection guidelines.",
       turnaround: "48 to 72 hours depending on kitting complexity and volume.",
-      taxStatus: "No sales tax on kitting assembly, packaging materials, or storage.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Custom Kit Assembly",
@@ -119,7 +124,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       description: "Delicate and unpackaged items require heavy-duty protection to survive Amazon's sorting centers. We inspect and package your liquid, powder, sharp, or fragile items using heavy-duty poly bagging, custom bubble wrapping, and outer box reinforcements. Our packaging meets or exceeds Amazon's drop-test guidelines, ensuring your items reach the consumer completely intact and without leaks.",
       sla: "Under 0.05% transit damage rate with premium packaging materials.",
       turnaround: "24 to 48 hours for standard fragile wrapping.",
-      taxStatus: "Tax-free packaging materials, bubble wrap, and poly bagging supplies.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Suffocation Warning Bags",
@@ -154,21 +159,21 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       ],
       seo: {
         title: "Amazon Poly Bagging & Fragile Handling | Such Group E-Commerce",
-        description: "Secure packaging and poly bagging for fragile, liquid, and sharp items. Guaranteed FBA compliance in Montana."
+        description: "Secure packaging and poly bagging for fragile, liquid, and sharp items in compliance with Amazon FBA packaging standards."
       }
     },
     "tax-free-inventory-storage": {
       title: "Tax-Free Inventory Storage",
       slug: "tax-free-inventory-storage",
       tagline: "Secure warehousing in zero-sales-tax Montana. Fuel your profit margins.",
-      description: "Montana is one of the few US states with zero sales tax. Storing your bulk inventory at our state-of-the-art facility completely shields your products from sales and holding taxes, allowing you to run a highly capital-efficient supply chain. We store your goods securely and only prep and ship them to Amazon FBA centers when your stock runs low, saving you from Amazon's seasonal storage fee spikes.",
-      sla: "100% Tax-Free status. Absolute data security and inventory protection.",
+      description: "Montana has no general statewide sales tax. Qualifying inventory purchases delivered to our Montana facility may therefore be billed without state sales tax, depending on the transaction and the client’s tax obligations. We store your goods securely and only prep and ship them to Amazon FBA centers when your stock runs low, helping reduce exposure to Amazon's seasonal storage fees.",
+      sla: "Climate-controlled storage (60°F–80°F) and multi-point security.*",
       turnaround: "Immediate inventory logging upon freight arrival.",
-      taxStatus: "No inventory holding tax, no receiving tax, and zero sales tax.",
+      taxStatus: "Montana has no general statewide sales tax; other tax obligations depend on the client and transaction.",
       benefits: [
         {
-          title: "Zero Sales Tax",
-          description: "Save up to 8% or more on inventory purchasing and inbound shipping to our tax-free Montana warehouse."
+          title: "Montana Sales-Tax Advantage",
+          description: "Qualifying inventory purchases delivered to Montana may avoid state sales tax at checkout. Eligibility and other tax obligations depend on the transaction and your business."
         },
         {
           title: "Secure Warehousing",
@@ -186,7 +191,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       faqs: [
         {
           question: "How does the tax-free status save my brand money?",
-          answer: "By designating our Montana warehouse as your receiving address, wholesale orders shipped directly to our facility are exempt from state sales taxes. This immediately preserves up to 8.8% of your buying budget."
+          answer: "Montana has no general statewide sales tax, so qualifying purchases delivered directly to our facility may be billed without state sales tax. Treatment varies by transaction and business; consult a qualified tax adviser about your circumstances."
         },
         {
           question: "Is your facility climate-controlled?",
@@ -199,7 +204,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       ],
       seo: {
         title: "Tax-Free Inventory Storage in Montana | Such Group E-Commerce",
-        description: "Store bulk inventory completely tax-free in Montana. Climate-controlled warehouses with 24/7 security and live audits."
+        description: "Store bulk inventory in Montana’s no-general-sales-tax environment with climate control, security monitoring, and inventory audits."
       }
     },
     "removal-order-processing": {
@@ -209,7 +214,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       description: "Unfulfillable or stranded inventory sits at Amazon draining your profits. We receive your Amazon removal orders, inspect each unit for packaging and product damage, clean or repackage them, and route them back to active status or prepare them for secondary channels. We provide photo proof of defects so you can submit reimbursement claims to Amazon without delays.",
       sla: "Detailed condition audits and photographic proof within 48 hours of shipment arrival.",
       turnaround: "Audit report generated in 48 hours; restocking completed within 5 business days.",
-      taxStatus: "Zero sales tax on returns receiving, inspection fees, or restocking materials.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Condition Grading",
@@ -251,10 +256,10 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       title: "Inbound Shipment Creation",
       slug: "inbound-shipment-creation",
       tagline: "We manage Seller Central shipment plans. Hands-free shipping setup.",
-      description: "Creating shipments in Seller Central can be tedious and prone to errors. We handle the technical setup—inputting box content information, managing dimensions, selecting carrier options, and generating shipping labels directly—letting you focus strictly on inventory sourcing. We integrate directly with your Seller Central account using secure API access to build shipments flawlessly.",
+      description: "Creating shipments in Seller Central can be tedious and prone to errors. We handle the technical setup—inputting box content information, managing dimensions, selecting carrier options, and generating shipping labels directly—letting you focus strictly on inventory sourcing. We integrate directly with your Seller Central account using secure API access to build and upload shipments accurately.",
       sla: "Shipments configured and labels generated same-day upon carton finalization.",
       turnaround: "Same-day shipment setup during warehouse operating hours.",
-      taxStatus: "No tax on logistics coordination, freight booking, or compliance setups.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Box Content Compliance",
@@ -266,7 +271,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
         },
         {
           title: "Palletization Standards",
-          description: "Expert pallet wrapping, height limits, and stretch wrap protocols to meet Amazon's strict freight rules."
+          description: "Pallet wrapping, height limits, and stretch-wrap protocols designed around Amazon's published freight requirements."
         },
         {
           title: "Workflow Integration",
@@ -276,20 +281,20 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       faqs: [
         {
           question: "How do you access our Seller Central account?",
-          answer: "We connect using restricted Amazon SP-API credentials or via limited permissions sub-user access. We only request permissions to view and edit shipment plans."
+          answer: "We connect using restricted Amazon SP-API credentials or limited-permission sub-user access. We only request permissions needed to view and edit shipment plans."
         },
         {
           question: "Can we use our own shipping carrier accounts?",
-          answer: "Yes. While we default to Amazon Partnered Carriers for deep discounts, we can book shipments through your DHL, FedEx, UPS, or custom freight contracts."
+          answer: "Yes. While we can use Amazon Partnered Carriers, we can also book shipments through your DHL, FedEx, UPS, or freight contracts when supported by the workflow."
         },
         {
           question: "How do you handle box content information?",
-          answer: "Our warehouse system logs exactly which items go into which box, compiling this data into 2D barcodes or direct uploads so Amazon knows exactly what's inside each box upon arrival."
+          answer: "Our warehouse system records which items go into each box and uses that data for supported 2D-barcode or direct-upload workflows."
         }
       ],
       seo: {
         title: "Amazon Inbound Shipment Creation | Such Group E-Commerce",
-        description: "Hands-free FBA shipment creation. We handle box content details, palletizing, and shipping labels via SP-API."
+        description: "Hands-free FBA shipment creation. We build box content, generate 2D barcodes, and book partnered carriers in Seller Central."
       }
     }
   },
@@ -297,101 +302,101 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
     "secure-warehousing": {
       title: "Secure Warehousing",
       slug: "secure-warehousing",
-      tagline: "Barcoded inventory tracking. 24/7 security. Zero state inventory tax.",
-      description: "Keep your inventory safe, organized, and accessible. Our Montana facility offers high-security, climate-controlled warehousing (maintained at 60°F–80°F year-round) for products of all shapes and sizes. We manage inventory dynamically using barcoded shelf and pallet locations for instant searchability. Your inventory is audited regularly, ensuring physical stock mirrors your digital storefront data.",
-      sla: "99.98% inventory accuracy goal with scheduled cycle counts.*",
-      turnaround: "Inbound inventory received, audited, and binned within 24 to 48 business hours.*",
-      taxStatus: "Zero state sales tax, receiving tax, or inventory holding taxes.",
+      tagline: "Barcoded inventory tracking. Security monitoring. Climate-controlled storage.",
+      description: "Keep your inventory safe, organized, and accessible. Our Montana facility offers secure, climate-controlled warehousing maintained at 60°F–80°F year-round. We manage inventory using barcoded shelf and pallet locations and conduct scheduled cycle counts to help physical stock remain aligned with inventory records.",
+      sla: "99.98% inventory accuracy performance target with scheduled cycle counts.*",
+      turnaround: "Inbound inventory targeted for receiving, audit, and binning within 24 to 48 business hours after complete dock intake.*",
+      taxStatus: "Montana has no general statewide sales tax; other tax obligations depend on the client and transaction.",
       benefits: [
         {
-          title: "Climate-Controlled Storage (60°F–80°F)",
-          description: "Active temperature regulation (never below 60°F in winter, never exceeding 80°F) protecting retail inventory and product packaging."
+          title: "Climate-Controlled Facility",
+          description: "Active temperature regulation (60°F–80°F year-round) to prevent product degradation for cosmetics, supplements, and sensitive goods."
         },
         {
           title: "Dynamic WMS Tracking",
-          description: "Every bin, shelf, and pallet is tracked digitally with automated barcode scans during moves."
+          description: "Bins, shelves, and pallets are tracked digitally with barcode scans during inventory movements."
         },
         {
           title: "Fast Receiving Audits",
-          description: "Inbound inventory is unpacked, counted, and added to your active stock within 24-48 hours."
+          description: "Inbound inventory is targeted for unpacking, counting, and addition to active stock within 24–48 business hours after complete dock intake."
         },
         {
-          title: "Zero State Holding Tax",
-          description: "No state holding taxes or inventory taxes are applied to goods stored in our Montana warehouse."
+          title: "Montana Tax Environment",
+          description: "Montana has no general statewide sales tax. Other taxes, registrations, and filing obligations depend on the client and transaction."
         }
       ],
       faqs: [
         {
           question: "Do you charge fees for inbound receiving?",
-          answer: "We offer competitive receiving rates based on pallet counts or carton counts. There are never any surprise handling surcharges."
+          answer: "Receiving rates are quoted based on pallet or carton counts and the handling requirements in the client agreement."
         },
         {
           question: "How secure is your warehouse facility?",
-          answer: "Our facility is equipped with 24/7 indoor and outdoor video surveillance, access control card readers, fire suppression systems, and strict background checks for all warehouse staff."
+          answer: "Our documented controls include indoor and outdoor video surveillance and restricted facility access. Specific insurance, fire-protection, and personnel-screening terms are confirmed in each client agreement."
         },
         {
           question: "How frequently do you perform cycle counts?",
-          answer: "We perform regular cycle counts on high-velocity SKUs and scheduled counts on storage inventory to maintain 99.98% inventory data integrity."
+          answer: "We perform regular cycle counts on high-velocity SKUs and scheduled counts on stored inventory. The 99.98% figure is a performance target, not a guarantee."
         }
       ],
       seo: {
         title: "Secure Warehousing & Storage | Such Group E-Commerce",
-        description: "Climate-controlled, secure warehousing in tax-free Montana. Regular cycle counts and real-time inventory tracking."
+        description: "Secure, climate-controlled e-commerce warehousing in Montana with scheduled cycle counts and barcoded inventory tracking."
       }
     },
     "direct-to-consumer-pick-and-pack": {
       title: "Direct-to-Consumer Pick & Pack",
       slug: "direct-to-consumer-pick-and-pack",
       tagline: "Rapid order fulfillment. Seamless e-commerce API integrations.",
-      description: "Delighting online shoppers requires speed and accuracy. Our team picks, packs, and ships your orders the same day they are placed, integrating directly with Shopify, WooCommerce, and other major storefronts via API. With our automated scanning system, order pick accuracy reaches 99.9%, drastically lowering return rates and keeping customer ratings high.",
-      sla: "Targeted same-day fulfillment for eligible orders received before 2:00 PM MT with a 99.9% pick accuracy performance target.*",
-      turnaround: "Same-business-day dispatch for eligible orders within the daily cutoff window.*",
-      taxStatus: "No sales tax on picking, packing, or packaging supplies.",
+      description: "Delighting online shoppers requires speed and accuracy. Eligible orders received before the daily cutoff are targeted for same-business-day fulfillment. Our team integrates with supported e-commerce storefronts and uses barcode scanning to help reduce picking errors.",
+      sla: "Targeted same-day fulfillment for eligible orders received before 2:00 PM Mountain Time with a 99.9% pick-accuracy performance target.*",
+      turnaround: "Same-business-day dispatch target for eligible orders received before the daily cutoff, subject to inventory readiness and carrier schedules.*",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "API-Driven Workflows",
-          description: "Orders sync automatically from your store to our warehouse, and tracking numbers sync back instantly."
+          description: "Orders can sync from supported stores to our warehouse, with tracking information returned through the connected workflow."
         },
         {
           title: "Same-Day Fulfillment Target",
-          description: "Prompt handling ensuring eligible orders received before cutoff depart on the same business day."
+          description: "Eligible orders received before 2:00 PM Mountain Time are targeted for same-business-day carrier dispatch."
         },
         {
           title: "Double-Scan Verification",
-          description: "Items are scanned at pick and scanned again at pack to minimize incorrect item shipments."
+          description: "Items are scanned at pick and again at pack to help minimize incorrect-item shipments."
         },
         {
-          title: "Optimized Carrier Rates",
-          description: "We route packages dynamically through official daily UPS and FedEx sweeps and USPS to find the most efficient path."
+          title: "Carrier Selection",
+          description: "Available UPS, FedEx, and USPS services can be compared against the selected delivery requirements; final service depends on the order and connected accounts."
         }
       ],
       faqs: [
         {
           question: "Which shopping platforms do you integrate with?",
-          answer: "We integrate directly with Shopify, WooCommerce, Magento, BigCommerce, Amazon MCF, TikTok Shop, eBay, and Etsy. Custom integrations are available via our open REST API."
+          answer: "Supported storefront integrations are confirmed during onboarding and may include major platforms such as Shopify and WooCommerce. Availability, data flow, marketplace support, and any custom work depend on the approved technical scope."
         },
         {
           question: "What is your daily cutoff time for same-day shipping?",
-          answer: "Our standard cutoff target is 2:00 PM Mountain Time. Eligible orders received before this time are targeted for same-business-day carrier dispatch, subject to carrier sweep schedules."
+          answer: "Our standard cutoff is 2:00 PM Mountain Time, Monday through Friday. Eligible orders received before this time are targeted for same-business-day carrier dispatch, subject to inventory readiness, account standing, order exceptions, holidays, weather, and carrier pickup schedules."
         },
         {
           question: "How do you handle shipping rate selection?",
-          answer: "Our system runs a rate-shopping algorithm for every package, selecting the cheapest option that meets the customer's selected delivery timeline."
+          answer: "Available services can be compared against the order's delivery requirements when supported by the connected carrier accounts. Rates and service availability vary by carrier, account, destination, and package."
         }
       ],
       seo: {
-        title: "DTC Pick & Pack Fulfillment | Such Group E-Commerce",
-        description: "Same-day e-commerce order fulfillment. Real-time Shopify integration, rate shopping, and 99.9% pick accuracy."
+        title: "DTC Pick and Pack Fulfillment | Such Group E-Commerce",
+        description: "DTC pick-and-pack fulfillment from Montana with a 2 PM Mountain Time same-day target for eligible orders and barcode verification."
       }
     },
     "custom-kitting-and-assembly": {
       title: "Custom Kitting & Assembly",
       slug: "custom-kitting-and-assembly",
       tagline: "Promotional kits, subscription boxes, and custom inserts. Exactly as you designed.",
-      description: "Want to launch a subscription box, build custom gift sets, or bundle promotional items? We specialize in custom kitting. You define the layout, placement, and visual structure, and our assembly team compiles the perfect product configuration. We strictly document kitting instructions with photo SOPs to guarantee absolute packaging uniformity.",
+      description: "Want to launch a subscription box, build custom gift sets, or bundle promotional items? We specialize in custom kitting. You define the layout, placement, and visual structure, and our assembly team compiles the product configuration. We strictly document kitting instructions with photo SOPs to maintain consistent, standardized packaging across every order.",
       sla: "99.9% kitting accuracy with standardized assembly checklists.",
       turnaround: "Custom kitting requests configured and queued within 48 hours.",
-      taxStatus: "Zero state sales tax on custom assembly materials or labor.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Subscription Box Fulfillment",
@@ -436,7 +441,7 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       description: "Returns are a part of doing business online, but they shouldn't be a black hole. We process customer returns quickly: auditing contents, inspecting item condition, photographing issues, and restocking sellable goods to recover your margins. Our returns dashboard gives you full visibility into what has been returned, why, and what was restocked.",
       sla: "Returns processed, inspected, and updated in your system in under 48 hours.",
       turnaround: "48-hour return inspection to restocking pipeline.",
-      taxStatus: "Tax-free return logistics and restocking services.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Visual Inspection",
@@ -479,9 +484,9 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       slug: "branded-unboxing-experience",
       tagline: "Deliver the ultimate first impression. Customized packaging SOPs.",
       description: "The unboxing is the only physical touchpoint DTC brands have with customers. Make it count. We execute custom packing layouts, utilizing your branded boxes, custom tissue paper, sticker seals, and specific product arrangements. We treat your packaging design as a strict standard operating procedure.",
-      sla: "100% adherence to your custom branded packaging layouts and guidelines.",
+      sla: "Documented adherence to your custom branded packaging layouts and SOP guidelines.",
       turnaround: "Integrated seamlessly into our same-day DTC shipping pipeline.",
-      taxStatus: "No sales tax on premium dunnage, custom tissue wrap, or insert materials.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "Branded Outer Packaging",
@@ -523,10 +528,10 @@ export const SERVICES_DATA: Record<"amazon" | "ecommerce", Record<string, Servic
       title: "B2B & Retail Routing",
       slug: "b2b-and-retail-routing",
       tagline: "EDI compliance. UCC-128 labeling. Eliminate retail chargebacks.",
-      description: "Shipping to big-box retailers or distribution centers requires absolute adherence to routing guides. We build pallets, format UCC-128 labels, and coordinate freight carriers to meet strict compliance rules for Target, Walmart, Amazon, and others. We help you avoid costly routing penalties and chargebacks.",
-      sla: "100% EDI compliance with zero chargebacks due to warehouse errors.",
+      description: "Shipping to big-box retailers or distribution centers requires strict adherence to routing guides. We build pallets, format UCC-128 labels, and coordinate freight carriers to meet compliance rules for Target, Walmart, Amazon, and others. We help you avoid costly routing penalties and chargebacks.",
+      sla: "EDI-compliant order processing designed to prevent routing errors and chargebacks.",
       turnaround: "Palletization and retail routing prepared in 3 business days.",
-      taxStatus: "Tax-free retail logistics preparation and materials.",
+      taxStatus: "Montana has no general statewide sales tax; transaction and client obligations vary.",
       benefits: [
         {
           title: "UCC-128 / GS1 Labeling",

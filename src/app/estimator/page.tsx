@@ -22,6 +22,12 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { pushDataLayerEvent } from "@/lib/analytics";
+import {
+  getEcommerceRates,
+  getFbaRate,
+  getStorageRate,
+  getWholesaleRate,
+} from "@/lib/pricing";
 
 const paths = [
   {
@@ -34,19 +40,19 @@ const paths = [
     bgMuted: "bg-blue-50",
     dotClass: "bg-blue-400",
     activeText: "text-blue-50",
-    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Reused boxes", "Dunnage", "Software management", "First 14 days free storage"],
+    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Reused boxes when suitable", "Dunnage", "First 14 days free storage"],
   },
   {
     id: "wholesale",
     label: "Bulk Wholesale FBA Prep",
-    plain: "I have same-SKU inventory to prep in volume (300+ units).",
+    plain: "I have wholesale inventory to prep. Published volume tiers begin at 300 units.",
     icon: Warehouse,
     colorClass: "bg-indigo-600 border-indigo-600 shadow-indigo-600/20",
     textClass: "text-indigo-600",
     bgMuted: "bg-indigo-50",
     dotClass: "bg-indigo-400",
     activeText: "text-indigo-50",
-    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Reused boxes", "Dunnage", "Volume rates from $1.15 to $0.90"],
+    included: ["Receiving", "Inspection", "Wrapping", "Poly bag", "FNSKU labels", "Suitable reused boxes", "Dunnage", "Volume rates from $1.15 to $0.90"],
   },
   {
     id: "carton",
@@ -82,7 +88,7 @@ const paths = [
     bgMuted: "bg-violet-50",
     dotClass: "bg-violet-400",
     activeText: "text-violet-50",
-    included: ["First 14 days free", "Monthly cubic-foot estimate", "Q4 rate option"],
+    included: ["First 14 days free", "Cubic-foot estimate", "Q4 rate option"],
   },
   {
     id: "notSure",
@@ -101,39 +107,6 @@ const paths = [
 function money(value: number) {
   if (Number.isNaN(value) || value === null || value === undefined) return "$0.00";
   return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
-}
-
-function getFbaRate(items: number) {
-  if (items > 10000) return null;
-  if (items >= 5001) return 1;
-  if (items >= 2001) return 1.15;
-  if (items >= 1001) return 1.25;
-  if (items >= 501) return 1.35;
-  if (items >= 1) return 1.45;
-  return 0;
-}
-
-function getWholesaleRate(units: number) {
-  if (units > 10000) return null;
-  if (units >= 5001) return 0.9;
-  if (units >= 2501) return 1;
-  if (units >= 300) return 1.15;
-  return null;
-}
-
-function getEcommerceRates(orders: number) {
-  if (orders > 2500) return null;
-  if (orders >= 1001) return { order: 2, item: 0.3 };
-  if (orders >= 501) return { order: 2.25, item: 0.4 };
-  if (orders >= 1) return { order: 2.5, item: 0.5 };
-  return { order: 0, item: 0 };
-}
-
-function getStorageRate(days: number, q4: boolean) {
-  if (days <= 14) return 0;
-  if (q4) return 4.8;
-  if (days >= 181) return 3.6;
-  return 2.4;
 }
 
 function cubicFeetFromBox(length: number, width: number, height: number, quantity: number) {
@@ -254,7 +227,6 @@ export default function EstimatorPage() {
   const [service, setService] = useState("fba");
 
   const [items, setItems] = useState<number | "">("");
-  const [books, setBooks] = useState<number | "">("");
   const [wholesaleUnits, setWholesaleUnits] = useState<number | "">("");
   const [orders, setOrders] = useState<number | "">("");
   const [avgItems, setAvgItems] = useState<number | "">("");
@@ -282,15 +254,12 @@ export default function EstimatorPage() {
   const [hasBubbleWrap, setHasBubbleWrap] = useState(false);
   const [bubbleWrapItems, setBubbleWrapItems] = useState<number | "">("");
   const [bubbleSheets, setBubbleSheets] = useState<number | "">("");
-  const [hasManualCount, setHasManualCount] = useState(false);
-  const [manualCountHours, setManualCountHours] = useState<number | "">("");
 
   const [palletsReceived, setPalletsReceived] = useState<number | "">("");
   const [boxesReceived, setBoxesReceived] = useState<number | "">("");
   const [container20, setContainer20] = useState<number | "">("");
   const [container40, setContainer40] = useState<number | "">("");
-  const [shortPallets, setShortPallets] = useState<number | "">("");
-  const [tallPallets, setTallPallets] = useState<number | "">("");
+  const [palletsToBuild, setPalletsToBuild] = useState<number | "">("");
   const [cartonsForwarded, setCartonsForwarded] = useState<number | "">("");
   const [palletsForwarded, setPalletsForwarded] = useState<number | "">("");
 
@@ -325,7 +294,6 @@ export default function EstimatorPage() {
 
     if (service === "fba") {
       if (items !== "") fields["FBA Items"] = String(items);
-      if (books !== "") fields["Books"] = String(books);
     }
     if (service === "wholesale" && wholesaleUnits !== "") fields["Wholesale Units"] = String(wholesaleUnits);
     if (service === "ecommerce") {
@@ -337,8 +305,7 @@ export default function EstimatorPage() {
       if (boxesReceived !== "") fields["Boxes Received"] = String(boxesReceived);
       if (container20 !== "") fields["20ft Containers"] = String(container20);
       if (container40 !== "") fields["40ft Containers"] = String(container40);
-      if (shortPallets !== "") fields["Short Pallets (≤70in)"] = String(shortPallets);
-      if (tallPallets !== "") fields["Tall Pallets (71in+)"] = String(tallPallets);
+      if (palletsToBuild !== "") fields["Pallets to Build"] = String(palletsToBuild);
       if (cartonsForwarded !== "") fields["Cartons Forwarded"] = String(cartonsForwarded);
       if (palletsForwarded !== "") fields["Pallets Forwarded"] = String(palletsForwarded);
     }
@@ -358,7 +325,6 @@ export default function EstimatorPage() {
       if (bubbleWrapItems !== "") fields["Bubble Wrap Items"] = String(bubbleWrapItems);
       if (bubbleSheets !== "") fields["Bubble Sheets / Item"] = String(bubbleSheets);
     }
-    if (hasManualCount && manualCountHours !== "") fields["Manual Count Hours"] = String(manualCountHours);
     fields["Estimated Total"] = estimate.requiresQuote ? "Custom quote needed" : money(estimate.total);
     if (estimate.quoteReasons.length > 0) fields["Quote Notes"] = estimate.quoteReasons.join("; ");
     if (quoteBusiness.trim()) fields["Business Name"] = quoteBusiness.trim();
@@ -410,8 +376,7 @@ export default function EstimatorPage() {
         boxesReceived === "" &&
         container20 === "" &&
         container40 === "" &&
-        shortPallets === "" &&
-        tallPallets === "" &&
+        palletsToBuild === "" &&
         cartonsForwarded === "" &&
         palletsForwarded === ""
       );
@@ -423,7 +388,7 @@ export default function EstimatorPage() {
       return manualCubicFeet === "";
     }
     return false;
-  }, [service, items, wholesaleUnits, orders, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded, useBoxMath, boxCount, boxLength, boxWidth, boxHeight, manualCubicFeet]);
+  }, [service, items, wholesaleUnits, orders, palletsReceived, boxesReceived, container20, container40, palletsToBuild, cartonsForwarded, palletsForwarded, useBoxMath, boxCount, boxLength, boxWidth, boxHeight, manualCubicFeet]);
 
   const cubicFeet = useMemo(() => {
     if (!needsStorage && service !== "storage" && service !== "carton") return 0;
@@ -451,28 +416,25 @@ export default function EstimatorPage() {
 
     const bundleFeeEach = toNum(itemsPerBundle) <= 3 ? 0.5 : 0.5 + (toNum(itemsPerBundle) - 3) * 0.15;
     const bundlingCost = hasBundles ? toNum(bundles) * bundleFeeEach : 0;
-    const bubbleFeeEach = toNum(bubbleSheets) <= 3 ? 0.5 : 0.5 + (toNum(bubbleSheets) - 3) * 0.15;
+    const bubbleFeeEach = Math.max(toNum(bubbleSheets), 1) * 0.5;
     const bubbleCost = hasBubbleWrap ? toNum(bubbleWrapItems) * bubbleFeeEach : 0;
     const returnCost = hasReturns ? toNum(returnsCount) * 1 : 0;
     const soldAsSetCost = hasSoldAsSet ? toNum(soldAsSetLabels) * 0.15 : 0;
     const doNotOpenCost = hasDoNotOpen ? toNum(doNotOpenLabels) * 0.15 : 0;
-    const manualCountCost = hasManualCount ? toNum(manualCountHours) * 40 : 0;
-    const bookCost = toNum(books) * 2.5;
 
     if (service === "fba") {
       const itemsNum = toNum(items);
       const rate = getFbaRate(itemsNum);
       if (itemsNum > 10000) quoteReasons.push("FBA prep over 10,000 items requires a custom quote.");
       const base = rate ? itemsNum * rate : 0;
-      total += base + bookCost;
+      total += base;
       groups.service.push({ label: "FBA prep", detail: rate ? `${itemsNum.toLocaleString()} items × ${money(rate)}` : "Quote required", amount: base });
-      if (toNum(books) > 0) groups.service.push({ label: "Books", detail: `${toNum(books).toLocaleString()} books × $2.50`, amount: bookCost });
     }
 
     if (service === "wholesale") {
       const wholesaleNum = toNum(wholesaleUnits);
       const rate = getWholesaleRate(wholesaleNum);
-      if (wholesaleNum < 300) quoteReasons.push("Wholesale pricing starts at 300 units.");
+      if (wholesaleNum < 300) quoteReasons.push("There is no wholesale shipment minimum, but published wholesale tiers begin at 300 units; request the applicable rate below that volume.");
       if (wholesaleNum > 10000) quoteReasons.push("Wholesale prep over 10,000 units requires a custom quote.");
       const base = rate ? wholesaleNum * rate : 0;
       total += base;
@@ -492,16 +454,16 @@ export default function EstimatorPage() {
     }
 
     if (service === "carton") {
-      const receiving = toNum(palletsReceived) * 18 + toNum(boxesReceived) + toNum(container20) * 275 + toNum(container40) * 550;
-      const palletization = toNum(shortPallets) * 20 + toNum(tallPallets) * 50;
+      const receiving = toNum(palletsReceived) * 18 + toNum(boxesReceived) * 1.5 + toNum(container20) * 275 + toNum(container40) * 550;
+      const palletization = toNum(palletsToBuild) * 20;
       const forwarding = toNum(cartonsForwarded) * 4 + toNum(palletsForwarded) * 20;
       total += receiving + palletization + forwarding;
       groups.receiving.push({ label: "Receiving", detail: "Pallets, boxes, and containers", amount: receiving });
-      groups.receiving.push({ label: "Palletization", detail: "Up to 70 in. and 71+ in. pallets", amount: palletization });
+      groups.receiving.push({ label: "Palletization", detail: `${toNum(palletsToBuild).toLocaleString()} pallets × $20.00`, amount: palletization });
       groups.receiving.push({ label: "Forwarding", detail: "Cartons and pallets forwarded", amount: forwarding });
     }
 
-    const addonTotal = returnCost + bundlingCost + soldAsSetCost + doNotOpenCost + bubbleCost + manualCountCost;
+    const addonTotal = returnCost + bundlingCost + soldAsSetCost + doNotOpenCost + bubbleCost;
     total += addonTotal;
 
     if (returnCost > 0) groups.addons.push({ label: "Returns", detail: `${toNum(returnsCount).toLocaleString()} returns × $1.00`, amount: returnCost });
@@ -509,15 +471,14 @@ export default function EstimatorPage() {
     if (soldAsSetCost > 0) groups.addons.push({ label: "Sold as set labels", detail: `${toNum(soldAsSetLabels).toLocaleString()} labels × $0.15`, amount: soldAsSetCost });
     if (doNotOpenCost > 0) groups.addons.push({ label: "Do not open labels", detail: `${toNum(doNotOpenLabels).toLocaleString()} labels × $0.15`, amount: doNotOpenCost });
     if (bubbleCost > 0) groups.addons.push({ label: "Bubble wrap", detail: `${toNum(bubbleWrapItems).toLocaleString()} items × ${money(bubbleFeeEach)}`, amount: bubbleCost });
-    if (manualCountCost > 0) groups.addons.push({ label: "Manual count", detail: `${toNum(manualCountHours)} hours × $40.00`, amount: manualCountCost });
 
     if (shouldApplyStorage) {
       total += storageCost;
-      groups.storage.push({ label: storageCost > 0 ? "Monthly storage estimate" : "Storage estimate", detail: storageCost > 0 ? `${cubicFeet.toLocaleString()} cu. ft. × ${money(storageRate)}/mo` : "First 14 days are free", amount: storageCost });
+      groups.storage.push({ label: "Storage estimate", detail: storageCost > 0 ? `${cubicFeet.toLocaleString()} cu. ft. × ${money(storageRate)} published rate` : "First 14 days are free", amount: storageCost });
     }
 
     return { groups, total, quoteReasons, requiresQuote: quoteReasons.length > 0, isUnfilled };
-  }, [service, storageDays, q4, cubicFeet, needsStorage, itemsPerBundle, hasBundles, bundles, bubbleSheets, hasBubbleWrap, bubbleWrapItems, hasReturns, returnsCount, hasSoldAsSet, soldAsSetLabels, hasDoNotOpen, doNotOpenLabels, hasManualCount, manualCountHours, books, items, wholesaleUnits, orders, avgItems, palletsReceived, boxesReceived, container20, container40, shortPallets, tallPallets, cartonsForwarded, palletsForwarded, isUnfilled]);
+  }, [service, storageDays, q4, cubicFeet, needsStorage, itemsPerBundle, hasBundles, bundles, bubbleSheets, hasBubbleWrap, bubbleWrapItems, hasReturns, returnsCount, hasSoldAsSet, soldAsSetLabels, hasDoNotOpen, doNotOpenLabels, items, wholesaleUnits, orders, avgItems, palletsReceived, boxesReceived, container20, container40, palletsToBuild, cartonsForwarded, palletsForwarded, isUnfilled]);
 
   const showAddons = service === "fba" || service === "wholesale";
   const showStorage = service !== "notSure";
@@ -536,13 +497,13 @@ export default function EstimatorPage() {
                 Cost Estimator
               </div>
               <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 sm:text-5xl leading-tight transition-colors">
-                Tax-Free Fulfillment Pricing Calculator
+                Fulfillment Pricing Estimator
               </h1>
               <h2 className="mt-2 max-w-3xl text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl leading-snug">
-                Get your exact numbers before you ship.
+                Build a planning estimate before you ship.
               </h2>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600">
-                Answer a few questions to map your prep, storage, or forwarding costs. If your project requires custom logistics, we tell you upfront instead of generating fake math.
+                Answer a few questions to map your prep, storage, or forwarding costs. When published rates do not cover the work, the estimator requests a shipment-specific quote instead of presenting unsupported certainty.
               </p>
             </div>
 
@@ -593,13 +554,12 @@ export default function EstimatorPage() {
                   {service === "fba" && (
                     <div className="grid gap-6 sm:grid-cols-2">
                       <NumberInput label="How many standard FBA items?" value={items} onChange={setItems} placeholder="e.g. 500" helper="Monthly tiers: 1–500 ($1.45), 501–1k ($1.35), 1,001–2k ($1.25), 2,001–5k ($1.15), 5,001–10k ($1.00). Over 10,000 units requires a custom quote." min={1} />
-                      <NumberInput label="Any books?" value={books} onChange={setBooks} placeholder="e.g. 150" helper="$2.50 flat rate per unit. Includes grading and FNSKU application." />
                     </div>
                   )}
 
                   {service === "wholesale" && (
                     <div className="grid gap-6 sm:grid-cols-2">
-                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} placeholder="e.g. 1200" helper="Wholesale tiers: 300–2,500 ($1.15), 2,501–5,000 ($1.00), 5,001–10,000 ($0.90). Over 10,000 units requires a custom quote. Price includes receiving, inspection, wrapping, poly bag, FNSKU, reused boxes & dunnage." min={300} />
+                      <NumberInput label="How many wholesale units?" value={wholesaleUnits} onChange={setWholesaleUnits} placeholder="e.g. 1200" helper="There is no shipment minimum. Published tiers begin at 300 units: 300–2,500 ($1.15), 2,501–5,000 ($1.00), 5,001–10,000 ($0.90). Volumes below 300 or over 10,000 require the applicable rate or a quote." min={1} />
                     </div>
                   )}
 
@@ -614,13 +574,12 @@ export default function EstimatorPage() {
                     <div className="space-y-8">
                       <div className="grid gap-6 sm:grid-cols-2">
                         <NumberInput label="Pallets received" value={palletsReceived} onChange={setPalletsReceived} placeholder="e.g. 2" suffix="$18 each" />
-                        <NumberInput label="Boxes received" value={boxesReceived} onChange={setBoxesReceived} placeholder="e.g. 30" suffix="$1 each" />
+                        <NumberInput label="Boxes received" value={boxesReceived} onChange={setBoxesReceived} placeholder="e.g. 30" suffix="$1.50 each" />
                         <NumberInput label="20’ containers unloaded" value={container20} onChange={setContainer20} placeholder="e.g. 1" suffix="$275 each" />
                         <NumberInput label="40’ containers unloaded" value={container40} onChange={setContainer40} placeholder="e.g. 1" suffix="$550 each" />
                       </div>
                       <div className="grid gap-6 sm:grid-cols-2">
-                        <NumberInput label="Pallets up to 70 inches" value={shortPallets} onChange={setShortPallets} placeholder="e.g. 2" suffix="$20 each" />
-                        <NumberInput label="Pallets 71 inches or taller" value={tallPallets} onChange={setTallPallets} placeholder="e.g. 1" suffix="$50 each" />
+                        <NumberInput label="Pallets to build" value={palletsToBuild} onChange={setPalletsToBuild} placeholder="e.g. 2" suffix="$20 each" />
                         <NumberInput label="Cartons forwarded" value={cartonsForwarded} onChange={setCartonsForwarded} placeholder="e.g. 25" suffix="$4 each" />
                         <NumberInput label="Pallets forwarded" value={palletsForwarded} onChange={setPalletsForwarded} placeholder="e.g. 1" suffix="$20 each" />
                       </div>
@@ -630,7 +589,7 @@ export default function EstimatorPage() {
                   {service === "storage" && (
                     <div className="rounded-3xl border border-dashed border-zinc-300 bg-zinc-50 p-8">
                       <h3 className="text-xl font-bold">Storage only</h3>
-                      <p className="mt-2 text-base leading-relaxed text-zinc-600">Skip the prep fields and estimate monthly storage after the free two-week period.</p>
+                      <p className="mt-2 text-base leading-relaxed text-zinc-600">Skip the prep fields and estimate storage after the free two-week period.</p>
                     </div>
                   )}
                 </Section>
@@ -643,8 +602,7 @@ export default function EstimatorPage() {
                     <ToggleRow checked={hasBundles} onChange={setHasBundles} label="Bundles" helper="$0.50 up to 3 items, then $0.15 per additional item." />
                     <ToggleRow checked={hasSoldAsSet} onChange={setHasSoldAsSet} label="Sold as set labels" helper="$0.15 per label." />
                     <ToggleRow checked={hasDoNotOpen} onChange={setHasDoNotOpen} label="“Do not open” labels" helper="$0.15 per label." />
-                    <ToggleRow checked={hasBubbleWrap} onChange={setHasBubbleWrap} label="Bubble wrap" helper="$0.50 up to 3 sheets, then $0.15 per additional sheet." />
-                    <ToggleRow checked={hasManualCount} onChange={setHasManualCount} label="Manual inventory count" helper="$40 per hour." />
+                    <ToggleRow checked={hasBubbleWrap} onChange={setHasBubbleWrap} label="Bubble wrap" helper="$0.50 for the first sheet and $0.50 for each additional sheet." />
                   </div>
 
                   <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -655,7 +613,6 @@ export default function EstimatorPage() {
                     {hasDoNotOpen && <NumberInput label="Do not open labels" value={doNotOpenLabels} onChange={setDoNotOpenLabels} placeholder="e.g. 100" />}
                     {hasBubbleWrap && <NumberInput label="Bubble wrap items" value={bubbleWrapItems} onChange={setBubbleWrapItems} placeholder="e.g. 150" />}
                     {hasBubbleWrap && <NumberInput label="Sheets per item" value={bubbleSheets} onChange={setBubbleSheets} placeholder="e.g. 3" />}
-                    {hasManualCount && <NumberInput label="Manual count hours" value={manualCountHours} onChange={setManualCountHours} placeholder="e.g. 2" />}
                   </div>
                 </Section>
               )}
@@ -664,7 +621,7 @@ export default function EstimatorPage() {
                 <Section title="Storage" eyebrow="Optional">
                   {service !== "storage" && service !== "carton" && (
                     <div className="mb-6">
-                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Staging longer than 14 days?" helper="Your first two weeks are completely free. Standard monthly storage rates apply on day 15." />
+                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Staging longer than 14 days?" helper="Your first two weeks are free. Published cubic-foot storage rates apply beginning on day 15." />
                     </div>
                   )}
 
@@ -695,11 +652,11 @@ export default function EstimatorPage() {
                         <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
                           <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">Calculated storage space</p>
                           <p className="mt-2 text-3xl font-bold tracking-tight">{cubicFeet > 0 ? `${cubicFeet.toLocaleString()} cu. ft.` : "—"}</p>
-                          <p className="mt-2 text-sm leading-relaxed text-zinc-600">Used for the monthly storage estimate.</p>
+                          <p className="mt-2 text-sm leading-relaxed text-zinc-600">Used for the storage estimate.</p>
                         </div>
                       </div>
 
-                      <ToggleRow checked={q4} onChange={setQ4} label="Storage falls between October 1 and December 31" helper="Q4 storage rate is $4.80 per cubic foot per month." />
+                      <ToggleRow checked={q4} onChange={setQ4} label="Storage falls between October 1 and December 31" helper="The published Q4 storage rate is $4.80 per cubic foot." />
                     </div>
                   )}
                 </Section>
@@ -793,7 +750,7 @@ export default function EstimatorPage() {
                     <div>
                       <h3 className="font-bold text-lg text-amber-950">Estimate notes</h3>
                       <p className="mt-3 text-sm font-semibold leading-relaxed text-amber-900">
-                        This is your baseline estimate. It excludes outbound carrier freight, oversized box surcharges, specialized prep requirements, and custom FBM workflows. Final pricing locks in after physical inspection on our dock.
+                        This is a planning estimate based on published rates. It excludes outbound carrier freight, oversized items or boxes, specialized prep requirements, and custom FBM workflows. We confirm the applicable rate and any additional quoted work before service begins.
                       </p>
                     </div>
                   </div>
@@ -809,22 +766,22 @@ export default function EstimatorPage() {
               <div>
                 <h3 className="font-semibold text-lg text-zinc-900">How much does FBA prep cost?</h3>
                 <p className="text-zinc-600 mt-2">
-                  We charge volume-tiered rates for monthly standard FBA prep: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit. Over 10,000 units receives custom pricing. Price includes receiving, inspection, wrapping, 1.5 mil poly bag, FNSKU label, reused boxes, and dunnage.
+                  We charge volume-tiered rates for monthly standard FBA prep: 1–500 units at $1.45, 501–1,000 units at $1.35, 1,001–2,000 units at $1.25, 2,001–5,000 units at $1.15, and 5,001–10,000 units at $1.00 per unit. Over 10,000 units receives custom pricing. The base rate includes receiving, inspection, wrapping, standard poly-bagging, FNSKU labeling, suitable reused boxes, and dunnage; published exclusions and add-ons may apply.
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg text-zinc-900">What are your wholesale and ecommerce fulfillment rates?</h3>
                 <p className="text-zinc-600 mt-2">
-                  Wholesale prep (same-SKU) is $1.15/unit (300–2,500 units), $1.00/unit (2,501–5,000 units), and $0.90/unit (5,001–10,000 units). DTC E-Commerce is $2.50/order + $0.50/item (1–500 orders), $2.25/order + $0.40/item (501–1,000 orders), and $2.00/order + $0.30/item (1,001–2,500 orders).
+                  Published wholesale prep is $1.15/unit (300–2,500 units), $1.00/unit (2,501–5,000 units), and $0.90/unit (5,001–10,000 units); smaller shipments have no minimum but require the applicable rate. DTC E-Commerce is $2.50/order + $0.50/item (1–500 orders), $2.25/order + $0.40/item (501–1,000 orders), and $2.00/order + $0.30/item (1,001–2,500 orders).
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-lg text-zinc-900">Are there hidden 3PL storage fees?</h3>
-                <p className="text-zinc-600 mt-2">No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15.</p>
+                  <h3 className="font-semibold text-lg text-zinc-900">When do storage fees begin?</h3>
+                <p className="text-zinc-600 mt-2">The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate Q4 rate from October 1 through December 31.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg text-zinc-900">Do I pay sales tax on Montana 3PL services?</h3>
-                <p className="text-zinc-600 mt-2">Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility.</p>
+                <p className="text-zinc-600 mt-2">Montana has no general statewide sales tax. A qualifying purchase delivered to our facility may be billed without state sales tax, depending on the seller, product, transaction, and purchaser obligations.</p>
               </div>
             </div>
           </section>
@@ -840,10 +797,10 @@ export default function EstimatorPage() {
             "@graph": [
               {
                 "@type": "WebApplication",
-                "name": "Tax-Free Fulfillment Pricing Calculator",
+                "name": "Fulfillment Pricing Estimator",
                 "applicationCategory": "BusinessApplication",
                 "operatingSystem": "All",
-                "description": "Calculate exact prep, storage, and forwarding costs for your eCommerce or Amazon FBA business using our Montana tax-free facility."
+                "description": "Build a planning estimate for published prep, storage, and forwarding rates from Such Group E-Commerce in Great Falls, Montana."
               },
               {
                 "@type": "FAQPage",
@@ -861,15 +818,15 @@ export default function EstimatorPage() {
                     "name": "What are your wholesale and ecommerce fulfillment rates?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "Wholesale prep is $1.15 (300–2,500 units), $1.00 (2,501–5,000 units), and $0.90 (5,001–10,000 units). DTC E-Commerce is $2.50/order + $0.50/item (1–500), $2.25/order + $0.40/item (501–1,000), and $2.00/order + $0.30/item (1,001–2,500)."
+                      "text": "Published wholesale prep is $1.15 (300–2,500 units), $1.00 (2,501–5,000 units), and $0.90 (5,001–10,000 units). There is no shipment minimum, but volumes below 300 require the applicable rate. DTC E-Commerce is $2.50/order + $0.50/item (1–500), $2.25/order + $0.40/item (501–1,000), and $2.00/order + $0.30/item (1,001–2,500)."
                     }
                   },
                   {
                     "@type": "Question",
-                    "name": "Are there hidden 3PL storage fees?",
+                    "name": "When do storage fees begin?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "No. Your first 14 days of staging are completely free. Standard monthly rates apply on day 15."
+                      "text": "The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate Q4 rate from October 1 through December 31."
                     }
                   },
                   {
@@ -877,13 +834,13 @@ export default function EstimatorPage() {
                     "name": "Do I pay sales tax on Montana 3PL services?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "Montana has zero state sales tax. You pay no checkout tax when routing online retail sourcing through our Great Falls facility."
+                      "text": "Montana has no general statewide sales tax. A qualifying purchase delivered to our facility may be billed without state sales tax, depending on the seller, product, transaction, and purchaser obligations."
                     }
                   }
                 ]
               }
             ]
-          }),
+          }).replace(/</g, "\\u003c"),
         }}
       />
 

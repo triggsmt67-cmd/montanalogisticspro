@@ -23,9 +23,9 @@ export function DashboardMockup() {
 
       <div className="container px-4 mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Command Your Logistics</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Illustrative Client Workflow</h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            Real-time visibility into your entire supply chain. Our proprietary dashboard gives you control over inventory, routing, and fulfillment at a glance.
+            Sample interface and fictional data shown for workflow discussion only. Available reporting, connections, and update frequency are confirmed during onboarding.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export function DashboardMockup() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-cyan-500/20">
                 <Box className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white font-bold tracking-wide">Montant OS</span>
+              <span className="text-white font-bold tracking-wide">Workflow Example</span>
             </div>
 
             <nav className="flex-1 space-y-2">
@@ -67,13 +67,13 @@ export function DashboardMockup() {
             {/* Header */}
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-2xl font-bold text-white">Live Operations</h3>
-                <p className="text-sm text-slate-400">System functioning at optimal capacity.</p>
+                <h3 className="text-2xl font-bold text-white">Sample Operations</h3>
+                <p className="text-sm text-slate-400">Fictional data—not a live client account or performance report.</p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                  <span className="text-xs font-medium text-emerald-400">All Systems Nominal</span>
+                  <span className="text-xs font-medium text-emerald-400">Illustrative Only</span>
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@ export function DashboardMockup() {
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <KpiCard title="Active Shipments" value="1,248" trend="+12.5%" icon={Truck} color="cyan" />
-              <KpiCard title="Fulfillment Rate" value="99.8%" trend="+0.2%" icon={Activity} color="emerald" />
+              <KpiCard title="Sample Workflow" value="Demo" trend="Fictional" icon={Activity} color="emerald" />
               <KpiCard title="Pending Orders" value="342" trend="-5.4%" icon={PackageCheck} color="indigo" />
             </div>
 

@@ -5,8 +5,11 @@ import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { pushDataLayerEvent } from "@/lib/analytics";
+import { SITE_CONFIG } from "@/lib/site-config";
 import { 
   MapPin, 
+  Mail,
+  Phone,
   Send, 
   CheckCircle2, 
   AlertCircle, 
@@ -78,7 +81,7 @@ export default function ContactPage() {
         "isPartOf": {
           "@id": "https://suchgroupecommerce.com/#website"
         },
-        "description": "Contact Such Group E-Commerce about nationwide Amazon FBA prep, DTC fulfillment, and inventory warehousing operated from Montana."
+        "description": "Contact Such Group E-Commerce about nationwide Amazon FBA prep, DTC fulfillment, inventory storage, pricing, and carton forwarding from Great Falls, Montana."
       },
       {
         "@type": "BreadcrumbList",
@@ -142,8 +145,33 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">Facility Location</h4>
-                  <p className="text-zinc-400 text-xs mt-0.5">Great Falls, Montana, USA</p>
-                  <p className="text-zinc-500 text-[11px] mt-1">Zero state sales tax jurisdiction</p>
+                  <p className="text-zinc-400 text-xs mt-0.5">{SITE_CONFIG.address.street}</p>
+                  <p className="text-zinc-400 text-xs mt-0.5">{SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.postalCode}</p>
+                  <p className="text-zinc-500 text-[11px] mt-1">Approved inventory shipments only; no walk-in customer service</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 flex items-start gap-4">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Email Support</h4>
+                  <a href={`mailto:${SITE_CONFIG.supportEmail}`} className="text-zinc-400 text-xs mt-0.5 hover:text-emerald-400 transition-colors break-all">
+                    {SITE_CONFIG.supportEmail}
+                  </a>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 flex items-start gap-4">
+                <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">Business Phone</h4>
+                  <a href={`tel:${SITE_CONFIG.phone}`} className="text-zinc-400 text-xs mt-0.5 hover:text-emerald-400 transition-colors">
+                    406-781-1759
+                  </a>
                 </div>
               </div>
 
@@ -294,7 +322,7 @@ export default function ContactPage() {
       {/* Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
     </div>
   );

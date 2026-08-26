@@ -188,7 +188,7 @@ export function DiscoveryStepper() {
           <h2 className="text-3xl md:text-5xl font-medium text-white mb-4 tracking-tight">
             Get Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Custom Prep Plan</span>
           </h2>
-          <p className="text-zinc-400 text-base md:text-lg">Tell us about your business, and we&apos;ll show you exactly how much time and money you can save.</p>
+          <p className="text-zinc-400 text-base md:text-lg">Tell us about your business, and we&apos;ll estimate where the fulfillment model may save time or money.</p>
         </motion.div>
 
         <div className="linear-card overflow-hidden p-8 md:p-12 min-h-[450px] flex flex-col relative shadow-[0_0_40px_rgba(16,185,129,0.05)] border-white/[0.08]">
@@ -355,4 +355,3 @@ export function DiscoveryStepper() {
     </section>
   );
 }
-

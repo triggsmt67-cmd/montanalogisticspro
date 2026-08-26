@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { SITE_CONFIG } from "@/lib/site-config";
 
 export function Footer() {
   return (
@@ -17,8 +18,20 @@ export function Footer() {
             />
           </div>
           <p className="text-sm max-w-sm leading-relaxed">
-            Tax-free prep, robust fulfillment, and pristine storage support for high-volume sellers operating out of Montana.
+            Nationwide Amazon FBA prep, DTC fulfillment, storage, and carton forwarding from Great Falls, Montana. Purchase tax treatment depends on the seller and transaction.
           </p>
+          <address className="not-italic text-sm leading-relaxed mt-5 space-y-1">
+            <p>{SITE_CONFIG.address.street}</p>
+            <p>
+              {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.postalCode}
+            </p>
+            <p>
+              <a className="hover:text-white" href={`tel:${SITE_CONFIG.phone}`}>406-781-1759</a>
+              {" · "}
+              <a className="hover:text-white" href={`mailto:${SITE_CONFIG.supportEmail}`}>{SITE_CONFIG.supportEmail}</a>
+            </p>
+            <p className="text-xs text-zinc-500">Approved inventory shipments only; no walk-in customer service.</p>
+          </address>
         </div>
         <div className="flex gap-12 md:justify-end flex-wrap">
           <div className="flex flex-col gap-3">
@@ -34,6 +47,7 @@ export function Footer() {
             <Link href="/services/tax-free-amazon-fba-prep" className="text-sm transition-colors hover:text-white w-max">Tax-Free FBA Prep</Link>
             <Link href="/services/wholesale-inventory-storage" className="text-sm transition-colors hover:text-white w-max">Wholesale Storage</Link>
             <Link href="/services/dtc-ecommerce-fulfillment" className="text-sm transition-colors hover:text-white w-max">DTC Fulfillment</Link>
+            <Link href="/pricing" className="text-sm transition-colors hover:text-white w-max">Published Pricing</Link>
           </div>
           <div className="flex flex-col gap-3">
             <span className="font-bold text-white mb-2 uppercase tracking-widest text-xs">Company</span>

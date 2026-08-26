@@ -48,6 +48,7 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
                 </div>
               </div>
             </div>
+            <motion.a whileHover={{ y: -1 }} href="/pricing" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Pricing</motion.a>
             <motion.a whileHover={{ y: -1 }} href="/#process" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Process</motion.a>
             <motion.a whileHover={{ y: -1 }} href="/#fit-review" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Fit Review</motion.a>
             
@@ -72,10 +73,10 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
                   <div className="p-4">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">By Origin State</h4>
                     <div className="flex flex-col gap-2">
-                      <Link href="/tax-savings/california-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">California (10.25% Tax Avoidance)</Link>
-                      <Link href="/tax-savings/washington-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Washington (10.55% Tax Avoidance)</Link>
-                      <Link href="/tax-savings/texas-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Texas (8.25% Tax Avoidance)</Link>
-                      <Link href="/tax-savings/new-york-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">New York (8.875% Tax Avoidance)</Link>
+                      <Link href="/tax-savings/california-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">California Cost Comparison</Link>
+                      <Link href="/tax-savings/washington-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Washington Cost Comparison</Link>
+                      <Link href="/tax-savings/texas-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">Texas Cost Comparison</Link>
+                      <Link href="/tax-savings/new-york-to-montana-3pl" className="block text-sm font-medium text-zinc-900 hover:text-amber-600 transition-colors">New York Cost Comparison</Link>
                     </div>
                   </div>
                 </div>
@@ -131,6 +132,7 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
               </button>
             </div>
             <div className="p-6 flex flex-col gap-6">
+              <Link onClick={() => setMobileMenuOpen(false)} href="/pricing" className="text-lg font-medium text-zinc-900">Pricing</Link>
               <Link onClick={() => setMobileMenuOpen(false)} href="/#process" className="text-lg font-medium text-zinc-900">Process</Link>
               <Link onClick={() => setMobileMenuOpen(false)} href="/#fit-review" className="text-lg font-medium text-zinc-900">Fit Review</Link>
               <Link onClick={() => setMobileMenuOpen(false)} href="/about" className="text-lg font-medium text-zinc-900">About Us</Link>
@@ -157,10 +159,10 @@ export function Navbar({ onOpenQuestions }: NavbarProps) {
               <div className="border-t border-zinc-200 pt-6">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">By Origin State</h4>
                 <div className="flex flex-col gap-4 pl-4 border-l-2 border-amber-500">
-                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/california-to-montana-3pl" className="text-zinc-900">California (10.25% Avoidance)</Link>
-                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/washington-to-montana-3pl" className="text-zinc-900">Washington (10.6% Avoidance)</Link>
-                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/texas-to-montana-3pl" className="text-zinc-900">Texas (8.25% Avoidance)</Link>
-                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/new-york-to-montana-3pl" className="text-zinc-900">New York (8.875% Avoidance)</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/california-to-montana-3pl" className="text-zinc-900">California Comparison</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/washington-to-montana-3pl" className="text-zinc-900">Washington Comparison</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/texas-to-montana-3pl" className="text-zinc-900">Texas Comparison</Link>
+                  <Link onClick={() => setMobileMenuOpen(false)} href="/tax-savings/new-york-to-montana-3pl" className="text-zinc-900">New York Comparison</Link>
                 </div>
               </div>
 

@@ -21,14 +21,14 @@ import {
 export const metadata: Metadata = {
   title: "Tax-Free Amazon FBA Prep",
   description:
-    "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
+    "Amazon FBA receiving, inspection, FNSKU labeling, poly-bagging, and packaging from Montana, with published prep rates from $1.45 per unit.",
   alternates: {
     canonical: "/services/tax-free-amazon-fba-prep",
   },
   openGraph: {
     title: "Tax-Free Amazon FBA Prep | Such Group E-Commerce",
     description:
-      "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
+      "Amazon FBA receiving, inspection, FNSKU labeling, poly-bagging, and packaging from Montana, with published prep rates from $1.45 per unit.",
     url: "https://suchgroupecommerce.com/services/tax-free-amazon-fba-prep",
     type: "website",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tax-Free Amazon FBA Prep | Such Group E-Commerce",
     description:
-      "Protect inventory margins with zero checkout tax. Multi-point FNSKU labeling, poly bagging, and rigid 2026 Amazon inbound prep compliance in Montana.",
+      "Amazon FBA receiving, inspection, FNSKU labeling, poly-bagging, and packaging from Montana, with published prep rates from $1.45 per unit.",
     images: ["/og-image.png"],
   },
 };
@@ -61,7 +61,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
           name: "Such Group E-commerce",
         },
         description:
-          "Amazon FBA prep services in tax-free Montana. Bypass retail checkout tax on online retail sourcing and guarantee strict Amazon inbound compliance.",
+          "Amazon FBA receiving, inspection, FNSKU labeling, standard poly-bagging, packaging, and shipment-label preparation from Great Falls, Montana.",
       },
       {
         "@type": "FAQPage",
@@ -71,15 +71,15 @@ export default function TaxFreeAmazonFBAPrepPage() {
             name: "Do shipments from Montana trigger higher Amazon inbound placement fees?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Amazon charges placement fees based on how many locations you split your shipment into. Shipping from our centralized Great Falls location gives you strategic freight access to western and midwestern fulfillment hubs. We optimize your shipping plans to minimize those per-unit placement costs and keep your freight spend low.",
+              text: "Amazon determines inbound destinations, placement options, and applicable fees. When shipment creation is included in the approved scope, we prepare the plan and labels using the information available in the client account; the seller remains responsible for reviewing Amazon charges and outbound freight.",
             },
           },
           {
             "@type": "Question",
-            name: "How fast do you process units with the new Amazon shipping software delays?",
+            name: "What does standard FBA prep pricing include?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "The new Amazon software forces legacy prep centers to stall out for up to 10 minutes per shipment. We bypass that bottleneck entirely. Our custom system queues your shipment plans in the background. We inspect, prep, and pack your units immediately. Your freight never sits waiting on software.",
+              text: "Published standard prep includes receiving, product inspection, damage documentation when needed, FNSKU labeling, barcode coverage, price-tag and sticker removal, standard poly-bagging, required warning and expiration labels, dunnage, standard securing and taping, reused boxes when suitable, and printing and applying the outbound label. Carrier postage and special handling are excluded or separately quoted.",
             },
           },
           {
@@ -87,7 +87,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
             name: "Will my home state audit me if I use a Montana prep center?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Storing goods in Montana creates zero local sales tax liability for you. If you live in a strict enforcement state and buy retail inventory online, routing it through Montana legally drops your checkout tax to zero. However, once those goods move into Amazon's national network, you trigger physical presence in those destination states. You must work with your CPA to manage your multi-state compliance.",
+              text: "Montana has no general statewide sales tax, so a qualifying purchase delivered there may be billed without state sales tax. That does not determine every use-tax, nexus, registration, income-tax, property-tax, or filing obligation. Treatment depends on the seller, transaction, purchaser, and later inventory activity; obtain advice for your facts.",
             },
           },
         ],
@@ -99,7 +99,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -120,7 +120,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
         <header className="mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-4">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            Great Falls, Montana &bull; 0% Sales Tax
+            Great Falls, Montana &bull; No General Statewide Sales Tax
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.1] mb-6">
             Tax-Free Amazon FBA Prep: Stop Bleeding Margin on Retail Sourcing
@@ -139,7 +139,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                 The Bottom Line
               </p>
               <p className="text-base sm:text-lg md:text-xl text-zinc-900 font-medium leading-relaxed">
-                Retail checkout systems operate on destination-based sales tax rules. Shipping online retail purchases to our Great Falls, Montana 3PL legally drops your checkout tax to 0%. We protect your margins and execute strict Amazon FBA prep compliance with volume-tiered rates starting at $1.45 down to $1.00 per unit. We handle receiving, inspection, wrapping, 1.5 mil poly-bags, mandatory suffocation warnings, FNSKU labeling, reused boxes, and dunnage so your inventory hits the Amazon dock ready to stow.
+                For many shipped retail transactions, the delivery destination affects the tax charged by the seller. Qualifying purchases delivered to our Great Falls, Montana 3PL may be billed without state sales tax because Montana has no general statewide sales tax. Treatment varies by seller and transaction. Our published volume tiers range from $1.45 to $1.00 per unit, subject to the service scope and current quote. We handle receiving, inspection, wrapping, standard poly-bagging, required warnings, FNSKU labeling, suitable reused boxes, and dunnage according to the applicable prep plan.
               </p>
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                Buying retail inventory online is entirely different from wholesale sourcing. You buy from retail storefronts. Those checkout systems charge tax based on the shipping address. Ship to a high-tax state and you bleed margin. Ship to Montana and the tax drops to zero. You reinvest that saved capital immediately. Wholesale buyers use home-state resale certificates to avoid tax. They use us for operational efficiency. But for sellers sourcing retail products online, Montana is a mandatory profit lever.
+                For many shipped retail transactions, delivery location affects the tax charged by the seller. A qualifying purchase delivered to Montana may be billed without state sales tax because Montana has no general statewide sales tax. Seller practices, product category, documentation, purchaser obligations, later use, and other taxes can change the result. Wholesale and resale purchases may require documentation accepted by the supplier.
               </p>
             </div>
 
@@ -168,7 +168,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   <span>High-Tax State Delivery</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Checkout systems tack 7% to 10% onto every order you ship to states with sales tax. That cost comes straight out of your margin.
+                  Depending on the seller, product, exemption status, and delivery location, checkout sales tax can add meaningful cost to taxable inventory purchases.
                 </p>
               </div>
 
@@ -178,21 +178,21 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   <span>Montana Delivery</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Ship to our Great Falls address and the checkout tax drops to zero. That saved capital goes straight back into your next inventory purchase.
+                  A qualifying purchase delivered to our Great Falls facility may be billed without state sales tax. Any savings depend on what the seller otherwise would have charged and the purchaser&apos;s obligations.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Section 2: Flawless Amazon Prep Compliance */}
+          {/* Section 2: Rigorous Amazon Prep Compliance */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-              Flawless Amazon Prep Compliance
+              Rigorous Amazon Inbound Compliance
             </h2>
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed">
               <p>
-                Amazon killed its internal prep service on January 1, 2026. Compliance is now entirely on you and your prep center. If your boxes show up wrong, Amazon hits you with penalty fees and delays your inventory for days. We stop that from happening. We handle the strict 1.5 mil thick poly-bags, the mandatory suffocation warnings, and the exact FNSKU barcode placements so your boxes get scanned and stowed the second they hit the Amazon dock.
+                Amazon inbound requirements can change by marketplace, product, and shipment workflow. We prepare inventory against the applicable requirements and the approved client instructions, including FNSKU labels, standard poly-bagging, required warning labels, barcode coverage, dunnage, and shipment-label preparation. Amazon makes the final receiving and compliance determination.
               </p>
             </div>
           </section>
@@ -206,7 +206,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
 
               <div className="text-zinc-700 text-base sm:text-lg leading-relaxed">
                 <p>
-                  We keep the pricing simple, predictable, and fully transparent. As your monthly volume grows, your unit cost automatically drops. Every tier includes all core prep materials and inspection.
+                  Published pricing uses volume tiers, but the applicable unit price and included materials depend on monthly volume, product requirements, and the current client quote.
                 </p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
                 </div>
                 <div className="p-5 text-center bg-zinc-900/60 flex flex-col justify-center">
-                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">10,000+ units</p>
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">Over 10,000 units</p>
                   <p className="text-lg font-bold text-white">Custom Quote</p>
                   <p className="text-[11px] text-emerald-400 mt-0.5">Contact Us</p>
                 </div>
@@ -269,7 +269,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
               {/* Wholesale Pricing Header */}
               <div className="p-6 sm:p-8 border-b border-zinc-800 bg-zinc-900/30">
                 <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
-                  Bulk Wholesale Tiers (Same-SKU)
+                  Published Wholesale Volume Tiers
                 </p>
                 <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                   Wholesale Prep Pricing (per Unit)
@@ -294,7 +294,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   <p className="text-[11px] text-zinc-500 mt-1">per unit</p>
                 </div>
                 <div className="p-5 text-center bg-zinc-900/60 flex flex-col justify-center">
-                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">10,000+ units</p>
+                  <p className="text-xs font-medium text-zinc-400 uppercase tracking-wider mb-1">Over 10,000 units</p>
                   <p className="text-lg font-bold text-white">Custom Quote</p>
                   <p className="text-[11px] text-emerald-400 mt-0.5">Contact Us</p>
                 </div>
@@ -302,8 +302,8 @@ export default function TaxFreeAmazonFBAPrepPage() {
 
               {/* Inclusions Grid */}
               <div className="p-6 sm:p-8 bg-zinc-900/20 border-b border-zinc-800">
-                <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">All Pricing Includes</p>
-                <p className="text-sm text-zinc-300">Receiving, Inspection, Wrapping, Poly bag, FNSKU Label, boxes (reused), and dunnage.</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">Standard Pricing Includes</p>
+                <p className="text-sm text-zinc-300">Receiving, inspection, FNSKU labeling, standard poly-bagging, barcode coverage, required warning and expiration labels, standard securing and taping, reused boxes when suitable, dunnage, and printing and applying the outbound label. See the published pricing page for exclusions and additional services.</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
@@ -313,7 +313,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">Receiving &amp; Inspection</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">We audit every carton and check for damaged units the second freight hits our dock.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">We receive and inspect products under the approved client plan. Damage found during inspection is photographed and emailed for instructions.</p>
                   </div>
                 </div>
 
@@ -323,7 +323,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">Compliance Packaging</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">1.5 mil poly-bags, wrapping, reused shipping boxes, and dunnage included.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">Standard poly-bagging, wrapping, suitable reused shipping boxes, and dunnage are included. Special or oversized boxes are quoted before use.</p>
                   </div>
                 </div>
 
@@ -333,7 +333,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">FNSKU Labeling</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">High-contrast thermal barcode application with double-scan verification.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">FNSKU labeling, barcode coverage, price-tag removal, and applicable warning or expiration labels are included.</p>
                   </div>
                 </div>
 
@@ -342,8 +342,8 @@ export default function TaxFreeAmazonFBAPrepPage() {
                     <Cpu className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm mb-1">Software Management</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">We handle Amazon&apos;s shipping plan software in the background so your boxes never sit waiting.</p>
+                    <p className="text-white font-semibold text-sm mb-1">Shipping Label Preparation</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">Printing and applying the outbound shipping label is included. Carrier postage and Amazon inbound freight remain the seller&apos;s responsibility.</p>
                   </div>
                 </div>
 
@@ -353,14 +353,14 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">14 Days Free Storage</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">Your first 14 days of inventory staging are completely free.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">The first 14 days are free. Published cubic-foot storage rates begin on day 15.</p>
                   </div>
                 </div>
 
                 <div className="bg-zinc-950 p-5 sm:p-6 flex items-center justify-center">
                   <div className="text-center">
-                    <p className="text-emerald-400 font-bold text-sm mb-1">No hidden fees.</p>
-                    <p className="text-zinc-400 text-xs">Zero state sales tax.</p>
+                    <p className="text-emerald-400 font-bold text-sm mb-1">Published standard rates.</p>
+                    <Link href="/pricing" className="text-zinc-400 text-xs hover:text-white">Review additional fees and exclusions.</Link>
                   </div>
                 </div>
               </div>
@@ -375,7 +375,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                Staking a claim in Montana protects your initial purchase. Since Montana has no sales tax, storing your items in our building creates zero local tax headaches for you. But we need to give you the honest truth about what happens next. Once your prepped inventory leaves our facility and lands in Amazon warehouses across the country, you trigger physical presence in those new destination states. We handle the pristine prep and the fast dispatch. You handle your multi-state compliance.
+                Montana has no general statewide sales tax, so qualifying purchases delivered to our facility may be billed without state sales tax. That does not eliminate other tax, registration, nexus, or filing obligations. Inventory later placed in Amazon fulfillment centers may create physical-presence considerations in other states. We handle the contracted prep and dispatch services; clients remain responsible for obtaining tax advice and meeting their compliance duties.
               </p>
             </div>
 
@@ -384,10 +384,10 @@ export default function TaxFreeAmazonFBAPrepPage() {
               <div className="bg-emerald-50/50 border border-emerald-200/80 rounded-xl p-5">
                 <div className="flex items-center gap-2 text-emerald-800 font-bold mb-2">
                   <Scale className="w-5 h-5 shrink-0 text-emerald-600" />
-                  <span>Montana: Zero Tax Liability</span>
+                  <span>Montana Sales-Tax Context</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  No state sales tax. No local sales tax returns. Storing goods in our facility creates no tax filing obligations for you in Montana.
+                  Montana has no general statewide sales tax. Storage or other business activity may still create nexus, registration, income-tax, property-tax, or filing considerations depending on the facts.
                 </p>
               </div>
 
@@ -397,7 +397,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   <span>Amazon Destination States</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Your inventory in Amazon warehouses triggers physical presence in those states. This happens no matter which prep center you use.
+                  Inventory placed in Amazon fulfillment centers may create physical-presence or other tax considerations. Clients should obtain advice for their specific footprint.
                 </p>
               </div>
             </div>
@@ -415,16 +415,16 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   Do shipments from Montana trigger higher Amazon inbound placement fees?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Amazon charges placement fees based on how many locations you split your shipment into. Shipping from our centralized Great Falls location gives you strategic freight access to western and midwestern fulfillment hubs. We optimize your shipping plans to minimize those per-unit placement costs and keep your freight spend low.
+                  Amazon determines inbound destinations, placement options, and applicable fees. When shipment creation is included in the approved scope, we prepare the plan and labels using the information available in the client account; the seller remains responsible for reviewing Amazon charges and outbound freight.
                 </p>
               </div>
 
               <div className="border-t border-zinc-100 pt-8">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">
-                  How fast do you process units with the new Amazon shipping software delays?
+                  What does standard FBA prep pricing include?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  The new Amazon software forces legacy prep centers to stall out for up to 10 minutes per shipment. We bypass that bottleneck entirely. Our custom system queues your shipment plans in the background. We inspect, prep, and pack your units immediately. Your freight never sits waiting on software.
+                  Published standard prep includes receiving, product inspection, damage documentation when needed, FNSKU labeling, barcode coverage, price-tag and sticker removal, standard poly-bagging, required warning and expiration labels, dunnage, standard securing and taping, reused boxes when suitable, and printing and applying the outbound label. Carrier postage and special handling are excluded or separately quoted.
                 </p>
               </div>
 
@@ -433,7 +433,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   Will my home state audit me if I use a Montana prep center?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Storing goods in Montana creates zero local sales tax liability for you. If you live in a strict enforcement state and buy retail inventory online, routing it through Montana legally drops your checkout tax to zero. However, once those goods move into Amazon&apos;s national network, you trigger physical presence in those destination states. You must work with your CPA to manage your multi-state compliance.
+                  Montana has no general statewide sales tax, so a qualifying purchase delivered there may be billed without state sales tax. That does not determine every use-tax, nexus, registration, income-tax, property-tax, or filing obligation. Treatment depends on the seller, transaction, purchaser, and later inventory activity; obtain advice for your facts.
                 </p>
               </div>
             </div>
@@ -443,10 +443,10 @@ export default function TaxFreeAmazonFBAPrepPage() {
           <div className="bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800 rounded-2xl p-8 sm:p-10 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-3 max-w-xl text-center md:text-left">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Ready to stop paying checkout tax on inventory?
+                Ready to compare your complete landed cost?
               </h3>
               <p className="text-zinc-400 text-base leading-relaxed">
-                Tell us what you sell, how many units you move, and where you source. We will show you exactly how much you save.
+                Tell us what you sell, how many units you move, and where you source. We will apply the published prep rates and identify the freight or special handling that requires a quote.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">

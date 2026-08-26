@@ -7,14 +7,14 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "California to Montana 3PL Tax Savings",
   description:
-    "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
+    "Compare California delivery tax with Montana fulfillment costs. Such Group offers FBA prep from $1.45 per unit; tax treatment varies.",
   alternates: {
     canonical: "/tax-savings/california-to-montana-3pl",
   },
   openGraph: {
     title: "California to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
+      "Compare California delivery tax with Montana fulfillment costs. FBA prep starts at $1.45 per unit; tax treatment and savings vary.",
     url: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
     type: "article",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "California to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "California sellers avoid 7.25% to 10.25%+ district sales tax on inventory intake. Ship to Such Group E-Commerce in Montana with FBA prep from $1.45/unit.",
+      "Compare California delivery tax with Montana fulfillment costs. FBA prep starts at $1.45 per unit; tax treatment and savings vary.",
     images: ["/og-image.png"],
   },
 };
@@ -43,9 +43,9 @@ export default function CaliforniaToMontanaPage() {
         "@type": "WebPage",
         "@id": "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
         url: "https://suchgroupecommerce.com/tax-savings/california-to-montana-3pl",
-        name: "California to Montana 3PL: Avoid 10.25% Sales Tax on FBA Prep",
+        name: "California to Montana 3PL Tax and Fulfillment Cost Comparison",
         description:
-          "California Amazon FBA sellers save up to 10.25% on inventory costs by shipping purchases to Such Group E-commerce in Great Falls, Montana. Zero checkout tax under destination-based rules.",
+          "A planning guide for comparing California delivery tax, freight, and published Montana FBA prep costs. Tax treatment depends on the seller, transaction, and purchaser obligations.",
         isPartOf: {
           "@type": "WebSite",
           name: "Such Group E-Commerce",
@@ -57,10 +57,10 @@ export default function CaliforniaToMontanaPage() {
         mainEntity: [
           {
             "@type": "Question",
-            name: "Can a California seller legally use a Montana prep center to avoid sales tax?",
+            name: "How can a California seller evaluate delivery to a Montana prep center?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Sales tax is charged based on where the product is delivered. When you ship to a Montana address, the checkout system applies Montana's 0% rate. This is how destination-based tax rules work in every state that follows them.",
+              text: "For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to Montana may be billed without state sales tax because Montana has no general statewide sales tax. Treatment varies by seller, transaction, and purchaser obligations.",
             },
           },
           {
@@ -76,7 +76,7 @@ export default function CaliforniaToMontanaPage() {
             name: "Do I need a resale certificate to buy tax-free through a Montana 3PL?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Not for retail purchases. When you buy from online retailers and ship to Montana, the 0% rate applies automatically at checkout. For wholesale orders from distributors, you present a Montana Business Registry Resale Certificate to your supplier.",
+              text: "Documentation requirements depend on the seller and transaction. A qualifying retail purchase delivered to Montana may be billed without state sales tax, while wholesale or resale purchases may require valid documentation accepted by the supplier. Confirm requirements with the supplier and a qualified tax adviser.",
             },
           },
         ],
@@ -88,7 +88,7 @@ export default function CaliforniaToMontanaPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -98,43 +98,43 @@ export default function CaliforniaToMontanaPage() {
           California FBA Sellers
         </p>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-[1.1]">
-          Stop Paying California District Tax: The Montana 3PL Pipeline for FBA Sellers
+          California to Montana 3PL: Compare Tax, Freight, and FBA Prep Costs
         </h1>
         <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl mb-12 shadow-sm">
           <p className="text-lg font-medium text-zinc-900 leading-relaxed">
             <span className="font-bold text-amber-600">The Financial Impact: </span>
-            California e-commerce sellers pay combined state and district sales tax rates up to 10.75% in major hubs like Los Angeles and Oakland. By routing retail purchases directly to Such Group E-commerce in Great Falls, Montana, you leverage destination-based sourcing to legally bypass this checkout tax. This pipeline cuts inventory acquisition costs by over 10% and provides FBA prep starting at $1.45 per unit.
+            California sales-tax rates vary by delivery location. Qualifying retail purchases delivered directly to Such Group E-Commerce in Great Falls may be billed without state sales tax because Montana has no general statewide sales tax. Actual treatment and savings depend on the seller and transaction. FBA prep starts at $1.45 per unit.
           </p>
         </div>
 
         {/* The Real Cost: Grid Math Section */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-6">
-            Why LA and Bay Area Sellers Bleed Margin at Checkout
+            Illustrative California Delivery-Tax Comparison
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm text-center">
               <p className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">You source $25K in inventory</p>
               <p className="text-4xl font-extrabold text-rose-600">$2,562</p>
-              <p className="text-sm text-zinc-500 mt-2">Gone. Paid to CDTFA at checkout.</p>
+              <p className="text-sm text-zinc-500 mt-2">Illustrative tax at 10.25% if fully taxable</p>
             </div>
             <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm text-center">
               <p className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">You source $50K in inventory</p>
               <p className="text-4xl font-extrabold text-rose-600">$5,125</p>
-              <p className="text-sm text-zinc-500 mt-2">That is real cash you cannot reinvest.</p>
+              <p className="text-sm text-zinc-500 mt-2">Illustrative tax at 10.25% if fully taxable</p>
             </div>
             <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm text-center">
               <p className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-2">You source $100K in inventory</p>
               <p className="text-4xl font-extrabold text-rose-600">$10,250</p>
-              <p className="text-sm text-zinc-500 mt-2">A full-time employee. Gone to tax.</p>
+              <p className="text-sm text-zinc-500 mt-2">Illustrative tax at 10.25% if fully taxable</p>
             </div>
           </div>
           <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-2xl p-5 text-center">
             <p className="text-lg font-bold text-emerald-800">
-              Ship to Montana instead and every dollar above stays in your account.
+              A Montana delivery may change the checkout-tax comparison.
             </p>
             <p className="text-sm text-emerald-700 mt-1">
-              Montana has zero statewide sales tax. The checkout system sees a Montana address and charges $0.00.
+              Montana has no general statewide sales tax. Whether a seller bills tax depends on the transaction, documentation, and applicable law; this illustration is not a guaranteed saving.
             </p>
           </div>
         </section>
@@ -142,20 +142,20 @@ export default function CaliforniaToMontanaPage() {
         {/* Port Cities Section */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-4">
-            Comparing West Coast Freight Costs vs. Zero Tax Sourcing
+            Comparing West Coast Freight and Delivery-Tax Costs
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              California has the highest district-level sales taxes in the country. LA County, Long Beach, Oakland, San Francisco, San Jose. Every one of them stacks local taxes on top of the state base rate.
+              California combines a statewide base sales-tax rate with applicable district rates. The rate charged can vary by delivery location and transaction.
             </p>
             <p>
-              If you source inventory online and ship it to your house, garage, or a California prep center, you pay the full combined rate at checkout. That is 9.5% minimum in most metro areas. In parts of LA it hits 10.25%.
+              A taxable online purchase delivered to a California address may be billed at the applicable combined rate. Resale treatment, exemptions, seller practices, and purchaser obligations can change the result.
             </p>
             <p>
-              Sellers who import containers through the Ports of LA and Long Beach face the same problem. Drayage from port to a local warehouse keeps the goods in California. The tax sticks.
+              Importers should compare drayage, freight, tax treatment, prep, storage, and onward-shipping costs rather than assuming the delivery address alone determines total liability.
             </p>
             <p>
-              But if you reroute that freight north to Great Falls, Montana, none of that tax applies. The goods never land in a taxable state. Your checkout total drops, and your landed cost shrinks by up to 10%.
+              If a qualifying purchase is instead delivered to Great Falls, Montana, the seller may bill it without state sales tax. Any reduction in landed cost depends on the original delivery rate, seller treatment, freight, and the purchaser&apos;s own tax obligations.
             </p>
           </div>
         </section>
@@ -163,10 +163,10 @@ export default function CaliforniaToMontanaPage() {
         {/* Does the Freight Math Work? */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-4">
-            Shielding Your Business from Local State Exposure
+            Does the California-to-Montana Freight Math Work?
           </h2>
           <p className="text-lg text-zinc-700 leading-relaxed mb-6">
-            Honest answer: it depends on what you sell. Shipping from California suppliers to Great Falls crosses carrier Zones 5 and 6. That costs real money on heavy items. But for anything light and valuable, the savings are obvious.
+            It depends on the product, supplier, carrier, destination, tax treatment, and monthly volume. The examples below use assumed freight and a 10% comparison rate solely to show the calculation; they are not quotes or promised savings.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
@@ -211,7 +211,7 @@ export default function CaliforniaToMontanaPage() {
             <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 shadow-sm text-white flex flex-col justify-center">
               <p className="text-lg font-bold mb-2">The rule of thumb</p>
               <p className="text-sm text-zinc-300 leading-relaxed">
-                If your product costs more than $20 and weighs under 5 lbs, the Montana route saves you money on every single unit. Heavy, cheap items should ship direct.
+                Products above $20 and under 5 lbs may be good candidates for the Montana route, but savings are not guaranteed. Compare applicable tax, freight, prep, storage, and onward-shipping costs for your specific units.
               </p>
             </div>
           </div>
@@ -224,10 +224,10 @@ export default function CaliforniaToMontanaPage() {
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              Storing inventory in Montana puts your goods in a state with no sales tax. You do not file sales tax returns in Montana. You do not collect. You do not remit. The state simply does not have one.
+              Montana has no general statewide sales tax. That fact alone does not determine every registration, income-tax, use-tax, or filing obligation a business may have because of its entity, property, activities, or transactions. Obtain advice for your specific structure.
             </p>
             <p>
-              Federal law (Public Law 86-272) protects out-of-state sellers who only use Montana for warehousing through a third party. You will not owe Montana income tax just because your boxes sit in our building.
+              Storing inventory or conducting other business activities in Montana may create tax nexus or filing obligations depending on the seller’s entity, activities, property, and transaction structure. Public Law 86-272 generally addresses protected solicitation activities and should not be treated as a blanket warehousing exemption. Sellers should obtain a determination from the Montana Department of Revenue or a qualified tax professional.
             </p>
             <p>
               Once we prep your units and ship them into Amazon&apos;s network, physical presence shifts to whatever state Amazon stores your inventory. That is between you and Amazon, and it happens regardless of which prep center you use.
@@ -240,27 +240,13 @@ export default function CaliforniaToMontanaPage() {
           <h2 className="text-2xl font-bold text-zinc-900 mb-4">
             What we charge and what you get
           </h2>
-          <div className="bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-sm">
-            <div className="grid grid-cols-3 text-center divide-x divide-zinc-200">
-              <div className="p-6">
-                <p className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1">1 to 500 units</p>
-                <p className="text-3xl font-extrabold text-zinc-900">$1.45</p>
-                <p className="text-xs text-zinc-500 mt-1">per unit</p>
-              </div>
-              <div className="p-6 bg-emerald-50">
-                <p className="text-sm font-semibold text-emerald-700 uppercase tracking-wide mb-1">501 to 5,000</p>
-                <p className="text-3xl font-extrabold text-zinc-900">$1.25</p>
-                <p className="text-xs text-zinc-500 mt-1">per unit</p>
-              </div>
-              <div className="p-6">
-                <p className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-1">5,001+</p>
-                <p className="text-3xl font-extrabold text-zinc-900">$1.00</p>
-                <p className="text-xs text-zinc-500 mt-1">per unit</p>
-              </div>
-            </div>
-            <div className="border-t border-zinc-200 p-5 text-sm text-zinc-600 leading-relaxed">
-              <p><strong className="text-zinc-900">Every prep includes:</strong> receiving, inspection, FNSKU labeling, poly-bagging, and shipment creation into Amazon Seller Central. Storage is free for 14 days. We also connect with Shopify, TikTok Shop, and Walmart WFS.</p>
-            </div>
+          <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm text-zinc-700 leading-relaxed">
+            <p>
+              Published monthly FBA rates are $1.45 per unit for 1–500 units, $1.35 for 501–1,000, $1.25 for 1,001–2,000, $1.15 for 2,001–5,000, and $1.00 for 5,001–10,000. Volumes over 10,000 require a quote; there is no minimum shipment or minimum charge.
+            </p>
+            <p className="mt-3">
+              The base rate includes receiving, inspection, FNSKU labeling, standard poly-bagging and warnings when needed, barcode and price-tag covering or removal, suitable reused boxes, dunnage, securing, and shipping-label printing and application. Seller-paid postage, freight, storage after 14 days, oversized or special packaging, and other listed add-ons are separate. See the <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing and policy details</Link>.
+            </p>
           </div>
         </section>
 
@@ -287,19 +273,19 @@ export default function CaliforniaToMontanaPage() {
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Can I legally do this?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Yes. Sales tax is charged based on the delivery address. When you ship to our Montana warehouse, the checkout system applies Montana&apos;s 0% sales tax rate. This is called destination-based sourcing, and it is how tax law works in most states.
+                For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to our Montana warehouse may be billed without state sales tax. Treatment varies by seller, transaction, and purchaser obligations.
               </p>
             </div>
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Do I need a resale certificate?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Not for buying retail inventory online. The Montana shipping address handles it automatically at checkout. For wholesale orders from distributors, you present a Montana Business Registry Resale Certificate. We help you get that set up.
+                Documentation requirements depend on the seller and transaction. Wholesale or resale purchases may require valid documentation accepted by the supplier. Confirm the required form with the supplier and a qualified tax adviser; we do not provide tax or legal advice.
               </p>
             </div>
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">How long does shipping take from California?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Ground freight from SoCal to Great Falls runs 3 to 4 business days. From NorCal and the Bay, it is 2 to 3 days. We start processing your units within 24 hours of arrival.
+                Carrier transit times vary by origin, service, weather, and peak volume. After a shipment is checked in, we target the agreed processing window; timing is confirmed during onboarding and can change for exceptions or unusually large receipts.
               </p>
             </div>
           </div>
@@ -313,13 +299,16 @@ export default function CaliforniaToMontanaPage() {
           </h3>
           <ul className="space-y-2 text-xs text-zinc-600">
             <li>
-              &bull; <strong>[SRC-CDTFA-001]</strong> California Department of Tax and Fee Administration: <em>Sales and Use Tax Rates &amp; Regulation 1620 (Interstate Sourcing)</em>. Confirms 7.25% statewide base rate with combined district taxes up to 10.25%–11.25%.
+              &bull; <strong>[SRC-CDTFA-001]</strong> California Department of Tax and Fee Administration: <em><a href="https://www.cdtfa.ca.gov/taxes-and-fees/rates.aspx" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">California City and County Sales and Use Tax Rates</a></em> and <em><a href="https://www.cdtfa.ca.gov/lawguides/vol1/sutr/1620.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Regulation 1620 (Interstate and Foreign Commerce)</a></em>. Confirms 7.25% statewide base rate with combined district taxes up to 10.25%+.
             </li>
             <li>
-              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em><a href="https://revenue.mt.gov/taxes/general-sales-tax" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">General Sales Tax Guidance</a></em> and <em><a href="https://revenuefiles.mt.gov/taxes/nexus" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Montana Tax Nexus Guidelines</a></em>. Confirms that Montana has no general-use sales tax while other business obligations remain fact-specific.
             </li>
             <li>
-              &bull; <strong>[SRC-CDTFA-002]</strong> California Department of Tax and Fee Administration: <em>Regulation 1668 (Sales for Resale)</em>.
+              &bull; <strong>[SRC-CDTFA-002]</strong> California Department of Tax and Fee Administration: <em><a href="https://www.cdtfa.ca.gov/lawguides/vol1/sutr/1668.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Regulation 1668 (Sales for Resale)</a></em>.
+            </li>
+            <li>
+              &bull; <strong>[SRC-USC-001]</strong> United States Congress: <em><a href="https://www.law.cornell.edu/uscode/text/15/381" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">15 U.S. Code &sect; 381 (Public Law 86-272)</a></em>.
             </li>
           </ul>
         </section>

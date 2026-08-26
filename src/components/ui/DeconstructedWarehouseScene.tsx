@@ -187,7 +187,7 @@ export default function DeconstructedWarehouseScene() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-[8px] text-zinc-400 uppercase font-black tracking-widest mb-0.5">Accuracy SLA</span>
-            <span className="text-[10px] font-bold text-zinc-950">99.9% Prep SLA</span>
+            <span className="text-[10px] font-bold text-zinc-950">Published Prep Rates</span>
           </div>
         </motion.div>
 
@@ -207,7 +207,7 @@ export default function DeconstructedWarehouseScene() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-[8px] text-zinc-400 uppercase font-black tracking-widest mb-0.5">Sales Tax</span>
-            <span className="text-[10px] font-bold text-zinc-950">0% Tax Prep Facility</span>
+            <span className="text-[10px] font-bold text-zinc-950">Montana Prep Facility</span>
           </div>
         </motion.div>
 
@@ -226,7 +226,7 @@ export default function DeconstructedWarehouseScene() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
           </span>
-          <span>100% Scan Compliance</span>
+          <span>Multi-Point Scan Verification</span>
         </div>
 
         {/* Hotspot 3: Fast Dispatch */}
@@ -248,7 +248,7 @@ export default function DeconstructedWarehouseScene() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-[8px] text-zinc-400 uppercase font-black tracking-widest mb-0.5">Accuracy SLA</span>
-            <span className="text-[10px] font-bold text-zinc-900">99.9% Prep SLA</span>
+            <span className="text-[10px] font-bold text-zinc-900">Published Prep Rates</span>
           </div>
         </div>
         {/* Tax-Free Badge */}
@@ -258,7 +258,7 @@ export default function DeconstructedWarehouseScene() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="text-[8px] text-zinc-400 uppercase font-black tracking-widest mb-0.5">Sales Tax</span>
-            <span className="text-[10px] font-bold text-zinc-950">0% Tax Prep Facility</span>
+            <span className="text-[10px] font-bold text-zinc-950">Montana Prep Facility</span>
           </div>
         </div>
       </div>

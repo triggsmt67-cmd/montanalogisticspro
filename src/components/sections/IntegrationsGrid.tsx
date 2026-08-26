@@ -58,7 +58,7 @@ export function IntegrationsGrid() {
               </div>
               <h3 className="text-2xl font-medium text-white mb-3 tracking-tight group-hover:text-emerald-400 transition-colors duration-500">Complete FBA Prep & Bundling</h3>
               <p className="text-zinc-400 text-base max-w-md leading-relaxed group-hover:text-zinc-300 transition-colors duration-500">
-                We handle it all: FNSKU labeling, suffocation warnings, poly-bagging, bubble wrapping, and &quot;Sold as Set&quot; stickers. Need custom multi-pack assembly? Our team executes complex bundling flawlessly.
+                We handle it all: FNSKU labeling, suffocation warnings, poly-bagging, bubble wrapping, and &quot;Sold as Set&quot; stickers. Need custom multi-pack assembly? Our team executes complex bundling with documented accuracy.
               </p>
             </div>
             
@@ -77,7 +77,7 @@ export function IntegrationsGrid() {
               </div>
               <h3 className="text-xl font-medium text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors duration-500">FBM & Returns Management</h3>
               <p className="text-zinc-400 text-sm leading-relaxed group-hover:text-zinc-300 transition-colors duration-500">
-                Fulfilling direct? Orders placed before our daily cutoff ship the exact same day. We also process customer returns and inspect items to ensure they can be restocked.
+                Eligible direct-to-consumer orders received before the confirmed cutoff are targeted for same-business-day dispatch, subject to inventory readiness, exceptions, and carrier pickup. Returns are inspected and handled under client instructions.
               </p>
             </div>
           </motion.div>
@@ -88,9 +88,9 @@ export function IntegrationsGrid() {
               <div className="w-12 h-12 rounded-2xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-500 ease-out group-hover:bg-indigo-500/10 group-hover:border-indigo-500/20">
                 <ShieldCheck className="w-6 h-6 text-white group-hover:text-indigo-400 transition-colors duration-500" />
               </div>
-              <h3 className="text-lg font-medium text-white mb-2 tracking-tight group-hover:text-indigo-400 transition-colors duration-500">Secure, Climate-Controlled</h3>
+              <h3 className="text-lg font-medium text-white mb-2 tracking-tight group-hover:text-indigo-400 transition-colors duration-500">Receiving &amp; Storage</h3>
               <p className="text-zinc-400 text-sm leading-relaxed group-hover:text-zinc-300 transition-colors duration-500">
-                Your capital is protected. Our Montana facility features 24/7 security cameras, active alarms, full insurance, and climate control for sensitive goods.
+                Approved client inventory can be received and stored at our Great Falls facility. The first 14 days are free; published cubic-foot rates apply afterward.
               </p>
             </div>
           </motion.div>
@@ -98,9 +98,9 @@ export function IntegrationsGrid() {
           {/* Small Horizontal Card 2 */}
           <motion.div variants={itemVariants} className="md:col-span-2 linear-card p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group cursor-pointer">
             <div className="flex-1 relative z-10">
-              <h3 className="text-xl font-medium text-white mb-2 tracking-tight group-hover:text-amber-400 transition-colors duration-500">Dedicated Support & Easy Software</h3>
+              <h3 className="text-xl font-medium text-white mb-2 tracking-tight group-hover:text-amber-400 transition-colors duration-500">Remote Client Support</h3>
               <p className="text-zinc-400 text-sm leading-relaxed group-hover:text-zinc-300 transition-colors duration-500">
-                No support ticket black holes. You get a dedicated account manager for instant issue resolution. Plus, we integrate directly with Amazon Seller Central and InventoryLab.
+                Onboarding and support are handled remotely. Account access, storefront connections, carrier workflows, reporting, and any custom technical work are confirmed in the approved client scope.
               </p>
             </div>
             <div className="w-16 h-16 rounded-full border border-white/[0.1] flex items-center justify-center bg-white/[0.02] shadow-inner relative z-10 shrink-0 group-hover:scale-110 transition-transform duration-500 ease-out group-hover:border-amber-500/30 group-hover:bg-amber-500/10">

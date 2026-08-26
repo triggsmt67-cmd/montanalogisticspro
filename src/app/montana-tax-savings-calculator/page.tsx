@@ -8,14 +8,14 @@ import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
 export const metadata: Metadata = {
   title: "Amazon Tax Savings Calculator",
   description:
-    "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
+    "Estimate a checkout-tax difference against published FBA prep and entered freight costs. Planning tool only; tax treatment and actual costs vary.",
   alternates: {
     canonical: "/montana-tax-savings-calculator",
   },
   openGraph: {
     title: "Amazon Tax Savings Calculator | Such Group E-Commerce",
     description:
-      "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
+      "Estimate a checkout-tax difference against published FBA prep and entered freight costs. Planning tool only; actual treatment and costs vary.",
     url: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
     type: "website",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Amazon Tax Savings Calculator | Such Group E-Commerce",
     description:
-      "Calculate your net savings with our 3PL tax calculator. Compare checkout sales tax savings against prep fees for Amazon FBA and wholesale inventory.",
+      "Estimate a checkout-tax difference against published FBA prep and entered freight costs. Planning tool only; actual treatment and costs vary.",
     images: ["/og-image.png"],
   },
 };
@@ -45,7 +45,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
     applicationCategory: "BusinessApplication",
     url: "https://suchgroupecommerce.com/montana-tax-savings-calculator",
     description:
-      "An interactive 3PL tax calculator for Amazon FBA sellers to determine exact sales tax savings and ROI when routing inventory through zero-tax Montana.",
+      "An interactive planning calculator that compares an assumed checkout-tax difference with published FBA prep and user-entered freight costs. It is not tax advice or a quote.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -61,7 +61,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -77,7 +77,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
               Montana 3PL Tax Savings Calculator: See Your Prep Center ROI
             </h1>
             <p className="text-xl text-zinc-500 leading-relaxed max-w-2xl">
-              Stop guessing. Plug your numbers in. See exactly how much checkout tax you eliminate by routing your Amazon FBA inventory through Montana. State taxes eat your margin. Every dollar saved on checkout tax goes straight to your bottom line. Run your sourcing math right now.
+              Enter your numbers to estimate how delivery location could change checkout sales tax and total fulfillment cost. Results are planning estimates, not guaranteed savings or tax advice; seller treatment and client obligations vary.
             </p>
           </div>
         </section>
@@ -97,13 +97,13 @@ export default function MontanaTaxSavingsCalculatorPage() {
             </h2>
             <div className="space-y-4 text-zinc-600 text-lg leading-relaxed">
               <p>
-                Buying retail and wholesale inventory comes with a hidden penalty. High-tax states strip up to 10% of your operating capital right at checkout. You lose that money before you even list a product on Amazon.
+                Delivery-tax rates can materially affect the cash paid on a taxable inventory purchase. Resale documentation, exemptions, seller treatment, delivery location, and purchaser obligations can all change the amount charged.
               </p>
               <p>
-                Montana has 0% sales tax. When you use a Great Falls prep center, you bypass those local taxes completely. This tool reveals your exact ROI. You see the true cost of fulfillment and the exact profit margin you protect.
+                Montana has no general statewide sales tax. A qualifying purchase delivered to a Great Falls prep center may be billed without state sales tax, depending on the seller and transaction. This tool provides an estimate based on the inputs and assumptions shown; it does not calculate a client&apos;s complete tax liability or exact ROI.
               </p>
               <p>
-                Most sellers never run these numbers. They absorb the tax as a cost of doing business and keep moving. But stack it up over 12 months of sourcing and you are looking at thousands of dollars sitting in a state tax account instead of your inventory budget.
+                The useful comparison is total landed cost: actual checkout tax, inbound freight, prep, add-ons, storage, and onward shipping. Use invoices and current quotes before making a routing decision.
               </p>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4 border border-emerald-200">1</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">Pick your origin state</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  Select where you currently buy or store inventory. The calculator pulls the state sales tax rate automatically.
+                  Select a comparison location. The calculator uses a representative rate that should be checked against the current rate for the actual delivery address.
                 </p>
               </div>
               <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
@@ -134,7 +134,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4 border border-emerald-200">3</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">See the difference</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  The calculator instantly compares your current tax cost against Montana&apos;s zero percent rate. That gap is recovered capital you can reinvest into more inventory.
+                  The calculator compares the tax rate you enter with prep and freight assumptions. The result is an illustration, not recovered capital or a guaranteed saving.
                 </p>
               </div>
             </div>
@@ -158,8 +158,8 @@ export default function MontanaTaxSavingsCalculatorPage() {
                 <p className="text-xs text-zinc-500 uppercase tracking-wide font-semibold">Free Storage</p>
               </div>
               <div className="bg-white border border-zinc-200 rounded-xl p-5 text-center shadow-sm">
-                <p className="text-2xl font-extrabold text-zinc-900 mb-1">24 hrs</p>
-                <p className="text-xs text-zinc-500 uppercase tracking-wide font-semibold">Dock to Stock</p>
+                <p className="text-2xl font-extrabold text-zinc-900 mb-1">No Minimum</p>
+                <p className="text-xs text-zinc-500 uppercase tracking-wide font-semibold">Shipment or Charge</p>
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function MontanaTaxSavingsCalculatorPage() {
                   Run your numbers. See the advantage.
                 </h2>
                 <p className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-                  Ready to stake your claim on tax-free sourcing? Reach out to Such Group E-commerce and set up your pipeline out of Great Falls.
+                  Ready to compare your actual landed costs? Send Such Group E-Commerce your product, volume, packaging, and routing details for a scoped quote.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Link

@@ -32,11 +32,11 @@ const PATH_CONTENT = {
   amazon: {
     hero: {
       eyebrow: "Amazon FBA & FBM Prep",
-      headline: "Skip the compliance headaches. And the sales tax.",
+      headline: "Make FBA prep costs predictable from the start.",
       body: "FBA compliance is strict. Mistakes quietly eat your margins. We handle receiving, inspection, wrapping, poly-bagging, and FNSKU labeling with volume tiers starting at $1.45 down to $1.00 per unit. Keep your inventory moving and your margins intact.",
       primaryCta: "Get Your Custom Prep Plan",
       secondaryCta: "Explore Prep Services",
-      metrics: ["Zero Sales Tax", "99.9% Accuracy", "FBA Compliance", "Fast Turnarounds", "Transparent Pricing"],
+      metrics: ["Montana Has No General Sales Tax", "Published Pricing", "FBA Prep", "No Shipment Minimum", "14 Days Free Storage"],
     },
     problems: {
       headline: "Amazon prep gets expensive when details slip.",
@@ -54,12 +54,12 @@ const PATH_CONTENT = {
         },
         {
           title: "Inventory goes dark",
-          body: "When your current 3PL lacks real-time scanning, you lose visibility. You're left guessing what's been received and what's ready to ship.",
+          body: "When receiving status and shipment updates are not documented clearly, you are left guessing what arrived and what is ready to ship.",
           icon: Layers
         },
         {
           title: "Sales tax is an invisible penalty",
-          body: "If your prep center sits in a high-tax state, you lose up to 10% of your retail sourcing budget to destination-based checkout taxes before you make a single sale.",
+          body: "Depending on the seller and transaction, taxable retail purchases delivered to a high-tax location can add meaningful checkout cost before you make a sale.",
           icon: DollarSign
         }
       ]
@@ -67,7 +67,7 @@ const PATH_CONTENT = {
     services: [
       {
         title: "FBA Prep & Labeling",
-        body: "Flawless FNSKU application, carton labeling, and expiration date management to ensure 100% Amazon compliance.",
+        body: "Precision FNSKU application, carton labeling, and expiration date management aligned with Amazon compliance standards.",
         icon: PackageCheck
       },
       {
@@ -81,8 +81,8 @@ const PATH_CONTENT = {
         icon: AlertCircle
       },
       {
-        title: "Tax-Free Inventory Storage",
-        body: "Store your overstock in our Montana facility securely, completely shielded from inventory holding taxes.",
+        title: "Montana Inventory Storage",
+        body: "Store overstock securely in our Montana facility. Tax treatment depends on the inventory, business structure, and applicable state or local rules.",
         icon: Layers
       },
       {
@@ -92,7 +92,7 @@ const PATH_CONTENT = {
       },
       {
         title: "Inbound Shipment Creation",
-        body: "We manage the Seller Central shipment plans and box content data so you don't have to touch the logistics.",
+        body: "We prepare approved cartons and print and apply supplied or authorized shipping labels. Account access and shipment-plan work must be confirmed in the client scope.",
         icon: Truck
       }
     ],
@@ -103,11 +103,11 @@ const PATH_CONTENT = {
       },
       {
         title: "Route to Montana",
-        body: "Route your retail inventory directly to our tax-free facility. You instantly drop your checkout tax to zero and protect your front-end capital."
+        body: "Route qualifying retail inventory directly to our Montana facility. Because Montana has no general statewide sales tax, eligible purchases may be billed without state sales tax."
       },
       {
         title: "We prep and verify",
-        body: "Everything is scanned, prepped, and verified against Amazon's strict inbound guidelines."
+        body: "Inventory is inspected and prepared against the applicable Amazon requirements and the approved client instructions."
       },
       {
         title: "Shipped to fulfillment centers",
@@ -138,10 +138,10 @@ const PATH_CONTENT = {
     hero: {
       eyebrow: "DTC & Retail Fulfillment",
       headline: "Scale your store. Keep your margins.",
-      body: "Stop letting chaotic fulfillment, surprise fees, and state taxes bottleneck your growth. We offer seamless pick/pack operations and robust API integrations from a zero-sales-tax location.",
+      body: "Use published pick-and-pack pricing and a documented onboarding scope from our Great Falls facility. Supported storefront connections and custom workflows are confirmed before inventory is sent.",
       primaryCta: "Build My Fulfillment Plan",
       secondaryCta: "See Fulfillment Services",
-      metrics: ["Zero Sales Tax", "Same-Day Shipping", "Real-Time Sync", "Custom Packaging", "Dedicated Support"],
+      metrics: ["Published DTC Rates", "2 PM Dispatch Target", "Supported Connections", "Custom Packaging", "No Shipment Minimum"],
     },
     problems: {
       headline: "Growth stalls when operations break.",
@@ -149,7 +149,7 @@ const PATH_CONTENT = {
       items: [
         {
           title: "Physical stock doesn't match",
-          body: "When your physical warehouse stock doesn't instantly sync with Shopify, you oversell products and shatter customer trust.",
+          body: "When inventory updates and storefront orders do not move through an agreed workflow, overselling and customer-service problems can follow.",
           icon: BarChart4
         },
         {
@@ -171,13 +171,13 @@ const PATH_CONTENT = {
     },
     services: [
       {
-        title: "Secure Warehousing",
-        body: "Clean, organized, and climate-controlled storage workflows for your products, managed with strict cycle counts.",
+        title: "Inventory Storage",
+        body: "Documented inventory storage and reporting workflows, with the applicable storage conditions confirmed during onboarding.",
         icon: Layers
       },
       {
         title: "Direct-to-Consumer Pick & Pack",
-        body: "Fast, accurate order fulfillment with real-time API integrations into Shopify, WooCommerce, and more.",
+        body: "Pick-and-pack fulfillment with supported storefront connections confirmed during technical onboarding.",
         icon: Box
       },
       {
@@ -187,24 +187,24 @@ const PATH_CONTENT = {
       },
       {
         title: "Streamlined Returns",
-        body: "Rapid return intake, strict quality inspections, and fast restocking to recover your revenue quickly.",
+        body: "Return intake, damage documentation, and restocking instructions handled under the approved client workflow.",
         icon: RotateCcw
       },
       {
         title: "Branded Unboxing Experience",
-        body: "Custom dunnage, branded tape, and specific insert placements to ensure your customer's first physical touchpoint is perfect.",
+        body: "Custom dunnage, branded tape, and specific insert placements to ensure your customer's first physical touchpoint reflects your brand quality.",
         icon: ShoppingCart
       },
       {
         title: "B2B & Retail Routing",
-        body: "EDI compliance and strict routing guide adherence for your wholesale and big-box retail orders.",
+        body: "B2B and retail routing requirements reviewed and quoted against the client’s approved instructions.",
         icon: Truck
       }
     ],
     process: [
       {
         title: "System Integration",
-        body: "We securely connect our Warehouse Management System to your ecommerce platform for real-time data sync."
+        body: "We confirm supported storefront connections, data flow, and any custom technical work before onboarding."
       },
       {
         title: "Define the unboxing",
@@ -212,11 +212,11 @@ const PATH_CONTENT = {
       },
       {
         title: "Receive and audit",
-        body: "Your inventory arrives at our tax-free Montana facility, is strictly audited, and scanned into active inventory."
+        body: "Your inventory arrives at our Montana facility for receiving and inspection under the approved client plan."
       },
       {
         title: "Fulfill and optimize",
-        body: "Orders flow in automatically, ship out same-day, and tracking instantly pushes back to your customers."
+        body: "Orders can sync through supported integrations. Eligible orders received before 2:00 PM Mountain Time are targeted for same-business-day dispatch, with tracking returned through the connected workflow."
       }
     ],
     form: {
@@ -242,19 +242,19 @@ const PATH_CONTENT = {
   wholesale: {
     hero: {
       eyebrow: "B2B Wholesale Storage",
-      headline: "Stage inventory tax-free. Cross-dock at scale.",
-      body: "Enterprise wholesalers use our Great Falls facility to eliminate inventory property taxes, access regional rail freight corridors, and stage bulk pallets tax-free.",
+      headline: "Stage inventory in Montana. Cross-dock at scale.",
+      body: "Enterprise wholesalers use our Great Falls facility for pallet staging, cross-docking, and regional freight access. Tax treatment depends on the client, inventory, and applicable jurisdiction.",
       primaryCta: "Start Storage Review",
       secondaryCta: "See Storage Services",
-      metrics: ["Zero Inventory Tax", "Rail Freight Access", "Climate-Controlled", "Cross-Docking", "Pallet Staging"],
+      metrics: ["Published Storage Rates", "LTL & FTL Receiving", "Carton Forwarding", "Cross-Docking", "Pallet Staging"],
     },
     problems: {
       headline: "Enterprise storage gets punished in the wrong state.",
-      intro: "Most wholesalers bleed capital on inventory property taxes and miss freight advantages hiding in plain sight.",
+      intro: "Wholesale storage costs depend on handling, space, time, freight, and the client’s own tax obligations. Those variables should be reviewed together.",
       items: [
         {
           title: "Inventory taxes drain capital",
-          body: "States like Texas assess annual property taxes on your unsold stock. Every pallet sitting on January 1st costs you money.",
+          body: "Inventory-property-tax treatment varies by location, ownership, valuation date, exemptions, and business activity. It requires a facts-and-circumstances review.",
           icon: DollarSign
         },
         {
@@ -264,64 +264,64 @@ const PATH_CONTENT = {
         },
         {
           title: "Vendor systems reject Montana",
-          body: "Automated compliance portals look for a 9-digit state tax permit. Montana does not issue them. Your drop-ship pipeline stalls.",
+          body: "Supplier documentation and portal requirements vary. Confirm accepted resale or exemption documentation directly with the supplier and a qualified tax adviser.",
           icon: FileBox
         },
         {
-          title: "Rail access is an afterthought",
-          body: "Most 3PLs force you into truck-only receiving. You miss the cost advantage of direct rail-to-warehouse transloading.",
+          title: "Freight handling changes the total",
+          body: "Container unloading, pallet receiving, palletization, storage, and outbound forwarding each affect the landed cost.",
           icon: Truck
         }
       ]
     },
     services: [
       {
-        title: "Climate-Controlled Staging",
-        body: "Temperature-managed storage (60°F–80°F) for inventory subject to degradation or strict manufacturer requirements.",
+        title: "Published Storage Plans",
+        body: "Fourteen days of free storage followed by published cubic-foot rates, including a separate fourth-quarter rate.",
         icon: Layers
       },
       {
-        title: "BNSF Rail Transloading",
-        body: "Direct railcar-to-truck freight handling off the BNSF mainline for high-volume inbound shipments.",
+        title: "Regional Freight Coordination",
+        body: "LTL and FTL receiving requirements are documented before high-volume inbound shipments arrive.",
         icon: Truck
       },
       {
         title: "Cross-Docking Operations",
-        body: "High-velocity LTL and FTL receiving. We break bulk freight and route it to outbound carriers fast.",
+        body: "LTL and FTL receiving, pallet staging, and onward forwarding scoped to the approved client plan and carrier schedule.",
         icon: PackageCheck
       },
       {
-        title: "Zero Inventory Property Tax",
-        body: "Stage bulk inventory in Montana with zero state inventory property taxes or inventory holding levies.",
+        title: "Montana Tax Environment",
+        body: "Montana has no general statewide sales tax. Other tax and filing obligations depend on the client, inventory, and jurisdiction.",
         icon: DollarSign
       },
       {
-        title: "Cycle Count Auditing",
-        body: "Continuous inventory integrity audits to ensure perfect pallet counts over long staging periods.",
+        title: "Inventory Staging",
+        body: "Pallet and carton staging scoped to the approved client plan and expected storage duration.",
         icon: BarChart4
       },
       {
-        title: "Vendor Credential Support",
-        body: "We provide exact statutory proof and escalation protocols to force manual overrides with strict vendor portals.",
+        title: "Documented Service Scope",
+        body: "Receiving, forwarding, storage, and special handling requirements are documented before inventory arrives.",
         icon: FileBox
       }
     ],
     process: [
       {
         title: "Scope your footprint",
-        body: "We evaluate your pallet count, rail transload needs, and staging duration to build a custom plan."
+        body: "We evaluate pallet count, container or truck receiving needs, and staging duration to build a custom plan."
       },
       {
         title: "Route to Great Falls",
-        body: "Ship via BNSF rail or long-haul truck directly to our tax-free Montana facility."
+        body: "Coordinate approved carton, pallet, LTL, FTL, or container freight to our Montana facility."
       },
       {
         title: "Receive and stage",
-        body: "Your inventory is scanned, audited, and staged in climate-controlled storage with zero inventory property tax."
+        body: "Your inventory is received and staged according to the approved client plan and published storage terms."
       },
       {
         title: "Cross-dock and distribute",
-        body: "We break bulk freight and route it to outbound carriers for Pacific Northwest, Canada, and national distribution."
+        body: "We prepare approved cartons or pallets for the outbound carrier and destination specified by the client."
       }
     ],
     form: {
@@ -334,7 +334,7 @@ const PATH_CONTENT = {
         },
         {
           title: "Operations & Routing",
-          fields: ["Need BNSF Rail Access?", "Require Cross-docking?", "Need long-term staging?"]
+          fields: ["Receiving method", "Require cross-docking?", "Need long-term staging?"]
         },
         {
           title: "Timeline",
@@ -372,13 +372,13 @@ function ServiceCard({ service, activePath, index }: ServiceCardProps) {
     }
 
     const storageTitles = [
-      "Tax-Free Inventory Storage",
-      "Secure Warehousing",
+      "Montana Inventory Storage",
+      "Inventory Storage",
       "B2B & Retail Routing",
-      "Climate-Controlled Staging",
-      "BNSF Rail Transloading",
+      "Inventory Staging",
+      "Regional Freight Coordination",
       "Cross-Docking Operations",
-      "Zero Inventory Property Tax",
+      "Montana Tax Environment",
       "Cycle Count Auditing",
       "Direct Inbound Receiving",
     ];
@@ -403,9 +403,9 @@ function ServiceCard({ service, activePath, index }: ServiceCardProps) {
     
     const steps = [
       { threshold: 0, text: "Initializing routing..." },
-      { threshold: 25, text: "Configuring tax-free node..." },
-      { threshold: 55, text: "Auditing compliance schemas..." },
-      { threshold: 85, text: "Establishing secure pipeline..." },
+      { threshold: 25, text: "Loading service scope..." },
+      { threshold: 55, text: "Checking published pricing..." },
+      { threshold: 85, text: "Preparing your comparison..." },
       { threshold: 100, text: "Redirecting..." }
     ];
 
@@ -588,7 +588,7 @@ function LogoTicker() {
   return (
     <div className="py-2">
       <p className="text-center text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-6">
-        Fulfill orders from any major sales channel
+        Marketplace and storefront workflows are confirmed during onboarding
       </p>
       <div 
         className="relative overflow-hidden py-3 w-full border-y border-zinc-200/50"
@@ -781,7 +781,7 @@ export default function LandingPage() {
                   transition={{ duration: 0.6 }}
                   className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/50 text-emerald-800 text-xs font-semibold uppercase tracking-widest mb-6 shadow-sm backdrop-blur-md"
                 >
-                  Tax-Free Prep & Fulfillment
+                  Montana Prep &amp; Fulfillment
                 </motion.div>
                 <motion.h1 
                   initial={{ opacity: 0, y: 10 }}
@@ -866,7 +866,7 @@ export default function LandingPage() {
               </div>
               <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell on Amazon</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "amazon" ? "text-zinc-300" : "text-zinc-600"}`}>
-                Strict FBA prep, precise labeling, and compliance handling for sellers who want their time back.
+                FBA receiving, inspection, labeling, and packaging completed against the approved instructions and current applicable requirements.
               </p>
             </motion.button>
 
@@ -894,7 +894,7 @@ export default function LandingPage() {
               </div>
               <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Sell Through My Own Store</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "ecommerce" ? "text-zinc-300" : "text-zinc-600"}`}>
-                API-driven pick/pack, kitting, and returns for Shopify, DTC, and multi-channel retail brands.
+                Pick-and-pack, kitting, and returns for direct-to-consumer and multi-channel retail brands.
               </p>
             </motion.button>
 
@@ -922,7 +922,7 @@ export default function LandingPage() {
               </div>
               <p className="text-2xl font-bold tracking-tight mb-3 relative z-10">I Need B2B Storage</p>
               <p className={`text-base leading-relaxed relative z-10 ${activePath === "wholesale" ? "text-zinc-300" : "text-zinc-600"}`}>
-                Enterprise pallet staging, BNSF rail cross-docking, and zero inventory property taxes for wholesale operations.
+                Enterprise pallet staging, cross-docking, and regional freight coordination for wholesale operations.
               </p>
             </motion.button>
           </div>
@@ -1022,10 +1022,10 @@ export default function LandingPage() {
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <span className="text-sm font-semibold text-emerald-400 tracking-widest uppercase mb-4 block">The Montana Advantage</span>
               <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-6">
-                Calculate your sales tax savings.
+                Estimate a checkout-tax difference and total fulfillment cost.
               </h2>
               <p className="text-lg text-zinc-400 leading-relaxed">
-                Retail checkout systems charge sales tax based on where your items are delivered. By routing your online retail sourcing through our Great Falls facility, you legally drop your checkout tax to zero.
+                For many shipped retail transactions, delivery location affects the tax charged by the seller. Qualifying purchases delivered to Montana may be billed without state sales tax, but treatment depends on the seller, product, transaction, and purchaser obligations.
               </p>
             </div>
             
@@ -1045,9 +1045,9 @@ export default function LandingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Compliance Guarantee</h4>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Published Standard Pricing</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  If an FBA shipment is flagged or rejected due to our labeling prep error, we refund 100% of the prep cost and cover the Amazon compliance fee.
+                  Standard FBA, wholesale, DTC, storage, forwarding, and additional-service rates are published before inventory is sent.
                 </p>
               </div>
 
@@ -1057,9 +1057,9 @@ export default function LandingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">24-Hour Dock-to-Stock</h4>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">No Shipment Minimum</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  All inbound shipments are audited, counted, and registered in our WMS dashboard within 24 hours of arrival. No delayed receiving docks.
+                  There is no minimum shipment quantity or minimum service charge. Published wholesale volume tiers begin at 300 units.
                 </p>
               </div>
 
@@ -1069,9 +1069,9 @@ export default function LandingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Full Transparency</h4>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Damage Documentation</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Every damaged inbound box is photographed immediately. You receive visual evidence in your dashboard before any triage begins.
+                  When damage is found during inspection, we document it with photographs, notify you, and follow your disposition instructions.
                 </p>
               </div>
 
@@ -1081,9 +1081,9 @@ export default function LandingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zm10-10V7a4 4 0 0 0-8 0v4h8z" />
                   </svg>
                 </div>
-                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Secure Montana Facility</h4>
+                <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Fourteen Days Free Storage</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  Climate-controlled inventory storage protected by 24/7 video monitoring, secure badge access control, and strict cycle counts.
+                  The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate fourth-quarter rate.
                 </p>
               </div>
             </div>
@@ -1137,10 +1137,10 @@ export default function LandingPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
                   <div className="relative z-10 p-6 text-white bg-zinc-950/20 backdrop-blur-[2px] m-4 rounded-3xl border border-white/10">
-                    <span className="text-[10px] uppercase text-emerald-400 font-bold tracking-wider mb-2 block">Zero-Tax Facility</span>
+                    <span className="text-[10px] uppercase text-emerald-400 font-bold tracking-wider mb-2 block">Montana Receiving Facility</span>
                     <h4 className="text-xl font-bold text-white mb-2">FBA Compliance Station</h4>
                     <p className="text-zinc-300 text-xs leading-relaxed">
-                      Where inventory is audited, FNSKU barcodes applied, and compliance verified before shipping to Amazon warehouses.
+                      Where approved inventory is inspected, labeled, and packaged against current client instructions before outbound shipping.
                     </p>
                   </div>
                 </motion.div>
@@ -1220,13 +1220,13 @@ export default function LandingPage() {
                 Visibility replaces anxiety.
               </h2>
               <p className="text-lg text-zinc-600 leading-relaxed mb-8">
-                You shouldn&apos;t have to send an email to know if your shipment arrived. Our systems provide real-time status updates so you have total control over your inventory lifecycle.
+                Before inventory arrives, we agree on how receiving, damage, prep, and release updates will be communicated. Dashboard and integration availability are confirmed during onboarding.
               </p>
 
               <div className="space-y-6">
                 <motion.div whileHover={{ x: 5 }} className="border-l-2 border-emerald-500 pl-6 cursor-default">
                   <h4 className="text-lg font-bold text-zinc-950 mb-1">Receiving</h4>
-                  <p className="text-zinc-600 text-sm">Inventory is immediately scanned into the WMS upon arrival. No dock delays.</p>
+                  <p className="text-zinc-600 text-sm">Incoming inventory is received and inspected under the approved client plan; intake timing depends on shipment condition and required documentation.</p>
                 </motion.div>
                 <motion.div whileHover={{ x: 5 }} className="border-l-2 border-zinc-200 pl-6 hover:border-emerald-400 transition-colors cursor-default">
                   <h4 className="text-lg font-bold text-zinc-950 mb-1">Prep Rules</h4>
@@ -1234,11 +1234,11 @@ export default function LandingPage() {
                 </motion.div>
                 <motion.div whileHover={{ x: 5 }} className="border-l-2 border-zinc-200 pl-6 hover:border-emerald-400 transition-colors cursor-default">
                   <h4 className="text-lg font-bold text-zinc-950 mb-1">Live Visibility</h4>
-                  <p className="text-zinc-600 text-sm">Dashboard access to see exactly what is received, stored, prepped, or shipped.</p>
+                  <p className="text-zinc-600 text-sm">The reporting method and status milestones are confirmed for each approved workflow.</p>
                 </motion.div>
                 <motion.div whileHover={{ x: 5 }} className="border-l-2 border-zinc-200 pl-6 hover:border-emerald-400 transition-colors cursor-default">
                   <h4 className="text-lg font-bold text-zinc-950 mb-1">Exception Handling</h4>
-                  <p className="text-zinc-600 text-sm">Damaged inbound cartons are instantly photographed and flagged for your review.</p>
+                  <p className="text-zinc-600 text-sm">Damage found during inspection is photographed and emailed for disposition instructions.</p>
                 </motion.div>
               </div>
 
@@ -1277,7 +1277,7 @@ export default function LandingPage() {
                     <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-yellow-500/80" />
                     <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-green-500/80" />
                   </div>
-                  <div className="w-full flex justify-center">
+                  <div className="w-full flex justify-center" aria-label="Illustrative workflow dashboard with sample data">
                     <div className="h-6 w-32 bg-zinc-800 rounded-full flex items-center px-3 gap-2 shadow-inner">
                       <Search size={12} className="text-zinc-500" />
                       <div className="h-1.5 w-16 bg-zinc-700 rounded-full" />
@@ -1317,6 +1317,9 @@ export default function LandingPage() {
                     <div className="text-zinc-300 font-mono text-xl mb-1">14 returns pending</div>
                   </motion.div>
                 </div>
+                <p className="relative z-10 mt-5 text-center text-xs text-zinc-500">
+                  Illustrative workflow with fictional sample data. This is not a live dashboard or performance report.
+                </p>
               </motion.div>
             </div>
           </div>
@@ -1334,7 +1337,7 @@ export default function LandingPage() {
                 Onboarding without the chaos.
               </h2>
               <p className="text-lg text-zinc-400 leading-relaxed">
-                Switching prep centers or 3PLs carries massive operational risk. We mitigate that risk entirely by defining, documenting, and testing your specific workflow before a single physical unit moves.
+                Switching prep centers or 3PLs carries operational risk. We reduce that risk by defining and reviewing your workflow before physical inventory moves.
               </p>
             </div>
 
@@ -1377,7 +1380,7 @@ export default function LandingPage() {
                 Stop guessing. Start a Fit Review.
               </h2>
               <p className="text-lg text-zinc-600 leading-relaxed mb-6">
-                We don&apos;t do blind RFP quotes. We use a structured Fit Review to ensure our capabilities perfectly align with your operational needs. If we aren&apos;t the right fit, we will tell you immediately.
+                We use a structured Fit Review to compare your requirements with our current capabilities, published pricing, and any work that requires a custom quote.
               </p>
               <motion.div 
                 whileHover={{ scale: 1.01, boxShadow: "0 10px 30px -10px rgba(16,185,129,0.2)" }}
@@ -1748,7 +1751,7 @@ export default function LandingPage() {
                           {qSubmitting ? "Sending…" : "Send My Question →"}
                         </motion.button>
 
-                        <p className="text-center text-xs text-zinc-400">We read every message and respond personally.</p>
+                        <p className="text-center text-xs text-zinc-400">Our team reviews each submitted question.</p>
                       </div>
                     </motion.div>
                   )}
@@ -1782,14 +1785,21 @@ export default function LandingPage() {
                 },
                 "address": {
                   "@type": "PostalAddress",
+                  "streetAddress": "5311 13th Street South",
                   "addressLocality": "Great Falls",
                   "addressRegion": "MT",
+                  "postalCode": "59405",
                   "addressCountry": "US"
                 },
+                "email": "support@suchgroupecommerce.com",
+                "telephone": "+1-406-781-1759",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "contactType": "customer support",
-                  "url": "https://suchgroupecommerce.com/contact"
+                  "url": "https://suchgroupecommerce.com/contact",
+                  "email": "support@suchgroupecommerce.com",
+                  "telephone": "+1-406-781-1759",
+                  "areaServed": "US"
                 }
               },
               {
@@ -1808,10 +1818,10 @@ export default function LandingPage() {
                   "@id": "https://suchgroupecommerce.com/#organization"
                 },
                 "areaServed": "US",
-                "description": "Zero sales tax receiving, inspection, wrapping, poly-bagging, and FNSKU labeling in Great Falls, Montana."
+                "description": "Amazon FBA receiving, inspection, wrapping, poly-bagging, and FNSKU labeling from Montana, which has no general statewide sales tax."
               }
             ]
-          }),
+          }).replace(/</g, "\\u003c"),
         }}
       />
     </div>

@@ -1,70 +1,65 @@
-# E-E-A-T Evidence Audit & Claim Register
-**Subject Entity:** Such Group E-Commerce  
-**Domain:** `https://suchgroupecommerce.com`  
-**Audit & Remediation Date:** August 25, 2026  
-**Audited Git Commit:** `c43fadc`  
-**Working Tree Status:** Clean / In Progress (Uncommitted Controlled Corrections)  
+# E-E-A-T Evidence Audit and Claim Register
 
----
+**Subject:** Such Group E-Commerce
 
-## 1. Executive Summary & Remediation Results
+**Domain:** `https://suchgroupecommerce.com`
 
-This register documents the controlled E-E-A-T (Experience, Expertise, Authoritativeness, and Trustworthiness) correction pass across the Such Group E-Commerce codebase.
+**Baseline commit:** `2ab6734dc2cc85d3547ef54fa5d5df0493889e48`
 
-All identified statutory contradictions (FTZ 274, Seattle sales tax rate discrepancy, Public Law 86-272 overstatements) have been resolved. Primary statutory citation modules linking directly to official state departments of revenue (`mtrevenue.gov`, `cdtfa.ca.gov`, `dor.wa.gov`, `comptroller.texas.gov`, `tax.ny.gov`) have been integrated across all state comparison guides. Operational SLAs (turnaround times, Amazon prep compliance, same-day dispatch cutoff) have been qualified with standard operating disclosures.
+**Review branch:** `codex/eeat-verification-fixes`
 
----
+**Status:** Uncommitted corrective patch; not approved for production
+**Reviewed:** August 25, 2026
 
-## 2. Authoritative Source Ledger
+This register separates externally verifiable facts from owner-provided operating information. A linked law or agency page can support a statutory statement, but it cannot verify Such Group E-Commerce's facilities, pricing, software, performance, or contracts. Tax content is general educational information, not tax or legal advice.
 
-| Source ID | Document / Page Title | Publishing Organization | Direct URL | Effective / Pub Date | Date Accessed | Supported Claim Element | Paraphrased Evidence Summary | Limitations & Exceptions |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **SRC-MT-DOR-001** | Montana Code Annotated Title 15 (Taxation) | Montana Department of Revenue | https://mtrevenue.gov | 2026 MCA | 2026-08-25 | 0% state sales tax | Montana imposes 0% general state retail sales tax. | Local resort taxes exist in designated resort communities; Great Falls has no general sales tax. |
-| **SRC-CDTFA-001** | California Sales and Use Tax Rates & Reg 1620 | California Department of Tax and Fee Administration (CDTFA) | https://www.cdtfa.ca.gov | 2026-07-01 | 2026-08-25 | California tax rates & destination sourcing | Statewide base sales tax is 7.25%. District taxes push combined rates up to 10.25%–11.25% in specific jurisdictions (e.g. Alameda, Los Angeles municipalities). | Not all California locations are 10.25%; range is 7.25% to 11.25%. |
-| **SRC-CDTFA-002** | Regulation 1668: Sales for Resale | California Department of Tax and Fee Administration (CDTFA) | https://www.cdtfa.ca.gov/lawguides/vol1/sutr/1668.html | 2026-01-01 | 2026-08-25 | Resale certificate rules | California requires a valid California seller's permit/resale certificate for tax-exempt wholesale purchases delivered in California. | Out-of-state deliveries to a 0% tax state follow destination sourcing. |
-| **SRC-WA-DOR-001** | Local Sales & Use Tax Rates and Destination Sourcing (RCW 82.32.730) | Washington State Department of Revenue | https://dor.wa.gov | 2026-07-01 | 2026-08-25 | Washington sales tax rate & destination sourcing | Washington state base rate is 6.5%. Seattle/King County combined rate is 10.55% (as of 2026). Sourcing follows delivery destination under RCW 82.32.730. | Rates in WA range from 7.0% to 10.6% depending on county/transit district. |
-| **SRC-WA-DOR-002** | Business and Occupation (B&O) Tax Guidelines | Washington State Department of Revenue | https://dor.wa.gov/taxes-rates/business-occupation-tax | 2026-01-01 | 2026-08-25 | Washington B&O tax scope | Washington imposes a gross receipts B&O tax on business activities conducted in WA. | Storing goods in MT does not automatically eliminate WA B&O tax for WA-domiciled entities. |
-| **SRC-TX-COMP-001** | Texas Sales and Use Tax Rates (Rule 3.286) | Texas Comptroller of Public Accounts | https://comptroller.texas.gov | 2026-01-01 | 2026-08-25 | Texas sales tax rate | Texas state sales tax is 6.25% plus local district taxes up to 2.0%, for a maximum of 8.25%. | 8.25% is the ceiling, not uniform in all rural Texas taxing jurisdictions. |
-| **SRC-TX-PROP-001** | Texas Tax Code § 11.01 & § 22.01 (Tangible Personal Property Rendition) | Texas Legislature / Texas Comptroller | https://statutes.capitol.texas.gov/Docs/TX/htm/TX.11.htm | 2026-01-01 | 2026-08-25 | Business personal property tax on inventory | Tangible personal property located in Texas on January 1 used for income production is taxable by local appraisal districts. | Goods physically situated in Montana on Jan 1 are outside Texas appraisal district jurisdiction. |
-| **SRC-NY-DTF-001** | Publication 718: New York State and Local Sales Tax Rates | New York State Department of Taxation and Finance | https://www.tax.ny.gov | 2026-06-01 | 2026-08-25 | New York / NYC sales tax breakdown | New York State (4%) + NYC local (4.5%) + MCTD surcharge (0.375%) = 8.875% combined NYC sales tax. | 8.875% applies specifically to New York City and select MCTD counties; upstate NY rates vary (7.0%–8.875%). |
-| **SRC-NY-DTF-002** | Form ST-120 Resale Certificate Guidance | New York State Department of Taxation and Finance | https://www.tax.ny.gov/forms/sales_cur_forms.htm | 2026-01-01 | 2026-08-25 | NY Resale Certificate mechanics | NY registered vendors must hold a Certificate of Authority to issue Form ST-120. | Does not govern out-of-state retail deliveries where title/possession passes in Montana. |
-| **SRC-USC-001** | 15 U.S. Code § 381 (Public Law 86-272) | United States Congress / Legal Information Institute | https://www.law.cornell.edu/uscode/text/15/381 | 1959 (current) | 2026-08-25 | Federal state income tax immunity | Prohibits states from imposing net income tax on out-of-state entities whose only in-state activity is solicitation of orders of tangible goods filled from outside the state. | **Crucial Limitation:** Does NOT protect against gross receipts taxes (WA B&O, TX Margin, OH CAT), franchise taxes, or sales taxes. Storing inventory in a state creates physical nexus for that state. |
-| **SRC-FTZ-001** | U.S. Foreign-Trade Zones Board Zone Directory | International Trade Administration / U.S. Dept of Commerce | https://www.trade.gov/foreign-trade-zones-board | 2026-01-01 | 2026-08-25 | Foreign-Trade Zone designations in Montana | **FTZ No. 274** grantee is City/County of Butte-Silver Bow (Port of Montana). **FTZ No. 88** grantee is Great Falls International Airport Authority. | **Contradiction Resolved:** FTZ 274 references removed from website. |
-| **SRC-AMAZON-001** | Amazon Seller Central: Inbound FBA Prep & Defect Policy | Amazon Services LLC | https://sellercentral.amazon.com | 2026-01-01 | 2026-08-25 | Amazon FBA inbound compliance & defect fees | As of Jan 1, 2026, Amazon eliminated internal FBA prep services. Sellers must prep FNSKU barcodes and packaging before arrival or incur defect/unplanned service fees. | Amazon does not endorse or certify independent third-party prep centers. |
-| **SRC-BNSF-001** | BNSF Bulk Transload Directory & Rail Service Map | BNSF Railway | https://www.bnsf.com | 2026-01-01 | 2026-08-25 | Rail freight & transload operations in Great Falls | BNSF operates rail lines and switching yards in Great Falls, MT. Third-party transload facilities (e.g. Ponderosa Solutions) operate in Great Falls. | Direct rail spur access requires specific physical siding at the warehouse facility. |
-| **SRC-INTERNAL-001** | Internal Operating Policies & Service Rate Card | Such Group E-Commerce Management | Internal SOP Ledger | 2026-08-25 | 2026-08-25 | SLAs, pricing tiers, turnaround times, storage terms | Standard operating service levels: 24–48hr turnaround target, tiered prep pricing ($1.45–$1.00), storage terms. | Qualified with adjacent operational terms. |
+## Source ledger
 
----
+| ID | Primary source | Supports | Does not establish |
+|---|---|---|---|
+| `MT-SALES-001` | [Montana Department of Revenue sales-tax guidance](https://revenue.mt.gov/taxes/general-sales-tax) | Montana does not impose a general-use sales tax; the page also explains vendor acceptance of resale documentation and online-sales limitations. | The treatment of every purchase, or a client's nexus, registration, income-tax, use-tax, property-tax, or filing duties. |
+| `MT-NEXUS-001` | [Montana Department of Revenue nexus guidance](https://revenuefiles.mt.gov/taxes/nexus) | Montana nexus depends on a business's activities and facts. | Immunity from Montana tax or filing duties. |
+| `US-PL86-272-001` | [15 U.S.C. § 381](https://www.law.cornell.edu/uscode/text/15/381) | The federal limitation concerns certain interstate solicitation activity and state net-income taxes. | A blanket exemption for warehousing, property, sales/use tax, registration, or other activity. |
+| `CA-OUTSTATE-001` | [CDTFA Publication 101](https://cdtfa.ca.gov/formspubs/pub101/index.htm) and [Regulation 1620](https://cdtfa.ca.gov/lawguides/vol1/sutr/1620.html) | California rules for sales delivered outside California and required documentation. | That every online seller will charge no tax or that later California use is exempt. |
+| `WA-RATES-001` | [Washington DOR Q3 2026 rate table](https://dor.wa.gov/sites/default/files/2026-05/Q326_LSU-flyer-by-county.pdf) | Seattle's Q3 2026 combined rate is 10.55%; rates are location- and period-specific. | A customer's final rate or elimination of Washington B&O and reporting duties. |
+| `WA-BO-001` | [Washington DOR B&O guidance](https://dor.wa.gov/taxes-rates/business-occupation-tax) | Washington B&O obligations may continue independently of sales-tax treatment. | A client's liability without a facts-and-circumstances review. |
+| `TX-SALES-001` | [Texas Comptroller sales-tax guidance](https://comptroller.texas.gov/taxes/sales/) | Texas's state rate is 6.25%, with local tax subject to statutory limits. | That every Texas delivery is taxed at 8.25%. |
+| `TX-PROP-001` | [Texas Tax Code Chapter 11](https://statutes.capitol.texas.gov/Docs/TX/htm/TX.11.htm) and [Chapter 22](https://statutes.capitol.texas.gov/Docs/TX/htm/TX.22.htm) | Texas property-tax and rendition rules require a fact-specific location, ownership, date, and exemption analysis. | That Montana storage automatically removes all Texas jurisdiction or filing duties. |
+| `NY-RATES-001` | [New York Publication 718](https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf) | New York rates vary by jurisdiction; 8.875% is a New York City example. | That all New York sellers or purchases bear that rate. |
+| `AMZ-PREP-001` | [Amazon Seller Central](https://sellercentral.amazon.com/) | Current Amazon requirements must be checked in the applicable seller workflow and marketplace. | Certification or endorsement of Such Group E-Commerce, or proof of its performance. A generic login page is not a sufficient citation for a specific rule. |
+| `OWNER-OPS-001` | Owner-provided operating information supplied August 25, 2026; no independent audit artifact linked | Current FBA, wholesale, DTC, storage, add-on, receiving, forwarding, container-unloading, and palletization prices; no minimum shipment or minimum charge; first 14 days of storage free; seller responsibility for postage and freight; damage-photo workflow; approved-client receiving policy; address and phone. The owner previously confirmed a **2:00 PM Mountain Time** weekday cutoff target. | Independent performance verification, carrier contracts, insurance, security controls, climate records, software functionality, legal enforceability, or future availability. |
 
-## 3. Remediated Claim Register
+## Claim register
 
-| Claim ID | Final Remediation Copy | Files Changed | Category | Risk | Final Status | Supporting Sources | Remaining Limitations & Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CLM-TAX-001** | "Montana charges 0% retail sales tax... eliminating checkout tax under destination sourcing rules" | `src/app/montana-tax-free-3pl/page.tsx` | Montana tax treatment | LOW | VERIFIED | `SRC-MT-DOR-001` | Applies to retail purchases delivered in MT. |
-| **CLM-TAX-002** | "California Amazon sellers pay between 7.25% and 10.25%+ (up to 11.25% in select districts)" | `src/app/tax-savings/california-to-montana-3pl/page.tsx` | Sales tax rates | LOW | VERIFIED WITH QUALIFICATION | `SRC-CDTFA-001` | Statutory citations block added. |
-| **CLM-TAX-003** | "Washington Amazon sellers pay 10.55% sales tax in Seattle (up to 10.6% in select districts)" | `src/app/tax-savings/washington-to-montana-3pl/page.tsx` | Sales tax rates | LOW | VERIFIED WITH QUALIFICATION | `SRC-WA-DOR-001` | Seattle rate corrected from 10.6% to 10.55%; citations added. |
-| **CLM-TAX-004** | "Texas Amazon sellers pay up to 8.25% checkout tax and face annual inventory property taxes" | `src/app/tax-savings/texas-to-montana-3pl/page.tsx` | Sales tax & Property tax | LOW | VERIFIED WITH QUALIFICATION | `SRC-TX-COMP-001`, `SRC-TX-PROP-001` | Citations to Texas Tax Code §§ 11.01 & 22.01 added. |
-| **CLM-TAX-005** | "New York Amazon sellers pay up to 8.875% sales tax in the NYC metro area" | `src/app/tax-savings/new-york-to-montana-3pl/page.tsx` | Sales tax rates | LOW | VERIFIED | `SRC-NY-DTF-001` | Citations to NY Publication 718 and Form ST-120 added. |
-| **CLM-TAX-006** | "Holding inventory in Montana triggers 0% Montana state sales tax under MCA Title 15. Remote businesses maintain standard home-state income and franchise tax obligations." | `src/app/montana-tax-free-3pl/page.tsx`, `src/data/servicesData.ts` | Public Law 86-272 & Income Tax | LOW | VERIFIED WITH QUALIFICATION | `SRC-MT-DOR-001`, `SRC-USC-001` | Absolute immunity claims removed; replaced with statutory sales tax truth and CPA advisory. |
-| **CLM-TAX-007** | "Under destination sourcing rules (RCW 82.32.730, CDTFA Reg 1620), sales tax on shipped tangible goods is determined by point of delivery." | `src/app/tax-savings/washington-to-montana-3pl/page.tsx` | Destination sourcing | LOW | VERIFIED WITH QUALIFICATION | `SRC-MT-DOR-001`, `SRC-WA-DOR-001` | Sourcing statutes cited. |
-| **CLM-TAX-008** | "Texas appraisal districts assess business personal property tax on goods physically located in Texas on January 1st." | `src/app/tax-savings/texas-to-montana-3pl/page.tsx` | Inventory property tax | LOW | VERIFIED | `SRC-TX-PROP-001` | Accurate under Texas Tax Code §§ 11.01 & 22.01. |
-| **CLM-TAX-009** | "Shipping inventory to Montana legally avoids destination sales tax on intake. Businesses domiciled in Washington must continue reporting Washington gross receipts for in-state sales." | `src/app/tax-savings/washington-to-montana-3pl/page.tsx` | State DOR compliance | LOW | VERIFIED WITH QUALIFICATION | `SRC-WA-DOR-001`, `SRC-WA-DOR-002` | DOR / B&O tax compliance qualified. |
-| **CLM-OPS-001** | "B2B cross-docking, pallet staging, and intermodal transport with zero Montana inventory property tax" | `src/app/services/wholesale-inventory-storage/page.tsx`, `src/app/llms.txt/route.ts` | FTZ 274 eligibility | LOW | VERIFIED | `SRC-MT-DOR-001` | **REMOVED FTZ 274 REFERENCES COMPLETELY.** |
-| **CLM-OPS-002** | "Intermodal freight and regional rail corridor cross-docking" | `src/app/services/wholesale-inventory-storage/page.tsx`, `src/app/llms.txt/route.ts` | Rail freight capabilities | LOW | VERIFIED WITH QUALIFICATION | `SRC-BNSF-001` | Replaced direct spur claim with intermodal transport and cross-docking. |
-| **CLM-OPS-003** | "Strict adherence to Amazon 2026 inbound prep guidelines with multi-checkpoint scan verification.*" | `src/data/servicesData.ts` | Guarantees & SLAs | LOW | VERIFIED WITH QUALIFICATION | `SRC-AMAZON-001`, `SRC-INTERNAL-001` | 100% financial reimbursement claim replaced with strict adherence SOP and free re-prep policy. |
-| **CLM-OPS-004** | "24 to 48 hours for standard prep orders from complete dock intake.*" | `src/data/servicesData.ts`, `src/app/about/page.tsx` | Turnaround SLAs | LOW | VERIFIED WITH QUALIFICATION | `SRC-INTERNAL-001` | Qualified with standard dock intake terms. |
-| **CLM-OPS-005** | "Targeted same-day fulfillment for eligible orders received before 2:00 PM MT with a 99.9% pick accuracy performance target.*" | `src/data/servicesData.ts` | Same-day fulfillment SLA | LOW | VERIFIED WITH QUALIFICATION | `SRC-INTERNAL-001` | Qualified as performance target subject to carrier sweep schedules. |
-| **CLM-OPS-006** | "Climate-controlled storage actively maintained between 60°F (winter min) and 80°F (summer max) with 24/7 video monitoring." | `src/data/servicesData.ts`, `src/app/services/wholesale-inventory-storage/page.tsx` | Facility & Storage | LOW | VERIFIED | `SRC-INTERNAL-001` | **VERIFIED BY OWNER:** Warehouse is climate-controlled to 60°F–80°F year-round for workforce and inventory preservation. |
-| **CLM-OPS-007** | "99.98% inventory accuracy goal with scheduled cycle counts.*" | `src/data/servicesData.ts` | Inventory accuracy | LOW | VERIFIED WITH QUALIFICATION | `SRC-INTERNAL-001` | Framed as WMS tracking performance goal. |
-| **CLM-OPS-008** | "Official daily scheduled parcel sweeps with UPS and FedEx." | `src/data/servicesData.ts` | Carrier Pickups | LOW | VERIFIED | `SRC-INTERNAL-001` | **VERIFIED BY OWNER:** Official daily carrier pickup agreements with UPS and FedEx. |
-| **CLM-PRC-001** | "Monthly FBA prep pricing: 1–500 @ $1.45 down to $1.00 for 5,001–10,000 units" | `src/app/estimator/page.tsx`, `src/app/services/tax-free-amazon-fba-prep/page.tsx` | Pricing structure | LOW | VERIFIED | `SRC-INTERNAL-001` | Consistent across all pages and estimators. |
+| ID | Claim now permitted in published copy | Risk | Status | Evidence and limitation |
+|---|---|---:|---|---|
+| `TAX-001` | Montana has no general statewide sales tax. | High | Externally supported | `MT-SALES-001`; do not shorten to “all purchases are tax-free.” |
+| `TAX-002` | A qualifying purchase delivered to Montana **may** be billed without state sales tax. | High | Legal/CPA review required | Depends on seller, product, transaction, exemption documentation, later use, and purchaser obligations. |
+| `TAX-003` | Montana storage may create nexus, registration, income-tax, property-tax, or filing duties depending on the facts. PL 86-272 is not a blanket warehousing exemption. | High | Externally supported; client-specific conclusion prohibited | `MT-NEXUS-001`, `US-PL86-272-001`. |
+| `TAX-004` | Seattle's combined rate was 10.55% for Q3 2026 and is an example, not a universal Washington rate. | High | Externally supported; date-sensitive | `WA-RATES-001`; recheck after September 30, 2026. |
+| `TAX-005` | Texas sales tax may reach 8.25%, depending on location. Texas inventory-property-tax treatment is fact-specific. | High | Legal/CPA review required | `TX-SALES-001`, `TX-PROP-001`; no promise that Montana storage eliminates Texas duties. |
+| `TAX-006` | New York City is an 8.875% example; New York rates vary by jurisdiction. | High | Externally supported; date-sensitive | `NY-RATES-001`; recheck before publication and after rate changes. |
+| `OPS-001` | Eligible weekday orders received before **2:00 PM Mountain Time** are targeted for same-business-day dispatch. | High | Owner confirmed; not independently audited | Subject to inventory readiness, account standing, exceptions, holidays, weather, and carrier pickup schedules. |
+| `OPS-002` | Standard prep and receiving windows are performance targets measured from complete dock intake. | Medium | Business confirmation required | Keep asterisk/terms language; do not call the window guaranteed. |
+| `OPS-003` | Numerical accuracy rates may not be published yet. | High | Substantiation required | Publish only if internal records define the period, denominator, exclusions, and calculation. The current rendered pages do not rely on 99.9%, 99.98%, or 99.99% claims. |
+| `OPS-004` | Climate, insurance, surveillance, alarm, and security-control claims may not be published yet. | High | Business confirmation and records required | Retain only after reviewable records and precise limitations are supplied; do not imply product-grade environmental certification. |
+| `OPS-005` | The owner-confirmed price schedule, listed inclusions and exclusions, no-minimum policy, seller-paid shipping, and 14-day storage window reflect the current offer as of August 25, 2026. | High | Owner confirmed; not independently audited | `src/lib/pricing.ts` is the website source of truth. A dated rate card and signed client agreement should control. Storage and abandonment provisions require legal review before being treated as enforceable contract terms. |
+| `OPS-006` | Amazon prep follows the applicable published requirements and documented client SOP. | High | Qualified wording only | Do not claim Amazon certification, endorsement, “100% compliance,” or guaranteed acceptance. |
+| `OPS-007` | Contact facts: 5311 13th Street South, Great Falls, MT 59405; +1 406-781-1759; remote onboarding and approved-client inventory receiving only. | High | Owner confirmed; not independently audited | The public email was normalized from the apparent typo `support@suchgrooupecomerce.com` to `support@suchgroupecommerce.com`; confirm the mailbox exists before merge. |
 
----
+## Removed or prohibited claims
 
-## 4. Summary of Actions Completed
+The corrective patch removes or rejects these claims unless the business later supplies reviewable evidence and explicitly authorizes publication:
 
-1. **FTZ 274 References Removed**: All occurrences of FTZ 274 removed from `src/app/services/wholesale-inventory-storage/page.tsx` and `src/app/llms.txt/route.ts`.
-2. **Seattle Tax Rate Standardized**: Corrected to 10.55% across titles, metadata, tables, and copy in `src/app/tax-savings/washington-to-montana-3pl/page.tsx`.
-3. **Public Law 86-272 Qualified**: Overbroad tax immunity claims replaced with factual destination sales tax explanations and explicit CPA advisories.
-4. **Primary Statutory Citations Added**: Dedicated citations modules linking directly to `.gov` sources added to California, Washington, Texas, and New York state guides.
-5. **SLAs Qualified**: Converted absolute guarantees to clear operational performance targets in `src/data/servicesData.ts`.
+- noon cutoff time;
+- daily cubic-volume billing and “pay only for occupied space”;
+- locked cages, gated perimeter, biosecurity controls, photographic intake logs, or 24-hour receiving;
+- automated split-shipment grouping or universal real-time synchronization;
+- automatic cheapest-carrier selection for every package;
+- zero inventory property tax, zero registration, or blanket exemption from tax or filing duties;
+- automatic tax elimination for every retail or wholesale order;
+- direct rail-spur, FTZ 274, tariff-deferral, or similar facility claims.
+
+## Publication gate
+
+Before merging, a reviewer should (1) run the repository checks, (2) verify each dated statutory rate against the linked official source, (3) have a qualified tax professional review the tax-mechanics pages, (4) have counsel review storage, abandonment, disposal, liability, returns, and payment terms for the client agreement, (5) confirm the normalized support mailbox, and (6) attach or identify internal evidence for every remaining performance target, facility control, and integration. Unresolved claims must not be marked “verified.”

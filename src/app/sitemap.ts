@@ -20,6 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/estimator`,
     },
     {
+      url: `${baseUrl}/pricing`,
+    },
+    {
       url: `${baseUrl}/montana-tax-free-3pl`,
     },
     {

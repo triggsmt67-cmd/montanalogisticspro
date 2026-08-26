@@ -7,14 +7,14 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "New York to Montana 3PL Tax Savings",
   description:
-    "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
+    "Compare New York delivery tax with published Montana FBA prep, freight, and storage costs. NYC's 8.875% rate is an example; treatment varies.",
   alternates: {
     canonical: "/tax-savings/new-york-to-montana-3pl",
   },
   openGraph: {
     title: "New York to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
+      "Compare New York delivery tax with published Montana FBA prep, freight, and storage costs. Tax treatment and savings vary.",
     url: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
     type: "article",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "New York to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "New York Amazon sellers cut 8.875% NYC sales tax on inventory intake. Ship to Such Group E-Commerce in Montana for zero checkout tax and fast FBA prep.",
+      "Compare New York delivery tax with published Montana FBA prep, freight, and storage costs. Tax treatment and savings vary.",
     images: ["/og-image.png"],
   },
 };
@@ -43,9 +43,9 @@ export default function NewYorkToMontanaPage() {
         "@type": "WebPage",
         "@id": "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
         url: "https://suchgroupecommerce.com/tax-savings/new-york-to-montana-3pl",
-        name: "New York to Montana 3PL: Cut 8.875% NYC Sales Tax on Amazon FBA Inventory",
+        name: "New York to Montana 3PL Tax and Fulfillment Cost Comparison",
         description:
-          "New York Amazon FBA sellers save up to 8.875% on inventory costs and escape high East Coast warehousing rates by shipping to Such Group E-commerce in Great Falls, Montana.",
+          "A planning guide comparing New York delivery tax with Montana freight, FBA prep, and storage costs. It does not promise tax savings or provide tax advice.",
         isPartOf: {
           "@type": "WebSite",
           name: "Such Group E-Commerce",
@@ -57,18 +57,18 @@ export default function NewYorkToMontanaPage() {
         mainEntity: [
           {
             "@type": "Question",
-            name: "Can a New York seller legally ship inventory to Montana to avoid sales tax?",
+            name: "How can a New York seller evaluate delivery to a Montana prep center?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Sales tax is charged based on the delivery address. When you ship to a Montana address, the checkout system applies 0% because Montana has no state or local sales tax.",
+              text: "For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to Montana may be billed without state sales tax because Montana has no general statewide sales tax. Treatment varies by seller and transaction.",
             },
           },
           {
             "@type": "Question",
-            name: "Does using a Montana 3PL create New York income tax problems?",
+            name: "Does storing inventory in Montana create state tax nexus or filing obligations?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "No. Federal Public Law 86-272 protects out-of-state sellers whose only Montana activity is warehousing through an independent third party. Storing goods in Montana does not create state income tax liability there.",
+              text: "Storing inventory or conducting other business activities in Montana may create tax nexus or filing obligations depending on the seller’s entity, activities, property, and transaction structure. Public Law 86-272 generally addresses protected solicitation activities and should not be treated as a blanket warehousing exemption. Sellers should obtain a determination from the Montana Department of Revenue or a qualified tax professional.",
             },
           },
           {
@@ -76,7 +76,7 @@ export default function NewYorkToMontanaPage() {
             name: "How long does shipping take from New York to Great Falls, Montana?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Ground freight from the New York metro area to Great Falls takes 4 to 5 business days. Suppliers in the Midwest deliver in 2 to 3 days.",
+              text: "Carrier transit times vary by origin, service, weather, dimensions, weight, and peak capacity. Request a current carrier quote and transit estimate for the specific shipment.",
             },
           },
         ],
@@ -88,7 +88,7 @@ export default function NewYorkToMontanaPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -98,12 +98,12 @@ export default function NewYorkToMontanaPage() {
           New York FBA Sellers
         </p>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-[1.1]">
-          Escape East Coast Overhead: Zero Tax Amazon Prep for NY Sellers
+          New York to Montana 3PL: Compare Tax, Freight, and FBA Prep Costs
         </h1>
         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl mb-14 shadow-sm">
           <p className="text-lg font-medium text-zinc-900 leading-relaxed">
             <span className="font-bold text-blue-600">The Real Cost: </span>
-            New York e-commerce sellers pay up to 8.875% in sales tax while competing for high-cost East Coast warehouse space. Rerouting your sourcing pipeline to Such Group E-commerce in Montana legally eliminates checkout tax at the state line. You avoid bloated metro warehousing fees, protect your operating cash, and lock in FBA prep starting at $1.45 per unit.
+            New York sales-tax rates vary by delivery location, with 8.875% used here as the New York City example. Qualifying purchases delivered to Such Group E-Commerce in Montana may be billed without state sales tax because Montana has no general statewide sales tax. Actual treatment and savings vary. FBA prep starts at $1.45 per unit.
           </p>
         </div>
 
@@ -118,14 +118,14 @@ export default function NewYorkToMontanaPage() {
                 <p className="text-sm font-semibold text-rose-600 uppercase tracking-wide mb-2">Sales tax burden</p>
                 <p className="text-3xl font-extrabold text-zinc-900 mb-2">8.875%</p>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  The combined rate in New York City. Manhattan, Brooklyn, Queens, the Bronx, and Staten Island all pay the same. That is 4% state tax plus 4.5% city tax plus a 0.375% metro surcharge. Source $40,000 in inventory and $3,550 vanishes at checkout.
+                  New York City&apos;s combined 8.875% rate consists of state, city, and Metropolitan Commuter Transportation District components. As an illustration, a fully taxable $40,000 purchase at that rate would produce $3,550 in checkout tax. Exemptions, resale treatment, seller practices, and purchaser obligations can change the result.
                 </p>
               </div>
               <div className="flex-1 bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
-                <p className="text-sm font-semibold text-rose-600 uppercase tracking-wide mb-2">Warehouse costs</p>
-                <p className="text-3xl font-extrabold text-zinc-900 mb-2">$20+/sqft</p>
+                <p className="text-sm font-semibold text-rose-600 uppercase tracking-wide mb-2">Total fulfillment cost</p>
+                <p className="text-3xl font-extrabold text-zinc-900 mb-2">Compare quotes</p>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Commercial warehouse space in the NYC metro runs $18 to $25 per square foot annually. In northern New Jersey, it is $12 to $16. Either way, you are paying a premium just to store boxes before they even get to Amazon.
+                  Compare actual receiving, prep, storage, add-on, freight, and onward-shipping charges from each provider. Lease-market averages do not establish the rate or service quality a seller will receive.
                 </p>
               </div>
             </div>
@@ -133,10 +133,10 @@ export default function NewYorkToMontanaPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className="shrink-0">
                   <p className="text-sm font-semibold text-emerald-700 uppercase tracking-wide mb-1">Montana alternative</p>
-                  <p className="text-3xl font-extrabold text-emerald-800">$0 tax + $1.45/unit</p>
+                  <p className="text-3xl font-extrabold text-emerald-800">Prep from $1.45/unit</p>
                 </div>
                 <p className="text-sm text-emerald-800 leading-relaxed">
-                  Ship to <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Such Group in Great Falls</Link>. Zero sales tax at checkout. 14 days of free storage. Prep, labeling, and shipment creation included in the per-unit fee. Your East Coast overhead problem goes away.
+                  Ship qualifying purchases to <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Such Group in Great Falls</Link>. They may be billed without state sales tax, depending on the seller and transaction. Published plans include 14 days of storage; confirm the prep, labeling, and shipment-creation scope in your quote.
                 </p>
               </div>
             </div>
@@ -146,20 +146,20 @@ export default function NewYorkToMontanaPage() {
         {/* Multi-tier Metro Taxes */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-4">
-            Rerouting Your Supply Chain to a Tax-Free Haven
+            How Delivery Location Changes the Comparison
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              Most states have a state rate and a local rate. New York has three. The state charges 4%. New York City adds 4.5%. Then the Metropolitan Commuter Transportation District adds 0.375% on top. You end up at 8.875% inside the city.
+              New York City&apos;s combined rate includes state, city, and Metropolitan Commuter Transportation District components. Rates outside the city differ by jurisdiction and change over time, so use the official lookup for the specific delivery address.
             </p>
             <p>
-              Outside the city, the numbers shift but stay high. Westchester County is 8.375%. Nassau and Suffolk County on Long Island are 8.625%. Yonkers, White Plains, and Jersey City suppliers all charge rates above 7%.
+              A taxable purchase delivered to a New York address may be billed at the applicable combined rate. Documentation, exemptions, resale treatment, product type, seller practices, and purchaser obligations can affect the amount charged.
             </p>
             <p>
-              Every online purchase shipped to any address in these areas triggers the full combined rate at checkout. Your retail buying trips, your wholesale orders, your bulk restocks. All of them get taxed before the box even opens.
+              Wholesale and resale purchases may require separate documentation accepted by the supplier. A retail purchase and a properly documented resale transaction should not be assumed to receive identical treatment.
             </p>
             <p>
-              When you ship to Montana instead, the checkout software reads our Great Falls address and charges zero. No state tax. No city tax. No transit district surcharge. The total drops, and the difference goes straight to your bank account.
+              Montana has no general statewide sales tax, so a qualifying purchase delivered to Great Falls may be billed without state sales tax. The final result depends on the transaction and does not eliminate other use-tax, nexus, income-tax, registration, or filing obligations.
             </p>
           </div>
         </section>
@@ -174,20 +174,20 @@ export default function NewYorkToMontanaPage() {
               <div className="flex-1 bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-zinc-900 text-lg mb-2">The garage and basement trap</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Plenty of NYC sellers start by storing inventory in their apartment, garage, or a rented storage unit. The space fills up fast. You trip over boxes. Your living room becomes a warehouse. And you still pay the full checkout tax because everything shipped to a New York address gets hit.
+                  Sellers using homes, garages, or rented storage should compare space, labor, insurance, receiving access, damage handling, and actual tax treatment with a professional fulfillment option.
                 </p>
               </div>
               <div className="flex-1 bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm">
                 <h3 className="font-bold text-zinc-900 text-lg mb-2">The East Coast prep center markup</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Prep centers in NJ, CT, and Long Island charge premium rates because their lease costs are premium. You are not paying for better service. You are paying for their zip code. Prep fees of $2.00 to $3.50 per unit are common in the tri-state area.
+                  Prep-center rates and inclusions vary. Request a written quote showing receiving, labeling, packaging, storage, returns, oversize handling, account fees, and postage before comparing providers.
                 </p>
               </div>
             </div>
             <div className="bg-zinc-900 rounded-2xl p-6 shadow-sm text-white">
               <h3 className="font-bold text-lg mb-2">Montana changes the equation</h3>
               <p className="text-sm text-zinc-300 leading-relaxed">
-                Our Great Falls facility runs at a fraction of East Coast overhead. That is why we can offer prep at $1.45 per unit with 14 days of free storage. You get better rates because our costs are lower. Not because we cut corners.
+                Such Group publishes FBA prep from $1.45 per unit and includes the first 14 days of storage. Use the full published schedule and an actual freight quote to compare total landed cost for each SKU.
               </p>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function NewYorkToMontanaPage() {
             The products that save the most on this route
           </h2>
           <p className="text-lg text-zinc-700 leading-relaxed mb-6">
-            New York to Montana crosses carrier Zones 6 and 7. That is a longer freight lane, so the math favors light, high-value products. Heavy, cheap items are better shipped direct.
+            The examples below use assumed freight and New York City&apos;s 8.875% rate solely to demonstrate the calculation. They are not freight quotes, tax determinations, or promised savings.
           </p>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col sm:flex-row items-stretch gap-3">
@@ -243,23 +243,10 @@ export default function NewYorkToMontanaPage() {
             What you pay and what is included
           </h2>
           <div className="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm space-y-4">
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
-              <div>
-                <p className="text-sm text-zinc-500 uppercase tracking-wide font-semibold">1 to 500 units</p>
-                <p className="text-2xl font-extrabold text-zinc-900">$1.45<span className="text-sm font-normal text-zinc-500">/unit</span></p>
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 uppercase tracking-wide font-semibold">501 to 5,000</p>
-                <p className="text-2xl font-extrabold text-zinc-900">$1.25<span className="text-sm font-normal text-zinc-500">/unit</span></p>
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 uppercase tracking-wide font-semibold">5,001+</p>
-                <p className="text-2xl font-extrabold text-zinc-900">$1.00<span className="text-sm font-normal text-zinc-500">/unit</span></p>
-              </div>
-            </div>
+            <p className="text-zinc-700">$1.45 per unit for 1–500 monthly units; $1.35 for 501–1,000; $1.25 for 1,001–2,000; $1.15 for 2,001–5,000; and $1.00 for 5,001–10,000. Volumes over 10,000 require a quote. There is no minimum shipment or minimum charge.</p>
             <div className="border-t border-zinc-100 pt-4 text-sm text-zinc-600 leading-relaxed">
               <p>
-                <strong className="text-zinc-900">Included in every prep:</strong> receiving, inspection, FNSKU labeling, poly-bagging, and shipment creation into Amazon Seller Central. Storage is free for the first 14 days. We also integrate with Shopify, TikTok Shop, and Walmart WFS.
+                <strong className="text-zinc-900">Base-rate scope:</strong> receiving, inspection, FNSKU labeling, standard poly-bagging and warnings when needed, barcode and price-tag covering or removal, suitable reused boxes, dunnage, securing, and shipping-label printing and application. Seller-paid postage, freight, storage after 14 days, special packaging, and listed add-ons are separate. See <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing and policies</Link>.
               </p>
             </div>
           </div>
@@ -290,16 +277,16 @@ export default function NewYorkToMontanaPage() {
               <div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Is this legal?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  Yes. Sales tax is charged based on where the product is delivered. Ship to Montana and the checkout tax is zero. This is how destination-based tax law works across the US.
+                  Delivery location is one factor in many shipped retail transactions, and Montana has no general statewide sales tax. The seller, product, documentation, exemption status, purchaser obligations, and transaction structure can change the treatment. Consult a qualified adviser; Such Group does not provide tax or legal advice.
                 </p>
               </div>
             </div>
             <div className="bg-white rounded-2xl p-6 border border-zinc-200 shadow-sm flex gap-4">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-lg font-bold">Q</div>
               <div>
-                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will this cause New York or Montana tax filing issues?</h3>
+                <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Will storing inventory in Montana create state tax nexus?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  Sourcing inventory directly to Montana eliminates checkout sales tax at delivery under destination sourcing. Your New York entity maintains its standard home-state tax filings. Consult your CPA regarding New York franchise tax and corporate returns.
+                  Storing inventory or conducting other business activities in Montana may create tax nexus or filing obligations depending on the seller’s entity, activities, property, and transaction structure. Public Law 86-272 generally addresses protected solicitation activities and should not be treated as a blanket warehousing exemption. Sellers should obtain a determination from the Montana Department of Revenue or a qualified tax professional.
                 </p>
               </div>
             </div>
@@ -308,7 +295,7 @@ export default function NewYorkToMontanaPage() {
               <div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">How long does freight take from New York?</h3>
                 <p className="text-zinc-700 leading-relaxed m-0">
-                  Ground shipping from the NYC metro area to Great Falls takes approximately 4 to 5 business days under normal carrier transit conditions. Midwest suppliers drop to 2 to 3 days.
+                  Carrier transit times vary by origin, service, weather, dimensions, weight, and peak capacity. Request a current carrier quote and transit estimate for the specific shipment.
                 </p>
               </div>
             </div>
@@ -323,13 +310,16 @@ export default function NewYorkToMontanaPage() {
           </h3>
           <ul className="space-y-2 text-xs text-zinc-600">
             <li>
-              &bull; <strong>[SRC-NY-DTF-001]</strong> New York State Department of Taxation and Finance: <em>Publication 718 (New York State &amp; Local Sales Tax Rates)</em>. Confirms 4.0% state + 4.5% NYC + 0.375% MCTD surcharge (8.875% combined NYC rate).
+              &bull; <strong>[SRC-NY-DTF-001]</strong> New York State Department of Taxation and Finance: <em><a href="https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Publication 718 (New York State &amp; Local Sales Tax Rates)</a></em>. Lists current state and local sales-tax rates, including New York City.
             </li>
             <li>
-              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em><a href="https://revenue.mt.gov/taxes/general-sales-tax" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">General Sales Tax Guidance</a></em> and <em><a href="https://revenuefiles.mt.gov/taxes/nexus" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Montana Tax Nexus Guidelines</a></em>. Confirms that Montana has no general-use sales tax while other business obligations remain fact-specific.
             </li>
             <li>
-              &bull; <strong>[SRC-NY-DTF-002]</strong> New York State Department of Taxation and Finance: <em>Form ST-120 (Resale Certificate Guidance)</em>.
+              &bull; <strong>[SRC-NY-DTF-002]</strong> New York State Department of Taxation and Finance: <em><a href="https://www.tax.ny.gov/forms/sales_cur_forms.htm" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Form ST-120 (Resale Certificate Guidance)</a></em>.
+            </li>
+            <li>
+              &bull; <strong>[SRC-USC-001]</strong> United States Congress: <em><a href="https://www.law.cornell.edu/uscode/text/15/381" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">15 U.S. Code &sect; 381 (Public Law 86-272)</a></em>.
             </li>
           </ul>
         </section>

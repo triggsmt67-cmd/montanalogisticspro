@@ -7,14 +7,14 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Texas to Montana 3PL Tax Savings",
   description:
-    "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
+    "Compare Texas delivery and inventory-tax considerations with published Montana FBA prep, freight, and storage costs. Tax treatment varies.",
   alternates: {
     canonical: "/tax-savings/texas-to-montana-3pl",
   },
   openGraph: {
     title: "Texas to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
+      "Compare Texas delivery and inventory-tax considerations with published Montana FBA prep, freight, and storage costs.",
     url: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
     type: "article",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Texas to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Texas sellers avoid up to 8.25% checkout tax and annual inventory property tax. Ship inventory to Such Group E-Commerce in zero-tax Montana.",
+      "Compare Texas delivery and inventory-tax considerations with published Montana FBA prep, freight, and storage costs.",
     images: ["/og-image.png"],
   },
 };
@@ -43,9 +43,9 @@ export default function TexasToMontanaPage() {
         "@type": "WebPage",
         "@id": "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
         url: "https://suchgroupecommerce.com/tax-savings/texas-to-montana-3pl",
-        name: "Texas to Montana 3PL: Drop 8.25% Sales Tax and Inventory Property Tax",
+        name: "Texas to Montana 3PL Tax and Fulfillment Cost Comparison",
         description:
-          "Texas Amazon FBA sellers eliminate 8.25% checkout tax and avoid January 1st inventory property taxes by routing inventory through Such Group E-commerce in Great Falls, Montana.",
+          "Texas Amazon FBA sellers can compare qualifying purchases delivered to Montana with Texas delivery and inventory costs. Tax treatment depends on the transaction and business.",
         isPartOf: {
           "@type": "WebSite",
           name: "Such Group E-Commerce",
@@ -57,10 +57,10 @@ export default function TexasToMontanaPage() {
         mainEntity: [
           {
             "@type": "Question",
-            name: "Can a Texas seller legally use a Montana 3PL to avoid sales tax?",
+            name: "How can a Texas seller evaluate delivery to a Montana prep center?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Sales tax is charged based on the delivery address. Shipping purchases to a Montana address means the checkout system applies Montana's 0% sales tax rate. This is standard destination-based tax law.",
+              text: "For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to Montana may be billed without state sales tax because Montana has no general statewide sales tax. Treatment varies by seller, transaction, and purchaser obligations.",
             },
           },
           {
@@ -68,7 +68,7 @@ export default function TexasToMontanaPage() {
             name: "Does storing inventory in Montana protect me from Texas inventory property tax?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Texas county appraisal districts can only tax inventory that is physically inside the state on January 1st. Goods stored in Montana are outside their jurisdiction entirely.",
+              text: "Physical location is relevant to Texas business-personal-property tax, but ownership, situs, relevant dates, exemptions, appraisal-district rules, and business activity all affect the result. A Texas property-tax adviser should evaluate the seller's facts.",
             },
           },
           {
@@ -76,7 +76,7 @@ export default function TexasToMontanaPage() {
             name: "How long does ground freight take from Texas to Great Falls, Montana?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Ground shipping from Dallas, Houston, or Austin to Great Falls typically takes 3 to 4 business days through the central US freight corridor.",
+              text: "Carrier transit times vary by origin, service, weather, dimensions, weight, and peak capacity. Request a current carrier quote and transit estimate for the specific shipment.",
             },
           },
         ],
@@ -88,7 +88,7 @@ export default function TexasToMontanaPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -98,19 +98,19 @@ export default function TexasToMontanaPage() {
           Texas FBA Sellers
         </p>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-[1.1]">
-          Eliminate Texas Inventory Rendition and 8.25% Sourcing Taxes
+          Compare Texas Tax and Inventory Costs with Montana Fulfillment
         </h1>
         <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-xl mb-14 shadow-sm">
           <p className="text-lg font-medium text-zinc-900 leading-relaxed">
             <span className="font-bold text-orange-600">The Montana Advantage: </span>
-            Texas Amazon merchants get hit twice with an 8.25% sales tax at checkout and an annual Business Personal Property Tax on inventory held on January 1st. Staging your sourcing pipeline at Such Group E-commerce in Great Falls, Montana eliminates the 8.25% tax penalty and removes your goods from Texas property tax jurisdiction. You protect your margins and get FBA prep starting at $1.45 per unit.
+            Texas sales tax can reach 8.25% depending on the delivery location, and some Texas-held business inventory may be subject to local property-tax reporting. Qualifying purchases delivered to Such Group E-Commerce in Great Falls may be billed without Montana state sales tax. Inventory physically located outside Texas may be treated differently for local property tax, but the result depends on ownership, location, timing, exemptions, and business activity. FBA prep starts at $1.45 per unit.
           </p>
         </div>
 
         {/* The Two Texas Taxes */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-6">
-            The January 1st Property Tax Penalty on Dallas & Houston Warehouses
+            Texas Sales-Tax and Business-Property Considerations
           </h2>
 
           <div className="space-y-6">
@@ -121,7 +121,7 @@ export default function TexasToMontanaPage() {
                 <div>
                   <h3 className="text-lg font-bold text-zinc-900 mb-2">The 8.25% checkout tax</h3>
                   <p className="text-zinc-700 leading-relaxed">
-                    Texas charges 6.25% state sales tax. Cities and counties stack up to 2% on top. In Dallas, Houston, Austin, and San Antonio, you pay the full 8.25% on every retail purchase shipped to a Texas address. Source $50,000 in inventory and $4,125 goes straight to the Comptroller before you list a single product.
+                    Texas imposes a 6.25% state sales-tax rate, with local rates that can bring the combined rate to 8.25%. As an illustration, a fully taxable $50,000 purchase at 8.25% would produce $4,125 in checkout tax. Seller treatment, exemptions, documentation, and purchaser obligations can change the result.
                   </p>
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function TexasToMontanaPage() {
                 <div>
                   <h3 className="text-lg font-bold text-zinc-900 mb-2">The January 1st inventory property tax</h3>
                   <p className="text-zinc-700 leading-relaxed">
-                    Texas is one of the only states that lets county appraisal districts tax your unsold inventory. Every year on January 1st, they snapshot whatever goods sit inside the state. You get a rendition form. You owe property tax on the assessed value of those products. It does not matter if you sell them the next day. If they were in Texas on New Year&apos;s Day, you pay.
+                    Texas business-personal-property rules can include inventory, and January 1 is generally an important appraisal date. Liability and reporting depend on ownership, taxable situs, appraisal-district rules, exemptions, relevant dates, and the business&apos;s activities. This page cannot determine a seller&apos;s property-tax result.
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export default function TexasToMontanaPage() {
                 <span className="text-3xl font-extrabold text-emerald-600 shrink-0">Fix</span>
                 <div>
                   <p className="text-zinc-800 leading-relaxed">
-                    Ship to <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Such Group E-commerce in Montana</Link>. Montana has zero sales tax. Zero inventory property tax. The checkout system sees a Montana address and charges nothing. And on January 1st, your goods are sitting in our warehouse in Great Falls, completely outside of Texas jurisdiction.
+                    Ship qualifying purchases to <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Such Group E-Commerce in Montana</Link>. Because Montana has no general statewide sales tax, the seller may bill the purchase without state sales tax. Texas property-tax treatment depends on where the inventory is physically located, who owns it, relevant dates, exemptions, and the client&apos;s business activities; obtain advice for your facts.
                   </p>
                 </div>
               </div>
@@ -164,10 +164,10 @@ export default function TexasToMontanaPage() {
               Texas is a hub for wholesale sourcing. Tons of Amazon sellers in DFW, Houston, and Austin run high-volume operations. They buy fast, prep fast, and ship fast. That speed is an advantage, but it also means the 8.25% tax hits more often.
             </p>
             <p>
-              Every purchase order shipped to a Texas address gets taxed. Ten orders a week means ten tax hits. Route those same orders to Montana and every single one of them goes through at zero tax. Over a year, that adds up to thousands of dollars back in your operating budget.
+              Tax charged on a purchase depends on the seller, product, exemption documentation, and delivery location. Routing qualifying purchases to Montana may reduce checkout sales tax, but not every order will receive identical treatment. Use your actual invoices and total fulfillment costs to estimate potential savings.
             </p>
             <p>
-              The freight corridor from Texas to Montana runs straight up I-25 and I-15. Ground transit takes 3 to 4 business days. Not fast enough for overnight restocks, but perfect for steady inventory flow where you plan ahead.
+              Freight can move north through the central interstate network, but transit and cost depend on origin, carrier, service, dimensions, weight, weather, and capacity. Obtain a current quote before comparing the route with direct-to-Amazon or another prep center.
             </p>
           </div>
         </section>
@@ -175,42 +175,42 @@ export default function TexasToMontanaPage() {
         {/* Feature List: What Changes When You Move */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-zinc-900 mb-6">
-            FBA Prep That Actually Protects Your Acquisition Capital
+            Operational Factors to Include in the Comparison
           </h2>
           <div className="space-y-3">
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
-                <p className="font-bold text-zinc-900">Checkout tax drops to zero</p>
-                <p className="text-sm text-zinc-600 mt-1">Every online purchase shipped to our Montana address skips the 8.25% automatically. The retailer&apos;s system sees a 0% tax state and charges nothing.</p>
+                <p className="font-bold text-zinc-900">Montana has no general statewide sales tax</p>
+                <p className="text-sm text-zinc-600 mt-1">Qualifying purchases delivered directly to our Montana address may be billed without state sales tax; seller and transaction treatment varies.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
-                <p className="font-bold text-zinc-900">No more rendition forms</p>
-                <p className="text-sm text-zinc-600 mt-1">Your inventory sits in Great Falls on January 1st, not in Harris County or Dallas County. The appraisal district cannot touch goods in Montana.</p>
+                <p className="font-bold text-zinc-900">Inventory location is one property-tax factor</p>
+                <p className="text-sm text-zinc-600 mt-1">Physical location may affect Texas business-property treatment, but it does not by itself determine jurisdiction, reporting, exemptions, or liability. Confirm the result with a Texas property-tax adviser.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
-                <p className="font-bold text-zinc-900">No Montana income tax risk</p>
-                <p className="text-sm text-zinc-600 mt-1">Federal law (Public Law 86-272) protects out-of-state sellers who use Montana only for warehousing through a third-party facility like ours.</p>
+                <p className="font-bold text-zinc-900">Understanding Montana Tax Nexus</p>
+                <p className="text-sm text-zinc-600 mt-1">Storing inventory or conducting other business activities in Montana may create tax nexus or filing obligations depending on the seller’s entity, activities, property, and transaction structure. Public Law 86-272 generally addresses protected solicitation activities and should not be treated as a blanket warehousing exemption. Sellers should obtain a determination from the Montana Department of Revenue or a qualified tax professional.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
-                <p className="font-bold text-zinc-900">Central US distribution stays fast</p>
-                <p className="text-sm text-zinc-600 mt-1">Once prepped, your units go directly into Amazon&apos;s inbound network. Amazon distributes them to fulfillment centers nationwide. The end customer sees the same delivery speed.</p>
+                <p className="font-bold text-zinc-900">Amazon controls downstream placement</p>
+                <p className="text-sm text-zinc-600 mt-1">After an accepted inbound shipment enters Amazon&apos;s network, Amazon controls placement and customer-delivery performance. Prep-center location can affect inbound cost and timing, not guarantee the customer&apos;s delivery speed.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm">
               <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
               <div>
-                <p className="font-bold text-zinc-900">Wholesale resale certificates work cleanly</p>
-                <p className="text-sm text-zinc-600 mt-1">For wholesale B2B orders, we help you present a Montana Business Registry Resale Certificate. No hassle with Texas Comptroller forms or supplier pushback.</p>
+                <p className="font-bold text-zinc-900">Supplier documentation must be confirmed</p>
+                <p className="text-sm text-zinc-600 mt-1">Wholesale and resale transactions may require documentation accepted by the supplier. Such Group does not issue tax certificates or promise supplier acceptance; confirm the required form with the supplier and an adviser.</p>
               </div>
             </div>
           </div>
@@ -223,34 +223,20 @@ export default function TexasToMontanaPage() {
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              Every unit gets the full prep treatment: receiving, inspection, FNSKU barcodes, poly-bagging, and shipment creation into Amazon Seller Central.
+              Published monthly FBA rates include receiving, inspection, FNSKU labeling, standard poly-bagging and warnings when needed, barcode and price-tag covering or removal, suitable reused boxes, dunnage, securing, and shipping-label printing and application.
             </p>
           </div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div className="bg-white border border-zinc-200 rounded-xl p-5 text-center shadow-sm">
-              <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">1 to 500 units</p>
-              <p className="text-3xl font-extrabold text-zinc-900 my-2">$1.45</p>
-              <p className="text-xs text-zinc-500">per unit</p>
-            </div>
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 text-center shadow-sm">
-              <p className="text-xs font-semibold text-emerald-700 uppercase tracking-wide">501 to 5,000</p>
-              <p className="text-3xl font-extrabold text-zinc-900 my-2">$1.25</p>
-              <p className="text-xs text-zinc-500">per unit</p>
-            </div>
-            <div className="bg-white border border-zinc-200 rounded-xl p-5 text-center shadow-sm">
-              <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">5,001+</p>
-              <p className="text-3xl font-extrabold text-zinc-900 my-2">$1.00</p>
-              <p className="text-xs text-zinc-500">per unit</p>
-            </div>
+          <div className="mt-6 bg-white border border-zinc-200 rounded-xl p-5 shadow-sm text-zinc-700">
+            <p>$1.45 per unit for 1–500 monthly units; $1.35 for 501–1,000; $1.25 for 1,001–2,000; $1.15 for 2,001–5,000; and $1.00 for 5,001–10,000. Volumes over 10,000 require a quote. There is no minimum shipment or minimum charge.</p>
           </div>
           <p className="text-sm text-zinc-500 mt-4">
-            Storage is free for 14 days. We integrate with Amazon Seller Central, Shopify, TikTok Shop, and Walmart WFS.
+            The first 14 days of storage are free. Seller-paid postage, freight, storage after 14 days, special packaging, and listed add-ons are separate. See <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing, inclusions, and policies</Link>.
           </p>
         </section>
 
         {/* Pillar Guide CTA */}
         <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-8 mb-16 shadow-lg">
-          <h3 className="text-2xl font-extrabold text-white mb-2">See the full tax-free playbook</h3>
+          <h3 className="text-2xl font-extrabold text-white mb-2">See the full Montana cost-comparison guide</h3>
           <p className="text-zinc-400 text-lg mb-6 max-w-2xl">
             Our complete guide breaks down destination-based tax rules, total fulfillment cost math, and how to set up your first shipment to Montana.
           </p>
@@ -271,7 +257,7 @@ export default function TexasToMontanaPage() {
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Is this actually legal?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Yes. Destination-based tax rules say the tax rate matches the delivery address. Ship to Montana and the tax is zero. This is standard tax law, not a loophole.
+                Delivery location is one factor in many shipped retail transactions, and Montana has no general statewide sales tax. The seller, product, documentation, exemption status, purchaser obligations, and transaction structure can change the treatment. Consult a qualified adviser; Such Group does not provide tax or legal advice.
               </p>
             </div>
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
@@ -283,7 +269,7 @@ export default function TexasToMontanaPage() {
             <div className="bg-white rounded-xl p-6 border border-zinc-200 shadow-sm">
               <h3 className="text-lg font-bold text-zinc-900 mb-2 mt-0">Do I need a Texas resale certificate?</h3>
               <p className="m-0 leading-relaxed text-zinc-700">
-                Not for retail purchases. The Montana shipping address makes the tax zero at checkout automatically. For wholesale orders, you present a Montana Business Registry Resale Certificate to your distributor. We help you set that up.
+                Documentation requirements depend on the seller and transaction. Wholesale or resale purchases may require valid documentation accepted by the supplier. Confirm the required form with the supplier and a qualified tax adviser; we do not provide tax or legal advice.
               </p>
             </div>
           </div>
@@ -297,13 +283,16 @@ export default function TexasToMontanaPage() {
           </h3>
           <ul className="space-y-2 text-xs text-zinc-600">
             <li>
-              &bull; <strong>[SRC-TX-COMP-001]</strong> Texas Comptroller of Public Accounts: <em>Sales and Use Tax Rates (Rule 3.286)</em>. Confirms 6.25% state rate + local taxes up to 2.0% (8.25% maximum).
+              &bull; <strong>[SRC-TX-COMP-001]</strong> Texas Comptroller of Public Accounts: <em><a href="https://comptroller.texas.gov/taxes/sales/" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Sales and Use Tax Rates</a></em> and <em><a href="https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=34&pt=1&ch=3&rl=286" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Rule 3.286 (Seller&apos;s and Purchaser&apos;s Responsibilities)</a></em>. Confirms 6.25% state rate + local taxes up to 2.0% (8.25% maximum).
             </li>
             <li>
-              &bull; <strong>[SRC-TX-PROP-001]</strong> Texas Tax Code: <em>§ 11.01 (Real &amp; Tangible Personal Property) &amp; § 22.01 (Rendition Generally)</em>. Governs tangible personal property physically located in Texas on January 1.
+              &bull; <strong>[SRC-TX-PROP-001]</strong> Texas Tax Code: <em><a href="https://statutes.capitol.texas.gov/Docs/TX/htm/TX.11.htm" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">§ 11.01 (Real &amp; Tangible Personal Property)</a></em> &amp; <em><a href="https://statutes.capitol.texas.gov/Docs/TX/htm/TX.22.htm" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">§ 22.01 (Rendition Generally)</a></em>. Governs tangible personal property physically located in Texas on January 1.
             </li>
             <li>
-              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em><a href="https://revenue.mt.gov/taxes/general-sales-tax" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">General Sales Tax Guidance</a></em> and <em><a href="https://revenuefiles.mt.gov/taxes/nexus" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Montana Tax Nexus Guidelines</a></em>. Confirms that Montana has no general-use sales tax while other business obligations remain fact-specific.
+            </li>
+            <li>
+              &bull; <strong>[SRC-USC-001]</strong> United States Congress: <em><a href="https://www.law.cornell.edu/uscode/text/15/381" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">15 U.S. Code &sect; 381 (Public Law 86-272)</a></em>.
             </li>
           </ul>
         </section>

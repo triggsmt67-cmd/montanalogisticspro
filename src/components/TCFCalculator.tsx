@@ -4,14 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calculator } from "lucide-react";
 import Link from "next/link";
-
-function getFbaTierFee(vol: number): number {
-  if (vol > 5000) return 1.00;
-  if (vol > 2000) return 1.15;
-  if (vol > 1000) return 1.25;
-  if (vol > 500) return 1.35;
-  return 1.45;
-}
+import { getFbaRate } from "@/lib/pricing";
 
 export default function TCFCalculator() {
   const [acquisitionCost, setAcquisitionCost] = useState<number>(25);
@@ -24,7 +17,8 @@ export default function TCFCalculator() {
   const handleVolumeChange = (newVol: number) => {
     setVolume(newVol);
     if (!manualPrepFee) {
-      setPrepFee(getFbaTierFee(newVol));
+      const publishedRate = getFbaRate(newVol);
+      if (publishedRate !== null) setPrepFee(publishedRate);
     }
   };
 
@@ -55,7 +49,7 @@ export default function TCFCalculator() {
             <h3 className="text-2xl font-bold text-white tracking-tight">Total Cost of Fulfillment</h3>
           </div>
           <p className="text-zinc-400 leading-relaxed mb-6">
-            Model your upfront sales tax savings against outbound freight and prep fees. See your exact net margin.
+            Model an assumed checkout-tax difference against prep and freight. This is a planning estimate, not a tax determination, carrier quote, or promised margin.
           </p>
           
           <div className="space-y-6">
@@ -99,7 +93,7 @@ export default function TCFCalculator() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label htmlFor="tcf-prep-fee" className="text-sm font-medium text-zinc-300 block">Such Group Prep Fee</label>
-                <span className="text-xs text-emerald-400 font-mono">Tier: ${prepFee.toFixed(2)}/unit</span>
+                <span className="text-xs text-emerald-400 font-mono">{volume > 10000 ? "Quote required over 10,000" : `Tier: $${prepFee.toFixed(2)}/unit`}</span>
               </div>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-mono" aria-hidden="true">$</span>
@@ -135,6 +129,9 @@ export default function TCFCalculator() {
                   className="w-full bg-zinc-950 border border-zinc-800 rounded-xl pl-8 pr-4 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-all"
                 />
               </div>
+              {volume > 10000 && !manualPrepFee && (
+                <p className="text-xs text-amber-300">The published schedule ends at 10,000 monthly units. The displayed fee remains the last valid tier for illustration only; contact us for an actual rate.</p>
+              )}
             </div>
 
             {/* Volume */}
@@ -172,7 +169,7 @@ export default function TCFCalculator() {
             />
             
             <span className={`text-sm font-bold tracking-widest uppercase mb-2 relative z-10 transition-colors ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
-              Total Monthly Net Savings
+              Estimated Monthly Net Difference
             </span>
             
             <div className="relative h-20 w-full flex items-center justify-center z-10 mb-2">
@@ -190,12 +187,12 @@ export default function TCFCalculator() {
             </div>
             
             <p className="text-zinc-400 text-sm relative z-10 mt-2 max-w-[200px] mx-auto">
-              Straight to your bottom line, just by shifting fulfillment locations.
+              Based only on the assumptions entered; other taxes, fees, freight, storage, and obligations may apply.
             </p>
 
             <div className="mt-8 flex flex-col gap-2 text-sm text-zinc-400 relative z-10 w-full text-left bg-black/20 rounded-xl p-4 border border-white/5">
               <div className="flex justify-between items-center">
-                <span>Tax Saved / Unit</span>
+                <span>Assumed Tax Difference / Unit</span>
                 <span className="text-emerald-400 font-medium">+${taxSavedPerUnit.toFixed(2)}</span>
               </div>
               <div className="flex justify-between items-center">

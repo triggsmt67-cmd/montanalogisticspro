@@ -35,12 +35,14 @@ export const SITE_CONFIG: SiteConfig = {
   legalCompanyName: undefined, // To be supplied when registered
   domain: "https://suchgroupecommerce.com",
   foundingDate: undefined, // To be supplied
-  publicEmail: undefined, // To be supplied
-  supportEmail: undefined,
-  phone: undefined,
+  publicEmail: "support@suchgroupecommerce.com",
+  supportEmail: "support@suchgroupecommerce.com",
+  phone: "+1-406-781-1759",
   address: {
+    street: "5311 13th Street South",
     city: "Great Falls",
     state: "MT",
+    postalCode: "59405",
     country: "US",
   },
   areaServed: "United States",

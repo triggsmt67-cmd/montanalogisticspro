@@ -15,7 +15,7 @@ const GA_MEASUREMENT_ID = "G-EMR88WJD0N";
 const SITE_URL = "https://suchgroupecommerce.com";
 const SITE_NAME = "Such Group E-Commerce";
 const SITE_DESCRIPTION =
-  "Nationwide tax-free Amazon FBA prep and 3PL fulfillment operated from Great Falls, Montana. 24–48 hour turnaround with zero state sales tax on intake.";
+  "Nationwide Amazon FBA prep and 3PL fulfillment from Great Falls, Montana, with qualified 24–48 hour turnaround targets and transparent service terms.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://suchgroupecommerce.com"),

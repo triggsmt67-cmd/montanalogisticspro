@@ -21,14 +21,14 @@ import {
 export const metadata: Metadata = {
   title: "DTC E-Commerce Fulfillment",
   description:
-    "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
+    "DTC eCommerce pick, pack, and shipping from Great Falls, Montana, with published rates from $2.50 per order plus $0.50 per item.",
   alternates: {
     canonical: "/services/dtc-ecommerce-fulfillment",
   },
   openGraph: {
     title: "DTC E-Commerce Fulfillment | Such Group E-Commerce",
     description:
-      "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
+      "DTC eCommerce pick, pack, and shipping from Great Falls, Montana, with published rates from $2.50 per order plus $0.50 per item.",
     url: "https://suchgroupecommerce.com/services/dtc-ecommerce-fulfillment",
     type: "website",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DTC E-Commerce Fulfillment | Such Group E-Commerce",
     description:
-      "Fast multi-channel DTC pick, pack, and shipping from Great Falls, Montana. Direct API integrations with Shopify, TikTok Shop, and major marketplaces.",
+      "DTC eCommerce pick, pack, and shipping from Great Falls, Montana, with published rates from $2.50 per order plus $0.50 per item.",
     images: ["/og-image.png"],
   },
 };
@@ -61,7 +61,7 @@ export default function DTCEcommerceFulfillmentPage() {
           name: "Such Group E-commerce",
         },
         description:
-          "Multi-channel DTC fulfillment from tax-free Montana. Transparent Total Cost of Fulfillment math for Shopify, TikTok Shop, and Walmart WFS brands.",
+          "DTC eCommerce pick, pack, and shipping from Great Falls, Montana, with published volume tiers and supported connections confirmed during onboarding.",
       },
       {
         "@type": "FAQPage",
@@ -71,15 +71,15 @@ export default function DTCEcommerceFulfillmentPage() {
             name: "How do severe Montana winters impact shipping times?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Extreme weather happens. Interstate routes see winter closures. But our strict same-day fulfillment SLAs build a buffer into your delivery window. We process and tender your packages to the carriers fast, mitigating the impact of temporary mountain transit delays.",
+              text: "Extreme weather and carrier interruptions can affect dispatch and transit. Eligible weekday orders received before 2:00 PM Mountain Time are targeted for same-business-day dispatch, subject to inventory readiness, account standing, order exceptions, holidays, weather, and carrier pickup schedules. Transit time is controlled by the carrier.",
             },
           },
           {
             "@type": "Question",
-            name: "Do you support multi-node fulfillment networks?",
+            name: "Which storefront and marketplace connections are available?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Relying on Montana as your only fulfillment node is fatal for heavy items. We integrate perfectly as the western or central node in a bi-coastal 3PL setup. We route your light items through Great Falls and split your heavy fulfillment closer to the East Coast.",
+              text: "Supported storefront and marketplace connections are confirmed during onboarding. Availability, data flow, order routing, and custom technical work depend on the approved service scope; no connection should be assumed until it is tested and documented.",
             },
           },
           {
@@ -87,7 +87,7 @@ export default function DTCEcommerceFulfillmentPage() {
             name: "What time are your daily carrier cutoffs?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Because Great Falls is a strategic regional hub rather than a congested coastal mega-hub, carrier trailer sweeps happen earlier in the day. We enforce strict mid-day cutoffs to guarantee your packages make the outbound freight line every single afternoon.",
+              text: "Our standard weekday cutoff is 2:00 PM Mountain Time. Eligible orders received before the cutoff are targeted for same-business-day dispatch, subject to inventory readiness, account standing, order exceptions, holidays, weather, and carrier pickup schedules.",
             },
           },
         ],
@@ -99,7 +99,7 @@ export default function DTCEcommerceFulfillmentPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -142,7 +142,7 @@ export default function DTCEcommerceFulfillmentPage() {
                 The Bottom Line
               </p>
               <p className="text-base sm:text-lg md:text-xl text-zinc-900 font-medium leading-relaxed">
-                Shipping individual parcels from central Montana to the coasts changes your unit economics. You secure massive savings on front-end inventory acquisition because of our 0% state tax. But you must balance that against carrier shipping zones. We run the exact Total Cost of Fulfillment math for your brand. If you sell light, high-margin products, our Great Falls facility protects your capital and gets your orders to doors fast.
+                Shipping individual parcels from central Montana to the coasts changes unit economics. Qualifying inventory purchases delivered to Montana may be billed without state sales tax, while outbound carrier zones, dimensional weight, handling, and storage add cost. Use the published fulfillment rates and a shipment-specific freight estimate to decide whether the Great Falls workflow fits your catalog.
               </p>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function DTCEcommerceFulfillmentPage() {
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                Most 3PLs sell you on tax savings and lie to you about the freight. Here is the truth. Fulfilling orders from Montana pushes East Coast deliveries into Carrier Zones 5 through 8. Carriers use dimensional weight to punish large, light boxes. If you ship heavy, cheap items or massive boxes, the long-distance carrier surcharges will destroy your tax savings. We audit your catalog before you sign a contract. If the math does not work, we tell you to walk away.
+                Fulfilling orders from Montana can place East Coast deliveries in higher carrier zones. Dimensional-weight rules can also increase the billed weight of large, light boxes. Heavy, low-margin, or oversized products may not be economical from one Montana node. The fit review compares published handling rates with the freight information available for your catalog; carrier charges remain estimates until rated or shipped.
               </p>
             </div>
 
@@ -171,7 +171,7 @@ export default function DTCEcommerceFulfillmentPage() {
                   <span>Light, High-Margin Products</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Tax savings on acquisition far exceed the zone freight premium. Your total cost of fulfillment drops.
+                  These products may be good candidates when any purchase-tax difference exceeds the added freight and handling cost. Calculate the complete landed cost.
                 </p>
               </div>
 
@@ -181,7 +181,7 @@ export default function DTCEcommerceFulfillmentPage() {
                   <span>Heavy, Low-Margin Products</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Dimensional weight surcharges to Zone 8 eat through your tax savings. The math breaks down fast.
+                  Dimensional-weight and higher-zone charges can outweigh any purchase-tax difference. Compare the actual product and destination mix.
                 </p>
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function DTCEcommerceFulfillmentPage() {
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed mb-8">
               <p>
-                This pipeline works perfectly for specific product profiles. Here is exactly who wins when fulfilling out of Great Falls:
+                This pipeline works effectively for specific product profiles. Here is who benefits most when fulfilling out of Great Falls:
               </p>
             </div>
 
@@ -210,7 +210,7 @@ export default function DTCEcommerceFulfillmentPage() {
                     Cosmetics and Beauty
                   </p>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    High retail price, minimal weight. The tax savings easily crush the minor freight difference.
+                    A higher price-to-weight ratio can make the Montana workflow worth evaluating against the actual outbound freight.
                   </p>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function DTCEcommerceFulfillmentPage() {
                     Consumer Electronics
                   </p>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    High price-to-weight ratio. You maximize the tax advantage on every unit.
+                    A higher price-to-weight ratio may leave more room for prep and outbound freight costs.
                   </p>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function DTCEcommerceFulfillmentPage() {
                     High-End Apparel
                   </p>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    Compact and valuable. You protect your margin from state taxes and ship fast in a poly-mailer.
+                    Compact products can reduce dimensional-weight exposure; purchase and freight treatment still varies.
                   </p>
                 </div>
               </div>
@@ -252,22 +252,22 @@ export default function DTCEcommerceFulfillmentPage() {
                     Heavy Home Goods
                   </p>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    Skip us. The dimensional weight penalty to Zone 8 will eat your profit.
+                    Large or heavy products require a shipment-specific comparison and may be better served by a node closer to demand.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Intelligent Order Routing and Same-Day SLAs */}
+          {/* Order Routing and Dispatch Target */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-              Intelligent Order Routing and Same-Day SLAs
+              Order Routing and the Same-Day Dispatch Target
             </h2>
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed">
               <p>
-                Transit time from the Mountain West requires perfect software execution. Our Order Management System syncs directly with Shopify, TikTok Shop, and Walmart WFS. We run strict same-day cutoff times. Orders drop in, our team picks them, and they hit the carrier trailer the exact same business day. We shave 24 hours off the transit time before the box ever leaves the building.
+                Transit time from the Mountain West requires disciplined execution. Supported order-management integrations can send orders to our workflow and return tracking information. Eligible weekday orders received before 2:00 PM Mountain Time are targeted for same-business-day dispatch, subject to inventory readiness, order exceptions, and carrier schedules.
               </p>
             </div>
 
@@ -280,9 +280,9 @@ export default function DTCEcommerceFulfillmentPage() {
                       <Zap className="w-6 h-6" />
                     </div>
                   </div>
-                  <p className="text-white font-bold text-sm mb-1">Same-Day Processing</p>
+                  <p className="text-white font-bold text-sm mb-1">Supported Connections</p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Orders hit the carrier trailer the same business day they drop in.
+                    Storefront connection, data flow, and tracking return are confirmed and tested during onboarding.
                   </p>
                 </div>
 
@@ -292,9 +292,9 @@ export default function DTCEcommerceFulfillmentPage() {
                       <Network className="w-6 h-6" />
                     </div>
                   </div>
-                  <p className="text-white font-bold text-sm mb-1">Multi-Channel Sync</p>
+                  <p className="text-white font-bold text-sm mb-1">Carrier Cost Review</p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Direct integrations with Shopify, TikTok Shop, and Walmart WFS.
+                    Available carrier services and delivery requirements can be reviewed before the shipping label is purchased.
                   </p>
                 </div>
 
@@ -304,9 +304,9 @@ export default function DTCEcommerceFulfillmentPage() {
                       <Clock className="w-6 h-6" />
                     </div>
                   </div>
-                  <p className="text-white font-bold text-sm mb-1">24-Hour Head Start</p>
+                  <p className="text-white font-bold text-sm mb-1">Fast Cutoff Times</p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Strict cutoff enforcement shaves a full day off your transit window.
+                    Same-day dispatch target for eligible orders received before 2:00 PM Mountain Time.
                   </p>
                 </div>
               </div>
@@ -315,8 +315,8 @@ export default function DTCEcommerceFulfillmentPage() {
 
           {/* FAQ Section */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
-            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-8">
-              Frequently Asked Questions About DTC Fulfillment
+            <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
+              Frequently Asked Questions
             </h2>
 
             <div className="space-y-8">
@@ -325,16 +325,16 @@ export default function DTCEcommerceFulfillmentPage() {
                   How do severe Montana winters impact shipping times?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Extreme weather happens. Interstate routes see winter closures. But our strict same-day fulfillment SLAs build a buffer into your delivery window. We process and tender your packages to the carriers fast, mitigating the impact of temporary mountain transit delays.
+                  Extreme weather and carrier interruptions can affect dispatch and transit. Eligible weekday orders received before 2:00 PM Mountain Time are targeted for same-business-day dispatch, subject to inventory readiness, account standing, order exceptions, holidays, weather, and carrier pickup schedules. Transit time is controlled by the carrier.
                 </p>
               </div>
 
               <div className="border-t border-zinc-100 pt-8">
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">
-                  Do you support multi-node fulfillment networks?
+                  Which storefront and marketplace connections are available?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Yes. Relying on Montana as your only fulfillment node is fatal for heavy items. We integrate perfectly as the western or central node in a bi-coastal 3PL setup. We route your light items through Great Falls and split your heavy fulfillment closer to the East Coast.
+                  Supported storefront and marketplace connections are confirmed during onboarding. Availability, data flow, order routing, and custom technical work depend on the approved service scope; no connection should be assumed until it is tested and documented.
                 </p>
               </div>
 
@@ -353,7 +353,9 @@ export default function DTCEcommerceFulfillmentPage() {
                   <br />
                   &bull; <strong>2,500+ monthly orders:</strong> Contact us for a custom quote
                   <br />
-                  Your first 14 days of inventory storage are completely free.
+                  The first 14 days of inventory storage are free. Published cubic-foot rates begin on day 15.
+                  <br />
+                  <Link href="/pricing" className="text-emerald-700 font-semibold hover:underline">Review the complete pricing and additional-fee schedule.</Link>
                 </p>
               </div>
 
@@ -362,7 +364,7 @@ export default function DTCEcommerceFulfillmentPage() {
                   What time are your daily carrier cutoffs?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Because Great Falls is a strategic regional hub rather than a congested coastal mega-hub, carrier trailer sweeps happen earlier in the day. We enforce strict mid-day cutoffs to guarantee your packages make the outbound freight line every single afternoon.
+                  Our standard weekday cutoff is 2:00 PM Mountain Time. Eligible orders received before the cutoff are targeted for same-business-day dispatch, subject to inventory readiness, account standing, order exceptions, holidays, weather, and carrier pickup schedules.
                 </p>
               </div>
             </div>
@@ -375,7 +377,7 @@ export default function DTCEcommerceFulfillmentPage() {
                 Want to see your Total Cost of Fulfillment?
               </h3>
               <p className="text-zinc-400 text-base leading-relaxed">
-                Tell us what you sell, what it weighs, and where your customers live. We run the exact math and show you whether Montana saves or costs you money.
+                Tell us what you sell, what it weighs, and where your customers live. We will apply the published handling rates and identify the freight or technical details that require a quote.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">

@@ -18,14 +18,14 @@ import {
 export const metadata: Metadata = {
   title: "Wholesale Storage & Cross-Docking",
   description:
-    "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
+    "Wholesale prep, pallet and carton receiving, storage, cross-docking, container unloading, and forwarding from Great Falls, Montana.",
   alternates: {
     canonical: "/services/wholesale-inventory-storage",
   },
   openGraph: {
     title: "Wholesale Storage & Cross-Docking | Such Group E-Commerce",
     description:
-      "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
+      "Wholesale prep, pallet and carton receiving, storage, cross-docking, container unloading, and forwarding from Great Falls, Montana.",
     url: "https://suchgroupecommerce.com/services/wholesale-inventory-storage",
     type: "website",
     images: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wholesale Storage & Cross-Docking | Such Group E-Commerce",
     description:
-      "Enterprise B2B pallet storage, cross-docking, and intermodal freight routing in Great Falls, Montana. Zero state inventory property tax on stored stock.",
+      "Wholesale prep, pallet and carton receiving, storage, cross-docking, container unloading, and forwarding from Great Falls, Montana.",
     images: ["/og-image.png"],
   },
 };
@@ -58,17 +58,17 @@ export default function WholesaleInventoryStoragePage() {
           name: "Such Group E-commerce",
         },
         description:
-          "Enterprise B2B warehousing, BNSF rail cross-docking, and zero inventory tax staging in Great Falls, Montana.",
+          "Wholesale prep, inventory storage, pallet and carton receiving, container unloading, cross-docking, and forwarding in Great Falls, Montana.",
       },
       {
         "@type": "FAQPage",
         mainEntity: [
           {
             "@type": "Question",
-            name: "How do you handle California drop-shipment compliance?",
+            name: "Do you provide tax or drop-shipment compliance advice?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "California aggressively polices drop shipments and unequivocally rejects out-of-state resale certificates. To drop-ship to a California consumer from a California supplier, you must register for a California Seller's Permit. We guide you through these specific state-by-state traps so you avoid massive retail tax liabilities.",
+              text: "No. Such Group E-Commerce provides logistics services, not legal, tax, or accounting advice. Supplier documentation, registration, resale, drop-shipment, property-tax, nexus, and filing requirements depend on the client and transaction. Confirm them with the supplier and a qualified adviser.",
             },
           },
           {
@@ -76,7 +76,7 @@ export default function WholesaleInventoryStoragePage() {
             name: "What are your wholesale cross-docking capabilities?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "We support high-velocity LTL and FTL receiving. We pull bulk freight, break it down, and route it to outbound carriers fast. Our facility also maintains strict climate-controlled environments for inventory subject to degradation. We run continuous cycle count audits to ensure perfect inventory integrity over long staging periods.",
+              text: "Published services include box and pallet receiving, 20-foot and 40-foot container unloading, palletization, carton forwarding, pallet forwarding, and cubic-foot storage. Shipment condition, appointments, equipment, special handling, and carrier requirements are confirmed before arrival.",
             },
           },
           {
@@ -84,7 +84,7 @@ export default function WholesaleInventoryStoragePage() {
             name: "Do you offer tiered pricing for wholesale storage?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Every enterprise operation requires a custom footprint. We do not force you into rigid volume tiers. We evaluate your pallet count, rail transload needs, and staging duration to build a flat, predictable pricing structure for your specific supply chain.",
+              text: "Wholesale prep is $1.15 per unit for 300–2,500 units, $1.00 for 2,501–5,000 units, and $0.90 for 5,001–10,000 units. Volume over 10,000 is quoted. The first 14 days of storage are free; published cubic-foot rates begin on day 15. Additional handling and forwarding rates are listed on the pricing page.",
             },
           },
         ],
@@ -96,7 +96,7 @@ export default function WholesaleInventoryStoragePage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -140,7 +140,7 @@ export default function WholesaleInventoryStoragePage() {
                 The Bottom Line
               </p>
               <p className="text-base sm:text-lg md:text-xl text-zinc-900 font-medium leading-relaxed">
-                Enterprise wholesale buyers do not route inventory through Montana to avoid retail checkout tax; they use home-state resale certificates for that. You stage inventory at our Great Falls 3PL to exploit Foreign-Trade Zone 274 tariff deferrals, eliminate state inventory property taxes, and execute high-velocity B2B cross-docking directly off the BNSF Railway network.
+                Enterprise wholesale buyers generally use applicable resale documentation rather than relying on a delivery address alone. Our Great Falls 3PL supports pallet staging, regional freight access, and B2B cross-docking. Inventory-property-tax, nexus, registration, and filing treatment depends on the client, goods, and jurisdictions involved; obtain advice for your specific structure.
               </p>
             </div>
           </div>
@@ -148,20 +148,20 @@ export default function WholesaleInventoryStoragePage() {
 
         {/* Content Sections */}
         <div className="space-y-16">
-          {/* The Zero Inventory Tax Reality */}
+          {/* Tax and storage context */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-              The Zero Inventory Tax Reality
+              Tax Treatment Requires a Facts-and-Circumstances Review
             </h2>
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                Montana offers a massive financial benefit for enterprise
-                wholesalers. The state does not assess an inventory property tax.
-                If you stage massive volumes of goods in states like Texas, you
-                get hit with annual property taxes on your unsold stock. You can
-                stage thousands of pallets here in Great Falls without incurring
-                that annual penalty. You protect your capital efficiency.
+                Montana has no general statewide sales tax, but that fact does not
+                determine a client&apos;s inventory-property-tax, nexus, registration,
+                income-tax, use-tax, or filing obligations. Those questions depend
+                on the inventory, owner, location, relevant date, exemptions, and
+                business activities. Such Group E-Commerce provides storage and
+                logistics services; clients should obtain advice for their facts.
               </p>
             </div>
 
@@ -173,8 +173,8 @@ export default function WholesaleInventoryStoragePage() {
                   <span>Texas and Similar States</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Annual inventory property tax assessed on goods stored inside
-                  the state. Every pallet sitting on January 1st gets taxed.
+                  Texas property-tax and rendition treatment depends on location,
+                  ownership, valuation date, exemptions, and the client&apos;s activities.
                 </p>
               </div>
 
@@ -184,28 +184,26 @@ export default function WholesaleInventoryStoragePage() {
                   <span>Montana</span>
                 </div>
                 <p className="text-sm text-zinc-600 leading-relaxed">
-                  Zero inventory property tax. Stage thousands of pallets in
-                  Great Falls with no annual penalty on your unsold stock.
+                  Montana has no general statewide sales tax. Property-tax and
+                  filing treatment depends on the inventory, owner, and applicable jurisdiction.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* BNSF Rail and Foreign-Trade Zone 274 */}
+          {/* Receiving and forwarding */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-              BNSF Rail and Foreign-Trade Zone 274
+              Receiving, Container Unloading, and Forwarding
             </h2>
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                We handle massive enterprise volume. Our region operates as
-                Foreign-Trade Zone 274. This gives you tariff and duty deferrals
-                on imported bulk goods until they officially enter domestic
-                commerce. We also tie directly into the BNSF Railway network. We
-                pull freight straight from railcars to long-haul trucks or
-                temporary climate-controlled staging. You get high-capacity
-                distribution straight into the Pacific Northwest and Canada.
+                Published services include box and pallet receiving, 20-foot and
+                40-foot container unloading, palletization, carton forwarding,
+                pallet forwarding, cross-docking, and cubic-foot storage. Shipment
+                appointments, equipment, condition, special handling, and carrier
+                requirements must be confirmed before arrival.
               </p>
             </div>
 
@@ -219,10 +217,10 @@ export default function WholesaleInventoryStoragePage() {
                     </div>
                   </div>
                   <p className="text-white font-bold text-sm mb-1">
-                    BNSF Rail Access
+                    Container Receiving
                   </p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Direct railcar-to-truck transloading from the BNSF mainline.
+                    Published unloading rates are available for 20-foot and 40-foot containers, subject to appointment and scope confirmation.
                   </p>
                 </div>
 
@@ -232,10 +230,10 @@ export default function WholesaleInventoryStoragePage() {
                       <Globe className="w-6 h-6" />
                     </div>
                   </div>
-                  <p className="text-white font-bold text-sm mb-1">B2B Cross-Docking</p>
+                  <p className="text-white font-bold text-sm mb-1">Carton &amp; Pallet Forwarding</p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Rapid freight de-consolidation, pallet staging, and regional
-                    freight routing.
+                    Unopened cartons and pallets can be received, labeled, staged,
+                    and forwarded under the approved instructions.
                   </p>
                 </div>
 
@@ -246,32 +244,30 @@ export default function WholesaleInventoryStoragePage() {
                     </div>
                   </div>
                   <p className="text-white font-bold text-sm mb-1">
-                    Climate-Controlled
+                    Published Storage Rates
                   </p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    Maintained at 60°F–80°F year-round for sensitive products.
+                    The first 14 days are free. Cubic-foot rates begin on day 15, with a separate Q4 rate.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Defeating Out-of-State Vendor Rejections */}
+          {/* Forwarding scope */}
           <section className="bg-white rounded-2xl border border-zinc-200/80 p-6 sm:p-8 md:p-10 shadow-sm">
             <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-4 mb-6">
-              Defeating Out-of-State Vendor Rejections
+              What Carton Forwarding Includes
             </h2>
 
             <div className="text-zinc-700 text-base sm:text-lg leading-relaxed space-y-4">
               <p>
-                Automated compliance systems frequently reject Montana business
-                credentials. Vendors look for a standard 9-digit state tax
-                permit, and Montana does not issue those. When a strict state
-                kicks back your Multistate Tax Commission form, it kills your
-                drop-shipping pipeline. We know exactly how to fix this. We hand
-                you the exact statutory proof and escalation protocols to force
-                manual overrides with your vendors. Your supply chain stays
-                unbroken.
+                Carton forwarding covers printing and attaching shipping labels
+                to unopened cartons. Product inspection and unit labeling are not
+                included in the forwarding rate. Box receiving is $1.50 per box,
+                forwarding is $4.00 per carton, pallet receiving is $18.00, and
+                pallet forwarding is $20.00. Carrier postage remains the seller&apos;s
+                responsibility.
               </p>
             </div>
 
@@ -283,13 +279,12 @@ export default function WholesaleInventoryStoragePage() {
                 </div>
                 <div>
                   <p className="font-bold text-zinc-900 text-sm sm:text-base mb-1">
-                    Vendor Portal Rejection?
+                    Need inspection or unit-level prep?
                   </p>
                   <p className="text-sm text-zinc-600 leading-relaxed">
-                    We provide the exact Montana statutory documentation and
-                    step-by-step escalation protocols so your vendor&apos;s tax
-                    compliance desk processes your credentials manually. No more
-                    dead pipelines.
+                    Use the applicable standard FBA or wholesale prep rate instead
+                    of carton forwarding. Special handling is quoted before work
+                    begins.
                   </p>
                 </div>
               </div>
@@ -305,15 +300,14 @@ export default function WholesaleInventoryStoragePage() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">
-                  How do you handle California drop-shipment compliance?
+                  Do you provide tax or drop-shipment compliance advice?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  California aggressively polices drop shipments and
-                  unequivocally rejects out-of-state resale certificates. To
-                  drop-ship to a California consumer from a California supplier,
-                  you must register for a California Seller&apos;s Permit. We
-                  guide you through these specific state-by-state traps so you
-                  avoid massive retail tax liabilities.
+                  No. Such Group E-Commerce provides logistics services, not
+                  legal, tax, or accounting advice. Supplier documentation,
+                  registration, resale, drop-shipment, property-tax, nexus, and
+                  filing requirements depend on the client and transaction.
+                  Confirm them with the supplier and a qualified adviser.
                 </p>
               </div>
 
@@ -322,12 +316,11 @@ export default function WholesaleInventoryStoragePage() {
                   What are your wholesale cross-docking capabilities?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  We support high-velocity LTL and FTL receiving. We pull bulk
-                  freight, break it down, and route it to outbound carriers
-                  fast. Our facility also maintains strict climate-controlled
-                  environments for inventory subject to degradation. We run
-                  continuous cycle count audits to ensure perfect inventory
-                  integrity over long staging periods.
+                  Published services include box and pallet receiving, 20-foot and
+                  40-foot container unloading, palletization, carton forwarding,
+                  pallet forwarding, and cubic-foot storage. Shipment condition,
+                  appointments, equipment, special handling, and carrier
+                  requirements are confirmed before arrival.
                 </p>
               </div>
 
@@ -336,7 +329,7 @@ export default function WholesaleInventoryStoragePage() {
                   Do you offer tiered pricing for wholesale prep and storage?
                 </h3>
                 <p className="text-zinc-700 text-base sm:text-lg leading-relaxed">
-                  Yes. For bulk wholesale prep (same-SKU), our volume-tiered rates are:
+                  Published wholesale prep volume tiers are:
                   <br />
                   &bull; <strong>300 – 2,500 units:</strong> $1.15 / unit
                   <br />
@@ -344,9 +337,9 @@ export default function WholesaleInventoryStoragePage() {
                   <br />
                   &bull; <strong>5,001 – 10,000 units:</strong> $0.90 / unit
                   <br />
-                  &bull; <strong>10,000+ units:</strong> Contact us for a custom quote
+                  &bull; <strong>Over 10,000 units:</strong> Contact us for a custom quote
                   <br />
-                  Price includes receiving, inspection, wrapping, poly bag, FNSKU label, reused boxes, and dunnage. For enterprise freight storage, pallet cross-docking, and intermodal transport, we evaluate your pallet count and staging duration for a flat, predictable structure.
+                  Standard prep includes receiving, inspection, wrapping, standard poly-bagging, FNSKU labeling, suitable reused boxes, and dunnage. The first 14 days of storage are free; published cubic-foot rates begin on day 15. Review the <Link href="/pricing" className="text-emerald-700 font-semibold hover:underline">complete pricing page</Link> for forwarding, container, storage, and additional-service rates.
                 </p>
               </div>
             </div>

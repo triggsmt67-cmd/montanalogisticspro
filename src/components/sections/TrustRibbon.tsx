@@ -13,15 +13,15 @@ export function TrustRibbon() {
           className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-12 text-center"
         >
           <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
-            99.99% Shipment Accuracy
+            Published Volume Pricing
           </div>
           <div className="hidden md:block text-slate-700">|</div>
           <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
-            48hr Max Dock-to-Stock
+            No Minimum Shipment
           </div>
           <div className="hidden md:block text-slate-700">|</div>
           <div className="text-sm md:text-base font-bold text-slate-400 tracking-wider uppercase">
-            0% State Sales Tax
+            14 Days Storage Included
           </div>
         </motion.div>
       </div>

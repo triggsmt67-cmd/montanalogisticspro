@@ -7,14 +7,14 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Washington to Montana 3PL Tax Savings",
   description:
-    "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
+    "Compare Washington delivery tax with Montana FBA prep, freight, and storage costs. Seattle's Q3 2026 rate is an example, not a promised saving.",
   alternates: {
     canonical: "/tax-savings/washington-to-montana-3pl",
   },
   openGraph: {
     title: "Washington to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
+      "Compare Washington delivery tax with published Montana FBA prep, freight, and storage costs. Tax treatment varies by transaction.",
     url: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
     type: "article",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Washington to Montana 3PL Tax Savings | Such Group E-Commerce",
     description:
-      "Washington sellers avoid 10.55% Seattle sales tax on inventory intake. Ship to Such Group E-Commerce in Montana under destination sourcing rules.",
+      "Compare Washington delivery tax with published Montana FBA prep, freight, and storage costs. Tax treatment varies by transaction.",
     images: ["/og-image.png"],
   },
 };
@@ -43,9 +43,9 @@ export default function WashingtonToMontanaPage() {
         "@type": "WebPage",
         "@id": "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
         url: "https://suchgroupecommerce.com/tax-savings/washington-to-montana-3pl",
-        name: "Washington to Montana 3PL: Avoid 10.55% Seattle Sales Tax",
+        name: "Washington to Montana 3PL Tax and Fulfillment Cost Comparison",
         description:
-          "Washington Amazon FBA sellers save on inventory costs by shipping to Such Group E-Commerce in Montana under destination-based sales tax sourcing rules.",
+          "A planning guide comparing Washington delivery tax with Montana freight, FBA prep, and storage costs. It does not promise tax savings or provide tax advice.",
         isPartOf: {
           "@type": "WebSite",
           name: "Such Group E-Commerce",
@@ -57,18 +57,18 @@ export default function WashingtonToMontanaPage() {
         mainEntity: [
           {
             "@type": "Question",
-            name: "Can a Washington seller legally ship inventory to Montana to avoid sales tax?",
+            name: "How can a Washington seller evaluate delivery to a Montana prep center?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Sales tax is calculated based on the delivery address. When you ship purchases to a Montana address, the checkout system charges 0% because Montana has no sales tax. This applies to both retail and wholesale sourcing.",
+              text: "For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to Montana may be billed without state sales tax because Montana has no general statewide sales tax. Wholesale and resale transactions may require separate documentation.",
             },
           },
           {
             "@type": "Question",
-            name: "Will the Washington Department of Revenue audit me for using a Montana 3PL?",
+            name: "How does using a Montana 3PL affect Washington tax and filing obligations?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "The DOR audits businesses with Washington-based inventory and sales activity. When your inventory is stored in Montana and you have no physical presence in Washington, you reduce your DOR exposure significantly. Montana has no sales tax system to audit.",
+              text: "A qualifying purchase delivered to Montana may be billed without Montana state sales tax. Businesses registered or operating in Washington may retain Washington tax and B&O reporting obligations. Storing inventory or conducting business in Montana may also create nexus or filing obligations depending on the entity, activities, property, and transaction. Obtain a determination from the relevant revenue departments or a qualified tax professional.",
             },
           },
           {
@@ -76,7 +76,7 @@ export default function WashingtonToMontanaPage() {
             name: "How fast does freight move from Washington to Great Falls, Montana?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Ground shipping from Seattle or Tacoma to Great Falls takes 2 to 3 business days via I-90. This is one of the shortest transit corridors for any Montana 3PL route.",
+              text: "Carrier transit times vary by origin, service, weather, and peak volume. Request a current carrier quote and transit estimate for the specific shipment before making a routing decision.",
             },
           },
         ],
@@ -88,7 +88,7 @@ export default function WashingtonToMontanaPage() {
     <div className="min-h-[100dvh] bg-[#f9fafb] text-zinc-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 overflow-x-hidden flex flex-col">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <Navbar />
@@ -98,12 +98,12 @@ export default function WashingtonToMontanaPage() {
           Washington FBA Sellers
         </p>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-[1.1]">
-          Bypass Washington DOR Audits & 10.6% Sales Tax with a Montana Prep Center
+          Washington to Montana 3PL: Compare Tax, Freight, and FBA Prep Costs
         </h1>
         <div className="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-xl mb-12 shadow-sm">
           <p className="text-lg font-medium text-zinc-900 leading-relaxed">
             <span className="font-bold text-emerald-600">The Bottom Line: </span>
-            Washington Amazon sellers face combined sales tax rates hitting 10.6% in Seattle alongside aggressive state Department of Revenue audits. Shipping retail inventory east on I-90 to Such Group E-commerce in Great Falls drops checkout tax to zero under destination-sourcing rules. You keep your acquisition capital, avoid DOR audit friction, and access FBA prep starting at $1.45 per unit.
+            Washington rates vary by delivery location; Seattle&apos;s combined rate is used here only as a dated example. A qualifying retail purchase delivered to Such Group E-Commerce in Great Falls may be billed without state sales tax because Montana has no general statewide sales tax. Actual treatment and savings depend on the transaction. FBA prep starts at $1.45 per unit.
           </p>
         </div>
 
@@ -114,13 +114,13 @@ export default function WashingtonToMontanaPage() {
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              <strong className="text-zinc-900">Problem one: the checkout tax.</strong> Washington State charges 6.5% sales tax at the base level. Local city and transit taxes push combined rates to 10.55% in Seattle (and up to 10.6% in select regional districts). Buy $30,000 worth of online inventory delivered to a Washington address, and you pay over $3,100 in sales tax at checkout before you sell a single unit.
+              <strong className="text-zinc-900">Factor one: the delivery-tax comparison.</strong> Washington&apos;s 6.5% state rate combines with applicable local rates. Seattle&apos;s 10.55% combined rate as of Q3 2026 is one dated example: a fully taxable $30,000 purchase at that assumed rate would produce $3,165 in checkout tax.
             </p>
             <p>
-              <strong className="text-zinc-900">Problem two: the Department of Revenue paperwork.</strong> The Washington DOR actively audits out-of-state resale certificates and monitors in-state warehousing. If retail suppliers decline your documentation, capital is tied up in tax payments.
+              <strong className="text-zinc-900">Factor two: documentation and ongoing obligations.</strong> Resale documentation, seller acceptance, Washington B&amp;O tax, registration, use tax, and other obligations depend on the business and transaction. A Montana delivery address does not by itself resolve them.
             </p>
             <p>
-              Both frictions are resolved when you ship to Montana. <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Montana has no state or local general sales tax</Link>. Sourcing to a Montana delivery address applies 0% sales tax automatically under destination sourcing rules (RCW 82.32.730).
+              A Montana delivery address changes the comparison, but it does not resolve every tax obligation. <Link href="/montana-tax-free-3pl" className="text-emerald-600 underline font-semibold hover:text-emerald-700 transition-colors">Montana has no general statewide sales tax</Link>, so a qualifying purchase delivered there may be billed without state sales tax. Washington B&amp;O and other obligations may still apply.
             </p>
           </div>
         </section>
@@ -132,10 +132,10 @@ export default function WashingtonToMontanaPage() {
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              Great Falls sits just off I-15 in central Montana. Freight from the Seattle-Tacoma metro travels east on I-90, cuts south on I-15, and lands at our door. That is carrier Zone 3. Two to three business days. One of the cheapest ground routes in the western US.
+              Great Falls is served by the I-15 corridor, with connections from the Seattle-Tacoma region through the broader interstate network. Carrier zone, cost, and transit time depend on the exact origin, service level, dimensions, weight, weather, and capacity.
             </p>
             <p>
-              Canadian sellers sourcing from BC or Alberta have a similar advantage. Cross-border freight into Montana avoids Washington entirely. No DOR forms, no state tax exposure, and customs clears before the goods hit our dock.
+              Canadian sellers may also request an inbound receiving plan. Cross-border shipments involve customs, brokerage, duties, import records, carrier requirements, and possible state or federal obligations outside our prep fee; those details must be confirmed before shipment.
             </p>
           </div>
         </section>
@@ -157,37 +157,37 @@ export default function WashingtonToMontanaPage() {
               <tbody className="divide-y divide-zinc-200 bg-white text-zinc-700">
                 <tr>
                   <td className="px-6 py-4 font-medium text-zinc-900">Checkout sales tax</td>
-                  <td className="px-6 py-4">10.55% (Seattle) / Up to 10.6%</td>
-                  <td className="px-6 py-4 font-bold text-emerald-600">0%</td>
+                  <td className="px-6 py-4">10.55% Seattle combined rate as of Q3 2026</td>
+                  <td className="px-6 py-4 font-semibold text-emerald-600">Montana has no general statewide sales tax; seller billing and purchaser obligations vary</td>
                 </tr>
                 <tr className="bg-zinc-50/50">
                   <td className="px-6 py-4 font-medium text-zinc-900">Resale audit exposure</td>
-                  <td className="px-6 py-4">High. Aggressive scrutiny on reseller deductions.</td>
-                  <td className="px-6 py-4 font-semibold text-emerald-600">None on intake. 0% statutory Montana tax.</td>
+                  <td className="px-6 py-4">Documentation and audit exposure depend on the transaction and filing position</td>
+                  <td className="px-6 py-4">A Montana delivery does not eliminate audit, nexus, or reporting exposure</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-zinc-900">Montana B&amp;O tax</td>
                   <td className="px-6 py-4">N/A</td>
-                  <td className="px-6 py-4 font-semibold text-emerald-600">0%. Montana has no B&amp;O tax.</td>
+                  <td className="px-6 py-4">Montana does not impose Washington&apos;s B&amp;O tax; other Montana obligations may apply</td>
                 </tr>
                 <tr className="bg-zinc-50/50">
                   <td className="px-6 py-4 font-medium text-zinc-900">Resale certificate hassle</td>
-                  <td className="px-6 py-4">DOR rejects many out-of-state forms.</td>
-                  <td className="px-6 py-4">Not needed for retail purchases. Montana address handles it.</td>
+                  <td className="px-6 py-4">Seller acceptance and documentation requirements vary</td>
+                  <td className="px-6 py-4">Confirm required documents with the supplier and a qualified adviser</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-zinc-900">Transit from Seattle</td>
-                  <td className="px-6 py-4">Local (same day)</td>
-                  <td className="px-6 py-4">2 to 3 business days via I-90</td>
+                  <td className="px-6 py-4">Depends on the selected facility and carrier</td>
+                  <td className="px-6 py-4">Request a current carrier quote and transit estimate</td>
                 </tr>
                 <tr className="bg-zinc-50/50">
                   <td className="px-6 py-4 font-medium text-zinc-900">Prep pricing</td>
-                  <td className="px-6 py-4">Varies. Often $2.00+/unit in metro areas.</td>
-                  <td className="px-6 py-4 font-bold text-emerald-600">From $1.00/unit at volume</td>
+                  <td className="px-6 py-4">Compare the provider&apos;s current quote and inclusions</td>
+                  <td className="px-6 py-4 font-bold text-emerald-600">$1.45 to $1.00 per unit through 10,000 monthly units</td>
                 </tr>
                 <tr>
                   <td className="px-6 py-4 font-medium text-zinc-900">Free storage window</td>
-                  <td className="px-6 py-4">Uncommon. Most charge on arrival.</td>
+                  <td className="px-6 py-4">Check the provider&apos;s current policy</td>
                   <td className="px-6 py-4 font-semibold text-emerald-600">14 days free</td>
                 </tr>
               </tbody>
@@ -201,7 +201,7 @@ export default function WashingtonToMontanaPage() {
             Which products save the most on this route
           </h2>
           <p className="text-lg text-zinc-700 leading-relaxed mb-6">
-            Because Washington to Montana is such a short freight lane, the math works for a wider range of products than longer routes. Here is how specific product types break down.
+            The examples below use assumed freight and a 10.6% comparison rate solely to demonstrate the calculation. They are not carrier quotes, tax determinations, or promised savings.
           </p>
           <div className="overflow-x-auto border border-zinc-200 rounded-xl shadow-sm">
             <table className="w-full text-left text-sm text-zinc-600">
@@ -236,7 +236,7 @@ export default function WashingtonToMontanaPage() {
             </table>
           </div>
           <p className="text-sm text-zinc-500 mt-3">
-            Short version: if it costs more than $15 and weighs under 8 lbs, you save money. Heavy, cheap items should ship direct to Amazon from Washington.
+            Higher-value, lighter products may be stronger candidates, but every SKU should be evaluated using its actual tax treatment, dimensions, freight, prep, storage, and onward-shipping costs.
           </p>
         </section>
 
@@ -247,7 +247,7 @@ export default function WashingtonToMontanaPage() {
           </h2>
           <div className="space-y-4 text-zinc-700 text-lg leading-relaxed">
             <p>
-              We keep it simple. Every unit gets receiving, inspection, FNSKU labeling, poly-bagging, and shipment creation into Seller Central. No hidden fees.
+              Published monthly FBA rates and included services are listed below. Postage, freight, storage after 14 days, oversized or special packaging, and other listed add-ons are separate.
             </p>
             <ul className="list-none space-y-2 text-lg">
               <li className="flex items-center gap-3">
@@ -256,15 +256,23 @@ export default function WashingtonToMontanaPage() {
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                <span><strong className="text-zinc-900">501 to 5,000 units:</strong> $1.25 per unit</span>
+                <span><strong className="text-zinc-900">501 to 1,000 units:</strong> $1.35 per unit</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                <span><strong className="text-zinc-900">5,001+ units:</strong> $1.00 per unit</span>
+                <span><strong className="text-zinc-900">1,001 to 2,000 units:</strong> $1.25 per unit</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                <span><strong className="text-zinc-900">2,001 to 5,000 units:</strong> $1.15 per unit</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                <span><strong className="text-zinc-900">5,001 to 10,000 units:</strong> $1.00 per unit; over 10,000 requires a quote</span>
               </li>
             </ul>
             <p>
-              First 14 days of storage are free. We connect directly with Amazon Seller Central, Shopify, TikTok Shop, and Walmart WFS.
+              There is no minimum shipment or minimum charge. The first 14 days of storage are free; later storage is billed at the published cubic-foot rates. See <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing, inclusions, and policies</Link>.
             </p>
           </div>
         </section>
@@ -295,7 +303,7 @@ export default function WashingtonToMontanaPage() {
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                Yes. Under Washington destination sourcing rules (RCW 82.32.730), sales tax on shipped tangible goods is determined by the point of delivery. Sourcing purchases directly to our Montana facility applies Montana&apos;s 0% sales tax rate at checkout.
+                For many shipped retail transactions, the delivery destination affects the tax charged by the seller. A qualifying purchase delivered to our Montana facility may be billed without state sales tax because Montana has no general statewide sales tax. Treatment varies by seller, transaction, and purchaser obligations.
               </div>
             </details>
             <details className="bg-white rounded-xl border border-zinc-200 shadow-sm group">
@@ -304,7 +312,7 @@ export default function WashingtonToMontanaPage() {
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                Shipping inventory to Montana legally avoids destination sales tax on intake. However, businesses registered or domiciled in Washington must continue reporting Washington gross receipts for in-state sales. Always consult a licensed CPA regarding Washington B&amp;O and multi-state nexus filings.
+                A qualifying purchase delivered to Montana may be billed without Montana state sales tax. Businesses registered or domiciled in Washington may retain Washington B&amp;O, registration, and reporting duties. Consult a qualified tax professional about the client&apos;s specific facts.
               </div>
             </details>
             <details className="bg-white rounded-xl border border-zinc-200 shadow-sm group">
@@ -313,7 +321,7 @@ export default function WashingtonToMontanaPage() {
                 <span className="text-zinc-400 group-open:rotate-45 transition-transform text-xl">+</span>
               </summary>
               <div className="px-6 pb-5 text-zinc-700 leading-relaxed">
-                Yes. Sellers sourcing from British Columbia or Alberta can ship directly into Montana via the Sweetgrass/I-15 port of entry, bypassing Washington retail sales tax entirely.
+                We can evaluate inbound shipments from Canadian sellers, but customs, brokerage, duties, import records, carrier requirements, and tax obligations must be arranged and confirmed before shipment. We do not promise that a route eliminates Washington or other tax exposure.
               </div>
             </details>
           </div>
@@ -327,13 +335,16 @@ export default function WashingtonToMontanaPage() {
           </h3>
           <ul className="space-y-2 text-xs text-zinc-600">
             <li>
-              &bull; <strong>[SRC-WA-DOR-001]</strong> Washington State Department of Revenue: <em>Local Sales &amp; Use Tax Rates &amp; Destination Sourcing (RCW 82.32.730)</em>. Confirms 6.5% state rate + 4.05% Seattle local rate (10.55% combined).
+              &bull; <strong>[SRC-WA-DOR-001]</strong> Washington State Department of Revenue: <em><a href="https://dor.wa.gov/taxes-rates/sales-use-tax-rates/local-sales-use-tax/local-sales-use-tax-rate-table" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Local Sales &amp; Use Tax Rate Table</a></em> &amp; <em><a href="https://app.leg.wa.gov/rcw/default.aspx?cite=82.32.730" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">RCW 82.32.730 (Destination Sourcing)</a></em>. Confirms 6.5% state rate + 4.05% Seattle local rate (10.55% Seattle combined rate as of Q3 2026).
             </li>
             <li>
-              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em>Montana Code Annotated Title 15 (Taxation)</em>. Confirms 0% state retail sales tax.
+              &bull; <strong>[SRC-MT-DOR-001]</strong> Montana Department of Revenue: <em><a href="https://revenue.mt.gov/taxes/general-sales-tax" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">General Sales Tax Guidance</a></em> and <em><a href="https://revenuefiles.mt.gov/taxes/nexus" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Montana Tax Nexus Guidelines</a></em>. Confirms that Montana has no general-use sales tax while other business obligations remain fact-specific.
             </li>
             <li>
-              &bull; <strong>[SRC-WA-DOR-002]</strong> Washington State Department of Revenue: <em>Business and Occupation (B&amp;O) Tax Guidelines (RCW 82.04)</em>.
+              &bull; <strong>[SRC-WA-DOR-002]</strong> Washington State Department of Revenue: <em><a href="https://dor.wa.gov/taxes-rates/business-occupation-tax" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">Business &amp; Occupation (B&amp;O) Tax Guidelines (RCW 82.04)</a></em>.
+            </li>
+            <li>
+              &bull; <strong>[SRC-USC-001]</strong> United States Congress: <em><a href="https://www.law.cornell.edu/uscode/text/15/381" target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-600">15 U.S. Code &sect; 381 (Public Law 86-272)</a></em>.
             </li>
           </ul>
         </section>

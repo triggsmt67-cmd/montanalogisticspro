@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "FBA Prep Cost Estimator",
   description:
-    "Calculate exact Amazon FBA prep costs for labeling, poly bagging, bundling, and storage from our zero-sales-tax Montana facility. Get an instant quote.",
+    "Estimate published Amazon FBA prep, labeling, poly-bagging, bundling, storage, and carton-forwarding rates from our Great Falls, Montana facility.",
   alternates: {
     canonical: "/estimator",
   },
   openGraph: {
     title: "FBA Prep Cost Estimator | Such Group E-Commerce",
     description:
-      "Calculate exact Amazon FBA prep costs for labeling, poly bagging, bundling, and storage from our zero-sales-tax Montana facility. Get an instant quote.",
+      "Estimate published Amazon FBA prep, labeling, poly-bagging, bundling, storage, and carton-forwarding rates from Great Falls, Montana.",
     url: "https://suchgroupecommerce.com/estimator",
     type: "website",
     images: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FBA Prep Cost Estimator | Such Group E-Commerce",
     description:
-      "Calculate exact Amazon FBA prep costs for labeling, poly bagging, bundling, and storage from our zero-sales-tax Montana facility. Get an instant quote.",
+      "Estimate published Amazon FBA prep, labeling, poly-bagging, bundling, storage, and carton-forwarding rates from Great Falls, Montana.",
     images: ["/og-image.png"],
   },
 };

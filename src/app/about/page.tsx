@@ -118,7 +118,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-lg font-bold text-white">0% State Sales Tax</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Montana has zero state sales tax. Routing inventory orders to our Great Falls facility eliminates checkout tax legally under destination-based sourcing.
+              Montana has no general statewide sales tax. Qualifying purchases delivered to our Great Falls facility may be billed without state sales tax, depending on the seller, transaction, and purchaser&apos;s obligations.
             </p>
           </div>
 
@@ -128,7 +128,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-lg font-bold text-white">Great Falls Transportation Hub</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Strategically situated on the I-15 corridor and major BNSF rail routes, enabling cost-effective nationwide pallet movement and direct Amazon inbound freight.
+              Inventory receiving at 5311 13th Street South in Great Falls for approved clients, with remote onboarding and nationwide shipment planning.
             </p>
           </div>
 
@@ -138,7 +138,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-lg font-bold text-white">Amazon Compliance First</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Every unit is inspected, verified, and prepped to meet Amazon’s strict receiving standards, preventing chargebacks, split carton rejections, and delays.
+              We inspect and prep products against the client&apos;s current instructions and applicable Amazon requirements to reduce avoidable labeling and packaging errors. Amazon makes the final acceptance decision.
             </p>
           </div>
         </div>
@@ -157,8 +157,8 @@ export default function AboutPage() {
                 <Clock className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white">Fast Turnaround SLA</h4>
-                <p className="text-zinc-400 text-xs mt-0.5">24 to 48 hour turnaround on standard inventory receiving and FNSKU labeling.</p>
+                <h4 className="text-sm font-bold text-white">Turnaround Target</h4>
+                <p className="text-zinc-400 text-xs mt-0.5">We target the agreed 24–48 hour window for eligible, pre-alerted standard work after check-in. Exceptions, volume, missing data, carrier delays, and special handling can extend timing.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -167,7 +167,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-white">Transparent Tiered Pricing</h4>
-                <p className="text-zinc-400 text-xs mt-0.5">Clear volume discounts starting from $1.45/unit down to $1.00/unit with no hidden surcharges.</p>
+                <p className="text-zinc-400 text-xs mt-0.5">Published FBA rates run from $1.45 to $1.00 per unit through 10,000 monthly units; storage, shipping, special packaging, and listed add-ons are separate.</p>
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
         <div className="text-center p-8 rounded-3xl bg-emerald-950/20 border border-emerald-500/20 space-y-4">
           <h3 className="text-xl sm:text-2xl font-bold text-white">Have questions or ready to run numbers?</h3>
           <p className="text-zinc-400 text-sm max-w-xl mx-auto">
-            Use our interactive cost estimator to calculate your exact unit prep costs or send our team an inquiry.
+            Use our estimator for a planning range, review the <Link href="/pricing" className="text-emerald-400 underline">published pricing and policies</Link>, or send our team the details needed for a scoped quote.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Link
@@ -202,7 +202,7 @@ export default function AboutPage() {
       {/* Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
     </div>
   );
