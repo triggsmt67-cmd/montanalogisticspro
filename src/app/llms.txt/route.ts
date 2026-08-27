@@ -18,9 +18,11 @@ export async function GET() {
 - [Contact Us](https://suchgroupecommerce.com/contact)
 
 ## Business Contact
-- Address: 5311 13th Street South, Great Falls, Montana 59405, United States. Inventory receiving for approved clients only; no walk-in customer service.
-- Phone: +1 406-781-1759
-- Email: support@suchgroupecommerce.com
+- Registered Entity Name: Such Group International Inc.
+- Brand / Operating Name: Such Group E-Commerce
+- Address: 601 6th St SW, Great Falls, Montana 59404, United States. Inventory receiving for approved clients only; no walk-in customer service.
+- Phone: +1 406-788-1614
+- Email: ecommerce@sgigf.com
 
 ## Important Qualification
 - Such Group E-Commerce provides logistics services, not legal, tax, accounting, or financial advice.

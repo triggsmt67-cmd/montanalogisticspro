@@ -108,13 +108,16 @@ export const ADDITIONAL_FEES = [
 
 export const STORAGE_PRICING = [
   { period: "First 14 days", rate: "Free" },
-  { period: "Days 15–180", rate: "$2.40 per cubic foot" },
-  { period: "Day 181 and after", rate: "$3.60 per cubic foot" },
+  { period: "Days 15–180", rate: "$2.40 / cu. ft. / month" },
+  { period: "Day 181 and after", rate: "$3.60 / cu. ft. / month" },
   {
     period: "October 1–December 31",
-    rate: "$4.80 per cubic foot during Q4",
+    rate: "$4.80 / cu. ft. / month during Q4",
   },
 ] as const;
+
+export const STORAGE_BILLING_POLICY =
+  "Billed monthly per cubic foot, prorated daily if storage is accrued for a fraction of the calendar month.";
 
 export const CARTON_FORWARDING_PRICING = [
   { name: "Box receiving", rate: "$1.50 per box" },

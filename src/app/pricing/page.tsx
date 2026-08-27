@@ -204,8 +204,7 @@ export default function PricingPage() {
                     ))}
                   </div>
                   <p className="mt-5 text-sm leading-relaxed text-amber-900">
-                    The Q4 rate replaces the otherwise applicable post-free-period
-                    cubic-foot rate from October 1 through December 31.
+                    Storage is billed monthly per cubic foot, prorated daily if storage is accrued for a fraction of the calendar month. The Q4 rate replaces the otherwise applicable post-free-period monthly rate from October 1 through December 31.
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-amber-900">
                     Inventory left for 60 days with unpaid storage charges may be

@@ -353,7 +353,7 @@ export default function TaxFreeAmazonFBAPrepPage() {
                   </div>
                   <div>
                     <p className="text-white font-semibold text-sm mb-1">14 Days Free Storage</p>
-                    <p className="text-zinc-400 text-sm leading-relaxed">The first 14 days are free. Published cubic-foot storage rates begin on day 15.</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">The first 14 days are free. Storage is billed monthly per cubic foot (prorated daily for partial months) beginning on day 15.</p>
                   </div>
                 </div>
 

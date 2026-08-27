@@ -45,14 +45,15 @@ This register separates externally verifiable facts from owner-provided operatin
 | `OPS-004` | Climate, insurance, surveillance, alarm, and security-control claims may not be published yet. | High | Business confirmation and records required | Retain only after reviewable records and precise limitations are supplied; do not imply product-grade environmental certification. |
 | `OPS-005` | The owner-confirmed price schedule, listed inclusions and exclusions, no-minimum policy, seller-paid shipping, and 14-day storage window reflect the current offer as of August 25, 2026. | High | Owner confirmed; not independently audited | `src/lib/pricing.ts` is the website source of truth. A dated rate card and signed client agreement should control. Storage and abandonment provisions require legal review before being treated as enforceable contract terms. |
 | `OPS-006` | Amazon prep follows the applicable published requirements and documented client SOP. | High | Qualified wording only | Do not claim Amazon certification, endorsement, “100% compliance,” or guaranteed acceptance. |
-| `OPS-007` | Contact facts: 5311 13th Street South, Great Falls, MT 59405; +1 406-781-1759; remote onboarding and approved-client inventory receiving only. | High | Owner confirmed; not independently audited | The public email was normalized from the apparent typo `support@suchgrooupecomerce.com` to `support@suchgroupecommerce.com`; confirm the mailbox exists before merge. |
+| `OPS-007` | Contact facts: Such Group International Inc.; 601 6th St SW, Great Falls, MT 59404; +1 406-788-1614; ecommerce@sgigf.com; remote onboarding and approved-client inventory receiving only. | High | Owner confirmed; not independently audited | Official business name, address, telephone, and email confirmed by client. |
+| `OPS-008` | Storage billing: Billed monthly per cubic foot, prorated daily if storage accrued for a fraction of the calendar month. First 14 days free. | High | Owner confirmed; not independently audited | Confirmed by owner August 27, 2026. |
 
 ## Removed or prohibited claims
 
 The corrective patch removes or rejects these claims unless the business later supplies reviewable evidence and explicitly authorizes publication:
 
 - noon cutoff time;
-- daily cubic-volume billing and “pay only for occupied space”;
+- unverified daily cubic-volume billing without monthly cycle (storage is confirmed billed monthly, prorated daily for partial months);
 - locked cages, gated perimeter, biosecurity controls, photographic intake logs, or 24-hour receiving;
 - automated split-shipment grouping or universal real-time synchronization;
 - automatic cheapest-carrier selection for every package;

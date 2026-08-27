@@ -53,15 +53,16 @@ export default function MontanaTaxFree3PLPage() {
       {
         "@type": "Organization",
         "name": "Such Group E-Commerce",
+        "legalName": "Such Group International Inc.",
         "url": "https://suchgroupecommerce.com",
-        "email": "support@suchgroupecommerce.com",
-        "telephone": "+1-406-781-1759",
+        "email": "ecommerce@sgigf.com",
+        "telephone": "+1-406-788-1614",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "5311 13th Street South",
+          "streetAddress": "601 6th St SW",
           "addressLocality": "Great Falls",
           "addressRegion": "MT",
-          "postalCode": "59405",
+          "postalCode": "59404",
           "addressCountry": "US"
         },
         "description": "Nationwide remote-client 3PL operating from a Great Falls inventory receiving facility that is not open for walk-in service."
@@ -178,7 +179,7 @@ export default function MontanaTaxFree3PLPage() {
           <section className="space-y-4 text-zinc-700">
             <h2 className="text-2xl font-bold text-zinc-900 tracking-tight border-b border-zinc-200 pb-2">Such Group E-Commerce Operations &amp; Service Tiers</h2>
             <p className="leading-relaxed">
-              Such Group receives approved client inventory at 5311 13th Street South in Great Falls. The facility is not open for walk-in service; onboarding, support, and shipment planning are handled remotely.
+              Such Group receives approved client inventory at 601 6th St SW in Great Falls. The facility is not open for walk-in service; onboarding, support, and shipment planning are handled remotely.
             </p>
 
             <h3 className="text-lg font-bold text-zinc-900 mt-6 mb-2">Unit Prep Pricing Schedule:</h3>
@@ -193,7 +194,7 @@ export default function MontanaTaxFree3PLPage() {
 
             <h3 className="text-lg font-bold text-zinc-900 mt-6 mb-2">Warehouse Terms &amp; Capabilities:</h3>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-zinc-900">Storage:</strong> First 14 days free; published cubic-foot rates apply afterward, including the Q4 rate.</li>
+              <li><strong className="text-zinc-900">Storage:</strong> First 14 days free; storage is billed monthly per cubic foot (prorated daily for partial months) beginning on day 15, including the Q4 rate.</li>
               <li><strong className="text-zinc-900">No Minimum:</strong> No minimum shipment amount and no minimum charge.</li>
               <li><strong className="text-zinc-900">Specialized Processing:</strong> Oversized handling, bubble wrap, poly-bagging, suffocation labels, bundling, returns, carton forwarding, pallet work, and container unloading are available at the published or quoted rate.</li>
             </ul>

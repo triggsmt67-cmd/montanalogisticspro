@@ -621,7 +621,7 @@ export default function EstimatorPage() {
                 <Section title="Storage" eyebrow="Optional">
                   {service !== "storage" && service !== "carton" && (
                     <div className="mb-6">
-                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Staging longer than 14 days?" helper="Your first two weeks are free. Published cubic-foot storage rates apply beginning on day 15." />
+                      <ToggleRow checked={needsStorage} onChange={setNeedsStorage} label="Staging longer than 14 days?" helper="Your first two weeks are free. Storage is billed monthly per cubic foot (prorated daily if accrued for a fraction of the calendar month) beginning on day 15." />
                     </div>
                   )}
 
@@ -656,7 +656,7 @@ export default function EstimatorPage() {
                         </div>
                       </div>
 
-                      <ToggleRow checked={q4} onChange={setQ4} label="Storage falls between October 1 and December 31" helper="The published Q4 storage rate is $4.80 per cubic foot." />
+                      <ToggleRow checked={q4} onChange={setQ4} label="Storage falls between October 1 and December 31" helper="The published Q4 storage rate is $4.80 per cubic foot per month." />
                     </div>
                   )}
                 </Section>
@@ -777,7 +777,7 @@ export default function EstimatorPage() {
               </div>
               <div>
                   <h3 className="font-semibold text-lg text-zinc-900">When do storage fees begin?</h3>
-                <p className="text-zinc-600 mt-2">The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate Q4 rate from October 1 through December 31.</p>
+                <p className="text-zinc-600 mt-2">The first 14 days are free. Storage is billed monthly per cubic foot (prorated daily if storage is accrued for a fraction of the calendar month) beginning on day 15, with a separate Q4 rate from October 1 through December 31.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg text-zinc-900">Do I pay sales tax on Montana 3PL services?</h3>
@@ -826,7 +826,7 @@ export default function EstimatorPage() {
                     "name": "When do storage fees begin?",
                     "acceptedAnswer": {
                       "@type": "Answer",
-                      "text": "The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate Q4 rate from October 1 through December 31."
+                      "text": "The first 14 days are free. Storage is billed monthly per cubic foot (prorated daily if storage is accrued for a fraction of the calendar month) beginning on day 15, with a separate Q4 rate from October 1 through December 31."
                     }
                   },
                   {

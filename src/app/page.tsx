@@ -277,7 +277,7 @@ const PATH_CONTENT = {
     services: [
       {
         title: "Published Storage Plans",
-        body: "Fourteen days of free storage followed by published cubic-foot rates, including a separate fourth-quarter rate.",
+        body: "Fourteen days of free storage followed by monthly cubic-foot rates (prorated daily for partial months), including a separate fourth-quarter rate.",
         icon: Layers
       },
       {
@@ -1083,7 +1083,7 @@ export default function LandingPage() {
                 </div>
                 <h4 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Fourteen Days Free Storage</h4>
                 <p className="text-zinc-400 text-sm leading-relaxed">
-                  The first 14 days are free. Published cubic-foot storage rates begin on day 15, with a separate fourth-quarter rate.
+                  The first 14 days are free. Storage is billed monthly per cubic foot (prorated daily if storage is accrued for a fraction of the month) starting on day 15, with a separate fourth-quarter rate.
                 </p>
               </div>
             </div>
@@ -1776,6 +1776,7 @@ export default function LandingPage() {
                 "@type": "OnlineBusiness",
                 "@id": "https://suchgroupecommerce.com/#organization",
                 "name": "Such Group E-Commerce",
+                "legalName": "Such Group International Inc.",
                 "url": "https://suchgroupecommerce.com",
                 "logo": "https://suchgroupecommerce.com/icon.png",
                 "description": "Nationwide Amazon FBA prep, DTC fulfillment, and B2B wholesale storage operated from Great Falls, Montana.",
@@ -1785,20 +1786,20 @@ export default function LandingPage() {
                 },
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "5311 13th Street South",
+                  "streetAddress": "601 6th St SW",
                   "addressLocality": "Great Falls",
                   "addressRegion": "MT",
-                  "postalCode": "59405",
+                  "postalCode": "59404",
                   "addressCountry": "US"
                 },
-                "email": "support@suchgroupecommerce.com",
-                "telephone": "+1-406-781-1759",
+                "email": "ecommerce@sgigf.com",
+                "telephone": "+1-406-788-1614",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "contactType": "customer support",
                   "url": "https://suchgroupecommerce.com/contact",
-                  "email": "support@suchgroupecommerce.com",
-                  "telephone": "+1-406-781-1759",
+                  "email": "ecommerce@sgigf.com",
+                  "telephone": "+1-406-788-1614",
                   "areaServed": "US"
                 }
               },

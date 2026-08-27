@@ -26,7 +26,7 @@ export function Footer() {
               {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.postalCode}
             </p>
             <p>
-              <a className="hover:text-white" href={`tel:${SITE_CONFIG.phone}`}>406-781-1759</a>
+              <a className="hover:text-white" href={`tel:${SITE_CONFIG.phone}`}>406-788-1614</a>
               {" · "}
               <a className="hover:text-white" href={`mailto:${SITE_CONFIG.supportEmail}`}>{SITE_CONFIG.supportEmail}</a>
             </p>

@@ -18,11 +18,11 @@ When you have finalized these items, providing them will allow us to populate th
 
 | Required Detail | Current Code Status | Where It Will Be Used | Owner Input Needed |
 | :--- | :--- | :--- | :--- |
-| **Exact Registered Legal Entity Name** | `undefined` | Terms of Service, Privacy Policy, Schema `legalName` | e.g. *Such Group E-Commerce LLC* or *Such Group Inc.* |
+| **Exact Registered Legal Entity Name** | Owner confirmed: `Such Group International Inc.` | Terms of Service, Privacy Policy, Schema `legalName` | Registered corporate name confirmed. |
 | **State of Formation & Registration ID** | `undefined` | Entity registration disclosures | State of filing (e.g. Montana Secretary of State entity ID) |
-| **Public Customer Support Email** | Provisional: `support@suchgroupecommerce.com` | Schema `email`, Contact page, Footer | Confirm that this exact mailbox exists. The owner-supplied spelling contained an apparent domain typo and was normalized. |
-| **Public Business Telephone Number** | Owner confirmed: `+1 406-781-1759` | Schema `telephone`, Contact page, Footer | Confirm preferred call hours and voicemail handling. |
-| **Specific Physical Facility Street Address** | Owner confirmed: `5311 13th Street South, Great Falls, MT 59405` | Schema, Contact page, Footer, approved shipment instructions | Public copy states approved-client inventory receiving only and no walk-in customer service. |
+| **Public Customer Support Email** | Owner confirmed: `ecommerce@sgigf.com` | Schema `email`, Contact page, Footer | Confirmed official public/support email address. |
+| **Public Business Telephone Number** | Owner confirmed: `+1 406-788-1614` | Schema `telephone`, Contact page, Footer | Confirmed business phone number. |
+| **Specific Physical Facility Street Address** | Owner confirmed: `601 6th St SW, Great Falls, MT 59404` | Schema, Contact page, Footer, approved shipment instructions | Public copy states approved-client inventory receiving only and no walk-in customer service. |
 | **Commercial Insurance Policy / Underwriter** | Not claimed in rendered pages | B2B storage agreements & any future trust badges | Certificate of insurance (COI), policy scope, and approved wording |
 | **Official Terms of Service (TOS) Document** | Referenced in legal disclaimer | Legal footer `/terms` page | Standard enterprise 3PL logistics master services agreement |
 | **Official Executive / Management Biographies** | Unset (No stock or AI personas used) | About page leadership schema | Real founders / logistics operations directors |

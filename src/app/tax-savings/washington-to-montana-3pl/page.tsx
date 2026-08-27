@@ -272,7 +272,7 @@ export default function WashingtonToMontanaPage() {
               </li>
             </ul>
             <p>
-              There is no minimum shipment or minimum charge. The first 14 days of storage are free; later storage is billed at the published cubic-foot rates. See <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing, inclusions, and policies</Link>.
+              There is no minimum shipment or minimum charge. The first 14 days of storage are free; subsequent storage is billed monthly per cubic foot (prorated daily for partial months). See <Link href="/pricing" className="text-emerald-700 underline font-semibold">complete pricing, inclusions, and policies</Link>.
             </p>
           </div>
         </section>

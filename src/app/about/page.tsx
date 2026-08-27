@@ -128,7 +128,7 @@ export default function AboutPage() {
             </div>
             <h3 className="text-lg font-bold text-white">Great Falls Transportation Hub</h3>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Inventory receiving at 5311 13th Street South in Great Falls for approved clients, with remote onboarding and nationwide shipment planning.
+              Inventory receiving at 601 6th St SW in Great Falls for approved clients, with remote onboarding and nationwide shipment planning.
             </p>
           </div>
 

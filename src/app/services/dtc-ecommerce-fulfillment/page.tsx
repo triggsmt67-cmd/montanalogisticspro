@@ -353,7 +353,7 @@ export default function DTCEcommerceFulfillmentPage() {
                   <br />
                   &bull; <strong>2,500+ monthly orders:</strong> Contact us for a custom quote
                   <br />
-                  The first 14 days of inventory storage are free. Published cubic-foot rates begin on day 15.
+                  The first 14 days of inventory storage are free. Storage is billed monthly per cubic foot (prorated daily for partial months) beginning on day 15.
                   <br />
                   <Link href="/pricing" className="text-emerald-700 font-semibold hover:underline">Review the complete pricing and additional-fee schedule.</Link>
                 </p>

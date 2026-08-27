@@ -170,7 +170,7 @@ export default function ContactPage() {
                 <div>
                   <h4 className="text-sm font-bold text-white">Business Phone</h4>
                   <a href={`tel:${SITE_CONFIG.phone}`} className="text-zinc-400 text-xs mt-0.5 hover:text-emerald-400 transition-colors">
-                    406-781-1759
+                    406-788-1614
                   </a>
                 </div>
               </div>

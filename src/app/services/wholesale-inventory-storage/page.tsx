@@ -84,7 +84,7 @@ export default function WholesaleInventoryStoragePage() {
             name: "Do you offer tiered pricing for wholesale storage?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Wholesale prep is $1.15 per unit for 300–2,500 units, $1.00 for 2,501–5,000 units, and $0.90 for 5,001–10,000 units. Volume over 10,000 is quoted. The first 14 days of storage are free; published cubic-foot rates begin on day 15. Additional handling and forwarding rates are listed on the pricing page.",
+              text: "Wholesale prep is $1.15 per unit for 300–2,500 units, $1.00 for 2,501–5,000 units, and $0.90 for 5,001–10,000 units. Volume over 10,000 is quoted. The first 14 days of storage are free; storage is billed monthly per cubic foot (prorated daily if storage is accrued for a fraction of the month) beginning on day 15. Additional handling and forwarding rates are listed on the pricing page.",
             },
           },
         ],
@@ -247,7 +247,7 @@ export default function WholesaleInventoryStoragePage() {
                     Published Storage Rates
                   </p>
                   <p className="text-zinc-400 text-sm leading-relaxed">
-                    The first 14 days are free. Cubic-foot rates begin on day 15, with a separate Q4 rate.
+                    The first 14 days are free. Monthly cubic-foot rates begin on day 15 (prorated daily for partial months), with a separate Q4 rate.
                   </p>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export default function WholesaleInventoryStoragePage() {
                   <br />
                   &bull; <strong>Over 10,000 units:</strong> Contact us for a custom quote
                   <br />
-                  Standard prep includes receiving, inspection, wrapping, standard poly-bagging, FNSKU labeling, suitable reused boxes, and dunnage. The first 14 days of storage are free; published cubic-foot rates begin on day 15. Review the <Link href="/pricing" className="text-emerald-700 font-semibold hover:underline">complete pricing page</Link> for forwarding, container, storage, and additional-service rates.
+                  Standard prep includes receiving, inspection, wrapping, standard poly-bagging, FNSKU labeling, suitable reused boxes, and dunnage. The first 14 days of storage are free; storage is billed monthly per cubic foot (prorated daily) beginning on day 15. Review the <Link href="/pricing" className="text-emerald-700 font-semibold hover:underline">complete pricing page</Link> for forwarding, container, storage, and additional-service rates.
                 </p>
               </div>
             </div>
