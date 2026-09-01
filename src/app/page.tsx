@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import DeconstructedWarehouseScene from "@/components/ui/DeconstructedWarehouseScene";
-import TaxSavingsCalculator from "@/components/TaxSavingsCalculator";
+import dynamic from "next/dynamic";
+
+const TaxSavingsCalculator = dynamic(() => import("@/components/TaxSavingsCalculator"));
 import { pushDataLayerEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -1132,6 +1134,7 @@ export default function LandingPage() {
                     src="/warehouse_prep.png" 
                     alt="Such Group E-Commerce Prep Station"
                     fill
+                    priority
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -1251,6 +1254,7 @@ export default function LandingPage() {
                   src="/warehouse_receiving.png" 
                   alt="Such Group E-Commerce Inbound Audit Process" 
                   fill
+                  priority
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
