@@ -30,6 +30,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
 
+  verification: {
+    google: "-vyD0aKVKWL1W8RkEjbwI4G2Z3BdlUHYmwiCK_LFE3U",
+  },
+
   robots: {
     index: true,
     follow: true,
